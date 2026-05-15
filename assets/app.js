@@ -364,42 +364,80 @@ function renderProducts() {
   table.append(tbody);
 }
 
-function initMap() {
-  const map = L.map("map", { scrollWheelZoom: false });
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 12,
-    attribution: "&copy; OpenStreetMap contributors",
-  }).addTo(map);
+function projectPoint(lon, lat) {
+  const bounds = { minLon: -43, maxLon: 12, minLat: -14, maxLat: 58 };
+  const x = ((lon - bounds.minLon) / (bounds.maxLon - bounds.minLon)) * 1000;
+  const y = (1 - (lat - bounds.minLat) / (bounds.maxLat - bounds.minLat)) * 620;
+  return [x, y];
+}
 
-  const latLngs = routePoints.map((point) => [point.lat, point.lon]);
-  L.polyline(latLngs, { color: "#d95f35", weight: 4, opacity: 0.95 }).addTo(map);
-  routePoints.forEach((point) => {
-    L.circleMarker([point.lat, point.lon], {
-      radius: 7,
-      color: "#17212b",
-      weight: 2,
-      fillColor: "#fff",
-      fillOpacity: 1,
+function pointPath(points) {
+  return points
+    .map((point, index) => {
+      const [x, y] = projectPoint(point.lon, point.lat);
+      return `${index === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`;
     })
-      .addTo(map)
-      .bindPopup(`<strong>${point.name}</strong><br>${point.note}`);
-  });
-  mooringFeatures.forEach((feature) => {
-    const [lon, lat] = feature.geometry.coordinates;
-    const props = feature.properties;
-    const icon = L.divIcon({
-      className: "mooring-marker",
-      html: `<span class="mooring-star">*</span><span class="mooring-label">${props.label}</span>`,
-      iconSize: [120, 24],
-      iconAnchor: [10, 12],
-    });
-    L.marker([lat, lon], { icon })
-      .addTo(map)
-      .bindPopup(
-        `<strong>${props.label}</strong><br>${props.region}<br>Water depth: ${props.water_depth_m} m`,
-      );
-  });
-  map.fitBounds(latLngs, { padding: [28, 28] });
+    .join(" ");
+}
+
+function renderRouteOverview() {
+  const routePath = pointPath(routePoints);
+  const stopMarkers = routePoints
+    .map((point) => {
+      const [x, y] = projectPoint(point.lon, point.lat);
+      return `
+        <g>
+          <circle cx="${x}" cy="${y}" r="7" class="route-stop" />
+          <text x="${x + 11}" y="${y - 8}" class="route-label">${point.name}</text>
+        </g>`;
+    })
+    .join("");
+  const mooringMarkers = mooringFeatures
+    .map((feature) => {
+      const [lon, lat] = feature.geometry.coordinates;
+      const [x, y] = projectPoint(lon, lat);
+      const label = feature.properties.label;
+      return `
+        <g>
+          <text x="${x}" y="${y}" class="route-star">*</text>
+          <text x="${x + 13}" y="${y - 4}" class="mooring-map-label">${label}</text>
+        </g>`;
+    })
+    .join("");
+
+  document.querySelector("#map").innerHTML = `
+    <svg class="route-overview" viewBox="0 0 1000 620" role="img" aria-label="M219 route and GEOMAR moorings">
+      <defs>
+        <linearGradient id="routeSea" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="#e9f4f7" />
+          <stop offset="1" stop-color="#b7dbe5" />
+        </linearGradient>
+        <pattern id="routeGrid" width="92" height="92" patternUnits="userSpaceOnUse">
+          <path d="M92 0H0V92" fill="none" stroke="rgba(10,95,120,.16)" stroke-width="1.2" />
+        </pattern>
+      </defs>
+      <rect width="1000" height="620" fill="url(#routeSea)" />
+      <rect width="1000" height="620" fill="url(#routeGrid)" />
+      <path class="land" d="M0 470 C70 455 105 510 170 514 L170 620 L0 620Z" />
+      <path class="land" d="M615 0 C665 42 678 115 654 185 C624 272 702 335 760 365 C842 409 855 500 805 620 L1000 620 L1000 0Z" />
+      <path class="land" d="M753 0 C780 36 779 79 754 113 C718 163 725 203 760 244 C810 300 849 344 866 407 C889 493 864 559 836 620 L1000 620 L1000 0Z" />
+      <text x="24" y="44" class="overview-title">M219 WAVES route overview</text>
+      <text x="24" y="74" class="overview-subtitle">Recife - 23W Equator - CVOO/Mindelo - Emden, with GEOMAR moorings</text>
+      <path d="${routePath}" class="route-shadow" />
+      <path d="${routePath}" class="route-line" />
+      ${stopMarkers}
+      ${mooringMarkers}
+      <g class="route-legend">
+        <circle cx="0" cy="0" r="6" class="route-stop" />
+        <text x="14" y="5">Cruise waypoint</text>
+        <text x="0" y="31" class="route-star">*</text>
+        <text x="14" y="31">GEOMAR mooring</text>
+      </g>
+    </svg>`;
+}
+
+function initMap() {
+  renderRouteOverview();
 }
 
 async function init() {
