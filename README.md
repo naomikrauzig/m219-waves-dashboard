@@ -1,15 +1,15 @@
 # Meteor M219 WAVES Near-Real-Time Marine Dashboard
 
-This repository contains a GitHub Pages-ready static dashboard modeled after the MSM142 near-real-time satellite snapshot page, adapted for the planned RV Meteor M219 WAVES cruise corridor from Recife to the Equator, Cape Verde / Mindelo, and Emden.
+This repository contains a dashboard for the planned R/V Meteor M219 WAVES GEOMAR Cruise.
 
 The page works immediately with generated placeholders. Once Copernicus Marine credentials are added to GitHub repository secrets, the scheduled workflow can download subsets and render PNG snapshots into `assets/snapshots`.
 
 ## Cruise Basis
 
 - Campaign: `M219 (WAVES)`
-- Platform: RV Meteor
+- Platform: R/V Meteor
 - Planned dates: `2026-05-30` Recife, Brazil to `2026-06-28` Emden, Germany
-- Chief scientist listed by PANGAEA: Peter Brandt
+- Chief scientist: Peter Brandt
 - Current route file: `data/route.geojson`
 
 ## Local Preview
