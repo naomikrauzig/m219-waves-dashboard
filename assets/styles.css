@@ -535,4 +535,75 @@ a {
   .brand-credit p {
     text-align: left;
   }
+  .status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  min-height: 1.9rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: 0;
+}
+
+.status.available {
+  background: #dff5e5;
+  color: #146c2e;
+  cursor: pointer;
+}
+
+.status.failed {
+  background: #fde2e2;
+  color: #9b1c1c;
+}
+
+.status.planned {
+  background: #e9edf2;
+  color: #5b6472;
+  padding-inline: 0.8rem;
+}
+
+.status.missing {
+  background: #f2f4f7;
+  color: #8a94a6;
+}
+
+.selected-cell {
+  outline: 2px solid #d95f35;
+  outline-offset: -2px;
+  background: rgba(217, 95, 53, 0.08);
+}
+
+.selected-row {
+  background: rgba(217, 95, 53, 0.08);
+}
+
+#availability-table th small,
+#products-table td small {
+  display: block;
+  margin-top: 0.25rem;
+  color: #6b7280;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.planned-row {
+  opacity: 0.78;
+}
+
+.zoom-stage {
+  overflow: hidden;
+}
+
+#snapshot-image {
+  transform-origin: center center;
+  transition: transform 0.18s ease;
+}
+
+#map svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 }
