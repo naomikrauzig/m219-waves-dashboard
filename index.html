@@ -23,8 +23,8 @@
         <p class="eyebrow">RV Meteor M219 WAVES</p>
         <h1>Near-real-time marine snapshots from Recife to the Equator, Cape Verde, Mindelo, and Emden</h1>
         <p class="lede">
-          A GitHub Pages-ready dashboard for Copernicus Marine wave, wind, sea-level, SST, chlorophyll,
-          and ocean-physics products along the planned M219 cruise corridor.
+          A GitHub Pages-ready dashboard for rolling Copernicus Marine forecast maps from today through
+          five days ahead along the planned M219 cruise corridor.
         </p>
       </div>
       <aside class="status-panel" aria-label="Cruise status">
@@ -55,7 +55,7 @@
       <section class="availability-section">
         <div class="section-heading">
           <h2>Product Availability</h2>
-          <p>Rows are Copernicus-derived layers; columns are recent daily update slots.</p>
+          <p>Rows are Copernicus forecast layers; columns are the rolling daily forecast window.</p>
         </div>
         <div class="table-wrap">
           <table id="availability-table"></table>
@@ -78,7 +78,7 @@
         </div>
         <ul>
           <li>The route currently uses planning waypoints. Replace <code>data/route.geojson</code> with DShip, AIS, or station positions when available.</li>
-          <li>The update workflow expects Copernicus Marine credentials in GitHub repository secrets.</li>
+          <li>The update workflow expects Copernicus Marine credentials in GitHub repository secrets and runs daily.</li>
           <li>Generated plots should be written to <code>assets/snapshots</code>; the page automatically prefers real images over placeholders.</li>
         </ul>
       </section>

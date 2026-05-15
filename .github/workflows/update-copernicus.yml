@@ -4,8 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       date:
-        description: "Snapshot date as YYYY-MM-DD"
+        description: "Forecast start date as YYYY-MM-DD; leave empty for today UTC"
         required: false
+        type: string
+      days_ahead:
+        description: "Number of future forecast days to fetch"
+        required: false
+        default: "5"
         type: string
   schedule:
     - cron: "20 5 * * *"
@@ -33,9 +38,11 @@ jobs:
         run: |
           DATE_ARG=""
           if [ -n "${{ inputs.date }}" ]; then DATE_ARG="--date ${{ inputs.date }}"; fi
-          python scripts/fetch_copernicus.py $DATE_ARG --allow-partial
+          DAYS_AHEAD="${{ inputs.days_ahead }}"
+          if [ -z "$DAYS_AHEAD" ]; then DAYS_AHEAD="5"; fi
+          python scripts/fetch_copernicus.py $DATE_ARG --days-ahead "$DAYS_AHEAD" --allow-partial
       - name: Commit generated snapshots
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Update Copernicus M219 snapshots"
-          file_pattern: assets/snapshots/*.png
+          file_pattern: assets/snapshots/*.png data/manifest.json

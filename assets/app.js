@@ -10,44 +10,14 @@ const products = [
     reference: "https://data.marine.copernicus.eu/product/GLOBAL_ANALYSISFORECAST_WAV_001_027/services",
   },
   {
-    key: "WIND",
-    label: "Surface wind and stress",
-    dataset: "cmems_obs-wind_glo_phy_nrt_l4_0.125deg_PT1H",
-    product: "WIND_GLO_PHY_L4_NRT_012_004",
-    variables: "eastward_wind, northward_wind, wind_speed",
-    institution: "KNMI / Copernicus Marine Service",
-    cadence: "Hourly",
-    reference: "https://data.marine.copernicus.eu/products",
-  },
-  {
-    key: "SLA",
-    label: "Sea level anomaly",
-    dataset: "cmems_obs-sl_glo_phy-ssh_nrt_allsat-l4-duacs-0.125deg_P1D",
-    product: "SEALEVEL_GLO_PHY_L4_NRT_008_046",
-    variables: "sla, adt, ugos, vgos",
-    institution: "CLS, CNES / Copernicus Marine Service",
-    cadence: "Daily",
-    reference: "https://data.marine.copernicus.eu/products",
-  },
-  {
-    key: "SST_L4",
-    label: "Sea surface temperature",
-    dataset: "METOFFICE-GLO-SST-L4-NRT-OBS-SST-V2",
-    product: "SST_GLO_SST_L4_NRT_OBSERVATIONS_010_001",
-    variables: "analysed_sst",
-    institution: "UK Met Office",
-    cadence: "Daily",
-    reference: "https://data.marine.copernicus.eu/products",
-  },
-  {
-    key: "CHL",
-    label: "Chlorophyll-a",
-    dataset: "cmems_obs-oc_glo_bgc-plankton_nrt_l3-multi-4km_P1D",
-    product: "OCEANCOLOUR_GLO_BGC_L3_NRT_009_101",
-    variables: "CHL",
-    institution: "ACRI / GlobColour",
-    cadence: "Daily",
-    reference: "https://data.marine.copernicus.eu/products",
+    key: "MODEL_CURRENT",
+    label: "Model currents",
+    dataset: "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m",
+    product: "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+    variables: "uo, vo",
+    institution: "Mercator Ocean International",
+    cadence: "Daily forecast",
+    reference: "https://data.marine.copernicus.eu/product/GLOBAL_ANALYSISFORECAST_PHY_001_024/services",
   },
   {
     key: "MODEL_TEMP",
@@ -56,8 +26,8 @@ const products = [
     product: "GLOBAL_ANALYSISFORECAST_PHY_001_024",
     variables: "thetao",
     institution: "Mercator Ocean International",
-    cadence: "Daily",
-    reference: "https://data.marine.copernicus.eu/products",
+    cadence: "Daily forecast",
+    reference: "https://data.marine.copernicus.eu/product/GLOBAL_ANALYSISFORECAST_PHY_001_024/services",
   },
   {
     key: "MODEL_SAL",
@@ -66,21 +36,14 @@ const products = [
     product: "GLOBAL_ANALYSISFORECAST_PHY_001_024",
     variables: "so",
     institution: "Mercator Ocean International",
-    cadence: "Daily",
-    reference: "https://data.marine.copernicus.eu/products",
+    cadence: "Daily forecast",
+    reference: "https://data.marine.copernicus.eu/product/GLOBAL_ANALYSISFORECAST_PHY_001_024/services",
   },
 ];
 
-const snapshots = [
-  "2026-05-30",
-  "2026-05-31",
-  "2026-06-01",
-  "2026-06-02",
-  "2026-06-03",
-  "2026-06-04",
-  "2026-06-05",
-  "2026-06-06",
-];
+let snapshots = rollingForecastDates();
+let availabilityStatus = {};
+let manifestGeneratedAt = null;
 
 const routePoints = [
   { name: "Recife, Brazil", lat: -8.0476, lon: -34.877, note: "Departure, 30 May 2026" },
@@ -93,10 +56,7 @@ const routePoints = [
 function placeholderSvg(product, date) {
   const colors = {
     WAVES: ["#0b4761", "#1e91a8", "#ffe08a", "#d95f35"],
-    WIND: ["#153d4d", "#499a83", "#f2c14e", "#bf4e30"],
-    SLA: ["#193a72", "#e3eef6", "#c44536", "#5d1f1a"],
-    SST_L4: ["#0f4862", "#2d9a8e", "#f5c95c", "#c73d2f"],
-    CHL: ["#14382d", "#2f8f6b", "#bedb39", "#f2d16b"],
+    MODEL_CURRENT: ["#153d4d", "#499a83", "#f2c14e", "#bf4e30"],
     MODEL_TEMP: ["#163c59", "#2386a8", "#f0c86a", "#bf4c35"],
     MODEL_SAL: ["#14324d", "#477b9f", "#d7e6de", "#edb458"],
   };
@@ -128,6 +88,37 @@ function placeholderSvg(product, date) {
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
 
+function rollingForecastDates() {
+  const today = new Date();
+  today.setUTCHours(0, 0, 0, 0);
+  return Array.from({ length: 6 }, (_, offset) => {
+    const day = new Date(today);
+    day.setUTCDate(today.getUTCDate() + offset);
+    return day.toISOString().slice(0, 10);
+  });
+}
+
+async function loadManifest() {
+  try {
+    const response = await fetch(`data/manifest.json?cache=${Date.now()}`);
+    if (!response.ok) {
+      return;
+    }
+    const manifest = await response.json();
+    if (Array.isArray(manifest.dates) && manifest.dates.length > 0) {
+      snapshots = manifest.dates;
+    }
+    availabilityStatus = manifest.status || {};
+    manifestGeneratedAt = manifest.generated_at || null;
+  } catch {
+    availabilityStatus = {};
+  }
+}
+
+function isAvailable(date, productKey) {
+  return Boolean(availabilityStatus[date]?.[productKey]?.available);
+}
+
 function initControls() {
   const datasetSelect = document.querySelector("#dataset-select");
   const dateSelect = document.querySelector("#date-select");
@@ -154,7 +145,8 @@ function renderSnapshot() {
   const product = products.find((item) => item.key === document.querySelector("#dataset-select").value);
   const date = document.querySelector("#date-select").value;
   const img = document.querySelector("#snapshot-image");
-  const expectedPath = `assets/snapshots/${date}_${product.key}.png`;
+  const expectedPath =
+    availabilityStatus[date]?.[product.key]?.path || `assets/snapshots/${date}_${product.key}.png`;
 
   img.onerror = () => {
     img.onerror = null;
@@ -162,8 +154,9 @@ function renderSnapshot() {
   };
   img.src = expectedPath;
   img.alt = `${product.label} snapshot for ${date}`;
+  const state = isAvailable(date, product.key) ? "available forecast map" : "pending forecast map";
   document.querySelector("#snapshot-caption").textContent =
-    `${product.label} (${product.variables}) from ${product.dataset}.`;
+    `${product.label} (${product.variables}) from ${product.dataset}; ${state} for ${date}.`;
 }
 
 function renderAvailability() {
@@ -185,9 +178,9 @@ function renderAvailability() {
     const name = document.createElement("td");
     name.textContent = product.key;
     row.append(name);
-    snapshots.forEach((_, index) => {
+    snapshots.forEach((date) => {
       const cell = document.createElement("td");
-      const available = index <= Math.max(1, 7 - productIndex);
+      const available = isAvailable(date, product.key);
       cell.textContent = available ? "X" : "pending";
       cell.className = available ? "available" : "pending";
       row.append(cell);
@@ -240,13 +233,15 @@ function initMap() {
   map.fitBounds(latLngs, { padding: [28, 28] });
 }
 
-function init() {
+async function init() {
+  await loadManifest();
   initControls();
   renderSnapshot();
   renderAvailability();
   renderProducts();
   initMap();
-  document.querySelector("#last-updated").textContent = `Last updated: ${new Date().toISOString().slice(0, 10)} UTC`;
+  const updated = manifestGeneratedAt ? manifestGeneratedAt.slice(0, 10) : new Date().toISOString().slice(0, 10);
+  document.querySelector("#last-updated").textContent = `Forecast window updated: ${updated} UTC`;
 }
 
 init();

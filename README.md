@@ -2,7 +2,7 @@
 
 This repository contains a dashboard for the planned R/V Meteor M219 WAVES GEOMAR Cruise.
 
-The page works immediately with generated placeholders. Once Copernicus Marine credentials are added to GitHub repository secrets, the scheduled workflow can download subsets and render PNG snapshots into `assets/snapshots`.
+The page works immediately with generated placeholders. Once Copernicus Marine credentials are added to GitHub repository secrets, the scheduled workflow downloads a rolling forecast window from today through five days ahead, renders PNG snapshots into `assets/snapshots`, and writes availability metadata to `data/manifest.json`.
 
 ## Cruise Basis
 
@@ -25,10 +25,10 @@ Open `index.html` in a browser. The map tiles and Leaflet assets load from publi
 3. Enable GitHub Pages for the repository.
 4. Run the `Update Copernicus snapshots` workflow manually or wait for the daily schedule.
 
-Dry-run the requests locally:
+Dry-run the rolling forecast requests locally:
 
 ```powershell
-python scripts/fetch_copernicus.py --date 2026-05-30 --dry-run
+python scripts/fetch_copernicus.py --dry-run --allow-partial
 ```
 
 The products and bounding box are configured in `data/products.json`.

@@ -16,22 +16,29 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCTS_FILE = ROOT / "data" / "products.json"
+MANIFEST_FILE = ROOT / "data" / "manifest.json"
 SNAPSHOT_DIR = ROOT / "assets" / "snapshots"
 DOWNLOAD_DIR = ROOT / "data" / "raw"
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--date", default=None, help="Snapshot date as YYYY-MM-DD, defaults to yesterday UTC.")
+    parser.add_argument("--date", default=None, help="Start date as YYYY-MM-DD, defaults to today UTC.")
+    parser.add_argument("--days-ahead", type=int, default=5, help="Number of forecast days after the start date.")
     parser.add_argument("--dry-run", action="store_true", help="Print requests without downloading.")
     parser.add_argument("--allow-partial", action="store_true", help="Continue if one product cannot be downloaded.")
     return parser.parse_args()
 
 
-def target_day(value: str | None) -> date:
+def target_start_day(value: str | None) -> date:
     if value:
         return datetime.strptime(value, "%Y-%m-%d").date()
-    return (datetime.now(timezone.utc) - timedelta(days=1)).date()
+    return datetime.now(timezone.utc).date()
+
+
+def target_days(value: str | None, days_ahead: int) -> list[date]:
+    start = target_start_day(value)
+    return [start + timedelta(days=offset) for offset in range(days_ahead + 1)]
 
 
 def load_products() -> list[dict]:
@@ -120,24 +127,58 @@ def plot_snapshot(product: dict, nc_path: Path, day: date) -> None:
     plt.close(fig)
 
 
+def write_manifest(days: list[date], products: list[dict], status: dict[str, dict[str, dict]]) -> None:
+    manifest = {
+        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "forecast_start": days[0].isoformat(),
+        "forecast_end": days[-1].isoformat(),
+        "dates": [day.isoformat() for day in days],
+        "products": [
+            {
+                "key": product["key"],
+                "label": product["label"],
+                "dataset_id": product["dataset_id"],
+                "variables": product["variables"],
+            }
+            for product in products
+        ],
+        "status": status,
+    }
+    MANIFEST_FILE.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+
 def main() -> None:
     args = parse_args()
-    day = target_day(args.date)
+    days = target_days(args.date, args.days_ahead)
+    products = load_products()
     made_snapshots = 0
     failures: list[str] = []
+    status: dict[str, dict[str, dict]] = {day.isoformat(): {} for day in days}
 
-    for product in load_products():
-        try:
-            nc_path = download_subset(product, day, args.dry_run)
-            if nc_path is not None:
-                plot_snapshot(product, nc_path, day)
-                made_snapshots += 1
-        except Exception as exc:
-            message = f"{product['key']}: {exc}"
-            failures.append(message)
-            print(f"ERROR {message}", file=sys.stderr)
-            if not args.allow_partial:
-                raise
+    for day in days:
+        day_key = day.isoformat()
+        for product in products:
+            product_key = product["key"]
+            try:
+                nc_path = download_subset(product, day, args.dry_run)
+                if nc_path is not None:
+                    plot_snapshot(product, nc_path, day)
+                    made_snapshots += 1
+                    status[day_key][product_key] = {
+                        "available": True,
+                        "path": f"assets/snapshots/{day_key}_{product_key}.png",
+                    }
+                else:
+                    status[day_key][product_key] = {"available": False, "dry_run": True}
+            except Exception as exc:
+                message = f"{day_key} {product_key}: {exc}"
+                status[day_key][product_key] = {"available": False, "error": str(exc)}
+                failures.append(message)
+                print(f"ERROR {message}", file=sys.stderr)
+                if not args.allow_partial:
+                    raise
+
+    write_manifest(days, products, status)
 
     if failures:
         print("Completed with product failures:", file=sys.stderr)
