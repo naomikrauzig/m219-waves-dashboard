@@ -79,6 +79,8 @@ function placeholderSvg(product, date) {
     SAT_SST: ["#0f4862", "#2d9a8e", "#f5c95c", "#c73d2f"],
     SAT_SSS: ["#123b56", "#2d7f94", "#d7e6de", "#edb458"],
     SAT_CHL: ["#14382d", "#2f8f6b", "#bedb39", "#f2d16b"],
+    ERA5_WIND: ["#153d4d", "#2f8f6b", "#f2c14e", "#d95f35"],
+    WIND_STRESS: ["#17212b", "#75485e", "#d95f35", "#f2c14e"],
     ARGO_PROFILES: ["#253746", "#4a7c95", "#9fc2cc", "#f6c85f"],
     ARGO_VELOCITY: ["#253746", "#33658a", "#86bbd8", "#f26419"],
     GDP_DRIFTERS: ["#153d4d", "#2f8f6b", "#f2c14e", "#d95f35"],

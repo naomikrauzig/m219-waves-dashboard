@@ -83,6 +83,36 @@
     "product_url": "https://data.marine.copernicus.eu/product/OCEANCOLOUR_GLO_BGC_L4_NRT_009_102/description"
   },
   {
+    "key": "ERA5_WIND",
+    "label": "ERA5 10 m wind vectors",
+    "category": "Atmospheric forcing",
+    "status": "automated; uses most recent ERA5 reanalysis day",
+    "workflow_enabled": true,
+    "source": "cds_era5",
+    "date_strategy": "latest_available",
+    "max_backfill_days": 10,
+    "dataset_id": "reanalysis-era5-single-levels",
+    "variables": ["u10", "v10"],
+    "cds_variables": ["10m_u_component_of_wind", "10m_v_component_of_wind"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=download"
+  },
+  {
+    "key": "WIND_STRESS",
+    "label": "Wind stress from ERA5 10 m winds",
+    "category": "Derived variables",
+    "status": "automated from ERA5 using CDT windstress bulk formula",
+    "workflow_enabled": true,
+    "source": "derived",
+    "derives_from": "ERA5_WIND",
+    "date_strategy": "latest_available",
+    "max_backfill_days": 10,
+    "dataset_id": "derived-era5-windstress",
+    "variables": ["taux", "tauy", "tau"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://github.com/chadagreene/CDT/blob/master/cdt/windstress.m"
+  },
+  {
     "key": "ARGO_PROFILES",
     "label": "Argo float profiles",
     "category": "Freely available in-situ data",
@@ -119,12 +149,16 @@
     "key": "EKMAN_PUMPING",
     "label": "Ekman pumping",
     "category": "Derived variables",
-    "status": "computable from wind stress curl; needs wind product or model stress",
-    "workflow_enabled": false,
-    "dataset_id": "derived",
-    "variables": ["curl(tau)/(rho*f)"],
+    "status": "automated from ERA5 wind stress following CDT ekman method",
+    "workflow_enabled": true,
+    "source": "derived",
+    "derives_from": "ERA5_WIND",
+    "date_strategy": "latest_available",
+    "max_backfill_days": 10,
+    "dataset_id": "derived-era5-ekman",
+    "variables": ["UE", "VE", "wE"],
     "bbox": [-42, -14, 12, 58],
-    "product_url": "https://data.marine.copernicus.eu/products"
+    "product_url": "https://github.com/chadagreene/CDT/blob/master/cdt/ekman.m"
   },
   {
     "key": "UPWELLING_INDEX",
