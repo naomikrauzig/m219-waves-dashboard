@@ -454,7 +454,11 @@ def main() -> None:
                         status[day_key][product_key] = {"available": False, "dry_run": True}
                         break
                     except Exception as exc:
-                        product_errors.append(f"{source_day.isoformat()}: {exc}")
+                        error_text = str(exc)
+product_errors.append(f"{source_day.isoformat()}: {error_text}")
+
+if "Please check that the dataset exists" in error_text:
+    raise RuntimeError("; ".join(product_errors))
                 else:
                     raise RuntimeError("; ".join(product_errors))
             except Exception as exc:
