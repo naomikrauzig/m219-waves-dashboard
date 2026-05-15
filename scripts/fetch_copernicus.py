@@ -1,8 +1,4 @@
-"""Download and plot Copernicus Marine quick-look subsets for M219 WAVES.
-
-The script is designed for GitHub Actions. It uses repository secrets for
-Copernicus Marine credentials and writes PNG snapshots consumed by index.html.
-"""
+"""Download and plot Copernicus Marine quick-look subsets for M219 WAVES."""
 
 from __future__ import annotations
 
@@ -33,10 +29,10 @@ SURFACE_ONLY_PRODUCTS = {"MODEL_CURRENT", "MODEL_TEMP", "MODEL_SAL"}
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--date", default=None, help="Start date as YYYY-MM-DD, defaults to today UTC.")
-    parser.add_argument("--days-ahead", type=int, default=2, help="Number of forecast days after the start date.")
-    parser.add_argument("--dry-run", action="store_true", help="Print requests without downloading.")
-    parser.add_argument("--allow-partial", action="store_true", help="Continue if one product cannot be downloaded.")
+    parser.add_argument("--date", default=None)
+    parser.add_argument("--days-ahead", type=int, default=2)
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--allow-partial", action="store_true")
     return parser.parse_args()
 
 
@@ -215,6 +211,114 @@ def as_2d(dataset: Any, var_name: str) -> Any:
     return da
 
 
+def robust_limits(values: Any, lower: float = 2, upper: float = 98) -> tuple[float, float]:
+    import numpy as np
+
+    arr = np.asarray(values, dtype=float)
+    arr = arr[np.isfinite(arr)]
+
+    if arr.size == 0:
+        return 0.0, 1.0
+
+    vmin, vmax = np.nanpercentile(arr, [lower, upper])
+
+    if not np.isfinite(vmin) or not np.isfinite(vmax) or vmin == vmax:
+        vmin, vmax = float(np.nanmin(arr)), float(np.nanmax(arr))
+
+    if vmin == vmax:
+        vmax = vmin + 1.0
+
+    return float(vmin), float(vmax)
+
+
+def symmetric_limits(values: Any, percentile: float = 98) -> tuple[float, float]:
+    import numpy as np
+
+    arr = np.asarray(values, dtype=float)
+    arr = arr[np.isfinite(arr)]
+
+    if arr.size == 0:
+        return -1.0, 1.0
+
+    limit = np.nanpercentile(np.abs(arr), percentile)
+
+    if not np.isfinite(limit) or limit == 0:
+        limit = max(abs(float(np.nanmin(arr))), abs(float(np.nanmax(arr))), 1.0)
+
+    return -float(limit), float(limit)
+
+
+def contour_levels(values: Any, n: int = 8, symmetric: bool = False) -> list[float]:
+    import numpy as np
+
+    if symmetric:
+        vmin, vmax = symmetric_limits(values, 98)
+    else:
+        vmin, vmax = robust_limits(values, 5, 95)
+
+    levels = np.linspace(vmin, vmax, n)
+    return [float(v) for v in levels if np.isfinite(v)]
+
+
+def get_cmocean_cmap(name: str):
+    import cmocean
+
+    return getattr(cmocean.cm, name)
+
+
+def lon_lat_from_da(da: Any) -> tuple[Any, Any, str, str]:
+    lon_name = coordinate_name(da, ("longitude", "lon"))
+    lat_name = coordinate_name(da, ("latitude", "lat"))
+    return da[lon_name], da[lat_name], lon_name, lat_name
+
+
+def teos10_absolute_salinity(sp_da: Any) -> Any:
+    import gsw
+    import xarray as xr
+
+    lon, lat, _, _ = lon_lat_from_da(sp_da)
+
+    lon2d, lat2d = lat_lon_grids(lon, lat)
+    p = 0.0
+
+    sa = gsw.SA_from_SP(sp_da.values, p, lon2d, lat2d)
+
+    return xr.DataArray(
+        sa,
+        coords=sp_da.coords,
+        dims=sp_da.dims,
+        attrs={
+            "long_name": "Absolute Salinity",
+            "units": "g kg-1",
+            "standard_name": "sea_water_absolute_salinity",
+        },
+    )
+
+
+def teos10_conservative_temperature(thetao_da: Any, sp_da: Any) -> Any:
+    import gsw
+    import xarray as xr
+
+    lon, lat, _, _ = lon_lat_from_da(thetao_da)
+
+    lon2d, lat2d = lat_lon_grids(lon, lat)
+    p = 0.0
+
+    sa = gsw.SA_from_SP(sp_da.values, p, lon2d, lat2d)
+    ct = gsw.CT_from_pt(sa, thetao_da.values)
+
+    return xr.DataArray(
+        ct,
+        coords=thetao_da.coords,
+        dims=thetao_da.dims,
+        attrs={
+            "long_name": "Conservative Temperature",
+            "units": "degree_C",
+            "standard_name": "sea_water_conservative_temperature",
+        },
+    )
+
+
 def wind_components(dataset: Any) -> tuple[Any, Any, str, str]:
     u_name = choose_variable(dataset, ["u10", "10u", "u_component_of_wind_10m"])
     v_name = choose_variable(dataset, ["v10", "10v", "v_component_of_wind_10m"])
@@ -289,38 +393,14 @@ def add_route_and_moorings(ax: Any) -> None:
     ax.plot(route_lon, route_lat, color="white", lw=3, linestyle="--", alpha=0.55)
     ax.plot(route_lon, route_lat, color="#d95f35", lw=1.4, linestyle="--", alpha=0.58)
 
-    ax.scatter(
-        route_lon,
-        route_lat,
-        s=26,
-        color="white",
-        edgecolor="#17212b",
-        zorder=3,
-    )
+    ax.scatter(route_lon, route_lat, s=26, color="white", edgecolor="#17212b", zorder=3)
 
     for mooring in load_moorings():
         lon, lat = mooring["geometry"]["coordinates"]
         label = mooring["properties"]["label"]
 
-        ax.scatter(
-            lon,
-            lat,
-            marker="p",
-            s=110,
-            color="#c62828",
-            edgecolor="white",
-            linewidth=0.9,
-            zorder=4,
-        )
-        ax.text(
-            lon + 0.18,
-            lat + 0.18,
-            label,
-            fontsize=8,
-            weight="bold",
-            color="#17212b",
-            zorder=5,
-        )
+        ax.scatter(lon, lat, marker="p", s=110, color="#c62828", edgecolor="white", linewidth=0.9, zorder=4)
+        ax.text(lon + 0.18, lat + 0.18, label, fontsize=8, weight="bold", color="#17212b", zorder=5)
 
 
 def snapshot_title(product: dict, target_day: date, source_day: date) -> str:
@@ -334,8 +414,41 @@ def save_figure(fig: Any, target_day: date, product: dict) -> None:
     SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
     output = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}.png"
     fig.tight_layout()
-    fig.savefig(output)
+    fig.savefig(output, bbox_inches="tight")
     print(f"Saved snapshot: {output}", flush=True)
+
+
+def plot_scalar_map(
+    ax: Any,
+    fig: Any,
+    lon: Any,
+    lat: Any,
+    values: Any,
+    cmap: Any,
+    label: str,
+    signed: bool = False,
+    contours: bool = True,
+) -> None:
+    import numpy as np
+    from matplotlib.colors import TwoSlopeNorm
+
+    if signed:
+        vmin, vmax = symmetric_limits(values, 98)
+        norm = TwoSlopeNorm(vmin=vmin, vcenter=0.0, vmax=vmax)
+        mesh = ax.pcolormesh(lon, lat, values, shading="auto", cmap=cmap, norm=norm)
+        levels = contour_levels(values, n=9, symmetric=True)
+    else:
+        vmin, vmax = robust_limits(values, 2, 98)
+        mesh = ax.pcolormesh(lon, lat, values, shading="auto", cmap=cmap, vmin=vmin, vmax=vmax)
+        levels = contour_levels(values, n=8, symmetric=False)
+
+    fig.colorbar(mesh, ax=ax, pad=0.012, label=label)
+
+    if contours and len(levels) >= 3:
+        try:
+            ax.contour(lon, lat, values, levels=levels, colors="#17212b", linewidths=0.45, alpha=0.45)
+        except Exception:
+            pass
 
 
 def plot_wind_snapshot(product: dict, dataset: Any, target_day: date, source_day: date) -> None:
@@ -354,8 +467,17 @@ def plot_wind_snapshot(product: dict, dataset: Any, target_day: date, source_day
 
     fig, ax = plt.subplots(figsize=(14, 9), dpi=140)
 
-    mesh = ax.pcolormesh(lon, lat, speed, shading="auto", cmap="viridis")
-    fig.colorbar(mesh, ax=ax, pad=0.012, label="10 m wind speed (m/s)")
+    plot_scalar_map(
+        ax,
+        fig,
+        lon,
+        lat,
+        speed,
+        get_cmocean_cmap("speed"),
+        "10 m wind speed (m s$^{-1}$)",
+        signed=False,
+        contours=True,
+    )
 
     ax.quiver(
         lon2d[::step_y, ::step_x],
@@ -363,12 +485,11 @@ def plot_wind_snapshot(product: dict, dataset: Any, target_day: date, source_day
         u10.values[::step_y, ::step_x],
         v10.values[::step_y, ::step_x],
         color="#17212b",
-        alpha=0.7,
+        alpha=0.72,
         scale=450,
     )
 
     add_route_and_moorings(ax)
-
     ax.set_title(snapshot_title(product, target_day, source_day), loc="left", weight="bold")
     ax.set_xlabel("Longitude")
     ax.set_ylabel("Latitude")
@@ -396,8 +517,18 @@ def plot_derived_snapshot(product: dict, nc_path: Path, target_day: date, source
 
         if product["key"] == "WIND_STRESS":
             tau = np.hypot(taux, tauy)
-            mesh = ax.pcolormesh(lon, lat, tau, shading="auto", cmap="magma")
-            fig.colorbar(mesh, ax=ax, pad=0.012, label="Wind stress magnitude (N m$^{-2}$)")
+
+            plot_scalar_map(
+                ax,
+                fig,
+                lon,
+                lat,
+                tau,
+                get_cmocean_cmap("speed"),
+                "Wind stress magnitude (N m$^{-2}$)",
+                signed=False,
+                contours=True,
+            )
 
             step_y = max(1, tau.shape[0] // 22)
             step_x = max(1, tau.shape[1] // 28)
@@ -411,27 +542,25 @@ def plot_derived_snapshot(product: dict, nc_path: Path, target_day: date, source
                 alpha=0.72,
                 scale=8,
             )
+
         else:
             plot_values = w_e * 1e7
-            limit = np.nanpercentile(np.abs(plot_values), 97)
 
-            if not np.isfinite(limit) or limit == 0:
-                limit = 20
-
-            mesh = ax.pcolormesh(
+            plot_scalar_map(
+                ax,
+                fig,
                 lon,
                 lat,
                 plot_values,
-                shading="auto",
-                cmap="RdBu_r",
-                vmin=-limit,
-                vmax=limit,
+                get_cmocean_cmap("balance"),
+                "Ekman pumping velocity (10$^{-7}$ m s$^{-1}$)",
+                signed=True,
+                contours=True,
             )
-            fig.colorbar(mesh, ax=ax, pad=0.012, label="Ekman pumping velocity (10$^{-7}$ m s$^{-1}$)")
-            ax.contour(lon, lat, plot_values, levels=[0], colors="#17212b", linewidths=0.8, alpha=0.55)
+
+            ax.contour(lon, lat, plot_values, levels=[0], colors="black", linewidths=0.9, alpha=0.65)
 
         add_route_and_moorings(ax)
-
         ax.set_title(snapshot_title(product, target_day, source_day), loc="left", weight="bold")
         ax.set_xlabel("Longitude")
         ax.set_ylabel("Latitude")
@@ -441,8 +570,9 @@ def plot_derived_snapshot(product: dict, nc_path: Path, target_day: date, source
         plt.close(fig)
 
 
-def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: date) -> None:
+def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: date, salinity_path: Path | None = None) -> None:
     import matplotlib.pyplot as plt
+    import numpy as np
     import xarray as xr
 
     with xr.open_dataset(nc_path) as ds:
@@ -450,19 +580,173 @@ def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: da
             plot_wind_snapshot(product, ds, target_day, source_day)
             return
 
-        var_name = choose_variable(ds, product["variables"])
-        da = as_2d(ds, var_name)
-
-        lon_name = coordinate_name(da, ("longitude", "lon"))
-        lat_name = coordinate_name(da, ("latitude", "lat"))
-
         fig, ax = plt.subplots(figsize=(14, 9), dpi=140)
 
-        mesh = ax.pcolormesh(da[lon_name], da[lat_name], da, shading="auto", cmap="viridis")
-        fig.colorbar(mesh, ax=ax, pad=0.012, label=f"{var_name}")
+        if product["key"] == "MODEL_CURRENT":
+            u_name = choose_variable(ds, ["uo"])
+            v_name = choose_variable(ds, ["vo"])
+            u = as_2d(ds, u_name)
+            v = as_2d(ds, v_name)
+            speed = np.hypot(u, v)
+            lon, lat, _, _ = lon_lat_from_da(u)
+            lon2d, lat2d = lat_lon_grids(lon, lat)
+
+            plot_scalar_map(
+                ax,
+                fig,
+                lon,
+                lat,
+                speed,
+                get_cmocean_cmap("speed"),
+                "Surface current speed (m s$^{-1}$)",
+                signed=False,
+                contours=True,
+            )
+
+            step_y = max(1, speed.shape[0] // 22)
+            step_x = max(1, speed.shape[1] // 28)
+
+            ax.quiver(
+                lon2d[::step_y, ::step_x],
+                lat2d[::step_y, ::step_x],
+                u.values[::step_y, ::step_x],
+                v.values[::step_y, ::step_x],
+                color="#17212b",
+                alpha=0.7,
+                scale=12,
+            )
+
+        elif product["key"] == "MODEL_SAL":
+            sp_name = choose_variable(ds, ["so"])
+            sp = as_2d(ds, sp_name)
+            sa = teos10_absolute_salinity(sp)
+            lon, lat, _, _ = lon_lat_from_da(sa)
+
+            plot_scalar_map(
+                ax,
+                fig,
+                lon,
+                lat,
+                sa,
+                get_cmocean_cmap("haline"),
+                "Absolute Salinity, SA (g kg$^{-1}$)",
+                signed=False,
+                contours=True,
+            )
+
+        elif product["key"] == "MODEL_TEMP":
+            theta_name = choose_variable(ds, ["thetao"])
+            thetao = as_2d(ds, theta_name)
+
+            if salinity_path is None:
+                raise RuntimeError("MODEL_TEMP requires MODEL_SAL file for TEOS-10 Conservative Temperature.")
+
+            with xr.open_dataset(salinity_path) as sal_ds:
+                sp_name = choose_variable(sal_ds, ["so"])
+                sp = as_2d(sal_ds, sp_name)
+                ct = teos10_conservative_temperature(thetao, sp)
+
+            lon, lat, _, _ = lon_lat_from_da(ct)
+
+            plot_scalar_map(
+                ax,
+                fig,
+                lon,
+                lat,
+                ct,
+                get_cmocean_cmap("thermal"),
+                "Conservative Temperature, CT ($^\\circ$C)",
+                signed=False,
+                contours=True,
+            )
+
+        elif product["key"] == "SAT_SLA":
+            var_name = choose_variable(ds, ["sla", "adt"])
+            da = as_2d(ds, var_name)
+            lon, lat, _, _ = lon_lat_from_da(da)
+
+            plot_scalar_map(
+                ax,
+                fig,
+                lon,
+                lat,
+                da,
+                get_cmocean_cmap("balance"),
+                f"{var_name} (m)",
+                signed=True,
+                contours=True,
+            )
+
+        elif product["key"] == "SAT_CHL":
+            var_name = choose_variable(ds, ["CHL", "chl"])
+            da = as_2d(ds, var_name)
+            lon, lat, _, _ = lon_lat_from_da(da)
+
+            plot_scalar_map(
+                ax,
+                fig,
+                lon,
+                lat,
+                da,
+                get_cmocean_cmap("algae"),
+                "Chlorophyll-a (mg m$^{-3}$)",
+                signed=False,
+                contours=True,
+            )
+
+        elif product["key"] == "SAT_SSS":
+            sp_name = choose_variable(ds, ["sos", "sss"])
+            sp = as_2d(ds, sp_name)
+            sa = teos10_absolute_salinity(sp)
+            lon, lat, _, _ = lon_lat_from_da(sa)
+
+            plot_scalar_map(
+                ax,
+                fig,
+                lon,
+                lat,
+                sa,
+                get_cmocean_cmap("haline"),
+                "Absolute Salinity, SA (g kg$^{-1}$)",
+                signed=False,
+                contours=True,
+            )
+
+        elif product["key"] == "WAVES":
+            var_name = choose_variable(ds, ["VHM0", "vhm0"])
+            da = as_2d(ds, var_name)
+            lon, lat, _, _ = lon_lat_from_da(da)
+
+            plot_scalar_map(
+                ax,
+                fig,
+                lon,
+                lat,
+                da,
+                get_cmocean_cmap("amp"),
+                "Significant wave height, Hs (m)",
+                signed=False,
+                contours=True,
+            )
+
+        else:
+            var_name = choose_variable(ds, product["variables"])
+            da = as_2d(ds, var_name)
+            lon, lat, _, _ = lon_lat_from_da(da)
+
+            plot_scalar_map(
+                ax,
+                fig,
+                lon,
+                lat,
+                da,
+                get_cmocean_cmap("tempo"),
+                f"{var_name}",
+                signed=False,
+                contours=True,
+            )
 
         add_route_and_moorings(ax)
-
         ax.set_title(snapshot_title(product, target_day, source_day), loc="left", weight="bold")
         ax.set_xlabel("Longitude")
         ax.set_ylabel("Latitude")
@@ -509,7 +793,6 @@ def process_product(
 
         source_key = product["derives_from"]
         cache_key = (source_day.isoformat(), source_key)
-
         source_path = raw_cache.get(cache_key)
 
         if source_path is None:
@@ -533,7 +816,15 @@ def process_product(
 
     if nc_path is not None:
         raw_cache[(source_day.isoformat(), product["key"])] = nc_path
-        plot_snapshot(product, nc_path, target_day, source_day)
+
+        salinity_path = None
+        if product["key"] == "MODEL_TEMP":
+            sal_product = product_by_key(products, "MODEL_SAL")
+            salinity_path = download_subset(sal_product, source_day, dry_run)
+            if salinity_path is not None:
+                raw_cache[(source_day.isoformat(), "MODEL_SAL")] = salinity_path
+
+        plot_snapshot(product, nc_path, target_day, source_day, salinity_path=salinity_path)
 
     return nc_path
 
@@ -559,14 +850,7 @@ def main() -> None:
             try:
                 for source_day in candidate_days(product, day):
                     try:
-                        nc_path = process_product(
-                            product,
-                            products,
-                            day,
-                            source_day,
-                            args.dry_run,
-                            raw_cache,
-                        )
+                        nc_path = process_product(product, products, day, source_day, args.dry_run, raw_cache)
 
                         if nc_path is not None:
                             made_snapshots += 1
