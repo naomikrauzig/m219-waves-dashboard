@@ -41,8 +41,15 @@ def target_start_day(value: str | None) -> date:
 
 
 def target_days(value: str | None, days_ahead: int) -> list[date]:
-    start = target_start_day(value)
-    return [start + timedelta(days=offset) for offset in range(days_ahead + 1)]
+    center_day = target_start_day(value)
+
+    days_before = 5
+    days_after = days_ahead
+
+    return [
+        center_day + timedelta(days=offset)
+        for offset in range(-days_before, days_after + 1)
+    ]
 
 
 def candidate_days(product: dict, target_day: date) -> list[date]:
