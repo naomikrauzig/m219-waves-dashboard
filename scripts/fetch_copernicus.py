@@ -862,7 +862,6 @@ def write_manifest(days: list[date], products: list[dict], status: dict[str, dic
 
     MANIFEST_FILE.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 
-
 def process_product(
     product: dict,
     products: list[dict],
@@ -871,21 +870,46 @@ def process_product(
     dry_run: bool,
     raw_cache: dict[tuple[str, str], Path],
 ) -> Path | None:
+
+    # ---------------------------------------------------------
+    # Skip already-generated snapshots
+    # ---------------------------------------------------------
+    snapshot_file = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}.png"
+
+    if snapshot_file.exists() and snapshot_file.stat().st_size > 0:
+        print(f"Using cached snapshot: {snapshot_file}", flush=True)
+        return snapshot_file
+
+    # ---------------------------------------------------------
+    # Derived products
+    # ---------------------------------------------------------
     if product.get("source") == "derived":
+
         if dry_run:
             return None
 
         source_key = product["derives_from"]
         cache_key = (source_day.isoformat(), source_key)
+
         source_path = raw_cache.get(cache_key)
 
         if source_path is None:
             expected_path = DOWNLOAD_DIR / f"{source_day.isoformat()}_{source_key}.nc"
-            source_path = expected_path if expected_path.exists() and expected_path.stat().st_size > 0 else None
+
+            source_path = (
+                expected_path
+                if expected_path.exists() and expected_path.stat().st_size > 0
+                else None
+            )
 
         if source_path is None:
             source_product = product_by_key(products, source_key)
-            source_path = download_subset(source_product, source_day, dry_run)
+
+            source_path = download_subset(
+                source_product,
+                source_day,
+                dry_run,
+            )
 
             if source_path is not None:
                 raw_cache[cache_key] = source_path
@@ -893,23 +917,46 @@ def process_product(
         if source_path is None:
             return None
 
-        plot_derived_snapshot(product, source_path, target_day, source_day)
+        plot_derived_snapshot(
+            product,
+            source_path,
+            target_day,
+            source_day,
+        )
+
         return source_path
 
+    # ---------------------------------------------------------
+    # Standard products
+    # ---------------------------------------------------------
     nc_path = download_subset(product, source_day, dry_run)
 
     if nc_path is not None:
+
         raw_cache[(source_day.isoformat(), product["key"])] = nc_path
 
         salinity_path = None
+
         if product["key"] == "MODEL_TEMP":
+
             sal_product = product_by_key(products, "MODEL_SAL")
-            salinity_path = download_subset(sal_product, source_day, dry_run)
+
+            salinity_path = download_subset(
+                sal_product,
+                source_day,
+                dry_run,
+            )
 
             if salinity_path is not None:
                 raw_cache[(source_day.isoformat(), "MODEL_SAL")] = salinity_path
 
-        plot_snapshot(product, nc_path, target_day, source_day, salinity_path=salinity_path)
+        plot_snapshot(
+            product,
+            nc_path,
+            target_day,
+            source_day,
+            salinity_path=salinity_path,
+        )
 
     return nc_path
 
