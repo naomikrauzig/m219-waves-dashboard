@@ -1,0 +1,23 @@
+{
+  "type": "FeatureCollection",
+  "name": "Meteor M219 WAVES planning route",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "M219 planning corridor",
+        "note": "Replace with DShip, AIS, or station-list navigation when available."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-34.877, -8.0476],
+          [-23.0, 0.0],
+          [-24.3, 17.6],
+          [-24.9958, 16.886],
+          [7.207, 53.367]
+        ]
+      }
+    }
+  ]
+}

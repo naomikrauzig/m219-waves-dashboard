@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meteor M219 WAVES | Near-Real-Time Marine Data</title>
+    <meta
+      name="description"
+      content="Near-real-time Copernicus Marine satellite and model snapshots for the Meteor M219 WAVES cruise."
+    />
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIINfQorkipds8rnZ3rF9c9QO4tZptf6lo0="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div>
+        <p class="eyebrow">RV Meteor M219 WAVES</p>
+        <h1>Near-real-time marine snapshots from Recife to the Equator, Cape Verde, Mindelo, and Emden</h1>
+        <p class="lede">
+          A GitHub Pages-ready dashboard for Copernicus Marine wave, wind, sea-level, SST, chlorophyll,
+          and ocean-physics products along the planned M219 cruise corridor.
+        </p>
+      </div>
+      <aside class="status-panel" aria-label="Cruise status">
+        <span>Planned cruise</span>
+        <strong>30 May - 28 Jun 2026</strong>
+        <small id="last-updated">Last updated: pending first data run</small>
+      </aside>
+    </header>
+
+    <main>
+      <section class="dashboard" aria-label="Data dashboard">
+        <div class="toolbar">
+          <label for="dataset-select">Dataset</label>
+          <select id="dataset-select"></select>
+          <label for="date-select">Snapshot</label>
+          <select id="date-select"></select>
+        </div>
+
+        <div class="viewer-grid">
+          <figure class="snapshot">
+            <img id="snapshot-image" alt="Selected data snapshot" />
+            <figcaption id="snapshot-caption"></figcaption>
+          </figure>
+          <div id="map" aria-label="M219 route map"></div>
+        </div>
+      </section>
+
+      <section class="availability-section">
+        <div class="section-heading">
+          <h2>Product Availability</h2>
+          <p>Rows are Copernicus-derived layers; columns are recent daily update slots.</p>
+        </div>
+        <div class="table-wrap">
+          <table id="availability-table"></table>
+        </div>
+      </section>
+
+      <section class="products-section">
+        <div class="section-heading">
+          <h2>Datasets Used</h2>
+          <p>Dataset IDs are ready for the Copernicus Marine Toolbox and can be updated in <code>data/products.json</code>.</p>
+        </div>
+        <div class="table-wrap">
+          <table id="products-table"></table>
+        </div>
+      </section>
+
+      <section class="notes-section">
+        <div class="section-heading">
+          <h2>Operations Notes</h2>
+        </div>
+        <ul>
+          <li>The route currently uses planning waypoints. Replace <code>data/route.geojson</code> with DShip, AIS, or station positions when available.</li>
+          <li>The update workflow expects Copernicus Marine credentials in GitHub repository secrets.</li>
+          <li>Generated plots should be written to <code>assets/snapshots</code>; the page automatically prefers real images over placeholders.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <span>Built for cruise operations and quick-look science planning.</span>
+      <a href="https://data.marine.copernicus.eu/products">Copernicus Marine Data Store</a>
+    </footer>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>

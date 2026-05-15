@@ -1,0 +1,42 @@
+[
+  {
+    "key": "WAVES",
+    "label": "Wave height and period",
+    "dataset_id": "cmems_mod_glo_wav_anfc_0.083deg_PT3H-i",
+    "variables": ["VHM0", "VTPK", "VMDR"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://data.marine.copernicus.eu/product/GLOBAL_ANALYSISFORECAST_WAV_001_027/services"
+  },
+  {
+    "key": "WIND",
+    "label": "Surface wind and stress",
+    "dataset_id": "cmems_obs-wind_glo_phy_nrt_l4_0.125deg_PT1H",
+    "variables": ["eastward_wind", "northward_wind", "wind_speed"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://data.marine.copernicus.eu/products"
+  },
+  {
+    "key": "SLA",
+    "label": "Sea level anomaly",
+    "dataset_id": "cmems_obs-sl_glo_phy-ssh_nrt_allsat-l4-duacs-0.125deg_P1D",
+    "variables": ["sla", "adt", "ugos", "vgos"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://data.marine.copernicus.eu/products"
+  },
+  {
+    "key": "SST_L4",
+    "label": "Sea surface temperature",
+    "dataset_id": "METOFFICE-GLO-SST-L4-NRT-OBS-SST-V2",
+    "variables": ["analysed_sst"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://data.marine.copernicus.eu/products"
+  },
+  {
+    "key": "CHL",
+    "label": "Chlorophyll-a",
+    "dataset_id": "cmems_obs-oc_glo_bgc-plankton_nrt_l3-multi-4km_P1D",
+    "variables": ["CHL"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://data.marine.copernicus.eu/products"
+  }
+]
