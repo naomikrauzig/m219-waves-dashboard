@@ -11,6 +11,7 @@ The page works immediately with generated placeholders. Once Copernicus Marine c
 - Planned dates: `2026-05-30` Recife, Brazil to `2026-06-28` Emden, Germany
 - Chief scientist: Peter Brandt
 - Current route file: `data/route.geojson`
+- Mooring markers: `data/moorings.geojson`
 
 ## Local Preview
 

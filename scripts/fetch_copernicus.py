@@ -17,6 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCTS_FILE = ROOT / "data" / "products.json"
 MANIFEST_FILE = ROOT / "data" / "manifest.json"
+MOORINGS_FILE = ROOT / "data" / "moorings.geojson"
 SNAPSHOT_DIR = ROOT / "assets" / "snapshots"
 DOWNLOAD_DIR = ROOT / "data" / "raw"
 
@@ -44,6 +45,13 @@ def target_days(value: str | None, days_ahead: int) -> list[date]:
 def load_products() -> list[dict]:
     products = json.loads(PRODUCTS_FILE.read_text(encoding="utf-8"))
     return [product for product in products if product.get("workflow_enabled", True)]
+
+
+def load_moorings() -> list[dict]:
+    if not MOORINGS_FILE.exists():
+        return []
+    geojson = json.loads(MOORINGS_FILE.read_text(encoding="utf-8"))
+    return geojson.get("features", [])
 
 
 def download_subset(product: dict, day: date, dry_run: bool) -> Path | None:
@@ -119,6 +127,11 @@ def plot_snapshot(product: dict, nc_path: Path, day: date) -> None:
     ax.plot([-34.877, -23.0, -24.3, -24.9958, 7.207], [-8.0476, 0.0, 17.6, 16.886, 53.367], color="white", lw=3)
     ax.plot([-34.877, -23.0, -24.3, -24.9958, 7.207], [-8.0476, 0.0, 17.6, 16.886, 53.367], color="#d95f35", lw=1.4)
     ax.scatter([-34.877, -23.0, -24.3, -24.9958, 7.207], [-8.0476, 0.0, 17.6, 16.886, 53.367], s=26, color="white", edgecolor="#17212b", zorder=3)
+    for mooring in load_moorings():
+        lon, lat = mooring["geometry"]["coordinates"]
+        label = mooring["properties"]["label"]
+        ax.scatter(lon, lat, marker="*", s=150, color="#f2c14e", edgecolor="#17212b", linewidth=0.8, zorder=4)
+        ax.text(lon + 0.18, lat + 0.18, label, fontsize=8, weight="bold", color="#17212b", zorder=5)
     ax.set_title(f"M219 WAVES | {product['label']} | {day.isoformat()}", loc="left", weight="bold")
     ax.set_xlabel("Longitude")
     ax.set_ylabel("Latitude")

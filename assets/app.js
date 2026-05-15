@@ -46,6 +46,7 @@ let products = [
 let snapshots = rollingForecastDates();
 let availabilityStatus = {};
 let manifestGeneratedAt = null;
+let mooringFeatures = [];
 
 const routePoints = [
   { name: "Recife, Brazil", lat: -8.0476, lon: -34.877, note: "Departure, 30 May 2026" },
@@ -161,6 +162,19 @@ async function loadManifest() {
     manifestGeneratedAt = manifest.generated_at || null;
   } catch {
     availabilityStatus = {};
+  }
+}
+
+async function loadMoorings() {
+  try {
+    const response = await fetch(`data/moorings.geojson?cache=${Date.now()}`);
+    if (!response.ok) {
+      return;
+    }
+    const geojson = await response.json();
+    mooringFeatures = geojson.features || [];
+  } catch {
+    mooringFeatures = [];
   }
 }
 
@@ -283,12 +297,28 @@ function initMap() {
       .addTo(map)
       .bindPopup(`<strong>${point.name}</strong><br>${point.note}`);
   });
+  mooringFeatures.forEach((feature) => {
+    const [lon, lat] = feature.geometry.coordinates;
+    const props = feature.properties;
+    const icon = L.divIcon({
+      className: "mooring-marker",
+      html: `<span class="mooring-star">*</span><span class="mooring-label">${props.label}</span>`,
+      iconSize: [120, 24],
+      iconAnchor: [10, 12],
+    });
+    L.marker([lat, lon], { icon })
+      .addTo(map)
+      .bindPopup(
+        `<strong>${props.label}</strong><br>${props.region}<br>Water depth: ${props.water_depth_m} m`,
+      );
+  });
   map.fitBounds(latLngs, { padding: [28, 28] });
 }
 
 async function init() {
   await loadProductsConfig();
   await loadManifest();
+  await loadMoorings();
   initControls();
   renderSnapshot();
   renderAvailability();

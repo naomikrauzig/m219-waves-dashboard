@@ -215,6 +215,37 @@ tr:last-child td {
   color: #9aa8b3;
 }
 
+.mooring-marker {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #17212b;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.mooring-star {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border: 1px solid #17212b;
+  border-radius: 50%;
+  background: #f2c14e;
+  color: #17212b;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.mooring-label {
+  padding: 2px 5px;
+  border: 1px solid rgba(23, 33, 43, 0.18);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.88);
+  font-size: 0.72rem;
+  box-shadow: 0 1px 4px rgba(23, 33, 43, 0.14);
+}
+
 .notes-section {
   padding: 18px 20px;
   border: 1px solid var(--line);

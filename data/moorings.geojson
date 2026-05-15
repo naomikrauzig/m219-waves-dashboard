@@ -1,0 +1,91 @@
+{
+  "type": "FeatureCollection",
+  "name": "GEOMAR M219 related moorings",
+  "source": "RV METEOR M207 short cruise report station list",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "KPO1286",
+        "name": "K1",
+        "label": "K1 (KPO1286)",
+        "region": "Brazil 11S array",
+        "water_depth_m": 838
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-35.8814, -10.2885666667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "KPO1287",
+        "name": "K2",
+        "label": "K2 (KPO1287)",
+        "region": "Brazil 11S array",
+        "water_depth_m": 2254
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-35.7242666667, -10.41575]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "KPO1288",
+        "name": "K3",
+        "label": "K3 (KPO1288)",
+        "region": "Brazil 11S array",
+        "water_depth_m": 3475
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-35.4361666667, -10.6666166667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "KPO1289",
+        "name": "K4",
+        "label": "K4 (KPO1289)",
+        "region": "Brazil 11S array",
+        "water_depth_m": 4002
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-35.03735, -10.9976333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "KPO1293",
+        "name": "0N",
+        "label": "0N (KPO1293)",
+        "region": "Equator at 23W",
+        "water_depth_m": 3798
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-23.1650166667, -0.05705]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "KPO1294",
+        "name": "CVOO",
+        "label": "CVOO (KPO1294)",
+        "region": "Cape Verde Ocean Observatory",
+        "water_depth_m": 3605
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-24.3309166667, 17.5412833333]
+      }
+    }
+  ]
+}
