@@ -48,6 +48,24 @@ let availabilityStatus = {};
 let manifestGeneratedAt = null;
 let mooringFeatures = [];
 
+const bundledSnapshots = [
+  {
+    date: "2026-05-14",
+    productKey: "WAVES",
+    path: "assets/snapshots/2026-05-14_WAVES.png",
+  },
+  {
+    date: "2026-05-14",
+    productKey: "SAT_SLA",
+    path: "assets/snapshots/2026-05-14_SLA.png",
+  },
+  {
+    date: "2026-05-14",
+    productKey: "SAT_SST",
+    path: "assets/snapshots/2026-05-14_SST_L4.png",
+  },
+];
+
 const routePoints = [
   { name: "Recife, Brazil", lat: -8.0476, lon: -34.877, note: "Departure, 30 May 2026" },
   { name: "Equatorial Atlantic waypoint", lat: 0.0, lon: -23.0, note: "Editable planning waypoint" },
@@ -88,14 +106,16 @@ function placeholderSvg(product, date) {
       </defs>
       <rect width="1400" height="900" fill="url(#sea)"/>
       <rect width="1400" height="900" fill="url(#grid)"/>
-      <path d="M110 720 C310 620 430 510 540 438 S780 266 920 230 S1130 225 1270 160" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" opacity=".92"/>
+      <path d="M110 720 C310 620 430 510 540 438 S780 266 920 230 S1130 225 1270 160" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" opacity=".88"/>
       <path d="M110 720 C310 620 430 510 540 438 S780 266 920 230 S1130 225 1270 160" fill="none" stroke="#d95f35" stroke-width="4" stroke-linecap="round"/>
       <g fill="#fff" stroke="#17212b" stroke-width="5">
         <circle cx="110" cy="720" r="16"/><circle cx="540" cy="438" r="16"/><circle cx="920" cy="230" r="16"/><circle cx="1270" cy="160" r="16"/>
       </g>
-      <text x="56" y="76" fill="white" font-family="Inter, Arial" font-size="42" font-weight="800">${product.label}</text>
-      <text x="56" y="126" fill="rgba(255,255,255,.86)" font-family="Inter, Arial" font-size="26">${date} - placeholder until Copernicus run is published</text>
-      <text x="56" y="826" fill="rgba(255,255,255,.86)" font-family="Inter, Arial" font-size="24">${product.dataset}</text>
+      <rect x="56" y="56" width="760" height="188" rx="14" fill="rgba(3,22,32,.56)"/>
+      <text x="88" y="120" fill="white" font-family="Inter, Arial" font-size="44" font-weight="800">Map pending</text>
+      <text x="88" y="172" fill="rgba(255,255,255,.88)" font-family="Inter, Arial" font-size="27">${product.label}</text>
+      <text x="88" y="210" fill="rgba(255,255,255,.76)" font-family="Inter, Arial" font-size="22">${date} - waiting for the Copernicus workflow output</text>
+      <text x="56" y="826" fill="rgba(255,255,255,.86)" font-family="Inter, Arial" font-size="22">${product.dataset}</text>
     </svg>`;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
@@ -178,6 +198,21 @@ async function loadMoorings() {
   }
 }
 
+function addBundledSnapshots() {
+  bundledSnapshots.forEach((snapshot) => {
+    if (!snapshots.includes(snapshot.date)) {
+      snapshots.unshift(snapshot.date);
+    }
+    availabilityStatus[snapshot.date] = availabilityStatus[snapshot.date] || {};
+    availabilityStatus[snapshot.date][snapshot.productKey] = {
+      available: true,
+      path: snapshot.path,
+      note: "Bundled sample map",
+    };
+  });
+  snapshots = [...new Set(snapshots)];
+}
+
 function isAvailable(date, productKey) {
   return Boolean(availabilityStatus[date]?.[productKey]?.available);
 }
@@ -210,14 +245,17 @@ function renderSnapshot() {
   const img = document.querySelector("#snapshot-image");
   const expectedPath =
     availabilityStatus[date]?.[product.key]?.path || `assets/snapshots/${date}_${product.key}.png`;
+  const available = isAvailable(date, product.key);
 
   img.onerror = () => {
     img.onerror = null;
     img.src = placeholderSvg(product, date);
+    img.classList.add("placeholder-map");
   };
+  img.classList.toggle("placeholder-map", !available);
   img.src = expectedPath;
   img.alt = `${product.label} snapshot for ${date}`;
-  const state = isAvailable(date, product.key) ? "available map" : product.status;
+  const state = available ? "available map" : product.status;
   document.querySelector("#snapshot-caption").textContent =
     `${product.label} (${product.variables}) from ${product.dataset}; ${state} for ${date}.`;
 }
@@ -318,6 +356,7 @@ function initMap() {
 async function init() {
   await loadProductsConfig();
   await loadManifest();
+  addBundledSnapshots();
   await loadMoorings();
   initControls();
   renderSnapshot();
