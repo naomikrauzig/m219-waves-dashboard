@@ -31,9 +31,8 @@ body {
   padding: 56px clamp(20px, 5vw, 72px) 40px;
   color: #fff;
   background:
-    linear-gradient(180deg, rgba(4, 24, 35, 0.18), rgba(4, 24, 35, 0.84)),
-    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=80")
-      center / cover;
+    linear-gradient(180deg, rgba(4, 24, 35, 0.08), rgba(4, 24, 35, 0.86)),
+    url("images/meteor-glider-hero.jpg") center / cover;
 }
 
 .eyebrow {
@@ -57,6 +56,17 @@ h1 {
   margin: 24px 0 0;
   font-size: clamp(1rem, 2vw, 1.28rem);
   line-height: 1.55;
+}
+
+.photo-credit {
+  display: inline-flex;
+  margin: 18px 0 0;
+  padding: 5px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 4px;
+  background: rgba(0, 35, 48, 0.38);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.82rem;
 }
 
 .status-panel {
@@ -283,6 +293,19 @@ tr:last-child td {
   padding-left: 20px;
   color: var(--muted);
   line-height: 1.7;
+}
+
+.brand-section {
+  overflow: hidden;
+  border-radius: 8px;
+  background: #062d48;
+}
+
+.brand-section img {
+  display: block;
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
 }
 
 footer {
