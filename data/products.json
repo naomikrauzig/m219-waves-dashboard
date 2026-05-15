@@ -44,18 +44,15 @@
     "product_url": "https://data.marine.copernicus.eu/product/GLOBAL_ANALYSISFORECAST_PHY_001_024/services"
   },
   {
-    "key": "SAT_SLA",
-    "label": "Satellite sea level and geostrophic currents",
-    "category": "Satellite-derived maps",
-    "status": "automated; uses most recent near-real-time day",
-    "workflow_enabled": true,
-    "date_strategy": "latest_available",
-    "max_backfill_days": 14,
-    "dataset_id": "dataset-duacs-nrt-global-merged-allsat-phy-l4",
-    "variables": ["sla", "adt", "ugos", "vgos"],
-    "bbox": [-42, -14, 12, 58],
-    "product_url": "https://data.marine.copernicus.eu/product/SEALEVEL_GLO_PHY_L4_NRT_008_046/description"
-  },
+  "key": "SAT_SLA",
+  "label": "Satellite SLA / ADT",
+  "dataset_id": "cmems_obs-sl_glo_phy-ssh_nrt_allsat-l4-duacs-0.125deg_P1D",
+  "variables": ["sla", "adt", "ugos", "vgos"],
+  "bbox": [-42, -14, 12, 58],
+  "date_strategy": "latest_available",
+  "max_backfill_days": 3,
+  "workflow_enabled": true
+},
   {
     "key": "SAT_SSS",
     "label": "Multi-observation sea surface salinity",
