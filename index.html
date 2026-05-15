@@ -4,28 +4,38 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>M219 WAVES Cruise Dashboard</title>
+
     <meta
       name="description"
-      content="Near-real-time Copernicus Marine satellite and model snapshots for the Meteor M219 WAVES cruise."
+      content="Near-real-time Copernicus Marine and ERA5 quick-look maps for the RV Meteor M219 WAVES cruise."
     />
+
     <link rel="stylesheet" href="assets/styles.css" />
   </head>
+
   <body>
     <header class="site-header">
       <div>
         <p class="eyebrow">RV Meteor M219 WAVES</p>
+
         <h1>M219 WAVES Cruise Dashboard</h1>
+
         <p class="lede">
-          A GitHub Pages-ready dashboard for rolling Copernicus Marine forecast maps from today through
-          five days ahead, satellite-derived maps, in-situ observations, and derived diagnostics along
-          the planned M219 cruise corridor.
+          A GitHub Pages-ready dashboard for rolling Copernicus Marine and ERA5 quick-look maps
+          along the planned M219 WAVES cruise corridor, including model forecasts,
+          latest available satellite-derived products, atmospheric forcing,
+          and derived diagnostics.
         </p>
+
         <p class="photo-credit">Photo: Mario Mueller / GEOMAR</p>
       </div>
+
       <aside class="status-panel" aria-label="Cruise status">
         <span>Planned cruise</span>
         <strong>30 May - 28 Jun 2026</strong>
-        <small id="last-updated">Last updated: pending first data run</small>
+        <small id="last-updated">
+          Forecast window updated: pending first data run
+        </small>
       </aside>
     </header>
 
@@ -34,6 +44,7 @@
         <div class="toolbar">
           <label for="dataset-select">Dataset</label>
           <select id="dataset-select"></select>
+
           <label for="date-select">Snapshot</label>
           <select id="date-select"></select>
         </div>
@@ -41,15 +52,41 @@
         <div class="viewer-grid">
           <figure class="snapshot">
             <div class="map-controls" aria-label="Data map zoom controls">
-              <button type="button" data-zoom-target="snapshot" data-zoom-action="out" title="Zoom out">-</button>
-              <button type="button" data-zoom-target="snapshot" data-zoom-action="in" title="Zoom in">+</button>
-              <button type="button" data-zoom-target="snapshot" data-zoom-action="reset" title="Reset zoom">Reset</button>
+              <button
+                type="button"
+                data-zoom-target="snapshot"
+                data-zoom-action="out"
+                title="Zoom out"
+              >
+                -
+              </button>
+
+              <button
+                type="button"
+                data-zoom-target="snapshot"
+                data-zoom-action="in"
+                title="Zoom in"
+              >
+                +
+              </button>
+
+              <button
+                type="button"
+                data-zoom-target="snapshot"
+                data-zoom-action="reset"
+                title="Reset zoom"
+              >
+                Reset
+              </button>
             </div>
+
             <div class="zoom-stage">
               <img id="snapshot-image" alt="Selected data snapshot" />
             </div>
+
             <figcaption id="snapshot-caption"></figcaption>
           </figure>
+
           <div id="map" aria-label="M219 route map"></div>
         </div>
       </section>
@@ -57,8 +94,13 @@
       <section class="availability-section">
         <div class="section-heading">
           <h2>Product Availability</h2>
-          <p>Rows are selectable layers; columns are the rolling daily map window.</p>
+
+          <p>
+            Rows are selectable layers; columns show the rolling map window
+            and latest available source dates where relevant.
+          </p>
         </div>
+
         <div class="table-wrap">
           <table id="availability-table"></table>
         </div>
@@ -67,8 +109,13 @@
       <section class="products-section">
         <div class="section-heading">
           <h2>Datasets Used</h2>
-          <p>Dataset IDs are ready for the Copernicus Marine Toolbox and can be updated in <code>data/products.json</code>.</p>
+
+          <p>
+            Dataset IDs are configured for the Copernicus Marine Toolbox and CDS API
+            and can be updated in <code>data/products.json</code>.
+          </p>
         </div>
+
         <div class="table-wrap">
           <table id="products-table"></table>
         </div>
@@ -77,24 +124,48 @@
       <section class="assessment-section">
         <div class="section-heading">
           <h2>Layer Roadmap</h2>
-          <p>Assessment of what can be automated for cruise operations.</p>
+
+          <p>
+            Assessment of what can be automated for cruise operations.
+          </p>
         </div>
+
         <div class="roadmap-grid">
           <article>
             <h3>Modeled Forecast</h3>
-            <p>Operational now for five-day forecast maps: waves, currents, temperature, and salinity.</p>
+
+            <p>
+              Operational for rolling forecast maps: waves, surface currents,
+              TEOS-10 Conservative Temperature, and Absolute Salinity.
+            </p>
           </article>
+
           <article>
             <h3>Satellite Maps</h3>
-            <p>Feasible for latest available days, but not true forecasts; latency and clouds affect SST and chlorophyll.</p>
+
+            <p>
+              Operational for latest available near-real-time SLA/ADT,
+              sea surface salinity, and chlorophyll-a products;
+              latency depends on product availability.
+            </p>
           </article>
+
           <article>
-            <h3>Argo And Drifters</h3>
-            <p>Feasible as point, profile, and trajectory overlays using Copernicus in-situ and NOAA GDP sources.</p>
+            <h3>Argo and Drifters</h3>
+
+            <p>
+              Planned as point, profile, and trajectory overlays using
+              Copernicus in-situ and NOAA GDP sources.
+            </p>
           </article>
+
           <article>
             <h3>Derived Diagnostics</h3>
-            <p>Feasible as computed products: Ekman pumping, upwelling proxies, eddy kinetic energy, and eddy masks.</p>
+
+            <p>
+              Operational for ERA5-based wind stress and Ekman pumping;
+              planned extensions include upwelling proxies and eddy diagnostics.
+            </p>
           </article>
         </div>
       </section>
@@ -103,15 +174,34 @@
         <div class="section-heading">
           <h2>Operations Notes</h2>
         </div>
+
         <ul>
-          <li>The route currently uses planning waypoints. Replace <code>data/route.geojson</code> with DShip, AIS, or station positions when available.</li>
-          <li>The update workflow expects Copernicus Marine credentials in GitHub repository secrets and runs daily.</li>
-          <li>Generated plots should be written to <code>assets/snapshots</code>; the page automatically prefers real images over placeholders.</li>
+          <li>
+            The route currently uses planning waypoints.
+            Replace <code>data/route.geojson</code> with DShip, AIS,
+            or station positions when available.
+          </li>
+
+          <li>
+            The update workflow expects Copernicus Marine and CDS API credentials
+            in GitHub repository secrets and runs daily.
+          </li>
+
+          <li>
+            Generated maps are written to <code>assets/snapshots</code>
+            and listed in <code>data/manifest.json</code>.
+          </li>
+
+          <li>
+            Model temperature and salinity maps are converted to
+            TEOS-10 Conservative Temperature and Absolute Salinity before plotting.
+          </li>
         </ul>
       </section>
 
       <section class="brand-section" aria-label="GEOMAR branding">
         <img src="assets/images/geomar-brand.jpg" alt="" />
+
         <div class="brand-credit">
           <a href="https://www.geomar.de" aria-label="GEOMAR website">
             <img
@@ -119,9 +209,12 @@
               alt="GEOMAR Helmholtz Centre for Ocean Research Kiel"
             />
           </a>
+
           <p>
             Dashboard for the
-            <a href="https://www.geomar.de/en/fb1/physical-oceanography">GEOMAR Physical Oceanography</a>
+            <a href="https://www.geomar.de/en/fb1/physical-oceanography">
+              GEOMAR Physical Oceanography
+            </a>
             cruise context.
           </p>
         </div>
@@ -129,13 +222,21 @@
     </main>
 
     <footer>
-      <span>Contact: <a href="mailto:nkrauzig@geomar.de">nkrauzig@geomar.de</a></span>
+      <span>
+        Contact:
+        <a href="mailto:nkrauzig@geomar.de">nkrauzig@geomar.de</a>
+      </span>
+
       <span>
         <a href="https://www.geomar.de">GEOMAR</a>
         &middot;
-        <a href="https://www.geomar.de/en/fb1/physical-oceanography">Physical Oceanography</a>
+        <a href="https://www.geomar.de/en/fb1/physical-oceanography">
+          Physical Oceanography
+        </a>
         &middot;
-        <a href="https://data.marine.copernicus.eu/products">Copernicus Marine Data Store</a>
+        <a href="https://data.marine.copernicus.eu/products">
+          Copernicus Marine Data Store
+        </a>
       </span>
     </footer>
 
