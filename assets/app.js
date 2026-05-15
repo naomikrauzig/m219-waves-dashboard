@@ -47,6 +47,7 @@ let snapshots = rollingForecastDates();
 let availabilityStatus = {};
 let manifestGeneratedAt = null;
 let mooringFeatures = [];
+const zoomState = { snapshot: 1, route: 1 };
 
 const bundledSnapshots = [
   {
@@ -307,6 +308,7 @@ function renderSnapshot() {
     : "";
   document.querySelector("#snapshot-caption").textContent =
     `${shownProduct.label} (${shownProduct.variables}) from ${shownProduct.dataset}; ${state} for ${snapshot.date}.${fallbackText}`;
+  applyZoom("snapshot");
 }
 
 function renderAvailability() {
@@ -380,6 +382,13 @@ function pointPath(points) {
     .join(" ");
 }
 
+function pentagonPoints(x, y, radius = 10) {
+  return Array.from({ length: 5 }, (_, index) => {
+    const angle = -Math.PI / 2 + (index * 2 * Math.PI) / 5;
+    return `${(x + radius * Math.cos(angle)).toFixed(1)},${(y + radius * Math.sin(angle)).toFixed(1)}`;
+  }).join(" ");
+}
+
 function renderRouteOverview() {
   const routePath = pointPath(routePoints);
   const stopMarkers = routePoints
@@ -399,13 +408,18 @@ function renderRouteOverview() {
       const label = feature.properties.label;
       return `
         <g>
-          <text x="${x}" y="${y}" class="route-star">*</text>
+          <polygon points="${pentagonPoints(x, y, 10)}" class="mooring-pentagon" />
           <text x="${x + 13}" y="${y - 4}" class="mooring-map-label">${label}</text>
         </g>`;
     })
     .join("");
 
   document.querySelector("#map").innerHTML = `
+    <div class="map-controls" aria-label="Route map zoom controls">
+      <button type="button" data-zoom-target="route" data-zoom-action="out" title="Zoom out">-</button>
+      <button type="button" data-zoom-target="route" data-zoom-action="in" title="Zoom in">+</button>
+      <button type="button" data-zoom-target="route" data-zoom-action="reset" title="Reset zoom">Reset</button>
+    </div>
     <svg class="route-overview" viewBox="0 0 1000 620" role="img" aria-label="M219 route and GEOMAR moorings">
       <defs>
         <linearGradient id="routeSea" x1="0" x2="1" y1="0" y2="1">
@@ -430,14 +444,56 @@ function renderRouteOverview() {
       <g class="route-legend">
         <circle cx="0" cy="0" r="6" class="route-stop" />
         <text x="14" y="5">Cruise waypoint</text>
-        <text x="0" y="31" class="route-star">*</text>
+        <polygon points="${pentagonPoints(0, 28, 8)}" class="mooring-pentagon" />
         <text x="14" y="31">GEOMAR mooring</text>
       </g>
     </svg>`;
+  applyZoom("route");
 }
 
 function initMap() {
   renderRouteOverview();
+}
+
+function zoomTargetElement(target) {
+  if (target === "snapshot") {
+    return document.querySelector("#snapshot-image");
+  }
+  if (target === "route") {
+    return document.querySelector(".route-overview");
+  }
+  return null;
+}
+
+function applyZoom(target) {
+  const element = zoomTargetElement(target);
+  if (element) {
+    element.style.transform = `scale(${zoomState[target]})`;
+  }
+}
+
+function setZoom(target, action) {
+  if (!(target in zoomState)) {
+    return;
+  }
+  if (action === "in") {
+    zoomState[target] = Math.min(zoomState[target] + 0.2, 3);
+  } else if (action === "out") {
+    zoomState[target] = Math.max(zoomState[target] - 0.2, 1);
+  } else {
+    zoomState[target] = 1;
+  }
+  applyZoom(target);
+}
+
+function initZoomControls() {
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-zoom-target]");
+    if (!button) {
+      return;
+    }
+    setZoom(button.dataset.zoomTarget, button.dataset.zoomAction);
+  });
 }
 
 async function init() {
@@ -450,6 +506,7 @@ async function init() {
   renderAvailability();
   renderProducts();
   initMap();
+  initZoomControls();
   const updated = manifestGeneratedAt ? manifestGeneratedAt.slice(0, 10) : new Date().toISOString().slice(0, 10);
   document.querySelector("#last-updated").textContent = `Forecast window updated: ${updated} UTC`;
 }

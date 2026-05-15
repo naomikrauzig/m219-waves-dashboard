@@ -241,13 +241,27 @@ def ekman_fields(lon: Any, lat: Any, u10: Any, v10: Any) -> tuple[Any, Any, Any,
 
 
 def add_route_and_moorings(ax: Any) -> None:
-    ax.plot([-34.877, -23.0, -24.3, -24.9958, 7.207], [-8.0476, 0.0, 17.6, 16.886, 53.367], color="white", lw=3)
-    ax.plot([-34.877, -23.0, -24.3, -24.9958, 7.207], [-8.0476, 0.0, 17.6, 16.886, 53.367], color="#d95f35", lw=1.4)
+    ax.plot(
+        [-34.877, -23.0, -24.3, -24.9958, 7.207],
+        [-8.0476, 0.0, 17.6, 16.886, 53.367],
+        color="white",
+        lw=3,
+        linestyle="--",
+        alpha=0.55,
+    )
+    ax.plot(
+        [-34.877, -23.0, -24.3, -24.9958, 7.207],
+        [-8.0476, 0.0, 17.6, 16.886, 53.367],
+        color="#d95f35",
+        lw=1.4,
+        linestyle="--",
+        alpha=0.58,
+    )
     ax.scatter([-34.877, -23.0, -24.3, -24.9958, 7.207], [-8.0476, 0.0, 17.6, 16.886, 53.367], s=26, color="white", edgecolor="#17212b", zorder=3)
     for mooring in load_moorings():
         lon, lat = mooring["geometry"]["coordinates"]
         label = mooring["properties"]["label"]
-        ax.scatter(lon, lat, marker="*", s=150, color="#f2c14e", edgecolor="#17212b", linewidth=0.8, zorder=4)
+        ax.scatter(lon, lat, marker="p", s=110, color="#c62828", edgecolor="white", linewidth=0.9, zorder=4)
         ax.text(lon + 0.18, lat + 0.18, label, fontsize=8, weight="bold", color="#17212b", zorder=5)
 
 

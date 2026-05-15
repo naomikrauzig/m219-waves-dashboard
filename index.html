@@ -40,7 +40,14 @@
 
         <div class="viewer-grid">
           <figure class="snapshot">
-            <img id="snapshot-image" alt="Selected data snapshot" />
+            <div class="map-controls" aria-label="Data map zoom controls">
+              <button type="button" data-zoom-target="snapshot" data-zoom-action="out" title="Zoom out">-</button>
+              <button type="button" data-zoom-target="snapshot" data-zoom-action="in" title="Zoom in">+</button>
+              <button type="button" data-zoom-target="snapshot" data-zoom-action="reset" title="Reset zoom">Reset</button>
+            </div>
+            <div class="zoom-stage">
+              <img id="snapshot-image" alt="Selected data snapshot" />
+            </div>
             <figcaption id="snapshot-caption"></figcaption>
           </figure>
           <div id="map" aria-label="M219 route map"></div>
@@ -125,9 +132,9 @@
       <span>Contact: <a href="mailto:nkrauzig@geomar.de">nkrauzig@geomar.de</a></span>
       <span>
         <a href="https://www.geomar.de">GEOMAR</a>
-        ·
+        &middot;
         <a href="https://www.geomar.de/en/fb1/physical-oceanography">Physical Oceanography</a>
-        ·
+        &middot;
         <a href="https://data.marine.copernicus.eu/products">Copernicus Marine Data Store</a>
       </span>
     </footer>
