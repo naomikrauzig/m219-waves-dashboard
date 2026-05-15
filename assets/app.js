@@ -1,5 +1,6 @@
 const MANIFEST_URL = "data/manifest.json";
 const PRODUCTS_URL = "data/products.json";
+
 const ROUTE = [
   [-34.877, -8.0476],
   [-23.0, 0.0],
@@ -12,7 +13,17 @@ let manifest = null;
 let products = [];
 let selectedProductKey = null;
 let selectedDate = null;
-let zoomState = { scale: 1, x: 0, y: 0 };
+
+let zoomState = {
+  scale: 1,
+  x: 0,
+  y: 0,
+  dragging: false,
+  startX: 0,
+  startY: 0,
+  originX: 0,
+  originY: 0,
+};
 
 const datasetSelect = document.getElementById("dataset-select");
 const dateSelect = document.getElementById("date-select");
@@ -28,26 +39,12 @@ async function loadJson(url) {
   return response.json();
 }
 
-function productLabel(productKey) {
-  const product = products.find((p) => p.key === productKey);
-  return product?.label || productKey;
-}
-
-function productByKey(productKey) {
-  return products.find((p) => p.key === productKey);
-}
-
 function sortedDates() {
   return [...(manifest?.dates || [])].sort((a, b) => new Date(a) - new Date(b));
 }
 
-function implementedProducts() {
-  const manifestKeys = new Set((manifest?.products || []).map((p) => p.key));
-  return products.filter((p) => p.workflow_enabled !== false || manifestKeys.has(p.key));
-}
-
-function availableProducts() {
-  return implementedProducts().filter((p) => p.workflow_enabled !== false);
+function productByKey(productKey) {
+  return products.find((p) => p.key === productKey);
 }
 
 function statusFor(date, productKey) {
@@ -60,8 +57,7 @@ function isAvailable(date, productKey) {
 
 function sourceDateLabel(date, productKey) {
   const status = statusFor(date, productKey);
-  if (!status?.source_date) return "";
-  if (status.source_date === date) return "";
+  if (!status?.source_date || status.source_date === date) return "";
   return ` using ${status.source_date}`;
 }
 
@@ -72,7 +68,10 @@ function setLastUpdated() {
   }
 
   const generated = new Date(manifest.generated_at);
-  lastUpdated.textContent = `Forecast window updated: ${generated.toISOString().replace("T", " ").slice(0, 16)} UTC`;
+  lastUpdated.textContent = `Forecast window updated: ${generated
+    .toISOString()
+    .replace("T", " ")
+    .slice(0, 16)} UTC`;
 }
 
 function populateSelectors() {
@@ -80,7 +79,7 @@ function populateSelectors() {
   dateSelect.innerHTML = "";
 
   const dates = sortedDates();
-  const productList = availableProducts();
+  const productList = products.filter((p) => p.workflow_enabled !== false);
 
   for (const product of productList) {
     const option = document.createElement("option");
@@ -137,7 +136,6 @@ function updateSnapshot() {
 
 function renderAvailabilityTable() {
   const dates = sortedDates();
-  const productList = products;
 
   let html = "<thead><tr><th>Product</th>";
 
@@ -147,8 +145,9 @@ function renderAvailabilityTable() {
 
   html += "</tr></thead><tbody>";
 
-  for (const product of productList) {
+  for (const product of products) {
     const planned = product.workflow_enabled === false;
+
     html += `<tr data-product="${product.key}" class="${planned ? "planned-row" : ""}">`;
     html += `<th>${product.label || product.key}<small>${product.key}</small></th>`;
 
@@ -158,8 +157,14 @@ function renderAvailabilityTable() {
       if (planned) {
         html += `<td><span class="status planned">planned</span></td>`;
       } else if (status?.available) {
-        const source = status.source_date && status.source_date !== date ? `Source date: ${status.source_date}` : "Available";
-        html += `<td title="${source}"><button class="status available" data-product="${product.key}" data-date="${date}">✓</button></td>`;
+        const source =
+          status.source_date && status.source_date !== date
+            ? `Source date: ${status.source_date}`
+            : "Available";
+
+        html += `<td title="${source}">
+          <button class="status available" data-product="${product.key}" data-date="${date}">✓</button>
+        </td>`;
       } else if (status?.error) {
         html += `<td title="${escapeHtml(status.error)}"><span class="status failed">×</span></td>`;
       } else {
@@ -177,8 +182,10 @@ function renderAvailabilityTable() {
     button.addEventListener("click", () => {
       selectedProductKey = button.dataset.product;
       selectedDate = button.dataset.date;
+
       datasetSelect.value = selectedProductKey;
       dateSelect.value = selectedDate;
+
       updateSnapshot();
     });
   });
@@ -191,9 +198,11 @@ function highlightAvailabilitySelection() {
     cell.classList.remove("selected-cell", "selected-row");
   });
 
-  availabilityTable.querySelectorAll(`tr[data-product="${selectedProductKey}"] th`).forEach((cell) => {
-    cell.classList.add("selected-row");
-  });
+  availabilityTable
+    .querySelectorAll(`tr[data-product="${selectedProductKey}"] th`)
+    .forEach((cell) => {
+      cell.classList.add("selected-row");
+    });
 
   availabilityTable
     .querySelectorAll(`button[data-product="${selectedProductKey}"][data-date="${selectedDate}"]`)
@@ -219,6 +228,7 @@ function renderProductsTable() {
 
   for (const product of products) {
     const statusText = product.workflow_enabled === false ? "planned" : product.status || "automated";
+
     const productUrl = product.product_url
       ? `<a href="${product.product_url}" target="_blank" rel="noopener">Official page</a>`
       : "";
@@ -244,7 +254,7 @@ function renderRouteMap() {
   if (!map) return;
 
   const width = 900;
-  const height = 620;
+  const height = 700;
   const padding = 55;
 
   const lons = ROUTE.map((p) => p[0]);
@@ -301,19 +311,26 @@ function gridLines(width, height, padding) {
 
   for (let i = 1; i <= 5; i++) {
     const x = padding + i * ((width - 2 * padding) / 6);
-    lines += `<line x1="${x}" y1="${padding}" x2="${x}" y2="${height - padding}" stroke="white" stroke-width="1" opacity="0.35"/>`;
+    lines += `<line x1="${x}" y1="${padding}" x2="${x}" y2="${
+      height - padding
+    }" stroke="white" stroke-width="1" opacity="0.35"/>`;
   }
 
   for (let i = 1; i <= 4; i++) {
     const y = padding + i * ((height - 2 * padding) / 5);
-    lines += `<line x1="${padding}" y1="${y}" x2="${width - padding}" y2="${y}" stroke="white" stroke-width="1" opacity="0.35"/>`;
+    lines += `<line x1="${padding}" y1="${y}" x2="${
+      width - padding
+    }" y2="${y}" stroke="white" stroke-width="1" opacity="0.35"/>`;
   }
 
   return lines;
 }
 
 function resetZoom() {
-  zoomState = { scale: 1, x: 0, y: 0 };
+  zoomState.scale = 1;
+  zoomState.x = 0;
+  zoomState.y = 0;
+  zoomState.dragging = false;
   applyZoom();
 }
 
@@ -321,18 +338,81 @@ function applyZoom() {
   snapshotImage.style.transform = `translate(${zoomState.x}px, ${zoomState.y}px) scale(${zoomState.scale})`;
 }
 
+function zoomAtCenter(factor) {
+  zoomState.scale = Math.max(1, Math.min(zoomState.scale * factor, 6));
+
+  if (zoomState.scale === 1) {
+    zoomState.x = 0;
+    zoomState.y = 0;
+  }
+
+  applyZoom();
+}
+
 function setupZoomControls() {
+  const stage = document.querySelector(".zoom-stage");
+  if (!stage) return;
+
   document.querySelectorAll("[data-zoom-target='snapshot']").forEach((button) => {
     button.addEventListener("click", () => {
       const action = button.dataset.zoomAction;
 
-      if (action === "in") zoomState.scale = Math.min(zoomState.scale * 1.25, 5);
-      if (action === "out") zoomState.scale = Math.max(zoomState.scale / 1.25, 1);
+      if (action === "in") zoomAtCenter(1.25);
+      if (action === "out") zoomAtCenter(1 / 1.25);
       if (action === "reset") resetZoom();
-
-      applyZoom();
     });
   });
+
+  stage.addEventListener("pointerdown", (event) => {
+    if (zoomState.scale <= 1) return;
+
+    zoomState.dragging = true;
+    zoomState.startX = event.clientX;
+    zoomState.startY = event.clientY;
+    zoomState.originX = zoomState.x;
+    zoomState.originY = zoomState.y;
+
+    stage.classList.add("dragging");
+    stage.setPointerCapture(event.pointerId);
+  });
+
+  stage.addEventListener("pointermove", (event) => {
+    if (!zoomState.dragging) return;
+
+    zoomState.x = zoomState.originX + (event.clientX - zoomState.startX);
+    zoomState.y = zoomState.originY + (event.clientY - zoomState.startY);
+
+    applyZoom();
+  });
+
+  stage.addEventListener("pointerup", (event) => {
+    zoomState.dragging = false;
+    stage.classList.remove("dragging");
+
+    try {
+      stage.releasePointerCapture(event.pointerId);
+    } catch (_) {}
+  });
+
+  stage.addEventListener("pointercancel", () => {
+    zoomState.dragging = false;
+    stage.classList.remove("dragging");
+  });
+
+  stage.addEventListener("pointerleave", () => {
+    zoomState.dragging = false;
+    stage.classList.remove("dragging");
+  });
+
+  stage.addEventListener(
+    "wheel",
+    (event) => {
+      event.preventDefault();
+      const factor = event.deltaY < 0 ? 1.12 : 1 / 1.12;
+      zoomAtCenter(factor);
+    },
+    { passive: false }
+  );
 }
 
 function setupEvents() {
@@ -340,12 +420,11 @@ function setupEvents() {
     selectedProductKey = datasetSelect.value;
 
     const dates = sortedDates();
-    const bestDate =
+    selectedDate =
       dates.find((d) => isAvailable(d, selectedProductKey)) ||
       selectedDate ||
       dates[dates.length - 1];
 
-    selectedDate = bestDate;
     dateSelect.value = selectedDate;
     updateSnapshot();
   });
