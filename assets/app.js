@@ -59,11 +59,6 @@ const bundledSnapshots = [
     productKey: "SAT_SLA",
     path: "assets/snapshots/2026-05-14_SLA.png",
   },
-  {
-    date: "2026-05-14",
-    productKey: "SAT_SST",
-    path: "assets/snapshots/2026-05-14_SST_L4.png",
-  },
 ];
 
 const routePoints = [
@@ -82,6 +77,7 @@ function placeholderSvg(product, date) {
     MODEL_SAL: ["#14324d", "#477b9f", "#d7e6de", "#edb458"],
     SAT_SLA: ["#193a72", "#e3eef6", "#c44536", "#5d1f1a"],
     SAT_SST: ["#0f4862", "#2d9a8e", "#f5c95c", "#c73d2f"],
+    SAT_SSS: ["#123b56", "#2d7f94", "#d7e6de", "#edb458"],
     SAT_CHL: ["#14382d", "#2f8f6b", "#bedb39", "#f2d16b"],
     ARGO_PROFILES: ["#253746", "#4a7c95", "#9fc2cc", "#f6c85f"],
     ARGO_VELOCITY: ["#253746", "#33658a", "#86bbd8", "#f26419"],
@@ -217,6 +213,50 @@ function isAvailable(date, productKey) {
   return Boolean(availabilityStatus[date]?.[productKey]?.available);
 }
 
+function availableSnapshotEntries() {
+  return snapshots.flatMap((date) =>
+    Object.entries(availabilityStatus[date] || {})
+      .filter(([, state]) => state?.available && state?.path)
+      .map(([productKey, state]) => ({ date, productKey, state })),
+  );
+}
+
+function resolveSnapshot(date, product) {
+  const exact = availabilityStatus[date]?.[product.key];
+  if (exact?.available && exact.path) {
+    return { date, productKey: product.key, state: exact, fallback: false };
+  }
+
+  const sameProduct = availableSnapshotEntries()
+    .filter((entry) => entry.productKey === product.key)
+    .sort((a, b) => b.date.localeCompare(a.date));
+  if (sameProduct.length > 0) {
+    return { ...sameProduct[0], fallback: true };
+  }
+
+  const sameCategoryKeys = new Set(
+    products.filter((item) => item.category === product.category).map((item) => item.key),
+  );
+  const sameCategory = availableSnapshotEntries()
+    .filter((entry) => sameCategoryKeys.has(entry.productKey))
+    .sort((a, b) => b.date.localeCompare(a.date));
+  if (sameCategory.length > 0) {
+    return { ...sameCategory[0], fallback: true };
+  }
+
+  const anyAvailable = availableSnapshotEntries().sort((a, b) => b.date.localeCompare(a.date));
+  if (anyAvailable.length > 0) {
+    return { ...anyAvailable[0], fallback: true };
+  }
+
+  return {
+    date,
+    productKey: product.key,
+    state: { available: false, path: `assets/snapshots/${date}_${product.key}.png` },
+    fallback: false,
+  };
+}
+
 function initControls() {
   const datasetSelect = document.querySelector("#dataset-select");
   const dateSelect = document.querySelector("#date-select");
@@ -243,9 +283,9 @@ function renderSnapshot() {
   const product = products.find((item) => item.key === document.querySelector("#dataset-select").value);
   const date = document.querySelector("#date-select").value;
   const img = document.querySelector("#snapshot-image");
-  const expectedPath =
-    availabilityStatus[date]?.[product.key]?.path || `assets/snapshots/${date}_${product.key}.png`;
-  const available = isAvailable(date, product.key);
+  const snapshot = resolveSnapshot(date, product);
+  const shownProduct = products.find((item) => item.key === snapshot.productKey) || product;
+  const available = Boolean(snapshot.state.available);
 
   img.onerror = () => {
     img.onerror = null;
@@ -253,11 +293,18 @@ function renderSnapshot() {
     img.classList.add("placeholder-map");
   };
   img.classList.toggle("placeholder-map", !available);
-  img.src = expectedPath;
-  img.alt = `${product.label} snapshot for ${date}`;
+  img.src = snapshot.state.path;
+  img.alt = `${shownProduct.label} snapshot for ${snapshot.date}`;
   const state = available ? "available map" : product.status;
+  const sourceDate =
+    snapshot.state.source_date && snapshot.state.source_date !== snapshot.date
+      ? ` using ${snapshot.state.source_date} source data`
+      : "";
+  const fallbackText = snapshot.fallback
+    ? ` Requested ${product.label} for ${date}; showing latest available ${shownProduct.label} from ${snapshot.date}${sourceDate}.`
+    : "";
   document.querySelector("#snapshot-caption").textContent =
-    `${product.label} (${product.variables}) from ${product.dataset}; ${state} for ${date}.`;
+    `${shownProduct.label} (${shownProduct.variables}) from ${shownProduct.dataset}; ${state} for ${snapshot.date}.${fallbackText}`;
 }
 
 function renderAvailability() {

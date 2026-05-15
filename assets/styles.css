@@ -132,14 +132,14 @@ select {
 
 .viewer-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
   gap: 16px;
   align-items: stretch;
 }
 
 .snapshot,
 #map {
-  height: clamp(320px, 36vw, 560px);
+  height: clamp(240px, 24vw, 380px);
   min-height: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -376,7 +376,7 @@ a {
 
   #map,
   .snapshot {
-    height: 360px;
+    height: 300px;
   }
 
   .section-heading,

@@ -42,6 +42,16 @@ def target_days(value: str | None, days_ahead: int) -> list[date]:
     return [start + timedelta(days=offset) for offset in range(days_ahead + 1)]
 
 
+def candidate_days(product: dict, target_day: date) -> list[date]:
+    if product.get("date_strategy") != "latest_available":
+        return [target_day]
+
+    today = datetime.now(timezone.utc).date()
+    start = min(target_day, today)
+    max_backfill_days = int(product.get("max_backfill_days", 10))
+    return [start - timedelta(days=offset) for offset in range(max_backfill_days + 1)]
+
+
 def load_products() -> list[dict]:
     products = json.loads(PRODUCTS_FILE.read_text(encoding="utf-8"))
     return [product for product in products if product.get("workflow_enabled", True)]
@@ -54,11 +64,11 @@ def load_moorings() -> list[dict]:
     return geojson.get("features", [])
 
 
-def download_subset(product: dict, day: date, dry_run: bool) -> Path | None:
-    start = f"{day.isoformat()}T00:00:00"
-    end = f"{day.isoformat()}T23:59:59"
+def download_subset(product: dict, source_day: date, dry_run: bool) -> Path | None:
+    start = f"{source_day.isoformat()}T00:00:00"
+    end = f"{source_day.isoformat()}T23:59:59"
     min_lon, min_lat, max_lon, max_lat = product["bbox"]
-    output_file = DOWNLOAD_DIR / f"{day.isoformat()}_{product['key']}.nc"
+    output_file = DOWNLOAD_DIR / f"{source_day.isoformat()}_{product['key']}.nc"
 
     request = {
         "dataset_id": product["dataset_id"],
@@ -96,16 +106,19 @@ def download_subset(product: dict, day: date, dry_run: bool) -> Path | None:
 
 
 def choose_variable(dataset, preferred: list[str]) -> str:
+    available = {name.lower(): name for name in dataset.data_vars}
     for name in preferred:
-        if name in dataset:
+        if name in dataset.data_vars:
             return name
+        if name.lower() in available:
+            return available[name.lower()]
     data_vars = list(dataset.data_vars)
     if not data_vars:
         raise ValueError("No plottable variables found in downloaded dataset.")
     return data_vars[0]
 
 
-def plot_snapshot(product: dict, nc_path: Path, day: date) -> None:
+def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: date) -> None:
     import matplotlib.pyplot as plt
     import xarray as xr
 
@@ -114,8 +127,9 @@ def plot_snapshot(product: dict, nc_path: Path, day: date) -> None:
     var_name = choose_variable(ds, product["variables"])
     da = ds[var_name]
 
+    spatial_dims = {"latitude", "lat", "longitude", "lon"}
     while da.ndim > 2:
-        dim = da.dims[0]
+        dim = next((name for name in da.dims if name not in spatial_dims), da.dims[0])
         da = da.isel({dim: 0})
 
     lon_name = "longitude" if "longitude" in da.coords else "lon"
@@ -132,12 +146,15 @@ def plot_snapshot(product: dict, nc_path: Path, day: date) -> None:
         label = mooring["properties"]["label"]
         ax.scatter(lon, lat, marker="*", s=150, color="#f2c14e", edgecolor="#17212b", linewidth=0.8, zorder=4)
         ax.text(lon + 0.18, lat + 0.18, label, fontsize=8, weight="bold", color="#17212b", zorder=5)
-    ax.set_title(f"M219 WAVES | {product['label']} | {day.isoformat()}", loc="left", weight="bold")
+    title = f"M219 WAVES | {product['label']} | shown for {target_day.isoformat()}"
+    if source_day != target_day:
+        title = f"{title} using {source_day.isoformat()} data"
+    ax.set_title(title, loc="left", weight="bold")
     ax.set_xlabel("Longitude")
     ax.set_ylabel("Latitude")
     ax.grid(color="white", alpha=0.28)
     fig.tight_layout()
-    fig.savefig(SNAPSHOT_DIR / f"{day.isoformat()}_{product['key']}.png")
+    fig.savefig(SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}.png")
     plt.close(fig)
 
 
@@ -175,17 +192,26 @@ def main() -> None:
         day_key = day.isoformat()
         for product in products:
             product_key = product["key"]
+            product_errors: list[str] = []
             try:
-                nc_path = download_subset(product, day, args.dry_run)
-                if nc_path is not None:
-                    plot_snapshot(product, nc_path, day)
-                    made_snapshots += 1
-                    status[day_key][product_key] = {
-                        "available": True,
-                        "path": f"assets/snapshots/{day_key}_{product_key}.png",
-                    }
+                for source_day in candidate_days(product, day):
+                    try:
+                        nc_path = download_subset(product, source_day, args.dry_run)
+                        if nc_path is not None:
+                            plot_snapshot(product, nc_path, day, source_day)
+                            made_snapshots += 1
+                            status[day_key][product_key] = {
+                                "available": True,
+                                "path": f"assets/snapshots/{day_key}_{product_key}.png",
+                                "source_date": source_day.isoformat(),
+                            }
+                            break
+                        status[day_key][product_key] = {"available": False, "dry_run": True}
+                        break
+                    except Exception as exc:
+                        product_errors.append(f"{source_day.isoformat()}: {exc}")
                 else:
-                    status[day_key][product_key] = {"available": False, "dry_run": True}
+                    raise RuntimeError("; ".join(product_errors))
             except Exception as exc:
                 message = f"{day_key} {product_key}: {exc}"
                 status[day_key][product_key] = {"available": False, "error": str(exc)}
