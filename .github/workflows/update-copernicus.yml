@@ -13,6 +13,9 @@ on:
 permissions:
   contents: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -30,7 +33,7 @@ jobs:
         run: |
           DATE_ARG=""
           if [ -n "${{ inputs.date }}" ]; then DATE_ARG="--date ${{ inputs.date }}"; fi
-          python scripts/fetch_copernicus.py $DATE_ARG
+          python scripts/fetch_copernicus.py $DATE_ARG --allow-partial
       - name: Commit generated snapshots
         uses: stefanzweifel/git-auto-commit-action@v5
         with:

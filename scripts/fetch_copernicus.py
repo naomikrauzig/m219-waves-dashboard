@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
@@ -23,6 +24,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--date", default=None, help="Snapshot date as YYYY-MM-DD, defaults to yesterday UTC.")
     parser.add_argument("--dry-run", action="store_true", help="Print requests without downloading.")
+    parser.add_argument("--allow-partial", action="store_true", help="Continue if one product cannot be downloaded.")
     return parser.parse_args()
 
 
@@ -63,9 +65,14 @@ def download_subset(product: dict, day: date, dry_run: bool) -> Path | None:
 
     username = os.environ.get("COPERNICUSMARINE_SERVICE_USERNAME")
     password = os.environ.get("COPERNICUSMARINE_SERVICE_PASSWORD")
-    if username and password:
-        request["username"] = username
-        request["password"] = password
+    if not username or not password:
+        raise RuntimeError(
+            "Missing GitHub Actions secrets: COPERNICUSMARINE_SERVICE_USERNAME "
+            "and COPERNICUSMARINE_SERVICE_PASSWORD must be set."
+        )
+
+    request["username"] = username
+    request["password"] = password
 
     DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
     copernicusmarine.subset(**request)
@@ -84,7 +91,6 @@ def choose_variable(dataset, preferred: list[str]) -> str:
 
 def plot_snapshot(product: dict, nc_path: Path, day: date) -> None:
     import matplotlib.pyplot as plt
-    import numpy as np
     import xarray as xr
 
     SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
@@ -117,10 +123,29 @@ def plot_snapshot(product: dict, nc_path: Path, day: date) -> None:
 def main() -> None:
     args = parse_args()
     day = target_day(args.date)
+    made_snapshots = 0
+    failures: list[str] = []
+
     for product in load_products():
-        nc_path = download_subset(product, day, args.dry_run)
-        if nc_path is not None:
-            plot_snapshot(product, nc_path, day)
+        try:
+            nc_path = download_subset(product, day, args.dry_run)
+            if nc_path is not None:
+                plot_snapshot(product, nc_path, day)
+                made_snapshots += 1
+        except Exception as exc:
+            message = f"{product['key']}: {exc}"
+            failures.append(message)
+            print(f"ERROR {message}", file=sys.stderr)
+            if not args.allow_partial:
+                raise
+
+    if failures:
+        print("Completed with product failures:", file=sys.stderr)
+        for failure in failures:
+            print(f"- {failure}", file=sys.stderr)
+
+    if not args.dry_run and made_snapshots == 0:
+        raise SystemExit("No snapshots were generated. Check credentials, dataset IDs, and requested date.")
 
 
 if __name__ == "__main__":
