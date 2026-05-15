@@ -1,8 +1,282 @@
 {
-  "generated_at": null,
-  "forecast_start": null,
-  "forecast_end": null,
-  "dates": [],
-  "products": [],
-  "status": {}
+  "generated_at": "2026-05-15T17:20:39+00:00",
+  "forecast_start": "2026-05-10",
+  "forecast_end": "2026-05-12",
+  "dates": [
+    "2026-05-10",
+    "2026-05-11",
+    "2026-05-12"
+  ],
+  "products": [
+    {
+      "key": "WAVES",
+      "label": "Wave height and period",
+      "category": "Modeled forecast",
+      "status": "automated",
+      "dataset_id": "cmems_mod_glo_wav_anfc_0.083deg_PT3H-i",
+      "variables": [
+        "VHM0",
+        "VTPK",
+        "VMDR"
+      ]
+    },
+    {
+      "key": "MODEL_CURRENT",
+      "label": "Model currents",
+      "category": "Modeled forecast",
+      "status": "automated",
+      "dataset_id": "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m",
+      "variables": [
+        "uo",
+        "vo"
+      ]
+    },
+    {
+      "key": "MODEL_TEMP",
+      "label": "Model temperature",
+      "category": "Modeled forecast",
+      "status": "automated",
+      "dataset_id": "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m",
+      "variables": [
+        "thetao"
+      ]
+    },
+    {
+      "key": "MODEL_SAL",
+      "label": "Model salinity",
+      "category": "Modeled forecast",
+      "status": "automated",
+      "dataset_id": "cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m",
+      "variables": [
+        "so"
+      ]
+    },
+    {
+      "key": "SAT_SLA",
+      "label": "Satellite SLA / ADT",
+      "category": "Satellite-derived maps",
+      "status": "automated; uses most recent near-real-time DUACS day",
+      "dataset_id": "cmems_obs-sl_glo_phy-ssh_nrt_allsat-l4-duacs-0.125deg_P1D",
+      "variables": [
+        "sla",
+        "adt",
+        "ugos",
+        "vgos"
+      ]
+    },
+    {
+      "key": "SAT_SSS",
+      "label": "Multi-observation sea surface salinity",
+      "category": "Satellite-derived maps",
+      "status": "automated; uses most recent near-real-time day",
+      "dataset_id": "cmems_obs-mob_glo_phy-sss_nrt_multi_P1D",
+      "variables": [
+        "sos",
+        "dos"
+      ]
+    },
+    {
+      "key": "SAT_CHL",
+      "label": "Satellite chlorophyll-a",
+      "category": "Satellite-derived maps",
+      "status": "automated; uses most recent cloud-free near-real-time day",
+      "dataset_id": "cmems_obs-oc_glo_bgc-plankton_nrt_l4-gapfree-multi-4km_P1D",
+      "variables": [
+        "CHL"
+      ]
+    },
+    {
+      "key": "ERA5_WIND",
+      "label": "ERA5 10 m wind vectors",
+      "category": "Atmospheric forcing",
+      "status": "automated; uses most recent ERA5 reanalysis day",
+      "dataset_id": "reanalysis-era5-single-levels",
+      "variables": [
+        "u10",
+        "v10"
+      ]
+    },
+    {
+      "key": "WIND_STRESS",
+      "label": "Wind stress from ERA5 10 m winds",
+      "category": "Derived variables",
+      "status": "automated from ERA5 using CDT windstress bulk formula",
+      "dataset_id": "derived-era5-windstress",
+      "variables": [
+        "taux",
+        "tauy",
+        "tau"
+      ]
+    },
+    {
+      "key": "EKMAN_PUMPING",
+      "label": "Ekman pumping",
+      "category": "Derived variables",
+      "status": "automated from ERA5 wind stress following CDT ekman method",
+      "dataset_id": "derived-era5-ekman",
+      "variables": [
+        "UE",
+        "VE",
+        "wE"
+      ]
+    }
+  ],
+  "status": {
+    "2026-05-10": {
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-10_WAVES.png",
+        "source_date": "2026-05-10"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-10_MODEL_CURRENT.png",
+        "source_date": "2026-05-10"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-10_MODEL_TEMP.png",
+        "source_date": "2026-05-10"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-10_MODEL_SAL.png",
+        "source_date": "2026-05-10"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-10_SAT_SLA.png",
+        "source_date": "2026-05-10"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-10_SAT_SSS.png",
+        "source_date": "2026-05-09"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-10_SAT_CHL.png",
+        "source_date": "2026-05-10"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-10_ERA5_WIND.png",
+        "source_date": "2026-05-10"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-10_WIND_STRESS.png",
+        "source_date": "2026-05-10"
+      },
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-10_EKMAN_PUMPING.png",
+        "source_date": "2026-05-10"
+      }
+    },
+    "2026-05-11": {
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_WAVES.png",
+        "source_date": "2026-05-11"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_MODEL_CURRENT.png",
+        "source_date": "2026-05-11"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_MODEL_TEMP.png",
+        "source_date": "2026-05-11"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_MODEL_SAL.png",
+        "source_date": "2026-05-11"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_SAT_SLA.png",
+        "source_date": "2026-05-11"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_SAT_SSS.png",
+        "source_date": "2026-05-09"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_SAT_CHL.png",
+        "source_date": "2026-05-11"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_ERA5_WIND.png",
+        "source_date": "2026-05-10"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_WIND_STRESS.png",
+        "source_date": "2026-05-10"
+      },
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_EKMAN_PUMPING.png",
+        "source_date": "2026-05-10"
+      }
+    },
+    "2026-05-12": {
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_WAVES.png",
+        "source_date": "2026-05-12"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_MODEL_CURRENT.png",
+        "source_date": "2026-05-12"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_MODEL_TEMP.png",
+        "source_date": "2026-05-12"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_MODEL_SAL.png",
+        "source_date": "2026-05-12"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_SAT_SLA.png",
+        "source_date": "2026-05-12"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_SAT_SSS.png",
+        "source_date": "2026-05-09"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_SAT_CHL.png",
+        "source_date": "2026-05-12"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_ERA5_WIND.png",
+        "source_date": "2026-05-10"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_WIND_STRESS.png",
+        "source_date": "2026-05-10"
+      },
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_EKMAN_PUMPING.png",
+        "source_date": "2026-05-10"
+      }
+    }
+  }
 }
