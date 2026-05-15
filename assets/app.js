@@ -66,8 +66,7 @@ function initialisePanelStates() {
       enabledProducts[0]?.key;
 
     const date =
-      [...dates].reverse().find((d) => isAvailable(d, productKey)) ||
-      latestDate;
+      [...dates].reverse().find((d) => isAvailable(d, productKey)) || latestDate;
 
     return {
       panel,
@@ -168,6 +167,10 @@ function resetPanelZoom(state) {
   state.zoom.x = 0;
   state.zoom.y = 0;
   state.zoom.dragging = false;
+
+  const stage = state.panel.querySelector(".zoom-stage");
+  stage?.classList.remove("is-zoomed", "dragging");
+
   applyPanelZoom(state);
 }
 
@@ -177,7 +180,7 @@ function applyPanelZoom(state) {
 }
 
 function zoomPanelAtCenter(state, factor) {
-  state.zoom.scale = Math.max(1, Math.min(state.zoom.scale * factor, 6));
+  state.zoom.scale = Math.max(1, Math.min(state.zoom.scale * factor, 8));
 
   if (state.zoom.scale === 1) {
     state.zoom.x = 0;
@@ -195,9 +198,11 @@ function setupPanelZoom() {
       button.addEventListener("click", () => {
         const action = button.dataset.panelZoom;
 
-        if (action === "in") zoomPanelAtCenter(state, 1.25);
-        if (action === "out") zoomPanelAtCenter(state, 1 / 1.25);
+        if (action === "in") zoomPanelAtCenter(state, 1.35);
+        if (action === "out") zoomPanelAtCenter(state, 1 / 1.35);
         if (action === "reset") resetPanelZoom(state);
+
+        stage.classList.toggle("is-zoomed", state.zoom.scale > 1);
       });
     });
 
@@ -241,16 +246,6 @@ function setupPanelZoom() {
       state.zoom.dragging = false;
       stage.classList.remove("dragging");
     });
-
-    stage.addEventListener(
-      "wheel",
-      (event) => {
-        event.preventDefault();
-        const factor = event.deltaY < 0 ? 1.12 : 1 / 1.12;
-        zoomPanelAtCenter(state, factor);
-      },
-      { passive: false }
-    );
   });
 }
 
