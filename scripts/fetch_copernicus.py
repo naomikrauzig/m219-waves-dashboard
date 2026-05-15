@@ -712,7 +712,7 @@ def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: da
                 contours=True,
             )
 
-        elif product["key"] == "WAVES":
+                elif product["key"] == "WAVES":
             var_name = choose_variable(ds, ["VHM0", "vhm0"])
             da = as_2d(ds, var_name)
             lon, lat, _, _ = lon_lat_from_da(da)
@@ -723,7 +723,7 @@ def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: da
                 lon,
                 lat,
                 da,
-                get_cmocean_cmap("amp"),
+                get_cmocean_cmap("deep"),
                 "Significant wave height, Hs (m)",
                 signed=False,
                 contours=True,
