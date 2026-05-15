@@ -54,7 +54,10 @@ def candidate_days(product: dict, target_day: date) -> list[date]:
 
     today = datetime.now(timezone.utc).date()
     start = min(target_day, today)
-    max_backfill_days = int(product.get("max_backfill_days", 10))
+
+    default_backfill = 3 if product.get("key") == "SAT_SLA" else 5
+    max_backfill_days = int(product.get("max_backfill_days", default_backfill))
+
     return [start - timedelta(days=offset) for offset in range(max_backfill_days + 1)]
 
 
