@@ -10,7 +10,6 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCTS_FILE = ROOT / "data" / "products.json"
 MANIFEST_FILE = ROOT / "data" / "manifest.json"
@@ -21,7 +20,6 @@ DOWNLOAD_DIR = ROOT / "data" / "raw"
 EARTH_RADIUS_M = 6_371_000.0
 OMEGA = 7.2921159e-5
 AIR_DENSITY = 1.225
-DRAG_COEFFICIENT = 1.25e-3
 SEAWATER_DENSITY = 1025.0
 
 SURFACE_ONLY_PRODUCTS = {"MODEL_CURRENT", "MODEL_TEMP", "MODEL_SAL"}
@@ -85,7 +83,10 @@ def download_era5_subset(product: dict, source_day: date, dry_run: bool) -> Path
 
     request = {
         "product_type": ["reanalysis"],
-        "variable": product.get("cds_variables", ["10m_u_component_of_wind", "10m_v_component_of_wind"]),
+        "variable": product.get(
+            "cds_variables",
+            ["10m_u_component_of_wind", "10m_v_component_of_wind"],
+        ),
         "year": [f"{source_day.year:04d}"],
         "month": [f"{source_day.month:02d}"],
         "day": [f"{source_day.day:02d}"],
@@ -178,6 +179,7 @@ def download_subset(product: dict, source_day: date, dry_run: bool) -> Path | No
 
 def choose_variable(dataset: Any, preferred: list[str]) -> str:
     available = {name.lower(): name for name in dataset.data_vars}
+
     for name in preferred:
         if name in dataset.data_vars:
             return name
@@ -197,6 +199,7 @@ def coordinate_name(dataset: Any, candidates: tuple[str, ...]) -> str:
             return name
         if name in dataset.dims:
             return name
+
     raise KeyError(f"None of these coordinates were found: {candidates}")
 
 
@@ -272,15 +275,26 @@ def lon_lat_from_da(da: Any) -> tuple[Any, Any, str, str]:
     return da[lon_name], da[lat_name], lon_name, lat_name
 
 
+def lat_lon_grids(lon: Any, lat: Any) -> tuple[Any, Any]:
+    import numpy as np
+
+    lon_values = lon.values if hasattr(lon, "values") else lon
+    lat_values = lat.values if hasattr(lat, "values") else lat
+
+    if getattr(lon_values, "ndim", 1) == 1 and getattr(lat_values, "ndim", 1) == 1:
+        return np.meshgrid(lon_values, lat_values)
+
+    return lon_values, lat_values
+
+
 def teos10_absolute_salinity(sp_da: Any) -> Any:
     import gsw
     import xarray as xr
 
     lon, lat, _, _ = lon_lat_from_da(sp_da)
-
     lon2d, lat2d = lat_lon_grids(lon, lat)
-    p = 0.0
 
+    p = 0.0
     sa = gsw.SA_from_SP(sp_da.values, p, lon2d, lat2d)
 
     return xr.DataArray(
@@ -300,12 +314,18 @@ def teos10_conservative_temperature(thetao_da: Any, sp_da: Any) -> Any:
     import xarray as xr
 
     lon, lat, _, _ = lon_lat_from_da(thetao_da)
-
     lon2d, lat2d = lat_lon_grids(lon, lat)
-    p = 0.0
 
+    p = 0.0
     sa = gsw.SA_from_SP(sp_da.values, p, lon2d, lat2d)
-    ct = gsw.CT_from_pt(sa, thetao_da.values)
+
+    standard_name = str(thetao_da.attrs.get("standard_name", "")).lower()
+    long_name = str(thetao_da.attrs.get("long_name", "")).lower()
+
+    if "conservative" in standard_name or "conservative" in long_name:
+        ct = thetao_da.values
+    else:
+        ct = gsw.CT_from_pt(sa, thetao_da.values)
 
     return xr.DataArray(
         ct,
@@ -336,24 +356,16 @@ def windstress_components(u10: Any, v10: Any) -> tuple[Any, Any, Any]:
     import numpy as np
 
     speed = np.hypot(u10, v10)
-    tau = AIR_DENSITY * DRAG_COEFFICIENT * speed**2
+
+    cd = (0.75 + 0.067 * speed) * 1e-3
+    cd = np.clip(cd, 0.8e-3, 2.5e-3)
+
+    tau = AIR_DENSITY * cd * speed**2
 
     taux = np.where(speed > 0, tau * u10 / speed, 0.0)
     tauy = np.where(speed > 0, tau * v10 / speed, 0.0)
 
     return taux, tauy, tau
-
-
-def lat_lon_grids(lon: Any, lat: Any) -> tuple[Any, Any]:
-    import numpy as np
-
-    lon_values = lon.values if hasattr(lon, "values") else lon
-    lat_values = lat.values if hasattr(lat, "values") else lat
-
-    if getattr(lon_values, "ndim", 1) == 1 and getattr(lat_values, "ndim", 1) == 1:
-        return np.meshgrid(lon_values, lat_values)
-
-    return lon_values, lat_values
 
 
 def grid_spacing_m(lon2d: Any, lat2d: Any) -> tuple[Any, Any]:
@@ -369,7 +381,6 @@ def ekman_fields(lon: Any, lat: Any, u10: Any, v10: Any) -> tuple[Any, Any, Any,
     import numpy as np
 
     lon2d, lat2d = lat_lon_grids(lon, lat)
-
     taux, tauy, _tau = windstress_components(u10, v10)
 
     f = 2 * OMEGA * np.sin(np.deg2rad(lat2d))
@@ -381,26 +392,85 @@ def ekman_fields(lon: Any, lat: Any, u10: Any, v10: Any) -> tuple[Any, Any, Any,
     dx, dy = grid_spacing_m(lon2d, lat2d)
     due_dx = np.gradient(ue, axis=1) / dx
     dve_dy = np.gradient(ve, axis=0) / dy
-    w_e = due_dx + dve_dy
+
+    w_e = -(due_dx + dve_dy)
 
     return ue, ve, w_e, taux, tauy
 
 
 def add_route_and_moorings(ax: Any) -> None:
-    route_lon = [-34.877, -23.0, -24.3, -24.9958, 7.207]
-    route_lat = [-8.0476, 0.0, 17.6, 16.886, 53.367]
+    route_lon = [-34.877, -33.8, -33.2, -32.6, -32.0, -23.0, -24.9958, 7.207]
+    route_lat = [-8.0476, -9.8, -9.6, -9.4, -9.2, 0.0, 16.886, 53.367]
+    route_labels = ["Recife", "K1", "K2", "K3", "K4", "CVOO Eq.", "Mindelo", "Emden"]
 
-    ax.plot(route_lon, route_lat, color="white", lw=3, linestyle="--", alpha=0.55)
-    ax.plot(route_lon, route_lat, color="#d95f35", lw=1.4, linestyle="--", alpha=0.58)
+    ax.plot(route_lon, route_lat, color="white", lw=5.0, linestyle="--", alpha=0.65, zorder=4)
+    ax.plot(route_lon, route_lat, color="#d95f35", lw=2.2, linestyle="--", alpha=0.95, zorder=5)
 
-    ax.scatter(route_lon, route_lat, s=26, color="white", edgecolor="#17212b", zorder=3)
+    ax.scatter(
+        route_lon,
+        route_lat,
+        s=64,
+        color="white",
+        edgecolor="#17212b",
+        linewidth=1.1,
+        zorder=6,
+    )
+
+    for lon, lat, label in zip(route_lon, route_lat, route_labels):
+        ax.text(
+            lon + 0.35,
+            lat + 0.35,
+            label,
+            fontsize=9,
+            fontweight="bold",
+            color="#17212b",
+            zorder=7,
+            bbox=dict(facecolor="white", edgecolor="none", alpha=0.76, boxstyle="round,pad=0.20"),
+        )
 
     for mooring in load_moorings():
         lon, lat = mooring["geometry"]["coordinates"]
         label = mooring["properties"]["label"]
 
-        ax.scatter(lon, lat, marker="p", s=110, color="#c62828", edgecolor="white", linewidth=0.9, zorder=4)
-        ax.text(lon + 0.18, lat + 0.18, label, fontsize=8, weight="bold", color="#17212b", zorder=5)
+        ax.scatter(
+            lon,
+            lat,
+            marker="p",
+            s=280,
+            color="#b30000",
+            edgecolor="white",
+            linewidth=2.1,
+            zorder=8,
+        )
+
+        ax.text(
+            lon + 0.38,
+            lat + 0.38,
+            label,
+            fontsize=12,
+            fontweight="bold",
+            color="#111827",
+            zorder=9,
+            bbox=dict(facecolor="white", edgecolor="none", alpha=0.88, boxstyle="round,pad=0.25"),
+        )
+
+
+def add_metadata(ax: Any, product: dict, source_day: date) -> None:
+    generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    dataset_id = product.get("dataset_id", "derived")
+
+    ax.text(
+        0.995,
+        0.01,
+        f"{dataset_id}\nSource: {source_day.isoformat()} | Generated: {generated}",
+        transform=ax.transAxes,
+        ha="right",
+        va="bottom",
+        fontsize=7,
+        color="#17212b",
+        bbox=dict(facecolor="white", alpha=0.65, edgecolor="none", boxstyle="round,pad=0.25"),
+        zorder=20,
+    )
 
 
 def snapshot_title(product: dict, target_day: date, source_day: date) -> str:
@@ -414,7 +484,7 @@ def save_figure(fig: Any, target_day: date, product: dict) -> None:
     SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
     output = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}.png"
     fig.tight_layout()
-    fig.savefig(output, bbox_inches="tight")
+    fig.savefig(output, bbox_inches="tight", dpi=120)
     print(f"Saved snapshot: {output}", flush=True)
 
 
@@ -428,27 +498,50 @@ def plot_scalar_map(
     label: str,
     signed: bool = False,
     contours: bool = True,
+    log_norm: bool = False,
+    physical_levels: list[float] | None = None,
 ) -> None:
     import numpy as np
-    from matplotlib.colors import TwoSlopeNorm
+    from matplotlib.colors import LogNorm, TwoSlopeNorm
 
-    if signed:
+    if log_norm:
+        arr = np.asarray(values, dtype=float)
+        arr = arr[np.isfinite(arr) & (arr > 0)]
+
+        vmin = max(float(np.nanpercentile(arr, 2)), 0.01) if arr.size else 0.01
+        vmax = float(np.nanpercentile(arr, 98)) if arr.size else 5.0
+        vmax = max(vmax, vmin * 1.5)
+
+        mesh = ax.pcolormesh(lon, lat, values, shading="auto", cmap=cmap, norm=LogNorm(vmin=vmin, vmax=vmax))
+        levels = np.geomspace(vmin, vmax, 7)
+
+    elif signed:
         vmin, vmax = symmetric_limits(values, 98)
         norm = TwoSlopeNorm(vmin=vmin, vcenter=0.0, vmax=vmax)
         mesh = ax.pcolormesh(lon, lat, values, shading="auto", cmap=cmap, norm=norm)
-        levels = contour_levels(values, n=9, symmetric=True)
+        levels = physical_levels if physical_levels is not None else contour_levels(values, n=9, symmetric=True)
+
     else:
         vmin, vmax = robust_limits(values, 2, 98)
         mesh = ax.pcolormesh(lon, lat, values, shading="auto", cmap=cmap, vmin=vmin, vmax=vmax)
-        levels = contour_levels(values, n=8, symmetric=False)
+        levels = physical_levels if physical_levels is not None else contour_levels(values, n=8, symmetric=False)
 
-    fig.colorbar(mesh, ax=ax, pad=0.012, label=label)
+    fig.colorbar(mesh, ax=ax, pad=0.012, shrink=0.86, label=label)
 
     if contours and len(levels) >= 3:
         try:
             ax.contour(lon, lat, values, levels=levels, colors="#17212b", linewidths=0.45, alpha=0.45)
         except Exception:
             pass
+
+
+def format_axes(ax: Any, product: dict, target_day: date, source_day: date) -> None:
+    ax.set_title(snapshot_title(product, target_day, source_day), loc="left", weight="bold")
+    ax.set_xlabel("Longitude")
+    ax.set_ylabel("Latitude")
+    ax.grid(color="white", alpha=0.28)
+    add_route_and_moorings(ax)
+    add_metadata(ax, product, source_day)
 
 
 def plot_wind_snapshot(product: dict, dataset: Any, target_day: date, source_day: date) -> None:
@@ -462,10 +555,10 @@ def plot_wind_snapshot(product: dict, dataset: Any, target_day: date, source_day
     lat = u10[lat_name]
     lon2d, lat2d = lat_lon_grids(lon, lat)
 
-    step_y = max(1, speed.shape[0] // 22)
-    step_x = max(1, speed.shape[1] // 28)
+    step_y = max(1, speed.shape[0] // 30)
+    step_x = max(1, speed.shape[1] // 40)
 
-    fig, ax = plt.subplots(figsize=(14, 9), dpi=140)
+    fig, ax = plt.subplots(figsize=(14, 9), dpi=120)
 
     plot_scalar_map(
         ax,
@@ -475,7 +568,6 @@ def plot_wind_snapshot(product: dict, dataset: Any, target_day: date, source_day
         speed,
         get_cmocean_cmap("speed"),
         "10 m wind speed (m s$^{-1}$)",
-        signed=False,
         contours=True,
     )
 
@@ -489,12 +581,7 @@ def plot_wind_snapshot(product: dict, dataset: Any, target_day: date, source_day
         scale=450,
     )
 
-    add_route_and_moorings(ax)
-    ax.set_title(snapshot_title(product, target_day, source_day), loc="left", weight="bold")
-    ax.set_xlabel("Longitude")
-    ax.set_ylabel("Latitude")
-    ax.grid(color="white", alpha=0.28)
-
+    format_axes(ax, product, target_day, source_day)
     save_figure(fig, target_day, product)
     plt.close(fig)
 
@@ -513,7 +600,7 @@ def plot_derived_snapshot(product: dict, nc_path: Path, target_day: date, source
 
         _ue, _ve, w_e, taux, tauy = ekman_fields(lon, lat, u10.values, v10.values)
 
-        fig, ax = plt.subplots(figsize=(14, 9), dpi=140)
+        fig, ax = plt.subplots(figsize=(14, 9), dpi=120)
 
         if product["key"] == "WIND_STRESS":
             tau = np.hypot(taux, tauy)
@@ -526,12 +613,11 @@ def plot_derived_snapshot(product: dict, nc_path: Path, target_day: date, source
                 tau,
                 get_cmocean_cmap("speed"),
                 "Wind stress magnitude (N m$^{-2}$)",
-                signed=False,
                 contours=True,
             )
 
-            step_y = max(1, tau.shape[0] // 22)
-            step_x = max(1, tau.shape[1] // 28)
+            step_y = max(1, tau.shape[0] // 30)
+            step_x = max(1, tau.shape[1] // 40)
 
             ax.quiver(
                 lon2d[::step_y, ::step_x],
@@ -560,17 +646,18 @@ def plot_derived_snapshot(product: dict, nc_path: Path, target_day: date, source
 
             ax.contour(lon, lat, plot_values, levels=[0], colors="black", linewidths=0.9, alpha=0.65)
 
-        add_route_and_moorings(ax)
-        ax.set_title(snapshot_title(product, target_day, source_day), loc="left", weight="bold")
-        ax.set_xlabel("Longitude")
-        ax.set_ylabel("Latitude")
-        ax.grid(color="white", alpha=0.28)
-
+        format_axes(ax, product, target_day, source_day)
         save_figure(fig, target_day, product)
         plt.close(fig)
 
 
-def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: date, salinity_path: Path | None = None) -> None:
+def plot_snapshot(
+    product: dict,
+    nc_path: Path,
+    target_day: date,
+    source_day: date,
+    salinity_path: Path | None = None,
+) -> None:
     import matplotlib.pyplot as plt
     import numpy as np
     import xarray as xr
@@ -580,7 +667,7 @@ def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: da
             plot_wind_snapshot(product, ds, target_day, source_day)
             return
 
-        fig, ax = plt.subplots(figsize=(14, 9), dpi=140)
+        fig, ax = plt.subplots(figsize=(14, 9), dpi=120)
 
         if product["key"] == "MODEL_CURRENT":
             u_name = choose_variable(ds, ["uo"])
@@ -599,12 +686,11 @@ def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: da
                 speed,
                 get_cmocean_cmap("speed"),
                 "Surface current speed (m s$^{-1}$)",
-                signed=False,
                 contours=True,
             )
 
-            step_y = max(1, speed.shape[0] // 22)
-            step_x = max(1, speed.shape[1] // 28)
+            step_y = max(1, speed.shape[0] // 30)
+            step_x = max(1, speed.shape[1] // 40)
 
             ax.quiver(
                 lon2d[::step_y, ::step_x],
@@ -630,7 +716,6 @@ def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: da
                 sa,
                 get_cmocean_cmap("haline"),
                 "Absolute Salinity, SA (g kg$^{-1}$)",
-                signed=False,
                 contours=True,
             )
 
@@ -656,7 +741,6 @@ def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: da
                 ct,
                 get_cmocean_cmap("thermal"),
                 "Conservative Temperature, CT ($^\\circ$C)",
-                signed=False,
                 contours=True,
             )
 
@@ -675,6 +759,7 @@ def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: da
                 f"{var_name} (m)",
                 signed=True,
                 contours=True,
+                physical_levels=[x / 100 for x in range(-100, 105, 10)],
             )
 
         elif product["key"] == "SAT_CHL":
@@ -690,8 +775,8 @@ def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: da
                 da,
                 get_cmocean_cmap("algae"),
                 "Chlorophyll-a (mg m$^{-3}$)",
-                signed=False,
-                contours=True,
+                contours=False,
+                log_norm=True,
             )
 
         elif product["key"] == "SAT_SSS":
@@ -708,11 +793,10 @@ def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: da
                 sa,
                 get_cmocean_cmap("haline"),
                 "Absolute Salinity, SA (g kg$^{-1}$)",
-                signed=False,
                 contours=True,
             )
 
-                elif product["key"] == "WAVES":
+        elif product["key"] == "WAVES":
             var_name = choose_variable(ds, ["VHM0", "vhm0"])
             da = as_2d(ds, var_name)
             lon, lat, _, _ = lon_lat_from_da(da)
@@ -725,7 +809,6 @@ def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: da
                 da,
                 get_cmocean_cmap("deep"),
                 "Significant wave height, Hs (m)",
-                signed=False,
                 contours=True,
             )
 
@@ -742,16 +825,10 @@ def plot_snapshot(product: dict, nc_path: Path, target_day: date, source_day: da
                 da,
                 get_cmocean_cmap("tempo"),
                 f"{var_name}",
-                signed=False,
                 contours=True,
             )
 
-        add_route_and_moorings(ax)
-        ax.set_title(snapshot_title(product, target_day, source_day), loc="left", weight="bold")
-        ax.set_xlabel("Longitude")
-        ax.set_ylabel("Latitude")
-        ax.grid(color="white", alpha=0.28)
-
+        format_axes(ax, product, target_day, source_day)
         save_figure(fig, target_day, product)
         plt.close(fig)
 
@@ -821,6 +898,7 @@ def process_product(
         if product["key"] == "MODEL_TEMP":
             sal_product = product_by_key(products, "MODEL_SAL")
             salinity_path = download_subset(sal_product, source_day, dry_run)
+
             if salinity_path is not None:
                 raw_cache[(source_day.isoformat(), "MODEL_SAL")] = salinity_path
 
