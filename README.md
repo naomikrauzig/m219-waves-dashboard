@@ -32,3 +32,7 @@ python scripts/fetch_copernicus.py --dry-run --allow-partial
 ```
 
 The products and bounding box are configured in `data/products.json`.
+
+## Data Layer Roadmap
+
+The dashboard now separates layers into modeled forecasts, satellite-derived maps, freely available in-situ observations, and derived diagnostics. See `docs/data-layer-assessment.md` for implementation notes and limitations.

@@ -42,7 +42,8 @@ def target_days(value: str | None, days_ahead: int) -> list[date]:
 
 
 def load_products() -> list[dict]:
-    return json.loads(PRODUCTS_FILE.read_text(encoding="utf-8"))
+    products = json.loads(PRODUCTS_FILE.read_text(encoding="utf-8"))
+    return [product for product in products if product.get("workflow_enabled", True)]
 
 
 def download_subset(product: dict, day: date, dry_run: bool) -> Path | None:
@@ -137,6 +138,8 @@ def write_manifest(days: list[date], products: list[dict], status: dict[str, dic
             {
                 "key": product["key"],
                 "label": product["label"],
+                "category": product.get("category", "Modeled forecast"),
+                "status": product.get("status", "automated"),
                 "dataset_id": product["dataset_id"],
                 "variables": product["variables"],
             }
@@ -178,7 +181,8 @@ def main() -> None:
                 if not args.allow_partial:
                     raise
 
-    write_manifest(days, products, status)
+    if not args.dry_run:
+        write_manifest(days, products, status)
 
     if failures:
         print("Completed with product failures:", file=sys.stderr)

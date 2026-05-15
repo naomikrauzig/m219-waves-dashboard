@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Meteor M219 WAVES | Near-Real-Time Marine Data</title>
+    <title>M219 WAVES Cruise Dashboard</title>
     <meta
       name="description"
       content="Near-real-time Copernicus Marine satellite and model snapshots for the Meteor M219 WAVES cruise."
@@ -21,10 +21,11 @@
     <header class="site-header">
       <div>
         <p class="eyebrow">RV Meteor M219 WAVES</p>
-        <h1>Near-real-time marine snapshots from Recife to the Equator, Cape Verde, Mindelo, and Emden</h1>
+        <h1>M219 WAVES Cruise Dashboard</h1>
         <p class="lede">
           A GitHub Pages-ready dashboard for rolling Copernicus Marine forecast maps from today through
-          five days ahead along the planned M219 cruise corridor.
+          five days ahead, satellite-derived maps, in-situ observations, and derived diagnostics along
+          the planned M219 cruise corridor.
         </p>
       </div>
       <aside class="status-panel" aria-label="Cruise status">
@@ -55,7 +56,7 @@
       <section class="availability-section">
         <div class="section-heading">
           <h2>Product Availability</h2>
-          <p>Rows are Copernicus forecast layers; columns are the rolling daily forecast window.</p>
+          <p>Rows are selectable layers; columns are the rolling daily map window.</p>
         </div>
         <div class="table-wrap">
           <table id="availability-table"></table>
@@ -72,6 +73,31 @@
         </div>
       </section>
 
+      <section class="assessment-section">
+        <div class="section-heading">
+          <h2>Layer Roadmap</h2>
+          <p>Assessment of what can be automated for cruise operations.</p>
+        </div>
+        <div class="roadmap-grid">
+          <article>
+            <h3>Modeled Forecast</h3>
+            <p>Operational now for five-day forecast maps: waves, currents, temperature, and salinity.</p>
+          </article>
+          <article>
+            <h3>Satellite Maps</h3>
+            <p>Feasible for latest available days, but not true forecasts; latency and clouds affect SST and chlorophyll.</p>
+          </article>
+          <article>
+            <h3>Argo And Drifters</h3>
+            <p>Feasible as point, profile, and trajectory overlays using Copernicus in-situ and NOAA GDP sources.</p>
+          </article>
+          <article>
+            <h3>Derived Diagnostics</h3>
+            <p>Feasible as computed products: Ekman pumping, upwelling proxies, eddy kinetic energy, and eddy masks.</p>
+          </article>
+        </div>
+      </section>
+
       <section class="notes-section">
         <div class="section-heading">
           <h2>Operations Notes</h2>
@@ -85,7 +111,7 @@
     </main>
 
     <footer>
-      <span>Built for cruise operations and quick-look science planning.</span>
+      <span>Contact: <a href="mailto:nkrauzig@geomar.de">nkrauzig@geomar.de</a></span>
       <a href="https://data.marine.copernicus.eu/products">Copernicus Marine Data Store</a>
     </footer>
 

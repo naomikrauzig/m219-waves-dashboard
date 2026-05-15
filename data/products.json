@@ -2,6 +2,9 @@
   {
     "key": "WAVES",
     "label": "Wave height and period",
+    "category": "Modeled forecast",
+    "status": "automated",
+    "workflow_enabled": true,
     "dataset_id": "cmems_mod_glo_wav_anfc_0.083deg_PT3H-i",
     "variables": ["VHM0", "VTPK", "VMDR"],
     "bbox": [-42, -14, 12, 58],
@@ -10,6 +13,9 @@
   {
     "key": "MODEL_CURRENT",
     "label": "Model currents",
+    "category": "Modeled forecast",
+    "status": "automated",
+    "workflow_enabled": true,
     "dataset_id": "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m",
     "variables": ["uo", "vo"],
     "bbox": [-42, -14, 12, 58],
@@ -18,6 +24,9 @@
   {
     "key": "MODEL_TEMP",
     "label": "Model temperature",
+    "category": "Modeled forecast",
+    "status": "automated",
+    "workflow_enabled": true,
     "dataset_id": "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m",
     "variables": ["thetao"],
     "bbox": [-42, -14, 12, 58],
@@ -26,9 +35,111 @@
   {
     "key": "MODEL_SAL",
     "label": "Model salinity",
+    "category": "Modeled forecast",
+    "status": "automated",
+    "workflow_enabled": true,
     "dataset_id": "cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m",
     "variables": ["so"],
     "bbox": [-42, -14, 12, 58],
     "product_url": "https://data.marine.copernicus.eu/product/GLOBAL_ANALYSISFORECAST_PHY_001_024/services"
+  },
+  {
+    "key": "SAT_SLA",
+    "label": "Satellite sea level and geostrophic currents",
+    "category": "Satellite-derived maps",
+    "status": "planned; near-real-time but not forecast",
+    "workflow_enabled": false,
+    "dataset_id": "cmems_obs-sl_glo_phy-ssh_nrt_allsat-l4-duacs-0.125deg_P1D",
+    "variables": ["sla", "adt", "ugos", "vgos"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://data.marine.copernicus.eu/products"
+  },
+  {
+    "key": "SAT_SST",
+    "label": "Satellite sea surface temperature",
+    "category": "Satellite-derived maps",
+    "status": "planned; near-real-time but not forecast",
+    "workflow_enabled": false,
+    "dataset_id": "METOFFICE-GLO-SST-L4-NRT-OBS-SST-V2",
+    "variables": ["analysed_sst"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://data.marine.copernicus.eu/products"
+  },
+  {
+    "key": "SAT_CHL",
+    "label": "Satellite chlorophyll-a",
+    "category": "Satellite-derived maps",
+    "status": "planned; near-real-time but cloud/latency limited",
+    "workflow_enabled": false,
+    "dataset_id": "cmems_obs-oc_glo_bgc-plankton_nrt_l3-multi-4km_P1D",
+    "variables": ["CHL"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://data.marine.copernicus.eu/products"
+  },
+  {
+    "key": "ARGO_PROFILES",
+    "label": "Argo float profiles",
+    "category": "Freely available in-situ data",
+    "status": "feasible; point/profile overlay, not gridded forecast",
+    "workflow_enabled": false,
+    "dataset_id": "INSITU_GLO_PHY_TS_DISCRETE_NRT_013_030",
+    "variables": ["TEMP", "PSAL", "PRES"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://data.marine.copernicus.eu/products"
+  },
+  {
+    "key": "ARGO_VELOCITY",
+    "label": "Argo parking-depth and surface velocities",
+    "category": "Freely available in-situ data",
+    "status": "feasible; trajectory overlay",
+    "workflow_enabled": false,
+    "dataset_id": "INSITU_GLO_PHY_UV_DISCRETE_NRT_013_048",
+    "variables": ["EWCT", "NSCT"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://data.marine.copernicus.eu/product/INSITU_GLO_PHY_UV_DISCRETE_NRT_013_048/description"
+  },
+  {
+    "key": "GDP_DRIFTERS",
+    "label": "NOAA Global Drifter Program trajectories",
+    "category": "Freely available in-situ data",
+    "status": "feasible; ERDDAP trajectory overlay",
+    "workflow_enabled": false,
+    "dataset_id": "NOAA GDP ERDDAP hourly/6-hourly drifters",
+    "variables": ["longitude", "latitude", "ve", "vn", "sst"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://www.aoml.noaa.gov/global-drifter-program/"
+  },
+  {
+    "key": "EKMAN_PUMPING",
+    "label": "Ekman pumping",
+    "category": "Derived variables",
+    "status": "computable from wind stress curl; needs wind product or model stress",
+    "workflow_enabled": false,
+    "dataset_id": "derived",
+    "variables": ["curl(tau)/(rho*f)"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://data.marine.copernicus.eu/products"
+  },
+  {
+    "key": "UPWELLING_INDEX",
+    "label": "Coastal/equatorial upwelling proxy",
+    "category": "Derived variables",
+    "status": "computable from winds, SST gradients, and currents",
+    "workflow_enabled": false,
+    "dataset_id": "derived",
+    "variables": ["wind-driven transport", "SST gradient", "vertical velocity proxy"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://data.marine.copernicus.eu/products"
+  },
+  {
+    "key": "EDDY_DIAGNOSTICS",
+    "label": "Eddy diagnostics",
+    "category": "Derived variables",
+    "status": "computable from SLA/ADT; best for analysis/NRT, not forecast",
+    "workflow_enabled": false,
+    "dataset_id": "derived",
+    "variables": ["EKE", "Okubo-Weiss", "closed SLA contours"],
+    "bbox": [-42, -14, 12, 58],
+    "product_url": "https://data.marine.copernicus.eu/products"
   }
 ]

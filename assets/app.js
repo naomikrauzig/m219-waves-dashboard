@@ -1,4 +1,4 @@
-const products = [
+let products = [
   {
     key: "WAVES",
     label: "Wave height and period",
@@ -38,6 +38,8 @@ const products = [
     institution: "Mercator Ocean International",
     cadence: "Daily forecast",
     reference: "https://data.marine.copernicus.eu/product/GLOBAL_ANALYSISFORECAST_PHY_001_024/services",
+    category: "Modeled forecast",
+    status: "automated",
   },
 ];
 
@@ -59,6 +61,15 @@ function placeholderSvg(product, date) {
     MODEL_CURRENT: ["#153d4d", "#499a83", "#f2c14e", "#bf4e30"],
     MODEL_TEMP: ["#163c59", "#2386a8", "#f0c86a", "#bf4c35"],
     MODEL_SAL: ["#14324d", "#477b9f", "#d7e6de", "#edb458"],
+    SAT_SLA: ["#193a72", "#e3eef6", "#c44536", "#5d1f1a"],
+    SAT_SST: ["#0f4862", "#2d9a8e", "#f5c95c", "#c73d2f"],
+    SAT_CHL: ["#14382d", "#2f8f6b", "#bedb39", "#f2d16b"],
+    ARGO_PROFILES: ["#253746", "#4a7c95", "#9fc2cc", "#f6c85f"],
+    ARGO_VELOCITY: ["#253746", "#33658a", "#86bbd8", "#f26419"],
+    GDP_DRIFTERS: ["#153d4d", "#2f8f6b", "#f2c14e", "#d95f35"],
+    EKMAN_PUMPING: ["#17212b", "#0a5f78", "#f2c14e", "#d95f35"],
+    UPWELLING_INDEX: ["#14382d", "#2f8f6b", "#dce9ef", "#d95f35"],
+    EDDY_DIAGNOSTICS: ["#17212b", "#3d5a80", "#98c1d9", "#ee6c4d"],
   };
   const palette = colors[product.key] || colors.WAVES;
   const svg = `
@@ -86,6 +97,44 @@ function placeholderSvg(product, date) {
       <text x="56" y="826" fill="rgba(255,255,255,.86)" font-family="Inter, Arial" font-size="24">${product.dataset}</text>
     </svg>`;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+
+async function loadProductsConfig() {
+  try {
+    const response = await fetch(`data/products.json?cache=${Date.now()}`);
+    if (!response.ok) {
+      return;
+    }
+    const config = await response.json();
+    products = config.map((product) => ({
+      key: product.key,
+      label: product.label,
+      dataset: product.dataset_id,
+      product: product.product || product.dataset_id,
+      variables: product.variables.join(", "),
+      institution: product.institution || sourceLabel(product.category),
+      cadence: product.workflow_enabled === false ? "On demand" : "Rolling daily",
+      reference: product.product_url,
+      category: product.category || "Modeled forecast",
+      status: product.status || "planned",
+      workflowEnabled: product.workflow_enabled !== false,
+    }));
+  } catch {
+    // Keep the embedded forecast defaults when local preview cannot fetch JSON.
+  }
+}
+
+function sourceLabel(category) {
+  if (category === "Satellite-derived maps") {
+    return "Copernicus Marine satellite products";
+  }
+  if (category === "Freely available in-situ data") {
+    return "Copernicus Marine / NOAA public data";
+  }
+  if (category === "Derived variables") {
+    return "Computed from dashboard input fields";
+  }
+  return "Copernicus Marine Service";
 }
 
 function rollingForecastDates() {
@@ -126,7 +175,7 @@ function initControls() {
   products.forEach((product) => {
     const option = document.createElement("option");
     option.value = product.key;
-    option.textContent = product.label;
+    option.textContent = `${product.label} - ${product.category}`;
     datasetSelect.append(option);
   });
 
@@ -154,7 +203,7 @@ function renderSnapshot() {
   };
   img.src = expectedPath;
   img.alt = `${product.label} snapshot for ${date}`;
-  const state = isAvailable(date, product.key) ? "available forecast map" : "pending forecast map";
+  const state = isAvailable(date, product.key) ? "available map" : product.status;
   document.querySelector("#snapshot-caption").textContent =
     `${product.label} (${product.variables}) from ${product.dataset}; ${state} for ${date}.`;
 }
@@ -164,7 +213,7 @@ function renderAvailability() {
   table.innerHTML = "";
   const thead = document.createElement("thead");
   const headRow = document.createElement("tr");
-  ["Product", ...snapshots.map((date) => date.slice(5))].forEach((label) => {
+  ["Product", "Category", ...snapshots.map((date) => date.slice(5))].forEach((label) => {
     const th = document.createElement("th");
     th.textContent = label;
     headRow.append(th);
@@ -178,6 +227,9 @@ function renderAvailability() {
     const name = document.createElement("td");
     name.textContent = product.key;
     row.append(name);
+    const category = document.createElement("td");
+    category.textContent = product.category || "";
+    row.append(category);
     snapshots.forEach((date) => {
       const cell = document.createElement("td");
       const available = isAvailable(date, product.key);
@@ -193,16 +245,17 @@ function renderAvailability() {
 function renderProducts() {
   const table = document.querySelector("#products-table");
   table.innerHTML = `<thead><tr>
-    <th>Layer</th><th>Dataset ID</th><th>Variables</th><th>Cadence</th><th>Institution</th><th>Reference</th>
+    <th>Layer</th><th>Category</th><th>Dataset ID</th><th>Variables</th><th>Status</th><th>Institution/source</th><th>Reference</th>
   </tr></thead>`;
   const tbody = document.createElement("tbody");
   products.forEach((product) => {
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>${product.label}</td>
+      <td>${product.category}</td>
       <td><code>${product.dataset}</code></td>
       <td>${product.variables}</td>
-      <td>${product.cadence}</td>
+      <td>${product.status || product.cadence}</td>
       <td>${product.institution}</td>
       <td><a href="${product.reference}">Product page</a></td>`;
     tbody.append(row);
@@ -234,6 +287,7 @@ function initMap() {
 }
 
 async function init() {
+  await loadProductsConfig();
   await loadManifest();
   initControls();
   renderSnapshot();
