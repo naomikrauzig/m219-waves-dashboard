@@ -303,16 +303,48 @@ tr:last-child td {
 }
 
 .brand-section {
+  position: relative;
   overflow: hidden;
   border-radius: 8px;
   background: #062d48;
 }
 
-.brand-section img {
+.brand-section > img {
   display: block;
   width: 100%;
   max-height: 300px;
   object-fit: cover;
+}
+
+.brand-credit {
+  position: absolute;
+  inset: auto 20px 20px auto;
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+  max-width: min(440px, calc(100% - 40px));
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+  background: rgba(3, 22, 32, 0.62);
+  backdrop-filter: blur(8px);
+}
+
+.brand-credit img {
+  display: block;
+  width: min(330px, 100%);
+  height: auto;
+}
+
+.brand-credit p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.84);
+  line-height: 1.45;
+  text-align: right;
+}
+
+.brand-credit a {
+  color: #75d6ff;
 }
 
 footer {
@@ -360,5 +392,18 @@ a {
   .section-heading,
   footer {
     flex-direction: column;
+  }
+
+  .brand-credit {
+    position: static;
+    max-width: none;
+    border: 0;
+    border-radius: 0;
+    background: #062d48;
+    justify-items: start;
+  }
+
+  .brand-credit p {
+    text-align: left;
   }
 }
