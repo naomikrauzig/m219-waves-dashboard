@@ -1,7 +1,14 @@
 const MANIFEST_URL = "data/manifest.json";
 const PRODUCTS_URL = "data/products.json";
 
-const PANEL_DEFAULTS = ["WAVES", "MODEL_CURRENT", "SAT_SLA", "ERA5_WIND"];
+const PANEL_DEFAconst PANEL_DEFAULTS = [
+  "WAVES",
+  "MODEL_CURRENT",
+  "SAT_SLA",
+  "ERA5_WIND",
+  "MODEL_CURRENT",
+  "SAT_CHL"
+];ULTS = ["WAVES", "MODEL_CURRENT", "SAT_SLA", "ERA5_WIND"];
 
 let manifest = null;
 let products = [];
