@@ -274,7 +274,6 @@ main {
 .panel-snapshot {
   display: flex;
   flex-direction: column;
-  min-height: 500px;
 }
 
 /* =========================================================
@@ -324,7 +323,7 @@ main {
 .zoom-stage {
   position: relative;
   width: 100%;
-  aspect-ratio: 1.35;
+  aspect-ratio: 14 / 9;
   overflow: hidden;
   background: #dbe6ef;
   cursor: default;
@@ -617,7 +616,7 @@ footer {
   }
 
   .zoom-stage {
-    aspect-ratio: 1.18;
+    aspect-ratio: 14 / 9;
   }
 
   footer {
