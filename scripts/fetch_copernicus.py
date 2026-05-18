@@ -443,24 +443,36 @@ def ekman_fields(lon: Any, lat: Any, u10: Any, v10: Any) -> tuple[Any, Any, Any,
     return ue, ve, w_e, taux, tauy
 
 
-def add_route_and_moorings(ax: Any) -> None:
-    # Ports / key cruise locations
-    port_lon = [-34.877, -24.9958, 7.207]
-    port_lat = [-8.0476, 16.886, 53.367]
-    port_labels = ["Recife", "Mindelo", "Emden"]
+def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
+    xlim = extent["xlim"] if extent else None
+    ylim = extent["ylim"] if extent else None
 
-    ax.scatter(
-        port_lon,
-        port_lat,
-        s=80,
-        marker="o",
-        color="white",
-        edgecolor="#17212b",
-        linewidth=1.4,
-        zorder=8,
-    )
+    def inside(lon: float, lat: float) -> bool:
+        if xlim is None or ylim is None:
+            return True
+        return xlim[0] <= lon <= xlim[1] and ylim[0] <= lat <= ylim[1]
 
-    for lon, lat, label in zip(port_lon, port_lat, port_labels):
+    ports = [
+        (-34.877, -8.0476, "Recife"),
+        (-24.9958, 16.886, "Mindelo"),
+        (7.207, 53.367, "Emden"),
+    ]
+
+    for lon, lat, label in ports:
+        if not inside(lon, lat):
+            continue
+
+        ax.scatter(
+            lon,
+            lat,
+            s=80,
+            marker="o",
+            color="white",
+            edgecolor="#17212b",
+            linewidth=1.4,
+            zorder=8,
+        )
+
         ax.text(
             lon + 0.35,
             lat + 0.35,
@@ -477,23 +489,29 @@ def add_route_and_moorings(ax: Any) -> None:
             ),
         )
 
-    # Planned K1-K4 / CVOO points shown as red pentagons
-    route_lon = [-33.8, -33.2, -32.6, -32.0, -23.0]
-    route_lat = [-9.8, -9.6, -9.4, -9.2, 0.0]
-    route_labels = ["K1", "K2", "K3", "K4", "CVOO Eq."]
+    planned_points = [
+        (-33.8, -9.8, "K1"),
+        (-33.2, -9.6, "K2"),
+        (-32.6, -9.4, "K3"),
+        (-32.0, -9.2, "K4"),
+        (-23.0, 0.0, "CVOO Eq."),
+    ]
 
-    ax.scatter(
-        route_lon,
-        route_lat,
-        marker="p",
-        s=220,
-        color="#b30000",
-        edgecolor="white",
-        linewidth=2.0,
-        zorder=10,
-    )
+    for lon, lat, label in planned_points:
+        if not inside(lon, lat):
+            continue
 
-    for lon, lat, label in zip(route_lon, route_lat, route_labels):
+        ax.scatter(
+            lon,
+            lat,
+            marker="p",
+            s=220,
+            color="#b30000",
+            edgecolor="white",
+            linewidth=2.0,
+            zorder=10,
+        )
+
         ax.text(
             lon + 0.35,
             lat + 0.35,
@@ -510,10 +528,12 @@ def add_route_and_moorings(ax: Any) -> None:
             ),
         )
 
-    # Extra mooring sites from moorings.geojson
     for mooring in load_moorings():
         lon, lat = mooring["geometry"]["coordinates"]
         label = mooring["properties"]["label"]
+
+        if not inside(lon, lat):
+            continue
 
         ax.scatter(
             lon,
@@ -541,7 +561,6 @@ def add_route_and_moorings(ax: Any) -> None:
                 boxstyle="round,pad=0.25",
             ),
         )
-
 
 def add_metadata(ax: Any, product: dict, source_day: date) -> None:
     generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -692,7 +711,7 @@ def format_axes(
     ax.set_ylabel("Latitude")
     ax.grid(color="white", alpha=0.28)
 
-    add_route_and_moorings(ax)
+    add_route_and_moorings(ax, extent=extent)
     add_metadata(ax, product, source_day)
 
 
