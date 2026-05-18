@@ -64,7 +64,7 @@ jobs:
             DAYS_AHEAD="5"
           fi
 
-          python scripts/fetch_copernicus.py $DATE_ARG --days-ahead "$DAYS_AHEAD" --allow-partial
+          python scripts/fetch_copernicus.py $DATE_ARG --days-ahead "$DAYS_AHEAD" --allow-partial --force-plots
 
       - name: Commit generated data and snapshots
         uses: stefanzweifel/git-auto-commit-action@v5
