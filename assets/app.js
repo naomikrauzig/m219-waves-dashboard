@@ -20,7 +20,11 @@ const lastUpdated = document.getElementById("last-updated");
 
 async function loadJson(url) {
   const response = await fetch(`${url}?v=${Date.now()}`);
-  if (!response.ok) throw new Error(`Could not load ${url}`);
+
+  if (!response.ok) {
+    throw new Error(`Could not load ${url}`);
+  }
+
   return response.json();
 }
 
@@ -29,7 +33,7 @@ function sortedDates() {
 }
 
 function productByKey(productKey) {
-  return products.find((p) => p.key === productKey);
+  return products.find((product) => product.key === productKey);
 }
 
 function statusFor(date, productKey) {
@@ -42,7 +46,11 @@ function isAvailable(date, productKey) {
 
 function sourceDateLabel(date, productKey) {
   const status = statusFor(date, productKey);
-  if (!status?.source_date || status.source_date === date) return "";
+
+  if (!status?.source_date || status.source_date === date) {
+    return "";
+  }
+
   return ` using ${status.source_date}`;
 }
 
@@ -53,6 +61,7 @@ function setLastUpdated() {
   }
 
   const generated = new Date(manifest.generated_at);
+
   lastUpdated.textContent = `Forecast window updated: ${generated
     .toISOString()
     .replace("T", " ")
@@ -62,18 +71,19 @@ function setLastUpdated() {
 function initialisePanelStates() {
   const dates = sortedDates();
   const latestDate = dates[dates.length - 1];
-  const enabledProducts = products.filter((p) => p.workflow_enabled !== false);
+  const enabledProducts = products.filter((product) => product.workflow_enabled !== false);
 
   panelStates = [...document.querySelectorAll(".map-panel")].map((panel, index) => {
     const preferredKey = PANEL_DEFAULTS[index];
 
     const productKey =
-      enabledProducts.find((p) => p.key === preferredKey)?.key ||
+      enabledProducts.find((product) => product.key === preferredKey)?.key ||
       enabledProducts[index]?.key ||
-      enabledProducts[0]?.key;
+      enabledProducts[0]?.key ||
+      "";
 
     const date =
-      [...dates].reverse().find((d) => isAvailable(d, productKey)) ||
+      [...dates].reverse().find((day) => isAvailable(day, productKey)) ||
       latestDate ||
       "";
 
@@ -97,7 +107,7 @@ function initialisePanelStates() {
 
 function populatePanelSelectors() {
   const dates = sortedDates();
-  const enabledProducts = products.filter((p) => p.workflow_enabled !== false);
+  const enabledProducts = products.filter((product) => product.workflow_enabled !== false);
 
   panelStates.forEach((state) => {
     const datasetSelect = state.panel.querySelector(".panel-dataset-select");
@@ -108,15 +118,19 @@ function populatePanelSelectors() {
 
     enabledProducts.forEach((product) => {
       const option = document.createElement("option");
+
       option.value = product.key;
       option.textContent = product.label || product.key;
+
       datasetSelect.appendChild(option);
     });
 
     dates.forEach((date) => {
       const option = document.createElement("option");
+
       option.value = date;
       option.textContent = date;
+
       dateSelect.appendChild(option);
     });
 
@@ -127,7 +141,7 @@ function populatePanelSelectors() {
       state.productKey = datasetSelect.value;
 
       const bestDate =
-        [...dates].reverse().find((d) => isAvailable(d, state.productKey)) ||
+        [...dates].reverse().find((date) => isAvailable(date, state.productKey)) ||
         state.date ||
         dates[dates.length - 1] ||
         "";
@@ -148,15 +162,37 @@ function populatePanelSelectors() {
 function updatePanel(state) {
   const image = state.panel.querySelector(".panel-image");
   const caption = state.panel.querySelector(".panel-caption");
+
   const status = statusFor(state.date, state.productKey);
   const product = productByKey(state.productKey);
+
   const label = product?.label || state.productKey || "Dataset";
 
   resetPanelZoom(state);
 
   if (status?.available && status.path) {
-    image.src = `${status.path}?v=${manifest.generated_at || Date.now()}`;
+    const panelIndex = Number(state.panel.dataset.panel);
+    const isRegionalPanel = panelIndex >= 4;
+
+    const normalPath = status.path;
+    const regionalPath = `assets/snapshots/${state.date}_${state.productKey}_REGIONAL.png`;
+    const version = manifest.generated_at || Date.now();
+
+    image.onerror = null;
+
+    if (isRegionalPanel) {
+      image.src = `${regionalPath}?v=${version}`;
+
+      image.onerror = () => {
+        image.onerror = null;
+        image.src = `${normalPath}?v=${version}`;
+      };
+    } else {
+      image.src = `${normalPath}?v=${version}`;
+    }
+
     image.alt = `${label} for ${state.date}`;
+
     caption.textContent = `${label} | shown for ${state.date}${sourceDateLabel(
       state.date,
       state.productKey
@@ -164,7 +200,10 @@ function updatePanel(state) {
   } else {
     image.removeAttribute("src");
     image.alt = "No snapshot available";
-    caption.textContent = `${label} | no snapshot available for ${state.date || "selected date"}`;
+
+    caption.textContent = `${label} | no snapshot available for ${
+      state.date || "selected date"
+    }`;
   }
 }
 
@@ -179,6 +218,7 @@ function resetPanelZoom(state) {
   state.zoom.dragging = false;
 
   const stage = state.panel.querySelector(".zoom-stage");
+
   stage?.classList.remove("is-zoomed", "dragging");
 
   applyPanelZoom(state);
@@ -186,6 +226,7 @@ function resetPanelZoom(state) {
 
 function applyPanelZoom(state) {
   const image = state.panel.querySelector(".panel-image");
+
   image.style.transform = `translate(${state.zoom.x}px, ${state.zoom.y}px) scale(${state.zoom.scale})`;
 }
 
@@ -208,16 +249,26 @@ function setupPanelZoom() {
       button.addEventListener("click", () => {
         const action = button.dataset.panelZoom;
 
-        if (action === "in") zoomPanelAtCenter(state, 1.35);
-        if (action === "out") zoomPanelAtCenter(state, 1 / 1.35);
-        if (action === "reset") resetPanelZoom(state);
+        if (action === "in") {
+          zoomPanelAtCenter(state, 1.35);
+        }
+
+        if (action === "out") {
+          zoomPanelAtCenter(state, 1 / 1.35);
+        }
+
+        if (action === "reset") {
+          resetPanelZoom(state);
+        }
 
         stage.classList.toggle("is-zoomed", state.zoom.scale > 1);
       });
     });
 
     stage.addEventListener("pointerdown", (event) => {
-      if (state.zoom.scale <= 1) return;
+      if (state.zoom.scale <= 1) {
+        return;
+      }
 
       state.zoom.dragging = true;
       state.zoom.startX = event.clientX;
@@ -230,7 +281,9 @@ function setupPanelZoom() {
     });
 
     stage.addEventListener("pointermove", (event) => {
-      if (!state.zoom.dragging) return;
+      if (!state.zoom.dragging) {
+        return;
+      }
 
       state.zoom.x = state.zoom.originX + (event.clientX - state.zoom.startX);
       state.zoom.y = state.zoom.originY + (event.clientY - state.zoom.startY);
@@ -260,7 +313,9 @@ function setupPanelZoom() {
 }
 
 function renderAvailabilityTable() {
-  if (!availabilityTable) return;
+  if (!availabilityTable) {
+    return;
+  }
 
   const dates = sortedDates();
 
@@ -293,7 +348,9 @@ function renderAvailabilityTable() {
           <button class="status available" data-product="${product.key}" data-date="${date}">✓</button>
         </td>`;
       } else if (status?.error) {
-        html += `<td title="${escapeHtml(status.error)}"><span class="status failed">×</span></td>`;
+        html += `<td title="${escapeHtml(status.error)}">
+          <span class="status failed">×</span>
+        </td>`;
       } else {
         html += `<td><span class="status missing">—</span></td>`;
       }
@@ -303,6 +360,7 @@ function renderAvailabilityTable() {
   });
 
   html += "</tbody>";
+
   availabilityTable.innerHTML = html;
 
   availabilityTable.querySelectorAll("button.status.available").forEach((button) => {
@@ -324,7 +382,9 @@ function renderAvailabilityTable() {
 }
 
 function renderProductsTable() {
-  if (!productsTable) return;
+  if (!productsTable) {
+    return;
+  }
 
   let html = `
     <thead>
@@ -341,7 +401,8 @@ function renderProductsTable() {
   `;
 
   products.forEach((product) => {
-    const statusText = product.workflow_enabled === false ? "planned" : product.status || "automated";
+    const statusText =
+      product.workflow_enabled === false ? "planned" : product.status || "automated";
 
     const productUrl = product.product_url
       ? `<a href="${product.product_url}" target="_blank" rel="noopener">Official page</a>`
@@ -349,17 +410,21 @@ function renderProductsTable() {
 
     html += `
       <tr>
-        <td><strong>${product.label || product.key}</strong><small>${product.key}</small></td>
+        <td>
+          <strong>${product.label || product.key}</strong>
+          <small>${product.key}</small>
+        </td>
         <td>${product.category || "Not specified"}</td>
         <td>${statusText}</td>
         <td><code>${product.dataset_id || "derived"}</code></td>
-        <td>${(product.variables || []).map((v) => `<code>${v}</code>`).join(" ")}</td>
+        <td>${(product.variables || []).map((variable) => `<code>${variable}</code>`).join(" ")}</td>
         <td>${productUrl}</td>
       </tr>
     `;
   });
 
   html += "</tbody>";
+
   productsTable.innerHTML = html;
 }
 
