@@ -60,8 +60,11 @@ jobs:
 
           python scripts/fetch_copernicus.py $DATE_ARG --days-ahead "$DAYS_AHEAD" --allow-partial
 
-      - name: Commit generated snapshots
+       - name: Commit generated data and snapshots
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Update Copernicus M219 snapshots"
-          file_pattern: assets/snapshots/*.png data/manifest.json
+          file_pattern: |
+            assets/snapshots/*.png
+            data/raw/*.nc
+            data/manifest.json
