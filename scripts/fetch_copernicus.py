@@ -517,7 +517,8 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
         (-33.2, -9.6, "K2"),
         (-32.6, -9.4, "K3"),
         (-32.0, -9.2, "K4"),
-        (-23.0, 0.0, "CVOO Eq."),
+        (-23.1650166667, -0.05705, "0N"),
+        (-24.3309166667, 17.5412833333, "CVOO"),
     ]
 
     for lon, lat, label in planned_points:
