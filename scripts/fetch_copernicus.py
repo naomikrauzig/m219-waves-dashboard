@@ -444,21 +444,53 @@ def ekman_fields(lon: Any, lat: Any, u10: Any, v10: Any) -> tuple[Any, Any, Any,
 
 
 def add_route_and_moorings(ax: Any) -> None:
-    route_lon = [-34.877, -33.8, -33.2, -32.6, -32.0, -23.0, -24.9958, 7.207]
-    route_lat = [-8.0476, -9.8, -9.6, -9.4, -9.2, 0.0, 16.886, 53.367]
-    route_labels = ["Recife", "K1", "K2", "K3", "K4", "CVOO Eq.", "Mindelo", "Emden"]
+    # Ports / key cruise locations
+    port_lon = [-34.877, -24.9958, 7.207]
+    port_lat = [-8.0476, 16.886, 53.367]
+    port_labels = ["Recife", "Mindelo", "Emden"]
 
-    ax.plot(route_lon, route_lat, color="white", lw=5.0, linestyle="--", alpha=0.65, zorder=4)
-    ax.plot(route_lon, route_lat, color="#d95f35", lw=2.2, linestyle="--", alpha=0.95, zorder=5)
+    ax.scatter(
+        port_lon,
+        port_lat,
+        s=80,
+        marker="o",
+        color="white",
+        edgecolor="#17212b",
+        linewidth=1.4,
+        zorder=8,
+    )
+
+    for lon, lat, label in zip(port_lon, port_lat, port_labels):
+        ax.text(
+            lon + 0.35,
+            lat + 0.35,
+            label,
+            fontsize=10,
+            fontweight="bold",
+            color="#17212b",
+            zorder=9,
+            bbox=dict(
+                facecolor="white",
+                edgecolor="none",
+                alpha=0.82,
+                boxstyle="round,pad=0.22",
+            ),
+        )
+
+    # Planned K1-K4 / CVOO points shown as red pentagons
+    route_lon = [-33.8, -33.2, -32.6, -32.0, -23.0]
+    route_lat = [-9.8, -9.6, -9.4, -9.2, 0.0]
+    route_labels = ["K1", "K2", "K3", "K4", "CVOO Eq."]
 
     ax.scatter(
         route_lon,
         route_lat,
-        s=64,
-        color="white",
-        edgecolor="#17212b",
-        linewidth=1.1,
-        zorder=6,
+        marker="p",
+        s=220,
+        color="#b30000",
+        edgecolor="white",
+        linewidth=2.0,
+        zorder=10,
     )
 
     for lon, lat, label in zip(route_lon, route_lat, route_labels):
@@ -466,18 +498,19 @@ def add_route_and_moorings(ax: Any) -> None:
             lon + 0.35,
             lat + 0.35,
             label,
-            fontsize=9,
+            fontsize=11,
             fontweight="bold",
-            color="#17212b",
-            zorder=7,
+            color="#111827",
+            zorder=11,
             bbox=dict(
                 facecolor="white",
                 edgecolor="none",
-                alpha=0.76,
-                boxstyle="round,pad=0.20",
+                alpha=0.88,
+                boxstyle="round,pad=0.24",
             ),
         )
 
+    # Extra mooring sites from moorings.geojson
     for mooring in load_moorings():
         lon, lat = mooring["geometry"]["coordinates"]
         label = mooring["properties"]["label"]
@@ -486,21 +519,21 @@ def add_route_and_moorings(ax: Any) -> None:
             lon,
             lat,
             marker="p",
-            s=280,
+            s=240,
             color="#b30000",
             edgecolor="white",
             linewidth=2.1,
-            zorder=8,
+            zorder=12,
         )
 
         ax.text(
             lon + 0.38,
             lat + 0.38,
             label,
-            fontsize=12,
+            fontsize=11,
             fontweight="bold",
             color="#111827",
-            zorder=9,
+            zorder=13,
             bbox=dict(
                 facecolor="white",
                 edgecolor="none",
