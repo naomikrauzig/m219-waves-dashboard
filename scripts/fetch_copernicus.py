@@ -871,6 +871,14 @@ def process_product(
     raw_cache: dict[tuple[str, str], Path],
 ) -> Path | None:
 
+    snapshot_file = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}.png"
+
+    if snapshot_file.exists() and snapshot_file.stat().st_size > 0:
+        print(f"Using cached snapshot: {snapshot_file}", flush=True)
+        return snapshot_file
+
+    if product.get("source") == "derived":
+
     # ---------------------------------------------------------
     # Skip already-generated snapshots
     # ---------------------------------------------------------
