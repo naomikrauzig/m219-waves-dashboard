@@ -6,6 +6,8 @@ import argparse
 import json
 import os
 import sys
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -441,7 +443,24 @@ def ekman_fields(lon: Any, lat: Any, u10: Any, v10: Any) -> tuple[Any, Any, Any,
     w_e = -(due_dx + dve_dy)
 
     return ue, ve, w_e, taux, tauy
+    
+def rolling_mean_2d(values: Any, size: int = 3) -> Any:
+    import numpy as np
+    from scipy.ndimage import uniform_filter
 
+    arr = np.asarray(values, dtype=float)
+    finite = np.isfinite(arr)
+
+    filled = np.where(finite, arr, 0.0)
+    weights = uniform_filter(finite.astype(float), size=size, mode="nearest")
+    smoothed = uniform_filter(filled, size=size, mode="nearest")
+
+    with np.errstate(invalid="ignore", divide="ignore"):
+        result = smoothed / weights
+
+    result[weights == 0] = np.nan
+
+    return result
 
 def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
     xlim = extent["xlim"] if extent else None
@@ -528,39 +547,6 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             ),
         )
 
-    for mooring in load_moorings():
-        lon, lat = mooring["geometry"]["coordinates"]
-        label = mooring["properties"]["label"]
-
-        if not inside(lon, lat):
-            continue
-
-        ax.scatter(
-            lon,
-            lat,
-            marker="p",
-            s=240,
-            color="#b30000",
-            edgecolor="white",
-            linewidth=2.1,
-            zorder=12,
-        )
-
-        ax.text(
-            lon + 0.38,
-            lat + 0.38,
-            label,
-            fontsize=11,
-            fontweight="bold",
-            color="#111827",
-            zorder=13,
-            bbox=dict(
-                facecolor="white",
-                edgecolor="none",
-                alpha=0.88,
-                boxstyle="round,pad=0.25",
-            ),
-        )
 
 def add_metadata(ax: Any, product: dict, source_day: date) -> None:
     generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -586,13 +572,25 @@ def add_metadata(ax: Any, product: dict, source_day: date) -> None:
 
 
 def snapshot_title(product: dict, target_day: date, source_day: date) -> str:
+
+    if product["key"] == "EKMAN_PUMPING":
+        title = (
+            f"M219 WAVES | Ekman pumping from ERA5 winds "
+            f"(3×3 spatial rolling mean; past data only) | "
+            f"shown for {target_day.isoformat()}"
+        )
+
+        if source_day != target_day:
+            title = f"{title} using {source_day.isoformat()} data"
+
+        return title
+
     title = f"M219 WAVES | {product['label']} | shown for {target_day.isoformat()}"
 
     if source_day != target_day:
         title = f"{title} using {source_day.isoformat()} data"
 
     return title
-
 
 def save_figure(fig: Any, target_day: date, product: dict, suffix: str = "") -> None:
     SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
@@ -725,6 +723,8 @@ def plot_wind_snapshot(
 ) -> None:
     import matplotlib.pyplot as plt
     import numpy as np
+    import cartopy.crs as ccrs
+    import cartopy.feature as cfeature
 
     u10, v10, lon_name, lat_name = wind_components(dataset)
     speed = np.hypot(u10, v10)
@@ -736,7 +736,24 @@ def plot_wind_snapshot(
     step_y = max(1, speed.shape[0] // 30)
     step_x = max(1, speed.shape[1] // 40)
 
-    fig, ax = plt.subplots(figsize=(14, 9), dpi=120)
+    fig = plt.figure(figsize=(14, 9), dpi=120)
+
+    ax = plt.axes(projection=ccrs.PlateCarree())
+
+    ax.add_feature(
+        cfeature.LAND,
+        facecolor="#f4efe6",
+        edgecolor="0.35",
+        linewidth=0.4,
+        zorder=3,
+    )
+
+    ax.add_feature(
+        cfeature.COASTLINE,
+        linewidth=0.5,
+        edgecolor="0.25",
+        zorder=4,
+    )
 
     plot_scalar_map(
         ax,
@@ -757,14 +774,15 @@ def plot_wind_snapshot(
         color="#17212b",
         alpha=0.72,
         scale=450,
+        transform=ccrs.PlateCarree(),
     )
 
     format_axes(ax, product, target_day, source_day, extent=extent)
+
     save_figure(fig, target_day, product, suffix=suffix)
 
     plt.close(fig)
-
-
+    
 def plot_derived_snapshot(
     product: dict,
     nc_path: Path,
@@ -776,6 +794,8 @@ def plot_derived_snapshot(
     import matplotlib.pyplot as plt
     import numpy as np
     import xarray as xr
+    import cartopy.crs as ccrs
+    import cartopy.feature as cfeature
 
     with xr.open_dataset(nc_path) as ds:
         u10, v10, lon_name, lat_name = wind_components(ds)
@@ -786,7 +806,23 @@ def plot_derived_snapshot(
 
         _ue, _ve, w_e, taux, tauy = ekman_fields(lon, lat, u10.values, v10.values)
 
-        fig, ax = plt.subplots(figsize=(14, 9), dpi=120)
+        fig = plt.figure(figsize=(14, 9), dpi=120)
+        ax = plt.axes(projection=ccrs.PlateCarree())
+
+        ax.add_feature(
+            cfeature.LAND,
+            facecolor="#f4efe6",
+            edgecolor="0.35",
+            linewidth=0.4,
+            zorder=3,
+        )
+
+        ax.add_feature(
+            cfeature.COASTLINE,
+            linewidth=0.5,
+            edgecolor="0.25",
+            zorder=4,
+        )
 
         if product["key"] == "WIND_STRESS":
             tau = np.hypot(taux, tauy)
@@ -804,19 +840,18 @@ def plot_derived_snapshot(
 
             step_y = max(1, tau.shape[0] // 30)
             step_x = max(1, tau.shape[1] // 40)
-
             ax.quiver(
                 lon2d[::step_y, ::step_x],
                 lat2d[::step_y, ::step_x],
                 taux[::step_y, ::step_x],
                 tauy[::step_y, ::step_x],
                 color="#17212b",
-                alpha=0.72,
+                alpha=0.75,
                 scale=8,
             )
 
         else:
-            plot_values = w_e * 1e7
+            plot_values = rolling_mean_2d(w_e, size=3) * 1e7
 
             plot_scalar_map(
                 ax,
@@ -825,7 +860,7 @@ def plot_derived_snapshot(
                 lat,
                 plot_values,
                 get_cmocean_cmap("balance"),
-                "Ekman pumping velocity (10$^{-7}$ m s$^{-1}$)",
+                "Ekman pumping velocity, 3×3 spatial rolling mean from ERA5 past data only (10$^{-7}$ m s$^{-1}$)",
                 signed=True,
                 contours=True,
             )
@@ -837,7 +872,7 @@ def plot_derived_snapshot(
                 levels=[0],
                 colors="black",
                 linewidths=0.9,
-                alpha=0.65,
+                alpha=0.75,
             )
 
         format_axes(ax, product, target_day, source_day, extent=extent)
@@ -858,8 +893,11 @@ def plot_snapshot(
     import matplotlib.pyplot as plt
     import numpy as np
     import xarray as xr
+    import cartopy.crs as ccrs
+    import cartopy.feature as cfeature
 
     with xr.open_dataset(nc_path) as ds:
+
         if product.get("source") == "cds_era5":
             plot_wind_snapshot(
                 product,
@@ -871,9 +909,27 @@ def plot_snapshot(
             )
             return
 
-        fig, ax = plt.subplots(figsize=(14, 9), dpi=120)
+        fig = plt.figure(figsize=(14, 9), dpi=120)
+
+        ax = plt.axes(projection=ccrs.PlateCarree())
+
+        ax.add_feature(
+            cfeature.LAND,
+            facecolor="#f4efe6",
+            edgecolor="0.35",
+            linewidth=0.4,
+            zorder=3,
+        )
+
+        ax.add_feature(
+            cfeature.COASTLINE,
+            linewidth=0.5,
+            edgecolor="0.25",
+            zorder=4,
+        )
 
         if product["key"] == "MODEL_CURRENT":
+
             u_name = choose_variable(ds, ["uo"])
             v_name = choose_variable(ds, ["vo"])
 
@@ -907,8 +963,9 @@ def plot_snapshot(
                 color="#17212b",
                 alpha=0.7,
                 scale=12,
+                transform=ccrs.PlateCarree(),
             )
-
+            
         elif product["key"] == "MODEL_SAL":
             sp_name = choose_variable(ds, ["so"])
             sp = as_2d(ds, sp_name)
@@ -986,7 +1043,7 @@ def plot_snapshot(
                 lat,
                 da,
                 get_cmocean_cmap("algae"),
-                "Chlorophyll-a (mg m$^{-3}$)",
+                "Chlorophyll-a (mg m$^{-3}$, log scale)",
                 contours=False,
                 log_norm=True,
             )
