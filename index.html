@@ -1,421 +1,532 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>M219 WAVES Cruise Dashboard</title>
+<head>
 
-    <meta
-      name="description"
-      content="Near-real-time Copernicus Marine and ERA5 quick-look maps for the RV Meteor M219 WAVES cruise."
-    />
+  <meta charset="utf-8" />
 
-    <link rel="stylesheet" href="assets/styles.css" />
-  </head>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  />
 
-  <body>
+  <title>M219 WAVES Cruise Dashboard</title>
 
-    <header class="site-header">
-      <div>
-        <p class="eyebrow">RV Meteor M219 WAVES</p>
+  <meta
+    name="description"
+    content="Near-real-time Copernicus Marine and ERA5 quick-look maps for the RV Meteor M219 WAVES cruise."
+  />
 
-        <h1>M219 WAVES Cruise Dashboard</h1>
+  <link rel="stylesheet" href="assets/styles.css" />
 
-        <p class="lede">
-          Rolling Copernicus Marine and ERA5 quick-look maps along the planned
-          M219 WAVES cruise corridor, including forecasts, latest available
-          satellite products, atmospheric forcing, and derived diagnostics.
+</head>
+
+<body>
+
+  <header class="site-header">
+
+    <div>
+
+      <p class="eyebrow">
+        RV Meteor M219 WAVES
+      </p>
+
+      <h1>
+        M219 WAVES Cruise Dashboard
+      </h1>
+
+      <p class="lede">
+        Rolling Copernicus Marine and ERA5 quick-look maps along the planned
+        M219 WAVES cruise corridor, including forecasts, latest available
+        satellite products, atmospheric forcing, and derived diagnostics.
+      </p>
+
+      <p class="photo-credit">
+        Photo: Mario Mueller / GEOMAR
+      </p>
+
+    </div>
+
+    <aside class="status-panel" aria-label="Cruise status">
+
+      <span>Planned cruise</span>
+
+      <strong>30 May - 28 Jun 2026</strong>
+
+      <small id="last-updated">
+        Forecast window updated: pending first data run
+      </small>
+
+    </aside>
+
+  </header>
+
+  <main>
+
+    <!-- ===================================================== -->
+    <!-- MAIN 2x2 DASHBOARD -->
+    <!-- ===================================================== -->
+
+    <section class="dashboard" aria-label="Main dashboard">
+
+      <div class="section-heading">
+
+        <h2>
+          Large-Scale Atlantic Overview
+        </h2>
+
+        <p>
+          Basin-scale conditions along the RV Meteor M219 WAVES cruise corridor
+          from Recife to Cape Verde and Emden.
         </p>
 
-        <p class="photo-credit">
-          Photo: Mario Mueller / GEOMAR
-        </p>
       </div>
 
-      <aside class="status-panel" aria-label="Cruise status">
-        <span>Planned cruise</span>
+      <div class="multi-panel-grid">
 
-        <strong>30 May - 28 Jun 2026</strong>
+        <!-- PANEL 1 -->
 
-        <small id="last-updated">
-          Forecast window updated: pending first data run
-        </small>
-      </aside>
-    </header>
+        <section class="map-panel" data-panel="0">
 
-    <main>
+          <div class="panel-toolbar">
 
-      <!-- ===================================================== -->
-      <!-- MAIN 2x2 DASHBOARD -->
-      <!-- ===================================================== -->
+            <label>Dataset</label>
+            <select class="panel-dataset-select"></select>
 
-      <section class="dashboard" aria-label="Main dashboard">
+            <label>Date</label>
+            <select class="panel-date-select"></select>
 
-        <div class="section-heading">
-          <h2>Large-Scale Atlantic Overview</h2>
+          </div>
 
-          <p>
-            Basin-scale conditions along the RV Meteor M219 WAVES cruise corridor
-            from Recife to Cape Verde and Emden.
-          </p>
-        </div>
+          <figure class="snapshot panel-snapshot">
 
-        <div class="multi-panel-grid">
+            <div class="map-controls">
 
-          <!-- PANEL 1 -->
+              <button type="button" data-panel-zoom="out">−</button>
+              <button type="button" data-panel-zoom="in">+</button>
+              <button type="button" data-panel-zoom="reset">Reset</button>
 
-          <section class="map-panel" data-panel="0">
-
-            <div class="panel-toolbar">
-              <label>Dataset</label>
-              <select class="panel-dataset-select"></select>
-
-              <label>Date</label>
-              <select class="panel-date-select"></select>
             </div>
 
-            <figure class="snapshot panel-snapshot">
-
-              <div class="map-controls">
-                <button type="button" data-panel-zoom="out">−</button>
-                <button type="button" data-panel-zoom="in">+</button>
-                <button type="button" data-panel-zoom="reset">Reset</button>
-              </div>
-
-              <div class="zoom-stage">
-                <img class="panel-image" alt="Panel 1" />
-              </div>
-
-              <figcaption class="panel-caption"></figcaption>
-
-            </figure>
-
-          </section>
-
-          <!-- PANEL 2 -->
-
-          <section class="map-panel" data-panel="1">
-
-            <div class="panel-toolbar">
-              <label>Dataset</label>
-              <select class="panel-dataset-select"></select>
-
-              <label>Date</label>
-              <select class="panel-date-select"></select>
+            <div class="zoom-stage">
+              <img class="panel-image" alt="Panel 1" />
             </div>
 
-            <figure class="snapshot panel-snapshot">
+            <figcaption class="panel-caption"></figcaption>
 
-              <div class="map-controls">
-                <button type="button" data-panel-zoom="out">−</button>
-                <button type="button" data-panel-zoom="in">+</button>
-                <button type="button" data-panel-zoom="reset">Reset</button>
-              </div>
+          </figure>
 
-              <div class="zoom-stage">
-                <img class="panel-image" alt="Panel 2" />
-              </div>
+        </section>
 
-              <figcaption class="panel-caption"></figcaption>
+        <!-- PANEL 2 -->
 
-            </figure>
+        <section class="map-panel" data-panel="1">
 
-          </section>
+          <div class="panel-toolbar">
 
-          <!-- PANEL 3 -->
+            <label>Dataset</label>
+            <select class="panel-dataset-select"></select>
 
-          <section class="map-panel" data-panel="2">
+            <label>Date</label>
+            <select class="panel-date-select"></select>
 
-            <div class="panel-toolbar">
-              <label>Dataset</label>
-              <select class="panel-dataset-select"></select>
+          </div>
 
-              <label>Date</label>
-              <select class="panel-date-select"></select>
+          <figure class="snapshot panel-snapshot">
+
+            <div class="map-controls">
+
+              <button type="button" data-panel-zoom="out">−</button>
+              <button type="button" data-panel-zoom="in">+</button>
+              <button type="button" data-panel-zoom="reset">Reset</button>
+
             </div>
 
-            <figure class="snapshot panel-snapshot">
-
-              <div class="map-controls">
-                <button type="button" data-panel-zoom="out">−</button>
-                <button type="button" data-panel-zoom="in">+</button>
-                <button type="button" data-panel-zoom="reset">Reset</button>
-              </div>
-
-              <div class="zoom-stage">
-                <img class="panel-image" alt="Panel 3" />
-              </div>
-
-              <figcaption class="panel-caption"></figcaption>
-
-            </figure>
-
-          </section>
-
-          <!-- PANEL 4 -->
-
-          <section class="map-panel" data-panel="3">
-
-            <div class="panel-toolbar">
-              <label>Dataset</label>
-              <select class="panel-dataset-select"></select>
-
-              <label>Date</label>
-              <select class="panel-date-select"></select>
+            <div class="zoom-stage">
+              <img class="panel-image" alt="Panel 2" />
             </div>
 
-            <figure class="snapshot panel-snapshot">
+            <figcaption class="panel-caption"></figcaption>
 
-              <div class="map-controls">
-                <button type="button" data-panel-zoom="out">−</button>
-                <button type="button" data-panel-zoom="in">+</button>
-                <button type="button" data-panel-zoom="reset">Reset</button>
-              </div>
+          </figure>
 
-              <div class="zoom-stage">
-                <img class="panel-image" alt="Panel 4" />
-              </div>
+        </section>
 
-              <figcaption class="panel-caption"></figcaption>
+        <!-- PANEL 3 -->
 
-            </figure>
+        <section class="map-panel" data-panel="2">
 
-          </section>
+          <div class="panel-toolbar">
 
-        </div>
+            <label>Dataset</label>
+            <select class="panel-dataset-select"></select>
 
-      </section>
+            <label>Date</label>
+            <select class="panel-date-select"></select>
 
-      <!-- ===================================================== -->
-      <!-- REGIONAL ZOOM PANELS -->
-      <!-- ===================================================== -->
+          </div>
 
-      <section class="dashboard regional-dashboard">
+          <figure class="snapshot panel-snapshot">
 
-        <div class="section-heading regional-heading">
+            <div class="map-controls">
 
-          <h2>Regional Zoom Panels</h2>
+              <button type="button" data-panel-zoom="out">−</button>
+              <button type="button" data-panel-zoom="in">+</button>
+              <button type="button" data-panel-zoom="reset">Reset</button>
 
-          <p>
-            Focused views for the Recife → K1-K4 mooring region and the
-            Equator → CVOO → Mindelo corridor.
-          </p>
-
-        </div>
-
-        <div class="multi-panel-grid regional-panel-grid">
-
-          <!-- PANEL 5 -->
-
-          <section class="map-panel" data-panel="4">
-
-            <div class="panel-toolbar">
-              <label>Dataset</label>
-              <select class="panel-dataset-select"></select>
-
-              <label>Date</label>
-              <select class="panel-date-select"></select>
             </div>
 
-            <figure class="snapshot panel-snapshot">
-
-              <div class="map-controls">
-                <button type="button" data-panel-zoom="out">−</button>
-                <button type="button" data-panel-zoom="in">+</button>
-                <button type="button" data-panel-zoom="reset">Reset</button>
-              </div>
-
-              <div class="zoom-stage">
-                <img class="panel-image" alt="Regional panel 1" />
-              </div>
-
-              <figcaption class="panel-caption"></figcaption>
-
-            </figure>
-
-          </section>
-
-          <!-- PANEL 6 -->
-
-          <section class="map-panel" data-panel="5">
-
-            <div class="panel-toolbar">
-              <label>Dataset</label>
-              <select class="panel-dataset-select"></select>
-
-              <label>Date</label>
-              <select class="panel-date-select"></select>
+            <div class="zoom-stage">
+              <img class="panel-image" alt="Panel 3" />
             </div>
 
-            <figure class="snapshot panel-snapshot">
+            <figcaption class="panel-caption"></figcaption>
 
-              <div class="map-controls">
-                <button type="button" data-panel-zoom="out">−</button>
-                <button type="button" data-panel-zoom="in">+</button>
-                <button type="button" data-panel-zoom="reset">Reset</button>
-              </div>
+          </figure>
 
-              <div class="zoom-stage">
-                <img class="panel-image" alt="Regional panel 2" />
-              </div>
+        </section>
 
-              <figcaption class="panel-caption"></figcaption>
+        <!-- PANEL 4 -->
 
-            </figure>
+        <section class="map-panel" data-panel="3">
 
-          </section>
+          <div class="panel-toolbar">
 
-        </div>
+            <label>Dataset</label>
+            <select class="panel-dataset-select"></select>
 
-      </section>
+            <label>Date</label>
+            <select class="panel-date-select"></select>
 
-      <!-- ===================================================== -->
-      <!-- INSITU -->
-      <!-- ===================================================== -->
+          </div>
 
-      <section class="bottom-observation-panel">
+          <figure class="snapshot panel-snapshot">
 
-        <div class="section-heading">
+            <div class="map-controls">
 
-          <h2>In-situ Observations</h2>
+              <button type="button" data-panel-zoom="out">−</button>
+              <button type="button" data-panel-zoom="in">+</button>
+              <button type="button" data-panel-zoom="reset">Reset</button>
 
-          <p>
-            Planned integration of Argo floats, NOAA GDP drifters,
-            ship position, moorings, and underway observations.
-          </p>
+            </div>
 
-        </div>
+            <div class="zoom-stage">
+              <img class="panel-image" alt="Panel 4" />
+            </div>
 
-        <div id="insitu-map">
+            <figcaption class="panel-caption"></figcaption>
 
-          <p>
-            Planned route:
-            Recife → K1-K4 moorings →
-            Equator/CVOO →
-            Mindelo →
-            Emden.
-          </p>
+          </figure>
 
-          <p>
-            Argo and drifter overlays pending implementation.
-          </p>
+        </section>
 
-        </div>
+      </div>
 
-      </section>
+    </section>
 
-      <!-- ===================================================== -->
-      <!-- PRODUCT AVAILABILITY -->
-      <!-- ===================================================== -->
+    <!-- ===================================================== -->
+    <!-- REGIONAL ZOOM -->
+    <!-- ===================================================== -->
 
-      <section class="availability-section">
+    <section class="dashboard regional-dashboard">
 
-        <div class="section-heading">
+      <div class="section-heading regional-heading">
 
-          <h2>Product Availability</h2>
+        <h2>
+          Regional Zoom Panels
+        </h2>
 
-          <p>
-            Rows are selectable layers; columns show the rolling
-            temporal map window.
-          </p>
+        <p>
+          Focused views for the Recife → K1-K4 mooring region and the
+          Equator → CVOO → Mindelo corridor.
+        </p>
 
-        </div>
+      </div>
 
-        <div class="table-wrap">
-          <table id="availability-table"></table>
-        </div>
+      <div class="multi-panel-grid regional-panel-grid">
 
-      </section>
+        <!-- PANEL 5 -->
 
-      <!-- ===================================================== -->
-      <!-- DATASETS -->
-      <!-- ===================================================== -->
+        <section class="map-panel" data-panel="4">
 
-      <section class="products-section">
+          <div class="panel-toolbar">
 
-        <div class="section-heading">
+            <label>Dataset</label>
+            <select class="panel-dataset-select"></select>
 
-          <h2>Datasets Used</h2>
+            <label>Date</label>
+            <select class="panel-date-select"></select>
 
-          <p>
-            Dataset IDs are configured for Copernicus Marine Toolbox
-            and CDS API access through GitHub Actions.
-          </p>
+          </div>
 
-        </div>
+          <figure class="snapshot panel-snapshot">
 
-        <div class="table-wrap">
-          <table id="products-table"></table>
-        </div>
+            <div class="map-controls">
 
-      </section>
+              <button type="button" data-panel-zoom="out">−</button>
+              <button type="button" data-panel-zoom="in">+</button>
+              <button type="button" data-panel-zoom="reset">Reset</button>
 
-      <!-- ===================================================== -->
-      <!-- GEOMAR BRANDING -->
-      <!-- ===================================================== -->
+            </div>
 
-      <section class="brand-section" aria-label="GEOMAR branding">
+            <div class="zoom-stage">
+              <img class="panel-image" alt="Regional panel 1" />
+            </div>
 
-        <img
-          src="assets/images/geomar-brand.jpg"
-          alt="GEOMAR ocean background"
-        />
+            <figcaption class="panel-caption"></figcaption>
 
-        <div class="brand-credit">
+          </figure>
 
-          <a
-            href="https://www.geomar.de"
-            aria-label="GEOMAR website"
-          >
-            <img
-              src="assets/images/geomar-logo-eng-neg.png"
-              alt="GEOMAR Helmholtz Centre for Ocean Research Kiel"
-            />
+        </section>
+
+        <!-- PANEL 6 -->
+
+        <section class="map-panel" data-panel="5">
+
+          <div class="panel-toolbar">
+
+            <label>Dataset</label>
+            <select class="panel-dataset-select"></select>
+
+            <label>Date</label>
+            <select class="panel-date-select"></select>
+
+          </div>
+
+          <figure class="snapshot panel-snapshot">
+
+            <div class="map-controls">
+
+              <button type="button" data-panel-zoom="out">−</button>
+              <button type="button" data-panel-zoom="in">+</button>
+              <button type="button" data-panel-zoom="reset">Reset</button>
+
+            </div>
+
+            <div class="zoom-stage">
+              <img class="panel-image" alt="Regional panel 2" />
+            </div>
+
+            <figcaption class="panel-caption"></figcaption>
+
+          </figure>
+
+        </section>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- INSITU -->
+    <!-- ===================================================== -->
+
+    <section class="bottom-observation-panel">
+
+      <div class="section-heading">
+
+        <h2>
+          In-situ Observations
+        </h2>
+
+        <p>
+          Planned integration of Argo floats, NOAA GDP drifters,
+          ship position, moorings, and underway observations.
+        </p>
+
+      </div>
+
+      <div id="insitu-map">
+
+        <p>
+          Planned route:
+          Recife → K1-K4 moorings →
+          Equator/CVOO →
+          Mindelo →
+          Emden.
+        </p>
+
+        <p>
+          Argo and drifter overlays pending implementation.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- PRODUCT AVAILABILITY -->
+    <!-- ===================================================== -->
+
+    <section class="availability-section">
+
+      <div class="section-heading">
+
+        <h2>
+          Product Availability
+        </h2>
+
+        <p>
+          Rows are selectable layers; columns show the rolling
+          temporal map window.
+        </p>
+
+      </div>
+
+      <div class="table-wrap">
+        <table id="availability-table"></table>
+      </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- DATASETS -->
+    <!-- ===================================================== -->
+
+    <section class="products-section">
+
+      <div class="section-heading">
+
+        <h2>
+          Datasets Used
+        </h2>
+
+        <p>
+          Dataset IDs are configured for Copernicus Marine Toolbox
+          and CDS API access through GitHub Actions.
+        </p>
+
+      </div>
+
+      <div class="table-wrap">
+        <table id="products-table"></table>
+      </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- GEOMAR BRANDING -->
+    <!-- ===================================================== -->
+
+    <section class="brand-section" aria-label="GEOMAR branding">
+
+      <img
+        src="assets/images/geomar-brand.jpg"
+        alt="GEOMAR ocean background"
+      />
+
+      <div class="brand-credit">
+
+        <a
+          href="https://www.geomar.de"
+          aria-label="GEOMAR website"
+        >
+          <img
+            src="assets/images/geomar-logo-eng-neg.png"
+            alt="GEOMAR Helmholtz Centre for Ocean Research Kiel"
+          />
+        </a>
+
+        <p>
+          Dashboard for the
+          <a href="https://www.geomar.de/en/fb1/physical-oceanography">
+            GEOMAR Physical Oceanography
           </a>
+          cruise context.
+        </p>
 
-          <p>
-            Dashboard for the
-            <a href="https://www.geomar.de/en/fb1/physical-oceanography">
-              GEOMAR Physical Oceanography
-            </a>
-            cruise context.
-          </p>
+      </div>
 
-        </div>
-
-      </section>
-
-    </main>
+    </section>
 
     <!-- ===================================================== -->
-    <!-- FOOTER -->
+    <!-- CRUISE INFO -->
     <!-- ===================================================== -->
 
-    <footer>
+    <section class="info-section">
 
-      <span>
-        Contact:
-        <a href="mailto:nkrauzig@geomar.de">
-          nkrauzig@geomar.de
-        </a>
-      </span>
+      <div class="info-card">
 
-      <span>
-        <a href="https://www.geomar.de">GEOMAR</a>
-        &middot;
-        <a href="https://www.geomar.de/en/fb1/physical-oceanography">
-          Physical Oceanography
-        </a>
-        &middot;
-        <a href="https://data.marine.copernicus.eu/products">
-          Copernicus Marine Data Store
-        </a>
-      </span>
+        <h2>
+          M219 WAVES Cruise Information
+        </h2>
 
-    </footer>
+        <p>
+          <strong>
+            Principal Investigator (P.I.) & Chief Scientist:
+          </strong>
+          <br>
+          Prof. Peter Brandt
+        </p>
 
-    <script src="assets/app.js"></script>
+        <p>
+          <strong>
+            Institution:
+          </strong>
+          <br>
+          GEOMAR Helmholtz Centre for Ocean Research Kiel
+        </p>
 
-  </body>
+        <p>
+          <strong>
+            Email:
+          </strong>
+          <br>
+          <a href="mailto:pbrandt@geomar.de">
+            pbrandt@geomar.de
+          </a>
+        </p>
+
+        <p>
+          This dashboard provides near-real-time environmental conditions,
+          forecasts, satellite products, and operational oceanography
+          information supporting the M219 WAVES expedition across the
+          tropical Atlantic.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ===================================================== -->
+  <!-- FOOTER -->
+  <!-- ===================================================== -->
+
+  <footer>
+
+    <span>
+      Contact:
+      <a href="mailto:nkrauzig@geomar.de">
+        nkrauzig@geomar.de
+      </a>
+    </span>
+
+    <span>
+
+      <a href="https://www.geomar.de">
+        GEOMAR
+      </a>
+
+      &middot;
+
+      <a href="https://www.geomar.de/en/fb1/physical-oceanography">
+        Physical Oceanography
+      </a>
+
+      &middot;
+
+      <a href="https://data.marine.copernicus.eu/products">
+        Copernicus Marine Data Store
+      </a>
+
+    </span>
+
+  </footer>
+
+  <script src="assets/app.js"></script>
+
+</body>
+
 </html>
