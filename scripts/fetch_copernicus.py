@@ -24,6 +24,24 @@ SEAWATER_DENSITY = 1025.0
 
 SURFACE_ONLY_PRODUCTS = {"MODEL_CURRENT", "MODEL_TEMP", "MODEL_SAL"}
 
+REGIONAL_PRODUCTS = {
+    "WAVES",
+    "MODEL_CURRENT",
+    "MODEL_TEMP",
+    "MODEL_SAL",
+    "SAT_SLA",
+    "SAT_SSS",
+    "SAT_CHL",
+    "ERA5_WIND",
+    "WIND_STRESS",
+    "EKMAN_PUMPING",
+}
+
+REGIONAL_EXTENT = {
+    "xlim": (-45, -15),
+    "ylim": (-20, 20),
+}
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
@@ -42,6 +60,7 @@ def target_start_day(value: str | None) -> date:
 
 def target_days(value: str | None, days_ahead: int) -> list[date]:
     center_day = target_start_day(value)
+
     return [
         center_day + timedelta(days=offset)
         for offset in range(-5, days_ahead + 1)
@@ -76,6 +95,7 @@ def product_by_key(products: list[dict], key: str) -> dict:
 def load_moorings() -> list[dict]:
     if not MOORINGS_FILE.exists():
         return []
+
     geojson = json.loads(MOORINGS_FILE.read_text(encoding="utf-8"))
     return geojson.get("features", [])
 
@@ -99,7 +119,17 @@ def download_era5_subset(product: dict, source_day: date, dry_run: bool) -> Path
         "area": [max_lat, min_lon, min_lat, max_lon],
     }
 
-    print(json.dumps({"product": product["key"], "source": "cds", "request": request}, indent=2), flush=True)
+    print(
+        json.dumps(
+            {
+                "product": product["key"],
+                "source": "cds",
+                "request": request,
+            },
+            indent=2,
+        ),
+        flush=True,
+    )
 
     if dry_run:
         return None
@@ -121,6 +151,7 @@ def download_era5_subset(product: dict, source_day: date, dry_run: bool) -> Path
 def download_copernicus_subset(product: dict, source_day: date, dry_run: bool) -> Path | None:
     start = f"{source_day.isoformat()}T00:00:00"
     end = f"{source_day.isoformat()}T23:59:59"
+
     min_lon, min_lat, max_lon, max_lat = product["bbox"]
     output_file = DOWNLOAD_DIR / f"{source_day.isoformat()}_{product['key']}.nc"
 
@@ -142,7 +173,16 @@ def download_copernicus_subset(product: dict, source_day: date, dry_run: bool) -
         request["minimum_depth"] = 0
         request["maximum_depth"] = 2
 
-    print(json.dumps({"product": product["key"], "request": request}, indent=2), flush=True)
+    print(
+        json.dumps(
+            {
+                "product": product["key"],
+                "request": request,
+            },
+            indent=2,
+        ),
+        flush=True,
+    )
 
     if dry_run:
         return None
@@ -190,6 +230,7 @@ def choose_variable(dataset: Any, preferred: list[str]) -> str:
             return available[name.lower()]
 
     data_vars = list(dataset.data_vars)
+
     if not data_vars:
         raise ValueError("No plottable variables found in downloaded dataset.")
 
@@ -268,12 +309,14 @@ def contour_levels(values: Any, n: int = 8, symmetric: bool = False) -> list[flo
 
 def get_cmocean_cmap(name: str):
     import cmocean
+
     return getattr(cmocean.cm, name)
 
 
 def lon_lat_from_da(da: Any) -> tuple[Any, Any, str, str]:
     lon_name = coordinate_name(da, ("longitude", "lon"))
     lat_name = coordinate_name(da, ("latitude", "lat"))
+
     return da[lon_name], da[lat_name], lon_name, lat_name
 
 
@@ -358,6 +401,7 @@ def windstress_components(u10: Any, v10: Any) -> tuple[Any, Any, Any]:
     import numpy as np
 
     speed = np.hypot(u10, v10)
+
     cd = (0.75 + 0.067 * speed) * 1e-3
     cd = np.clip(cd, 0.8e-3, 2.5e-3)
 
@@ -407,7 +451,15 @@ def add_route_and_moorings(ax: Any) -> None:
     ax.plot(route_lon, route_lat, color="white", lw=5.0, linestyle="--", alpha=0.65, zorder=4)
     ax.plot(route_lon, route_lat, color="#d95f35", lw=2.2, linestyle="--", alpha=0.95, zorder=5)
 
-    ax.scatter(route_lon, route_lat, s=64, color="white", edgecolor="#17212b", linewidth=1.1, zorder=6)
+    ax.scatter(
+        route_lon,
+        route_lat,
+        s=64,
+        color="white",
+        edgecolor="#17212b",
+        linewidth=1.1,
+        zorder=6,
+    )
 
     for lon, lat, label in zip(route_lon, route_lat, route_labels):
         ax.text(
@@ -418,7 +470,12 @@ def add_route_and_moorings(ax: Any) -> None:
             fontweight="bold",
             color="#17212b",
             zorder=7,
-            bbox=dict(facecolor="white", edgecolor="none", alpha=0.76, boxstyle="round,pad=0.20"),
+            bbox=dict(
+                facecolor="white",
+                edgecolor="none",
+                alpha=0.76,
+                boxstyle="round,pad=0.20",
+            ),
         )
 
     for mooring in load_moorings():
@@ -444,7 +501,12 @@ def add_route_and_moorings(ax: Any) -> None:
             fontweight="bold",
             color="#111827",
             zorder=9,
-            bbox=dict(facecolor="white", edgecolor="none", alpha=0.88, boxstyle="round,pad=0.25"),
+            bbox=dict(
+                facecolor="white",
+                edgecolor="none",
+                alpha=0.88,
+                boxstyle="round,pad=0.25",
+            ),
         )
 
 
@@ -461,23 +523,33 @@ def add_metadata(ax: Any, product: dict, source_day: date) -> None:
         va="bottom",
         fontsize=7,
         color="#17212b",
-        bbox=dict(facecolor="white", alpha=0.65, edgecolor="none", boxstyle="round,pad=0.25"),
+        bbox=dict(
+            facecolor="white",
+            alpha=0.65,
+            edgecolor="none",
+            boxstyle="round,pad=0.25",
+        ),
         zorder=20,
     )
 
 
 def snapshot_title(product: dict, target_day: date, source_day: date) -> str:
     title = f"M219 WAVES | {product['label']} | shown for {target_day.isoformat()}"
+
     if source_day != target_day:
         title = f"{title} using {source_day.isoformat()} data"
+
     return title
 
 
-def save_figure(fig: Any, target_day: date, product: dict) -> None:
+def save_figure(fig: Any, target_day: date, product: dict, suffix: str = "") -> None:
     SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
-    output = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}.png"
+
+    output = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}{suffix}.png"
+
     fig.tight_layout()
     fig.savefig(output, bbox_inches="tight", dpi=120)
+
     print(f"Saved snapshot: {output}", flush=True)
 
 
@@ -505,39 +577,100 @@ def plot_scalar_map(
         vmax = float(np.nanpercentile(arr, 98)) if arr.size else 5.0
         vmax = max(vmax, vmin * 1.5)
 
-        mesh = ax.pcolormesh(lon, lat, values, shading="auto", cmap=cmap, norm=LogNorm(vmin=vmin, vmax=vmax))
+        mesh = ax.pcolormesh(
+            lon,
+            lat,
+            values,
+            shading="auto",
+            cmap=cmap,
+            norm=LogNorm(vmin=vmin, vmax=vmax),
+        )
+
         levels = np.geomspace(vmin, vmax, 7)
 
     elif signed:
         vmin, vmax = symmetric_limits(values, 98)
         norm = TwoSlopeNorm(vmin=vmin, vcenter=0.0, vmax=vmax)
-        mesh = ax.pcolormesh(lon, lat, values, shading="auto", cmap=cmap, norm=norm)
-        levels = physical_levels if physical_levels is not None else contour_levels(values, n=9, symmetric=True)
+
+        mesh = ax.pcolormesh(
+            lon,
+            lat,
+            values,
+            shading="auto",
+            cmap=cmap,
+            norm=norm,
+        )
+
+        levels = physical_levels if physical_levels is not None else contour_levels(
+            values,
+            n=9,
+            symmetric=True,
+        )
 
     else:
         vmin, vmax = robust_limits(values, 2, 98)
-        mesh = ax.pcolormesh(lon, lat, values, shading="auto", cmap=cmap, vmin=vmin, vmax=vmax)
-        levels = physical_levels if physical_levels is not None else contour_levels(values, n=8, symmetric=False)
+
+        mesh = ax.pcolormesh(
+            lon,
+            lat,
+            values,
+            shading="auto",
+            cmap=cmap,
+            vmin=vmin,
+            vmax=vmax,
+        )
+
+        levels = physical_levels if physical_levels is not None else contour_levels(
+            values,
+            n=8,
+            symmetric=False,
+        )
 
     fig.colorbar(mesh, ax=ax, pad=0.012, shrink=0.86, label=label)
 
     if contours and len(levels) >= 3:
         try:
-            ax.contour(lon, lat, values, levels=levels, colors="#17212b", linewidths=0.45, alpha=0.45)
+            ax.contour(
+                lon,
+                lat,
+                values,
+                levels=levels,
+                colors="#17212b",
+                linewidths=0.45,
+                alpha=0.45,
+            )
         except Exception:
             pass
 
 
-def format_axes(ax: Any, product: dict, target_day: date, source_day: date) -> None:
+def format_axes(
+    ax: Any,
+    product: dict,
+    target_day: date,
+    source_day: date,
+    extent: dict | None = None,
+) -> None:
+    if extent is not None:
+        ax.set_xlim(*extent["xlim"])
+        ax.set_ylim(*extent["ylim"])
+
     ax.set_title(snapshot_title(product, target_day, source_day), loc="left", weight="bold")
     ax.set_xlabel("Longitude")
     ax.set_ylabel("Latitude")
     ax.grid(color="white", alpha=0.28)
+
     add_route_and_moorings(ax)
     add_metadata(ax, product, source_day)
 
 
-def plot_wind_snapshot(product: dict, dataset: Any, target_day: date, source_day: date) -> None:
+def plot_wind_snapshot(
+    product: dict,
+    dataset: Any,
+    target_day: date,
+    source_day: date,
+    suffix: str = "",
+    extent: dict | None = None,
+) -> None:
     import matplotlib.pyplot as plt
     import numpy as np
 
@@ -574,12 +707,20 @@ def plot_wind_snapshot(product: dict, dataset: Any, target_day: date, source_day
         scale=450,
     )
 
-    format_axes(ax, product, target_day, source_day)
-    save_figure(fig, target_day, product)
+    format_axes(ax, product, target_day, source_day, extent=extent)
+    save_figure(fig, target_day, product, suffix=suffix)
+
     plt.close(fig)
 
 
-def plot_derived_snapshot(product: dict, nc_path: Path, target_day: date, source_day: date) -> None:
+def plot_derived_snapshot(
+    product: dict,
+    nc_path: Path,
+    target_day: date,
+    source_day: date,
+    suffix: str = "",
+    extent: dict | None = None,
+) -> None:
     import matplotlib.pyplot as plt
     import numpy as np
     import xarray as xr
@@ -637,10 +778,19 @@ def plot_derived_snapshot(product: dict, nc_path: Path, target_day: date, source
                 contours=True,
             )
 
-            ax.contour(lon, lat, plot_values, levels=[0], colors="black", linewidths=0.9, alpha=0.65)
+            ax.contour(
+                lon,
+                lat,
+                plot_values,
+                levels=[0],
+                colors="black",
+                linewidths=0.9,
+                alpha=0.65,
+            )
 
-        format_axes(ax, product, target_day, source_day)
-        save_figure(fig, target_day, product)
+        format_axes(ax, product, target_day, source_day, extent=extent)
+        save_figure(fig, target_day, product, suffix=suffix)
+
         plt.close(fig)
 
 
@@ -650,6 +800,8 @@ def plot_snapshot(
     target_day: date,
     source_day: date,
     salinity_path: Path | None = None,
+    suffix: str = "",
+    extent: dict | None = None,
 ) -> None:
     import matplotlib.pyplot as plt
     import numpy as np
@@ -657,7 +809,14 @@ def plot_snapshot(
 
     with xr.open_dataset(nc_path) as ds:
         if product.get("source") == "cds_era5":
-            plot_wind_snapshot(product, ds, target_day, source_day)
+            plot_wind_snapshot(
+                product,
+                ds,
+                target_day,
+                source_day,
+                suffix=suffix,
+                extent=extent,
+            )
             return
 
         fig, ax = plt.subplots(figsize=(14, 9), dpi=120)
@@ -665,9 +824,12 @@ def plot_snapshot(
         if product["key"] == "MODEL_CURRENT":
             u_name = choose_variable(ds, ["uo"])
             v_name = choose_variable(ds, ["vo"])
+
             u = as_2d(ds, u_name)
             v = as_2d(ds, v_name)
+
             speed = np.hypot(u, v)
+
             lon, lat, _, _ = lon_lat_from_da(u)
             lon2d, lat2d = lat_lon_grids(lon, lat)
 
@@ -699,6 +861,7 @@ def plot_snapshot(
             sp_name = choose_variable(ds, ["so"])
             sp = as_2d(ds, sp_name)
             sa = teos10_absolute_salinity(sp)
+
             lon, lat, _, _ = lon_lat_from_da(sa)
 
             plot_scalar_map(
@@ -717,7 +880,9 @@ def plot_snapshot(
             thetao = as_2d(ds, theta_name)
 
             if salinity_path is None:
-                raise RuntimeError("MODEL_TEMP requires MODEL_SAL file for TEOS-10 Conservative Temperature.")
+                raise RuntimeError(
+                    "MODEL_TEMP requires MODEL_SAL file for TEOS-10 Conservative Temperature."
+                )
 
             with xr.open_dataset(salinity_path) as sal_ds:
                 sp_name = choose_variable(sal_ds, ["so"])
@@ -740,6 +905,7 @@ def plot_snapshot(
         elif product["key"] == "SAT_SLA":
             var_name = choose_variable(ds, ["sla", "adt"])
             da = as_2d(ds, var_name)
+
             lon, lat, _, _ = lon_lat_from_da(da)
 
             plot_scalar_map(
@@ -758,6 +924,7 @@ def plot_snapshot(
         elif product["key"] == "SAT_CHL":
             var_name = choose_variable(ds, ["CHL", "chl"])
             da = as_2d(ds, var_name)
+
             lon, lat, _, _ = lon_lat_from_da(da)
 
             plot_scalar_map(
@@ -776,6 +943,7 @@ def plot_snapshot(
             sp_name = choose_variable(ds, ["sos", "sss"])
             sp = as_2d(ds, sp_name)
             sa = teos10_absolute_salinity(sp)
+
             lon, lat, _, _ = lon_lat_from_da(sa)
 
             plot_scalar_map(
@@ -792,6 +960,7 @@ def plot_snapshot(
         elif product["key"] == "WAVES":
             var_name = choose_variable(ds, ["VHM0", "vhm0"])
             da = as_2d(ds, var_name)
+
             lon, lat, _, _ = lon_lat_from_da(da)
 
             plot_scalar_map(
@@ -808,6 +977,7 @@ def plot_snapshot(
         else:
             var_name = choose_variable(ds, product["variables"])
             da = as_2d(ds, var_name)
+
             lon, lat, _, _ = lon_lat_from_da(da)
 
             plot_scalar_map(
@@ -821,8 +991,9 @@ def plot_snapshot(
                 contours=True,
             )
 
-        format_axes(ax, product, target_day, source_day)
-        save_figure(fig, target_day, product)
+        format_axes(ax, product, target_day, source_day, extent=extent)
+        save_figure(fig, target_day, product, suffix=suffix)
+
         plt.close(fig)
 
 
@@ -857,23 +1028,37 @@ def process_product(
     dry_run: bool,
     raw_cache: dict[tuple[str, str], Path],
 ) -> Path | None:
-    snapshot_file = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}.png"
 
-    if snapshot_file.exists() and snapshot_file.stat().st_size > 0:
-        print(f"Using cached snapshot: {snapshot_file}", flush=True)
-        return snapshot_file
+    full_snapshot = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}.png"
+    regional_snapshot = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}_REGIONAL.png"
+
+    needs_regional = product["key"] in REGIONAL_PRODUCTS
+
+    if full_snapshot.exists() and full_snapshot.stat().st_size > 0:
+        if not needs_regional or (
+            regional_snapshot.exists() and regional_snapshot.stat().st_size > 0
+        ):
+            print(f"Using cached snapshot: {full_snapshot}", flush=True)
+            return full_snapshot
 
     if product.get("source") == "derived":
+
         if dry_run:
             return None
 
         source_key = product["derives_from"]
         cache_key = (source_day.isoformat(), source_key)
+
         source_path = raw_cache.get(cache_key)
 
         if source_path is None:
             expected_path = DOWNLOAD_DIR / f"{source_day.isoformat()}_{source_key}.nc"
-            source_path = expected_path if expected_path.exists() and expected_path.stat().st_size > 0 else None
+
+            source_path = (
+                expected_path
+                if expected_path.exists() and expected_path.stat().st_size > 0
+                else None
+            )
 
         if source_path is None:
             source_product = product_by_key(products, source_key)
@@ -885,7 +1070,26 @@ def process_product(
         if source_path is None:
             return None
 
-        plot_derived_snapshot(product, source_path, target_day, source_day)
+        if not full_snapshot.exists() or full_snapshot.stat().st_size == 0:
+            plot_derived_snapshot(
+                product,
+                source_path,
+                target_day,
+                source_day,
+            )
+
+        if needs_regional and (
+            not regional_snapshot.exists() or regional_snapshot.stat().st_size == 0
+        ):
+            plot_derived_snapshot(
+                product,
+                source_path,
+                target_day,
+                source_day,
+                suffix="_REGIONAL",
+                extent=REGIONAL_EXTENT,
+            )
+
         return source_path
 
     nc_path = download_subset(product, source_day, dry_run)
@@ -902,7 +1106,27 @@ def process_product(
             if salinity_path is not None:
                 raw_cache[(source_day.isoformat(), "MODEL_SAL")] = salinity_path
 
-        plot_snapshot(product, nc_path, target_day, source_day, salinity_path=salinity_path)
+        if not full_snapshot.exists() or full_snapshot.stat().st_size == 0:
+            plot_snapshot(
+                product,
+                nc_path,
+                target_day,
+                source_day,
+                salinity_path=salinity_path,
+            )
+
+        if needs_regional and (
+            not regional_snapshot.exists() or regional_snapshot.stat().st_size == 0
+        ):
+            plot_snapshot(
+                product,
+                nc_path,
+                target_day,
+                source_day,
+                salinity_path=salinity_path,
+                suffix="_REGIONAL",
+                extent=REGIONAL_EXTENT,
+            )
 
     return nc_path
 
@@ -928,7 +1152,14 @@ def main() -> None:
             try:
                 for source_day in candidate_days(product, day):
                     try:
-                        nc_path = process_product(product, products, day, source_day, args.dry_run, raw_cache)
+                        nc_path = process_product(
+                            product,
+                            products,
+                            day,
+                            source_day,
+                            args.dry_run,
+                            raw_cache,
+                        )
 
                         if nc_path is not None:
                             made_snapshots += 1
@@ -967,6 +1198,7 @@ def main() -> None:
 
     if failures:
         print("Completed with product failures:", file=sys.stderr, flush=True)
+
         for failure in failures:
             print(f"- {failure}", file=sys.stderr, flush=True)
 
