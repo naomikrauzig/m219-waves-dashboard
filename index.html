@@ -3,173 +3,327 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>M219 WAVES Cruise Dashboard</title>
+
     <meta
       name="description"
       content="Near-real-time Copernicus Marine and ERA5 quick-look maps for the RV Meteor M219 WAVES cruise."
     />
+
     <link rel="stylesheet" href="assets/styles.css" />
   </head>
 
   <body>
+
     <header class="site-header">
       <div>
         <p class="eyebrow">RV Meteor M219 WAVES</p>
+
         <h1>M219 WAVES Cruise Dashboard</h1>
+
         <p class="lede">
-          Rolling Copernicus Marine and ERA5 quick-look maps along the planned M219 WAVES cruise
-          corridor, including forecasts, latest available satellite products, atmospheric forcing,
-          and derived diagnostics.
+          Rolling Copernicus Marine and ERA5 quick-look maps along the planned
+          M219 WAVES cruise corridor, including forecasts, latest available
+          satellite products, atmospheric forcing, and derived diagnostics.
         </p>
-        <p class="photo-credit">Photo: Mario Mueller / GEOMAR</p>
+
+        <p class="photo-credit">
+          Photo: Mario Mueller / GEOMAR
+        </p>
       </div>
 
       <aside class="status-panel" aria-label="Cruise status">
         <span>Planned cruise</span>
+
         <strong>30 May - 28 Jun 2026</strong>
-        <small id="last-updated">Forecast window updated: pending first data run</small>
+
+        <small id="last-updated">
+          Forecast window updated: pending first data run
+        </small>
       </aside>
     </header>
 
     <main>
+
+      <!-- ===================================================== -->
+      <!-- DASHBOARD -->
+      <!-- ===================================================== -->
+
       <section class="dashboard" aria-label="Data dashboard">
+
         <div class="multi-panel-grid">
+
+          <!-- PANEL 1 -->
+
           <section class="map-panel" data-panel="0">
+
             <div class="panel-toolbar">
               <label>Dataset</label>
               <select class="panel-dataset-select"></select>
+
               <label>Date</label>
               <select class="panel-date-select"></select>
             </div>
+
             <figure class="snapshot panel-snapshot">
+
               <div class="map-controls">
                 <button type="button" data-panel-zoom="out">-</button>
                 <button type="button" data-panel-zoom="in">+</button>
                 <button type="button" data-panel-zoom="reset">Reset</button>
               </div>
+
               <div class="zoom-stage">
-                <img class="panel-image" alt="Selected data snapshot panel 1" />
+                <img
+                  class="panel-image"
+                  alt="Selected data snapshot panel 1"
+                />
               </div>
+
               <figcaption class="panel-caption"></figcaption>
+
             </figure>
           </section>
+
+          <!-- PANEL 2 -->
 
           <section class="map-panel" data-panel="1">
+
             <div class="panel-toolbar">
               <label>Dataset</label>
               <select class="panel-dataset-select"></select>
+
               <label>Date</label>
               <select class="panel-date-select"></select>
             </div>
+
             <figure class="snapshot panel-snapshot">
+
               <div class="map-controls">
                 <button type="button" data-panel-zoom="out">-</button>
                 <button type="button" data-panel-zoom="in">+</button>
                 <button type="button" data-panel-zoom="reset">Reset</button>
               </div>
+
               <div class="zoom-stage">
-                <img class="panel-image" alt="Selected data snapshot panel 2" />
+                <img
+                  class="panel-image"
+                  alt="Selected data snapshot panel 2"
+                />
               </div>
+
               <figcaption class="panel-caption"></figcaption>
+
             </figure>
           </section>
+
+          <!-- PANEL 3 -->
 
           <section class="map-panel" data-panel="2">
+
             <div class="panel-toolbar">
               <label>Dataset</label>
               <select class="panel-dataset-select"></select>
+
               <label>Date</label>
               <select class="panel-date-select"></select>
             </div>
+
             <figure class="snapshot panel-snapshot">
+
               <div class="map-controls">
                 <button type="button" data-panel-zoom="out">-</button>
                 <button type="button" data-panel-zoom="in">+</button>
                 <button type="button" data-panel-zoom="reset">Reset</button>
               </div>
+
               <div class="zoom-stage">
-                <img class="panel-image" alt="Selected data snapshot panel 3" />
+                <img
+                  class="panel-image"
+                  alt="Selected data snapshot panel 3"
+                />
               </div>
+
               <figcaption class="panel-caption"></figcaption>
+
             </figure>
           </section>
+
+          <!-- PANEL 4 -->
 
           <section class="map-panel" data-panel="3">
+
             <div class="panel-toolbar">
               <label>Dataset</label>
               <select class="panel-dataset-select"></select>
+
               <label>Date</label>
               <select class="panel-date-select"></select>
             </div>
+
             <figure class="snapshot panel-snapshot">
+
               <div class="map-controls">
                 <button type="button" data-panel-zoom="out">-</button>
                 <button type="button" data-panel-zoom="in">+</button>
                 <button type="button" data-panel-zoom="reset">Reset</button>
               </div>
+
               <div class="zoom-stage">
-                <img class="panel-image" alt="Selected data snapshot panel 4" />
+                <img
+                  class="panel-image"
+                  alt="Selected data snapshot panel 4"
+                />
               </div>
+
               <figcaption class="panel-caption"></figcaption>
+
             </figure>
           </section>
+
         </div>
 
+        <!-- ===================================================== -->
+        <!-- INSITU -->
+        <!-- ===================================================== -->
+
         <section class="bottom-observation-panel">
+
           <div class="section-heading">
             <h2>In-situ Observations</h2>
+
             <p>
-              Planned panel for Argo float profiles, Argo velocity estimates, NOAA GDP drifter
-              positions, moorings, and ship position in the cruise area.
+              Planned panel for Argo float profiles, Argo velocity estimates,
+              NOAA GDP drifter positions, moorings, and ship position in the
+              cruise area.
             </p>
           </div>
+
           <div id="insitu-map">
             <p>
-              Planned route: Recife → K1-K4 moorings → CVOO Equator → Mindelo/Cape Verde → Emden.
+              Planned route:
+              Recife → K1-K4 moorings → CVOO Equator →
+              Mindelo/Cape Verde → Emden.
+            </p>
+
+            <p>
               Argo and drifter overlay pending implementation.
             </p>
           </div>
+
         </section>
+
       </section>
 
+      <!-- ===================================================== -->
+      <!-- PRODUCT AVAILABILITY -->
+      <!-- ===================================================== -->
+
       <section class="availability-section">
+
         <div class="section-heading">
           <h2>Product Availability</h2>
+
           <p>
-            Rows are selectable layers; columns show the rolling map window and latest available
-            source dates where relevant.
+            Rows are selectable layers; columns show the rolling map window
+            and latest available source dates where relevant.
           </p>
         </div>
+
         <div class="table-wrap">
           <table id="availability-table"></table>
         </div>
+
       </section>
 
+      <!-- ===================================================== -->
+      <!-- DATASETS -->
+      <!-- ===================================================== -->
+
       <section class="products-section">
+
         <div class="section-heading">
           <h2>Datasets Used</h2>
+
           <p>
-            Dataset IDs are configured for the Copernicus Marine Toolbox and CDS API and can be
-            updated in <code>data/products.json</code>.
+            Dataset IDs are configured for the Copernicus Marine Toolbox and
+            CDS API and can be updated in
+            <code>data/products.json</code>.
           </p>
         </div>
+
         <div class="table-wrap">
           <table id="products-table"></table>
         </div>
+
       </section>
+
+      <!-- ===================================================== -->
+      <!-- GEOMAR BRANDING -->
+      <!-- ===================================================== -->
+
+      <section class="brand-section" aria-label="GEOMAR branding">
+
+        <img
+          src="assets/images/geomar-brand.jpg"
+          alt="GEOMAR ocean background"
+        />
+
+        <div class="brand-credit">
+
+          <a
+            href="https://www.geomar.de"
+            aria-label="GEOMAR website"
+          >
+            <img
+              src="assets/images/geomar-logo-eng-neg.png"
+              alt="GEOMAR Helmholtz Centre for Ocean Research Kiel"
+            />
+          </a>
+
+          <p>
+            Dashboard for the
+            <a href="https://www.geomar.de/en/fb1/physical-oceanography">
+              GEOMAR Physical Oceanography
+            </a>
+            cruise context.
+          </p>
+
+        </div>
+
+      </section>
+
     </main>
 
+    <!-- ===================================================== -->
+    <!-- FOOTER -->
+    <!-- ===================================================== -->
+
     <footer>
-      <span>Contact: <a href="mailto:nkrauzig@geomar.de">nkrauzig@geomar.de</a></span>
+
+      <span>
+        Contact:
+        <a href="mailto:nkrauzig@geomar.de">
+          nkrauzig@geomar.de
+        </a>
+      </span>
+
       <span>
         <a href="https://www.geomar.de">GEOMAR</a>
         &middot;
-        <a href="https://www.geomar.de/en/fb1/physical-oceanography">Physical Oceanography</a>
+        <a href="https://www.geomar.de/en/fb1/physical-oceanography">
+          Physical Oceanography
+        </a>
         &middot;
-        <a href="https://data.marine.copernicus.eu/products">Copernicus Marine Data Store</a>
+        <a href="https://data.marine.copernicus.eu/products">
+          Copernicus Marine Data Store
+        </a>
       </span>
+
     </footer>
 
     <script src="assets/app.js"></script>
+
   </body>
 </html>
