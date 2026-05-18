@@ -285,31 +285,18 @@ main {
 .zoom-stage {
   position: relative;
   width: 100%;
-  aspect-ratio: 1.55;
+  aspect-ratio: 1.42;
   overflow: hidden;
   background: #dbe6ef;
   cursor: default;
   touch-action: none;
 }
 
-.zoom-stage.is-zoomed {
-  cursor: grab;
-}
-
-.zoom-stage.dragging {
-  cursor: grabbing;
-}
-
 .panel-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   transform-origin: center center;
-
-  transition: transform 0.08s linear;
-
-  user-select: none;
-  -webkit-user-drag: none;
 }
 
 /* =========================================================
