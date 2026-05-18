@@ -1,12 +1,3 @@
-Paste this as the full replacement for:
-
-```text
-assets/styles.css
-```
-
-It keeps your current styling, but changes the layout to **3 columns for the large-scale panels** and **2 columns for the regional panels**, with responsive fallbacks. Your current file still uses `auto-fit`, which is why the grid is not controlled as 3×3/2×1. 
-
-```css
 /* =========================================================
    GLOBAL
 ========================================================= */
