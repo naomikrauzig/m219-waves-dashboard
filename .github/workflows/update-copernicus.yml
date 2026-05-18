@@ -1,7 +1,6 @@
-```yaml
 name: Update Copernicus snapshots
 
-on:
+"on":
   workflow_dispatch:
     inputs:
       date:
@@ -24,7 +23,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
   PYTHONUNBUFFERED: "1"
 
 jobs:
@@ -33,9 +32,11 @@ jobs:
     timeout-minutes: 90
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
@@ -54,10 +55,14 @@ jobs:
           CDSAPI_KEY: ${{ secrets.CDSAPI_KEY }}
         run: |
           DATE_ARG=""
-          if [ -n "${{ inputs.date }}" ]; then DATE_ARG="--date ${{ inputs.date }}"; fi
+          if [ -n "${{ inputs.date }}" ]; then
+            DATE_ARG="--date ${{ inputs.date }}"
+          fi
 
           DAYS_AHEAD="${{ inputs.days_ahead }}"
-          if [ -z "$DAYS_AHEAD" ]; then DAYS_AHEAD="5"; fi
+          if [ -z "$DAYS_AHEAD" ]; then
+            DAYS_AHEAD="5"
+          fi
 
           python scripts/fetch_copernicus.py $DATE_ARG --days-ahead "$DAYS_AHEAD" --allow-partial
 
@@ -69,4 +74,3 @@ jobs:
             assets/snapshots/*.png
             data/raw/*.nc
             data/manifest.json
-```
