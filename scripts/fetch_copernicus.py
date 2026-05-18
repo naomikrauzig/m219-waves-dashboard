@@ -443,7 +443,8 @@ def ekman_fields(lon: Any, lat: Any, u10: Any, v10: Any) -> tuple[Any, Any, Any,
     w_e = -(due_dx + dve_dy)
 
     return ue, ve, w_e, taux, tauy
-    
+
+
 def rolling_mean_2d(values: Any, size: int = 3) -> Any:
     import numpy as np
     from scipy.ndimage import uniform_filter
@@ -461,6 +462,7 @@ def rolling_mean_2d(values: Any, size: int = 3) -> Any:
     result[weights == 0] = np.nan
 
     return result
+
 
 def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
     xlim = extent["xlim"] if extent else None
@@ -490,6 +492,7 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             edgecolor="#17212b",
             linewidth=1.4,
             zorder=8,
+            transform=ccrs.PlateCarree(),
         )
 
         ax.text(
@@ -500,6 +503,7 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             fontweight="bold",
             color="#17212b",
             zorder=9,
+            transform=ccrs.PlateCarree(),
             bbox=dict(
                 facecolor="white",
                 edgecolor="none",
@@ -529,6 +533,7 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             edgecolor="white",
             linewidth=2.0,
             zorder=10,
+            transform=ccrs.PlateCarree(),
         )
 
         ax.text(
@@ -539,6 +544,7 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             fontweight="bold",
             color="#111827",
             zorder=11,
+            transform=ccrs.PlateCarree(),
             bbox=dict(
                 facecolor="white",
                 edgecolor="none",
@@ -592,6 +598,7 @@ def snapshot_title(product: dict, target_day: date, source_day: date) -> str:
 
     return title
 
+
 def save_figure(fig: Any, target_day: date, product: dict, suffix: str = "") -> None:
     SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -634,6 +641,7 @@ def plot_scalar_map(
             shading="auto",
             cmap=cmap,
             norm=LogNorm(vmin=vmin, vmax=vmax),
+            transform=ccrs.PlateCarree(),
         )
 
         levels = np.geomspace(vmin, vmax, 7)
@@ -649,6 +657,7 @@ def plot_scalar_map(
             shading="auto",
             cmap=cmap,
             norm=norm,
+            transform=ccrs.PlateCarree(),
         )
 
         levels = physical_levels if physical_levels is not None else contour_levels(
@@ -668,6 +677,7 @@ def plot_scalar_map(
             cmap=cmap,
             vmin=vmin,
             vmax=vmax,
+            transform=ccrs.PlateCarree(),
         )
 
         levels = physical_levels if physical_levels is not None else contour_levels(
@@ -688,6 +698,7 @@ def plot_scalar_map(
                 colors="#17212b",
                 linewidths=0.45,
                 alpha=0.45,
+                transform=ccrs.PlateCarree(),
             )
         except Exception:
             pass
@@ -782,7 +793,8 @@ def plot_wind_snapshot(
     save_figure(fig, target_day, product, suffix=suffix)
 
     plt.close(fig)
-    
+
+
 def plot_derived_snapshot(
     product: dict,
     nc_path: Path,
@@ -848,6 +860,7 @@ def plot_derived_snapshot(
                 color="#17212b",
                 alpha=0.75,
                 scale=8,
+                transform=ccrs.PlateCarree(),
             )
 
         else:
@@ -873,6 +886,7 @@ def plot_derived_snapshot(
                 colors="black",
                 linewidths=0.9,
                 alpha=0.75,
+                transform=ccrs.PlateCarree(),
             )
 
         format_axes(ax, product, target_day, source_day, extent=extent)
