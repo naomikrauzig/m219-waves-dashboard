@@ -1,14 +1,14 @@
 const MANIFEST_URL = "data/manifest.json";
 const PRODUCTS_URL = "data/products.json";
 
-const PANEL_DEFAconst PANEL_DEFAULTS = [
+const PANEL_DEFAULTS = [
   "WAVES",
   "MODEL_CURRENT",
   "SAT_SLA",
   "ERA5_WIND",
   "MODEL_CURRENT",
   "SAT_CHL"
-];ULTS = ["WAVES", "MODEL_CURRENT", "SAT_SLA", "ERA5_WIND"];
+];
 
 let manifest = null;
 let products = [];
@@ -73,7 +73,9 @@ function initialisePanelStates() {
       enabledProducts[0]?.key;
 
     const date =
-      [...dates].reverse().find((d) => isAvailable(d, productKey)) || latestDate;
+      [...dates].reverse().find((d) => isAvailable(d, productKey)) ||
+      latestDate ||
+      "";
 
     return {
       panel,
@@ -87,8 +89,8 @@ function initialisePanelStates() {
         startX: 0,
         startY: 0,
         originX: 0,
-        originY: 0,
-      },
+        originY: 0
+      }
     };
   });
 }
@@ -127,7 +129,8 @@ function populatePanelSelectors() {
       const bestDate =
         [...dates].reverse().find((d) => isAvailable(d, state.productKey)) ||
         state.date ||
-        dates[dates.length - 1];
+        dates[dates.length - 1] ||
+        "";
 
       state.date = bestDate;
       dateSelect.value = bestDate;
@@ -147,7 +150,7 @@ function updatePanel(state) {
   const caption = state.panel.querySelector(".panel-caption");
   const status = statusFor(state.date, state.productKey);
   const product = productByKey(state.productKey);
-  const label = product?.label || state.productKey;
+  const label = product?.label || state.productKey || "Dataset";
 
   resetPanelZoom(state);
 
@@ -161,7 +164,7 @@ function updatePanel(state) {
   } else {
     image.removeAttribute("src");
     image.alt = "No snapshot available";
-    caption.textContent = `${label} | no snapshot available for ${state.date}`;
+    caption.textContent = `${label} | no snapshot available for ${state.date || "selected date"}`;
   }
 }
 
@@ -257,6 +260,8 @@ function setupPanelZoom() {
 }
 
 function renderAvailabilityTable() {
+  if (!availabilityTable) return;
+
   const dates = sortedDates();
 
   let html = "<thead><tr><th>Product</th>";
@@ -319,6 +324,8 @@ function renderAvailabilityTable() {
 }
 
 function renderProductsTable() {
+  if (!productsTable) return;
+
   let html = `
     <thead>
       <tr>
@@ -367,7 +374,10 @@ function escapeHtml(text) {
 
 async function init() {
   try {
-    [manifest, products] = await Promise.all([loadJson(MANIFEST_URL), loadJson(PRODUCTS_URL)]);
+    [manifest, products] = await Promise.all([
+      loadJson(MANIFEST_URL),
+      loadJson(PRODUCTS_URL)
+    ]);
 
     setLastUpdated();
     initialisePanelStates();
@@ -378,6 +388,7 @@ async function init() {
     renderProductsTable();
   } catch (error) {
     console.error(error);
+
     document.querySelectorAll(".panel-caption").forEach((caption) => {
       caption.textContent = `Dashboard data could not be loaded: ${error.message}`;
     });
