@@ -51,6 +51,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--days-ahead", type=int, default=5)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--allow-partial", action="store_true")
+    parser.add_argument("--force-plots", action="store_true")
     return parser.parse_args()
 
 
@@ -579,6 +580,12 @@ def add_metadata(ax: Any, product: dict, source_day: date) -> None:
 
 
 def snapshot_title(product: dict, target_day: date, source_day: date) -> str:
+    title = f"{product['label']} | {target_day.isoformat()}"
+
+    if source_day != target_day:
+        title = f"{title} (source {source_day.isoformat()})"
+
+    return title
 
     if product["key"] == "EKMAN_PUMPING":
         title = (
@@ -716,10 +723,26 @@ def format_axes(
         ax.set_xlim(*extent["xlim"])
         ax.set_ylim(*extent["ylim"])
 
-    ax.set_title(snapshot_title(product, target_day, source_day), loc="left", weight="bold")
-    ax.set_xlabel("Longitude")
-    ax.set_ylabel("Latitude")
-    ax.grid(color="white", alpha=0.28)
+    ax.set_title(
+        snapshot_title(product, target_day, source_day),
+        loc="left",
+        weight="bold",
+        fontsize=12,
+        pad=6,
+    )
+
+    gridlines = ax.gridlines(
+        crs=ccrs.PlateCarree(),
+        draw_labels=True,
+        linewidth=0.55,
+        color="white",
+        alpha=0.55,
+        linestyle="-",
+    )
+    gridlines.top_labels = False
+    gridlines.right_labels = False
+    gridlines.xlabel_style = {"size": 8, "color": "#17212b"}
+    gridlines.ylabel_style = {"size": 8, "color": "#17212b"}
 
     add_route_and_moorings(ax, extent=extent)
     add_metadata(ax, product, source_day)
@@ -1151,6 +1174,7 @@ def process_product(
     source_day: date,
     dry_run: bool,
     raw_cache: dict[tuple[str, str], Path],
+    force_plots: bool = False,
 ) -> Path | None:
 
     full_snapshot = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}.png"
@@ -1158,7 +1182,7 @@ def process_product(
 
     needs_regional = product["key"] in REGIONAL_PRODUCTS
 
-    if full_snapshot.exists() and full_snapshot.stat().st_size > 0:
+    if not force_plots and full_snapshot.exists() and full_snapshot.stat().st_size > 0:
         if not needs_regional or (
             regional_snapshot.exists() and regional_snapshot.stat().st_size > 0
         ):
@@ -1194,7 +1218,7 @@ def process_product(
         if source_path is None:
             return None
 
-        if not full_snapshot.exists() or full_snapshot.stat().st_size == 0:
+        if force_plots or not full_snapshot.exists() or full_snapshot.stat().st_size == 0:
             plot_derived_snapshot(
                 product,
                 source_path,
@@ -1203,6 +1227,7 @@ def process_product(
             )
 
         if needs_regional and (
+            force_plots or
             not regional_snapshot.exists() or regional_snapshot.stat().st_size == 0
         ):
             plot_derived_snapshot(
@@ -1230,7 +1255,7 @@ def process_product(
             if salinity_path is not None:
                 raw_cache[(source_day.isoformat(), "MODEL_SAL")] = salinity_path
 
-        if not full_snapshot.exists() or full_snapshot.stat().st_size == 0:
+        if force_plots or not full_snapshot.exists() or full_snapshot.stat().st_size == 0:
             plot_snapshot(
                 product,
                 nc_path,
@@ -1240,6 +1265,7 @@ def process_product(
             )
 
         if needs_regional and (
+            force_plots or
             not regional_snapshot.exists() or regional_snapshot.stat().st_size == 0
         ):
             plot_snapshot(
@@ -1283,6 +1309,7 @@ def main() -> None:
                             source_day,
                             args.dry_run,
                             raw_cache,
+                            force_plots=args.force_plots,
                         )
 
                         if nc_path is not None:
