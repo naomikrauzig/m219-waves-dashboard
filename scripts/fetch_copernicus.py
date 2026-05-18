@@ -28,7 +28,7 @@ SURFACE_ONLY_PRODUCTS = {"MODEL_CURRENT", "MODEL_TEMP", "MODEL_SAL"}
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--date", default=None)
-    parser.add_argument("--days-ahead", type=int, default=2)
+    parser.add_argument("--days-ahead", type=int, default=5)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--allow-partial", action="store_true")
     return parser.parse_args()
@@ -42,13 +42,9 @@ def target_start_day(value: str | None) -> date:
 
 def target_days(value: str | None, days_ahead: int) -> list[date]:
     center_day = target_start_day(value)
-
-    days_before = 5
-    days_after = days_ahead
-
     return [
         center_day + timedelta(days=offset)
-        for offset in range(-days_before, days_after + 1)
+        for offset in range(-5, days_ahead + 1)
     ]
 
 
@@ -272,7 +268,6 @@ def contour_levels(values: Any, n: int = 8, symmetric: bool = False) -> list[flo
 
 def get_cmocean_cmap(name: str):
     import cmocean
-
     return getattr(cmocean.cm, name)
 
 
@@ -363,7 +358,6 @@ def windstress_components(u10: Any, v10: Any) -> tuple[Any, Any, Any]:
     import numpy as np
 
     speed = np.hypot(u10, v10)
-
     cd = (0.75 + 0.067 * speed) * 1e-3
     cd = np.clip(cd, 0.8e-3, 2.5e-3)
 
@@ -413,15 +407,7 @@ def add_route_and_moorings(ax: Any) -> None:
     ax.plot(route_lon, route_lat, color="white", lw=5.0, linestyle="--", alpha=0.65, zorder=4)
     ax.plot(route_lon, route_lat, color="#d95f35", lw=2.2, linestyle="--", alpha=0.95, zorder=5)
 
-    ax.scatter(
-        route_lon,
-        route_lat,
-        s=64,
-        color="white",
-        edgecolor="#17212b",
-        linewidth=1.1,
-        zorder=6,
-    )
+    ax.scatter(route_lon, route_lat, s=64, color="white", edgecolor="#17212b", linewidth=1.1, zorder=6)
 
     for lon, lat, label in zip(route_lon, route_lat, route_labels):
         ax.text(
@@ -814,7 +800,7 @@ def plot_snapshot(
                 lon,
                 lat,
                 da,
-                get_cmocean_cmap("deep"),
+                get_cmocean_cmap("ice"),
                 "Significant wave height, Hs (m)",
                 contours=True,
             )
@@ -862,6 +848,7 @@ def write_manifest(days: list[date], products: list[dict], status: dict[str, dic
 
     MANIFEST_FILE.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 
+
 def process_product(
     product: dict,
     products: list[dict],
@@ -870,7 +857,6 @@ def process_product(
     dry_run: bool,
     raw_cache: dict[tuple[str, str], Path],
 ) -> Path | None:
-
     snapshot_file = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}.png"
 
     if snapshot_file.exists() and snapshot_file.stat().st_size > 0:
@@ -878,46 +864,20 @@ def process_product(
         return snapshot_file
 
     if product.get("source") == "derived":
-
-    # ---------------------------------------------------------
-    # Skip already-generated snapshots
-    # ---------------------------------------------------------
-    snapshot_file = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}.png"
-
-    if snapshot_file.exists() and snapshot_file.stat().st_size > 0:
-        print(f"Using cached snapshot: {snapshot_file}", flush=True)
-        return snapshot_file
-
-    # ---------------------------------------------------------
-    # Derived products
-    # ---------------------------------------------------------
-    if product.get("source") == "derived":
-
         if dry_run:
             return None
 
         source_key = product["derives_from"]
         cache_key = (source_day.isoformat(), source_key)
-
         source_path = raw_cache.get(cache_key)
 
         if source_path is None:
             expected_path = DOWNLOAD_DIR / f"{source_day.isoformat()}_{source_key}.nc"
-
-            source_path = (
-                expected_path
-                if expected_path.exists() and expected_path.stat().st_size > 0
-                else None
-            )
+            source_path = expected_path if expected_path.exists() and expected_path.stat().st_size > 0 else None
 
         if source_path is None:
             source_product = product_by_key(products, source_key)
-
-            source_path = download_subset(
-                source_product,
-                source_day,
-                dry_run,
-            )
+            source_path = download_subset(source_product, source_day, dry_run)
 
             if source_path is not None:
                 raw_cache[cache_key] = source_path
@@ -925,46 +885,24 @@ def process_product(
         if source_path is None:
             return None
 
-        plot_derived_snapshot(
-            product,
-            source_path,
-            target_day,
-            source_day,
-        )
-
+        plot_derived_snapshot(product, source_path, target_day, source_day)
         return source_path
 
-    # ---------------------------------------------------------
-    # Standard products
-    # ---------------------------------------------------------
     nc_path = download_subset(product, source_day, dry_run)
 
     if nc_path is not None:
-
         raw_cache[(source_day.isoformat(), product["key"])] = nc_path
 
         salinity_path = None
 
         if product["key"] == "MODEL_TEMP":
-
             sal_product = product_by_key(products, "MODEL_SAL")
-
-            salinity_path = download_subset(
-                sal_product,
-                source_day,
-                dry_run,
-            )
+            salinity_path = download_subset(sal_product, source_day, dry_run)
 
             if salinity_path is not None:
                 raw_cache[(source_day.isoformat(), "MODEL_SAL")] = salinity_path
 
-        plot_snapshot(
-            product,
-            nc_path,
-            target_day,
-            source_day,
-            salinity_path=salinity_path,
-        )
+        plot_snapshot(product, nc_path, target_day, source_day, salinity_path=salinity_path)
 
     return nc_path
 
