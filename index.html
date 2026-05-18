@@ -47,10 +47,19 @@
     <main>
 
       <!-- ===================================================== -->
-      <!-- DASHBOARD -->
+      <!-- MAIN 2x2 DASHBOARD -->
       <!-- ===================================================== -->
 
-      <section class="dashboard" aria-label="Data dashboard">
+      <section class="dashboard" aria-label="Main dashboard">
+
+        <div class="section-heading">
+          <h2>Large-Scale Atlantic Overview</h2>
+
+          <p>
+            Basin-scale conditions along the RV Meteor M219 WAVES cruise corridor
+            from Recife to Cape Verde and Emden.
+          </p>
+        </div>
 
         <div class="multi-panel-grid">
 
@@ -69,21 +78,19 @@
             <figure class="snapshot panel-snapshot">
 
               <div class="map-controls">
-                <button type="button" data-panel-zoom="out">-</button>
+                <button type="button" data-panel-zoom="out">−</button>
                 <button type="button" data-panel-zoom="in">+</button>
                 <button type="button" data-panel-zoom="reset">Reset</button>
               </div>
 
               <div class="zoom-stage">
-                <img
-                  class="panel-image"
-                  alt="Selected data snapshot panel 1"
-                />
+                <img class="panel-image" alt="Panel 1" />
               </div>
 
               <figcaption class="panel-caption"></figcaption>
 
             </figure>
+
           </section>
 
           <!-- PANEL 2 -->
@@ -101,21 +108,19 @@
             <figure class="snapshot panel-snapshot">
 
               <div class="map-controls">
-                <button type="button" data-panel-zoom="out">-</button>
+                <button type="button" data-panel-zoom="out">−</button>
                 <button type="button" data-panel-zoom="in">+</button>
                 <button type="button" data-panel-zoom="reset">Reset</button>
               </div>
 
               <div class="zoom-stage">
-                <img
-                  class="panel-image"
-                  alt="Selected data snapshot panel 2"
-                />
+                <img class="panel-image" alt="Panel 2" />
               </div>
 
               <figcaption class="panel-caption"></figcaption>
 
             </figure>
+
           </section>
 
           <!-- PANEL 3 -->
@@ -133,21 +138,19 @@
             <figure class="snapshot panel-snapshot">
 
               <div class="map-controls">
-                <button type="button" data-panel-zoom="out">-</button>
+                <button type="button" data-panel-zoom="out">−</button>
                 <button type="button" data-panel-zoom="in">+</button>
                 <button type="button" data-panel-zoom="reset">Reset</button>
               </div>
 
               <div class="zoom-stage">
-                <img
-                  class="panel-image"
-                  alt="Selected data snapshot panel 3"
-                />
+                <img class="panel-image" alt="Panel 3" />
               </div>
 
               <figcaption class="panel-caption"></figcaption>
 
             </figure>
+
           </section>
 
           <!-- PANEL 4 -->
@@ -165,54 +168,140 @@
             <figure class="snapshot panel-snapshot">
 
               <div class="map-controls">
-                <button type="button" data-panel-zoom="out">-</button>
+                <button type="button" data-panel-zoom="out">−</button>
                 <button type="button" data-panel-zoom="in">+</button>
                 <button type="button" data-panel-zoom="reset">Reset</button>
               </div>
 
               <div class="zoom-stage">
-                <img
-                  class="panel-image"
-                  alt="Selected data snapshot panel 4"
-                />
+                <img class="panel-image" alt="Panel 4" />
               </div>
 
               <figcaption class="panel-caption"></figcaption>
 
             </figure>
+
           </section>
 
         </div>
 
-        <!-- ===================================================== -->
-        <!-- INSITU -->
-        <!-- ===================================================== -->
+      </section>
 
-        <section class="bottom-observation-panel">
+      <!-- ===================================================== -->
+      <!-- REGIONAL ZOOM PANELS -->
+      <!-- ===================================================== -->
 
-          <div class="section-heading">
-            <h2>In-situ Observations</h2>
+      <section class="dashboard regional-dashboard">
 
-            <p>
-              Planned panel for Argo float profiles, Argo velocity estimates,
-              NOAA GDP drifter positions, moorings, and ship position in the
-              cruise area.
-            </p>
-          </div>
+        <div class="section-heading regional-heading">
 
-          <div id="insitu-map">
-            <p>
-              Planned route:
-              Recife → K1-K4 moorings → CVOO Equator →
-              Mindelo/Cape Verde → Emden.
-            </p>
+          <h2>Regional Zoom Panels</h2>
 
-            <p>
-              Argo and drifter overlay pending implementation.
-            </p>
-          </div>
+          <p>
+            Focused views for the Recife → K1-K4 mooring region and the
+            Equator → CVOO → Mindelo corridor.
+          </p>
 
-        </section>
+        </div>
+
+        <div class="multi-panel-grid regional-panel-grid">
+
+          <!-- PANEL 5 -->
+
+          <section class="map-panel" data-panel="4">
+
+            <div class="panel-toolbar">
+              <label>Dataset</label>
+              <select class="panel-dataset-select"></select>
+
+              <label>Date</label>
+              <select class="panel-date-select"></select>
+            </div>
+
+            <figure class="snapshot panel-snapshot">
+
+              <div class="map-controls">
+                <button type="button" data-panel-zoom="out">−</button>
+                <button type="button" data-panel-zoom="in">+</button>
+                <button type="button" data-panel-zoom="reset">Reset</button>
+              </div>
+
+              <div class="zoom-stage">
+                <img class="panel-image" alt="Regional panel 1" />
+              </div>
+
+              <figcaption class="panel-caption"></figcaption>
+
+            </figure>
+
+          </section>
+
+          <!-- PANEL 6 -->
+
+          <section class="map-panel" data-panel="5">
+
+            <div class="panel-toolbar">
+              <label>Dataset</label>
+              <select class="panel-dataset-select"></select>
+
+              <label>Date</label>
+              <select class="panel-date-select"></select>
+            </div>
+
+            <figure class="snapshot panel-snapshot">
+
+              <div class="map-controls">
+                <button type="button" data-panel-zoom="out">−</button>
+                <button type="button" data-panel-zoom="in">+</button>
+                <button type="button" data-panel-zoom="reset">Reset</button>
+              </div>
+
+              <div class="zoom-stage">
+                <img class="panel-image" alt="Regional panel 2" />
+              </div>
+
+              <figcaption class="panel-caption"></figcaption>
+
+            </figure>
+
+          </section>
+
+        </div>
+
+      </section>
+
+      <!-- ===================================================== -->
+      <!-- INSITU -->
+      <!-- ===================================================== -->
+
+      <section class="bottom-observation-panel">
+
+        <div class="section-heading">
+
+          <h2>In-situ Observations</h2>
+
+          <p>
+            Planned integration of Argo floats, NOAA GDP drifters,
+            ship position, moorings, and underway observations.
+          </p>
+
+        </div>
+
+        <div id="insitu-map">
+
+          <p>
+            Planned route:
+            Recife → K1-K4 moorings →
+            Equator/CVOO →
+            Mindelo →
+            Emden.
+          </p>
+
+          <p>
+            Argo and drifter overlays pending implementation.
+          </p>
+
+        </div>
 
       </section>
 
@@ -223,12 +312,14 @@
       <section class="availability-section">
 
         <div class="section-heading">
+
           <h2>Product Availability</h2>
 
           <p>
-            Rows are selectable layers; columns show the rolling map window
-            and latest available source dates where relevant.
+            Rows are selectable layers; columns show the rolling
+            temporal map window.
           </p>
+
         </div>
 
         <div class="table-wrap">
@@ -244,13 +335,14 @@
       <section class="products-section">
 
         <div class="section-heading">
+
           <h2>Datasets Used</h2>
 
           <p>
-            Dataset IDs are configured for the Copernicus Marine Toolbox and
-            CDS API and can be updated in
-            <code>data/products.json</code>.
+            Dataset IDs are configured for Copernicus Marine Toolbox
+            and CDS API access through GitHub Actions.
           </p>
+
         </div>
 
         <div class="table-wrap">
