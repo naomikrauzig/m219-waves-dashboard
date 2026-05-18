@@ -5,11 +5,12 @@ const PANEL_DEFAULTS = [
   "WAVES",
   "MODEL_CURRENT",
   "SAT_SLA",
-  "ERA5_WIND",
-  "MODEL_CURRENT",
-  "SAT_CHL"
+  "WIND_STRESS",
+  "EKMAN_PUMPING",
+  "SAT_CHL",
+  "MODEL_SAL",
+  "MODEL_TEMP"
 ];
-
 let manifest = null;
 let products = [];
 let panelStates = [];
@@ -172,7 +173,7 @@ function updatePanel(state) {
 
   if (status?.available && status.path) {
     const panelIndex = Number(state.panel.dataset.panel);
-    const isRegionalPanel = panelIndex >= 4;
+    const isRegionalPanel = panelIndex >= 6;
 
     const normalPath = status.path;
     const regionalPath = `assets/snapshots/${state.date}_${state.productKey}_REGIONAL.png`;
