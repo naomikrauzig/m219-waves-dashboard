@@ -132,14 +132,15 @@ main {
   align-items: center;
   justify-content: center;
 
-  min-height: 340px;
+  min-height: 300px;
+  height: clamp(300px, 28vw, 380px);
 }
 
 .hero-image-panel img {
   width: 100%;
   height: 100%;
 
-  object-fit: contain;
+  object-fit: cover;
 
   display: block;
 }
@@ -206,7 +207,7 @@ main {
 /* Large-scale overview: 3 columns on wide screens */
 .multi-panel-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(420px, 1fr));
+  grid-template-columns: repeat(3, minmax(360px, 1fr));
   gap: 1.1rem;
 }
 
@@ -217,7 +218,7 @@ main {
 
 /* Regional panels: 2 columns on wide screens */
 .regional-panel-grid {
-  grid-template-columns: repeat(2, minmax(520px, 1fr));
+  grid-template-columns: repeat(2, minmax(360px, 1fr));
   margin-top: 0.75rem;
 }
 
@@ -573,13 +574,13 @@ footer {
    RESPONSIVE
 ========================================================= */
 
-@media (max-width: 1500px) {
+@media (max-width: 1200px) {
   .multi-panel-grid {
-    grid-template-columns: repeat(2, minmax(420px, 1fr));
+    grid-template-columns: repeat(2, minmax(360px, 1fr));
   }
 
   .regional-panel-grid {
-    grid-template-columns: repeat(2, minmax(420px, 1fr));
+    grid-template-columns: repeat(2, minmax(360px, 1fr));
   }
 }
 
@@ -623,4 +624,3 @@ footer {
     flex-direction: column;
   }
 }
-```
