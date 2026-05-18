@@ -305,11 +305,6 @@ function setupPanelZoom() {
       stage.classList.remove("dragging");
     });
 
-    stage.addEventListener("pointerleave", () => {
-      state.zoom.dragging = false;
-      stage.classList.remove("dragging");
-    });
-  });
 }
 
 function renderAvailabilityTable() {
