@@ -305,7 +305,7 @@ function setupPanelZoom() {
       state.zoom.dragging = false;
       stage.classList.remove("dragging");
     });
-
+  });
 }
 
 function renderAvailabilityTable() {
