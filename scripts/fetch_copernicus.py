@@ -39,7 +39,7 @@ REGIONAL_PRODUCTS = {
 
 REGIONAL_EXTENT = {
     "xlim": (-45, -15),
-    "ylim": (-20, 20),
+    "ylim": (-25, 25),
 }
 
 
