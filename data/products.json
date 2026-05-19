@@ -1,7 +1,7 @@
 [
   {
     "key": "WAVES",
-    "label": "Wave height and period",
+    "label": "Significant wave height",
     "category": "Modeled forecast",
     "status": "automated",
     "workflow_enabled": true,
@@ -12,7 +12,7 @@
   },
   {
     "key": "MODEL_CURRENT",
-    "label": "Model currents",
+    "label": "Surface currents",
     "category": "Modeled forecast",
     "status": "automated",
     "workflow_enabled": true,
@@ -23,7 +23,7 @@
   },
   {
     "key": "MODEL_TEMP",
-    "label": "Model temperature",
+    "label": "Surface temperature",
     "category": "Modeled forecast",
     "status": "automated",
     "workflow_enabled": true,
@@ -45,7 +45,7 @@
   },
  {
   "key": "SAT_SLA",
-  "label": "Satellite SLA / ADT",
+  "label": "Sea level anomaly",
   "category": "Satellite-derived maps",
   "status": "automated; uses most recent near-real-time DUACS day",
   "workflow_enabled": true,
@@ -58,7 +58,7 @@
 },
   {
     "key": "SAT_SSS",
-    "label": "Multi-observation sea surface salinity",
+    "label": "Surface salinity",
     "category": "Satellite-derived maps",
     "status": "automated; uses most recent near-real-time day",
     "workflow_enabled": true,
@@ -71,7 +71,7 @@
   },
   {
     "key": "SAT_CHL",
-    "label": "Satellite chlorophyll-a",
+    "label": "Chlorophyll-a concentration",
     "category": "Satellite-derived maps",
     "status": "automated; uses most recent cloud-free near-real-time day",
     "workflow_enabled": true,
@@ -84,7 +84,7 @@
   },
   {
     "key": "ERA5_WIND",
-    "label": "ERA5 10 m wind vectors",
+    "label": "10m wind speed",
     "category": "Atmospheric forcing",
     "status": "automated; uses most recent ERA5 reanalysis day",
     "workflow_enabled": true,
@@ -99,7 +99,7 @@
   },
   {
     "key": "WIND_STRESS",
-    "label": "Wind stress from ERA5 10 m winds",
+    "label": "Wind stress from 10m winds",
     "category": "Derived variables",
     "status": "automated from ERA5 using CDT windstress bulk formula",
     "workflow_enabled": true,
@@ -147,7 +147,7 @@
   },
   {
     "key": "EKMAN_PUMPING",
-    "label": "Ekman pumping",
+    "label": "Ekman pumping velocity",
     "category": "Derived variables",
     "status": "automated from ERA5 wind stress following CDT ekman method",
     "workflow_enabled": true,
@@ -173,7 +173,7 @@
   },
   {
     "key": "EDDY_DIAGNOSTICS",
-    "label": "Eddy diagnostics",
+    "label": "Eddy Kinetic Energy",
     "category": "Derived variables",
     "status": "computable from SLA/ADT; best for analysis/NRT, not forecast",
     "workflow_enabled": false,
