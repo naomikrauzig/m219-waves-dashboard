@@ -241,6 +241,15 @@ main {
   text-decoration: underline;
 }
 
+.hero-logo {
+  width: 170px;
+  max-width: 42%;
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+  display: block;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.28));
+}
+
 /* HERO IMAGE */
 
 .hero-image-panel {
