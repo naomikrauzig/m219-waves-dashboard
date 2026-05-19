@@ -140,6 +140,13 @@ main {
   opacity: 0.92;
 }
 
+.hero-update {
+  margin: 1rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.72);
+}
+
 /* HERO INFORMATION GRID */
 
 .hero-info-grid {
@@ -187,50 +194,14 @@ main {
   text-decoration: underline;
 }
 
-/* M219 LOGO + DASHBOARD STATUS */
-
-.hero-meta-row {
-  display: flex;
-  align-items: flex-end;
-  gap: 1.6rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-}
+/* M219 LOGO */
 
 .hero-logo {
-  width: 240px;
-  max-width: 52%;
-  margin: 0;
+  width: 340px;
+  max-width: 72%;
+  margin-top: 2.2rem;
   display: block;
-  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.32));
-}
-
-.status-panel {
-  align-self: flex-end;
-  width: auto;
-  max-width: 320px;
-  padding: 0;
-  background: none;
-  border: none;
-  box-shadow: none;
-  backdrop-filter: none;
-}
-
-.status-panel span {
-  display: block;
-  margin-bottom: 0.35rem;
-  font-size: 0.92rem;
-  font-weight: 600;
-  letter-spacing: 0;
-  text-transform: none;
-  opacity: 0.88;
-}
-
-.status-panel small {
-  display: block;
-  font-size: 0.84rem;
-  line-height: 1.45;
-  opacity: 0.78;
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,0.34));
 }
 
 /* HERO IMAGE */
