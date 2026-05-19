@@ -224,12 +224,20 @@ main {
   font-size: 0.92rem;
   line-height: 1.4;
 
+  font-weight: 400;
+
   color: white;
 
   text-decoration: none;
 }
 
-.hero-info-card a:hover {
+.hero-info-card strong a {
+  color: white;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.hero-info-card strong a:hover {
   text-decoration: underline;
 }
 
