@@ -301,43 +301,56 @@ main {
 
   width: fit-content;
 
-  min-width: 330px;
+  min-width: 420px;
   max-width: 100%;
 
-  background: rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.16);
 
-  border: 1px solid rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.18);
 
-  border-radius: var(--radius);
+  border-radius: 20px;
 
-  padding: 1rem 1.2rem;
+  padding: 1.35rem 1.55rem;
 
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.16);
 }
 
 .status-panel span {
   display: block;
 
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
 
-  opacity: 0.78;
+  letter-spacing: 0.04em;
+
+  text-transform: uppercase;
+
+  opacity: 0.82;
 }
 
 .status-panel strong {
   display: block;
 
-  margin-top: 0.35rem;
+  margin-top: 0.45rem;
 
-  font-size: 1.18rem;
+  font-size: 1.7rem;
+  line-height: 1.1;
+
+  letter-spacing: -0.02em;
 }
 
 .status-panel small {
   display: block;
 
-  margin-top: 0.65rem;
+  margin-top: 0.8rem;
 
-  opacity: 0.82;
+  font-size: 0.9rem;
+  line-height: 1.4;
+
+  opacity: 0.9;
 }
 
 /* =========================================================
