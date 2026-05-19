@@ -91,16 +91,16 @@ main {
 ========================================================= */
 
 .site-header {
-  padding: 1.15rem 1.3rem;
+  padding: 1.05rem 1.2rem 1.2rem;
   background:
-    radial-gradient(circle at 75% 15%, rgba(91, 154, 201, 0.24), transparent 32%),
+    radial-gradient(circle at 76% 14%, rgba(91, 154, 201, 0.24), transparent 34%),
     linear-gradient(135deg, #08243d 0%, #0d3456 100%);
   color: white;
 }
 
 .hero-header {
   display: grid;
-  grid-template-columns: minmax(440px, 0.9fr) minmax(520px, 1.1fr);
+  grid-template-columns: minmax(420px, 0.92fr) minmax(560px, 1.08fr);
   grid-template-areas: "text image";
   gap: 1.4rem;
   align-items: start;
@@ -111,11 +111,11 @@ main {
 .hero-text {
   grid-area: text;
   min-width: 0;
-  max-width: 850px;
+  max-width: 760px;
 }
 
 .eyebrow {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.45rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.72rem;
@@ -125,31 +125,33 @@ main {
 
 .hero-text h1 {
   margin: 0;
-  font-size: clamp(2rem, 3.1vw, 3.6rem);
-  line-height: 1.02;
+  font-size: clamp(2rem, 3vw, 3.45rem);
+  line-height: 1.03;
   letter-spacing: -0.04em;
 }
 
 .lede {
-  margin: 0.95rem 0 0;
-  max-width: 720px;
+  margin: 0.85rem 0 0;
+  max-width: 700px;
   font-size: 0.98rem;
   line-height: 1.55;
   opacity: 0.9;
 }
 
 .hero-update {
-  margin: 0.9rem 0 0;
+  margin: 0.85rem 0 0;
   font-size: 0.88rem;
   line-height: 1.4;
   color: rgba(255,255,255,0.74);
 }
 
+/* HERO INFO GRID */
+
 .hero-info-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.65rem;
-  margin-top: 1.25rem;
+  margin-top: 1.15rem;
 }
 
 .hero-info-card {
@@ -178,21 +180,26 @@ main {
   line-height: 1.35;
 }
 
+/* HERO LOGO */
+
 .hero-logo {
-  width: 120px;
+  width: 118px;
   max-width: 100%;
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   display: block;
   filter: drop-shadow(0 8px 18px rgba(0,0,0,0.30));
 }
+
+/* HERO IMAGE */
 
 .hero-image-panel {
   grid-area: image;
   position: relative;
   overflow: hidden;
   border-radius: 22px;
-  height: 390px;
-  max-height: 390px;
+  height: 360px;
+  max-height: 360px;
+  margin: 0;
   background: rgba(255,255,255,0.05);
   box-shadow: 0 12px 32px rgba(0,0,0,0.18);
 }
@@ -200,10 +207,10 @@ main {
 .hero-image-panel img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center center;
-  background: rgba(255,255,255,0.03);
+  object-fit: cover;
+  object-position: center 62%;
   display: block;
+  transform: scale(1.02);
 }
 
 .photo-credit-overlay {
@@ -222,148 +229,36 @@ main {
 }
 
 /* =========================================================
-   RESPONSIVE
+   STATUS PANEL
 ========================================================= */
-
-@media (max-width: 1250px) {
-  .hero-header {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .hero-info-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-image-panel {
-    height: 340px;
-    max-height: 340px;
-  }
-}
-
-@media (max-width: 1100px) {
-  .hero-header {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "text"
-      "image";
-  }
-
-  .hero-image-panel {
-    height: 320px;
-    max-height: 320px;
-  }
-}
-
-@media (max-width: 700px) {
-  .site-header {
-    padding: 0.9rem;
-  }
-
-  .hero-header {
-    gap: 1rem;
-  }
-
-  .hero-text h1 {
-    font-size: 2rem;
-  }
-
-  .lede {
-    font-size: 0.92rem;
-  }
-
-  .hero-update {
-    font-size: 0.84rem;
-  }
-
-  .hero-info-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-logo {
-    width: 105px;
-    margin-top: 1rem;
-  }
-
-  .hero-image-panel {
-    height: 230px;
-    max-height: 230px;
-    border-radius: 16px;
-  }
-
-  .hero-info-card {
-    padding: 0.65rem 0.7rem;
-  }
-
-  .hero-info-card strong,
-  .hero-info-card a {
-    font-size: 0.82rem;
-  }
-}
-
-/* =========================================================
-   IMAGE CREDIT OVERLAY
-========================================================= */
-
-.photo-credit-overlay {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  margin: 0;
-  padding: 0.38rem 0.65rem;
-  border-radius: 10px;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(6px);
-  color: rgba(255,255,255,0.92);
-  font-size: 0.72rem;
-  line-height: 1.2;
-  z-index: 10;
-}
-
-/* STATUS PANEL */
 
 .status-panel {
   align-self: flex-start;
-
   width: fit-content;
   max-width: 100%;
-
   margin-top: 0.2rem;
-
   background: rgba(255,255,255,0.12);
-
   border: 1px solid rgba(255,255,255,0.14);
-
   border-radius: 16px;
-
   padding: 0.8rem 1rem;
-
   backdrop-filter: blur(8px);
-
-  box-shadow:
-    0 8px 22px rgba(0,0,0,0.14);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.14);
 }
 
 .status-panel span {
   display: block;
-
   font-size: 0.72rem;
   font-weight: 700;
-
   letter-spacing: 0.05em;
-
   text-transform: uppercase;
-
   opacity: 0.75;
-
   margin-bottom: 0.3rem;
 }
 
 .status-panel small {
   display: block;
-
   font-size: 0.84rem;
   line-height: 1.4;
-
   opacity: 0.92;
 }
 
@@ -722,16 +617,25 @@ footer {
 
 @media (max-width: 1250px) {
 
+  .hero-header {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-image-panel {
+    height: 330px;
+    max-height: 330px;
+  }
+
   .multi-panel-grid {
     grid-template-columns: repeat(2, minmax(360px, 1fr));
   }
 
   .regional-panel-grid {
     grid-template-columns: repeat(2, minmax(360px, 1fr));
-  }
-
-  .hero-info-grid {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -741,12 +645,12 @@ footer {
     grid-template-columns: 1fr;
     grid-template-areas:
       "text"
-      "image"
-      "status";
+      "image";
   }
 
   .hero-image-panel {
-    min-height: 320px;
+    height: 320px;
+    max-height: 320px;
   }
 
   .status-panel {
@@ -765,11 +669,15 @@ footer {
 @media (max-width: 700px) {
 
   .site-header {
-    padding: 1.1rem;
+    padding: 0.9rem;
   }
 
   main {
     padding: 0.8rem;
+  }
+
+  .hero-header {
+    gap: 1rem;
   }
 
   .hero-text h1 {
@@ -777,7 +685,35 @@ footer {
   }
 
   .lede {
-    font-size: 0.98rem;
+    font-size: 0.92rem;
+  }
+
+  .hero-update {
+    font-size: 0.84rem;
+  }
+
+  .hero-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-logo {
+    width: 105px;
+    margin-top: 1rem;
+  }
+
+  .hero-image-panel {
+    height: 230px;
+    max-height: 230px;
+    border-radius: 16px;
+  }
+
+  .hero-info-card {
+    padding: 0.65rem 0.7rem;
+  }
+
+  .hero-info-card strong,
+  .hero-info-card a {
+    font-size: 0.82rem;
   }
 
   .panel-toolbar {
@@ -794,28 +730,10 @@ footer {
   }
 }
 
-/* =========================================================
-   PHONE OPTIMISATION
-========================================================= */
-
 @media (max-width: 600px) {
 
   body {
     line-height: 1.45;
-  }
-
-  .site-header {
-    padding: 0.9rem;
-  }
-
-  .hero-header {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "text"
-      "image"
-      "status";
-    gap: 0.9rem;
   }
 
   .hero-text h1 {
@@ -828,14 +746,7 @@ footer {
     margin-bottom: 0.45rem;
   }
 
-  .lede {
-    font-size: 0.92rem;
-    line-height: 1.5;
-    margin-top: 0.8rem;
-  }
-
   .hero-info-grid {
-    grid-template-columns: 1fr;
     gap: 0.55rem;
     margin-top: 0.9rem;
   }
@@ -850,22 +761,20 @@ footer {
     margin-bottom: 0.3rem;
   }
 
-  .hero-info-card strong,
-  .hero-info-card a {
-    font-size: 0.84rem;
-  }
-
   .hero-logo {
-    width: 180px;
+    width: 105px;
     max-width: 65%;
-    margin-top: 1.2rem;
-    margin-bottom: 0.9rem;
+    margin-top: 1rem;
+    margin-bottom: 0.6rem;
   }
 
   .hero-image-panel {
-    min-height: 210px;
-    max-height: 260px;
-    border-radius: 16px;
+    height: 220px;
+    max-height: 220px;
+  }
+
+  .hero-image-panel img {
+    object-position: center center;
   }
 
   .photo-credit-overlay {
@@ -873,21 +782,6 @@ footer {
     bottom: 0.7rem;
     font-size: 0.64rem;
     padding: 0.28rem 0.5rem;
-  }
-
-  .status-panel {
-    width: 100%;
-    min-width: 0;
-    padding: 0.85rem 0.95rem;
-    border-radius: 15px;
-  }
-
-  .status-panel strong {
-    font-size: 1rem;
-  }
-
-  .status-panel small {
-    font-size: 0.78rem;
   }
 
   main {
@@ -990,6 +884,202 @@ footer {
   }
 
   footer {
+    padding: 0.9rem;
+    font-size: 0.82rem;
+  }
+}
+/* =========================================================
+   PHONE OPTIMISATION
+========================================================= */
+
+@media (max-width: 600px) {
+
+  body {
+    line-height: 1.45;
+  }
+
+  .site-header {
+    padding: 0.9rem;
+  }
+
+  .hero-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "text"
+      "image";
+    gap: 0.9rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.85rem;
+    line-height: 1.08;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .lede {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-top: 0.75rem;
+  }
+
+  .hero-update {
+    font-size: 0.82rem;
+    margin-top: 0.75rem;
+  }
+
+  .hero-info-grid {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+    margin-top: 0.85rem;
+  }
+
+  .hero-info-card {
+    padding: 0.65rem 0.75rem;
+    border-radius: 13px;
+  }
+
+  .hero-label {
+    font-size: 0.62rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-info-card strong,
+  .hero-info-card a {
+    font-size: 0.82rem;
+  }
+
+  .hero-logo {
+    width: 105px;
+    max-width: 65%;
+    margin-top: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-image-panel {
+    height: 220px;
+    max-height: 220px;
+    border-radius: 16px;
+  }
+
+  .hero-image-panel img {
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.02);
+  }
+
+  .photo-credit-overlay {
+    right: 0.65rem;
+    bottom: 0.65rem;
+    font-size: 0.6rem;
+    padding: 0.25rem 0.45rem;
+  }
+
+  main {
+    padding: 0.75rem;
+  }
+
+  .section-heading h2 {
+    font-size: 1.25rem;
+  }
+
+  .section-heading p {
+    font-size: 0.9rem;
+  }
+
+  .multi-panel-grid,
+  .regional-panel-grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .map-panel {
+    border-radius: 15px;
+  }
+
+  .panel-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+    padding: 0.6rem;
+  }
+
+  .panel-toolbar label {
+    font-size: 0.74rem;
+  }
+
+  .panel-toolbar select {
+    width: 100%;
+    font-size: 0.82rem;
+    padding: 0.42rem 0.55rem;
+  }
+
+  .map-controls {
+    justify-content: center;
+    padding: 0.35rem;
+  }
+
+  .map-controls button {
+    font-size: 0.72rem;
+    padding: 0.28rem 0.5rem;
+  }
+
+  .zoom-stage {
+    aspect-ratio: 1 / 1;
+  }
+
+  .panel-caption {
+    font-size: 0.78rem;
+    padding: 0.5rem 0.65rem;
+  }
+
+  .bottom-observation-panel {
+    padding: 1rem;
+    border-radius: 15px;
+  }
+
+  #insitu-map {
+    padding: 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  .table-wrap {
+    border-radius: 15px;
+  }
+
+  th,
+  td {
+    padding: 0.55rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .brand-section {
+    border-radius: 15px;
+  }
+
+  .brand-section > img {
+    height: 180px;
+  }
+
+  .brand-credit {
+    padding: 1rem;
+  }
+
+  .brand-credit img {
+    width: 155px;
+  }
+
+  .info-card {
+    padding: 1rem;
+    border-radius: 15px;
+  }
+
+  footer {
+    flex-direction: column;
     padding: 0.9rem;
     font-size: 0.82rem;
   }
