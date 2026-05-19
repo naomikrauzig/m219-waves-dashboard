@@ -136,12 +136,12 @@ main {
 
 .hero-text {
   grid-area: text;
-
   min-width: 0;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .eyebrow {
@@ -243,9 +243,9 @@ main {
 
 .hero-logo {
   width: 170px;
-  max-width: 42%;
+  max-width: 34%;
   margin-top: 1.6rem;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.8rem;
   display: block;
   filter: drop-shadow(0 6px 14px rgba(0,0,0,0.28));
 }
@@ -314,12 +314,9 @@ main {
 .status-panel {
   grid-area: status;
 
-  align-self: end;
+  align-self: flex-start;
 
-  width: fit-content;
-
-  min-width: 420px;
-  max-width: 100%;
+  width: min(100%, 420px);
 
   background: rgba(255,255,255,0.16);
 
