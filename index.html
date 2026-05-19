@@ -23,56 +23,118 @@
 
 <body>
 
- <header class="site-header hero-header">
+  <!-- ===================================================== -->
+  <!-- HERO HEADER -->
+  <!-- ===================================================== -->
 
-  <div class="hero-text">
+  <header class="site-header hero-header">
 
-    <p class="eyebrow">
-      RV Meteor M219 WAVES
-    </p>
+    <!-- LEFT SIDE -->
 
-    <h1>
-      M219 WAVES Cruise Dashboard
-    </h1>
+    <div class="hero-text">
 
-    <p class="lede">
-      Rolling Copernicus Marine and ERA5 quick-look maps along the planned
-      M219 WAVES cruise corridor, including forecasts, latest available
-      satellite products, atmospheric forcing, and derived diagnostics.
-    </p>
+      <p class="eyebrow">
+        RV METEOR M219 WAVES
+      </p>
 
-    <p class="photo-credit">
-      Photo: Mario Mueller / GEOMAR
-    </p>
+      <h1>
+        M219 WAVES Cruise Dashboard
+      </h1>
 
-  </div>
+      <p class="lede">
+        Near-real-time environmental monitoring and operational oceanography
+        along the M219 WAVES cruise corridor across the tropical Atlantic,
+        integrating Copernicus Marine, ERA5, satellite observations,
+        and derived diagnostics.
+      </p>
 
-  <figure class="hero-image-panel">
+      <!-- INFO CARDS -->
 
-    <img
-      src="assets/images/meteor-glider-hero.jpg"
-      alt="RV Meteor and underwater glider during M219 WAVES cruise"
-    />
+      <div class="hero-info-grid">
 
-  </figure>
+        <div class="hero-info-card">
 
-  <aside class="status-panel" aria-label="Cruise status">
+          <span class="hero-label">
+            Principal Investigator & Chief Scientist
+          </span>
 
-    <span>Planned cruise</span>
+          <strong>
+            Prof. Peter Brandt
+          </strong>
 
-    <strong>30 May - 28 Jun 2026</strong>
+        </div>
 
-    <small id="last-updated">
-      Forecast window updated: pending first data run
-    </small>
+        <div class="hero-info-card">
 
-  </aside>
+          <span class="hero-label">
+            Institution
+          </span>
 
-</header>
+          <strong>
+            GEOMAR Helmholtz Centre for Ocean Research Kiel
+          </strong>
+
+        </div>
+
+        <div class="hero-info-card">
+
+          <span class="hero-label">
+            Contact
+          </span>
+
+          <a href="mailto:pbrandt@geomar.de">
+            pbrandt@geomar.de
+          </a>
+
+        </div>
+
+      </div>
+
+      <p class="photo-credit">
+        Photo: Mario Mueller / GEOMAR
+      </p>
+
+    </div>
+
+    <!-- HERO IMAGE -->
+
+    <figure class="hero-image-panel">
+
+      <img
+        src="assets/images/meteor-glider-hero.jpg"
+        alt="RV Meteor and underwater glider during M219 WAVES cruise"
+      />
+
+    </figure>
+
+    <!-- STATUS PANEL -->
+
+    <aside class="status-panel" aria-label="Cruise status">
+
+      <span>
+        Planned cruise
+      </span>
+
+      <strong>
+        30 May – 28 Jun 2026
+      </strong>
+
+      <small id="last-updated">
+        Forecast window updated: pending first data run
+      </small>
+
+    </aside>
+
+  </header>
+
+  <!-- ===================================================== -->
+  <!-- MAIN CONTENT -->
+  <!-- ===================================================== -->
+
   <main>
 
     <!-- ===================================================== -->
-    <!-- MAIN 2x3 DASHBOARD -->
+    <!-- MAIN DASHBOARD -->
     <!-- ===================================================== -->
 
     <section class="dashboard" aria-label="Main dashboard">
@@ -228,8 +290,7 @@
 
         </section>
 
-
-        <!-- REGIONAL PANEL 1 -->
+        <!-- PANEL 5 -->
 
         <section class="map-panel" data-panel="4">
 
@@ -263,7 +324,7 @@
 
         </section>
 
-        <!-- REGIONAL PANEL 2 -->
+        <!-- PANEL 6 -->
 
         <section class="map-panel" data-panel="5">
 
@@ -296,6 +357,7 @@
           </figure>
 
         </section>
+
       </div>
 
     </section>
@@ -313,14 +375,14 @@
         </h2>
 
         <p>
-          Focused views for planned transects, and the K1-K4 and CVOO mooring region.
+          Focused views for planned transects and the K1–K4 / CVOO region.
         </p>
 
       </div>
 
       <div class="multi-panel-grid regional-panel-grid">
 
-        <!-- PANEL 5 -->
+        <!-- REGIONAL PANEL 1 -->
 
         <section class="map-panel" data-panel="6">
 
@@ -354,7 +416,7 @@
 
         </section>
 
-        <!-- PANEL 6 -->
+        <!-- REGIONAL PANEL 2 -->
 
         <section class="map-panel" data-panel="7">
 
@@ -392,173 +454,6 @@
 
     </section>
 
-    <!-- ===================================================== -->
-    <!-- INSITU -->
-    <!-- ===================================================== -->
-
-    <section class="bottom-observation-panel">
-
-      <div class="section-heading">
-
-        <h2>
-          In-situ Observations
-        </h2>
-
-        <p>
-          Planned integration of Argo floats, NOAA GDP drifters,
-          ship position, moorings, and underway observations.
-        </p>
-
-      </div>
-
-      <div id="insitu-map">
-
-        <p>
-          Planned route:
-          Recife → K1-K4 → CVOO → Emden.
-        </p>
-
-        <p>
-          Argo and drifter overlays pending implementation.
-        </p>
-
-      </div>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- PRODUCT AVAILABILITY -->
-    <!-- ===================================================== -->
-
-    <section class="availability-section">
-
-      <div class="section-heading">
-
-        <h2>
-          Product Availability
-        </h2>
-
-        <p>
-          Rows are selectable layers; columns show the rolling
-          temporal map window.
-        </p>
-
-      </div>
-
-      <div class="table-wrap">
-        <table id="availability-table"></table>
-      </div>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- DATASETS -->
-    <!-- ===================================================== -->
-
-    <section class="products-section">
-
-      <div class="section-heading">
-
-        <h2>
-          Datasets Used
-        </h2>
-
-        <p>
-          Dataset IDs are configured for Copernicus Marine Data Store
-          and Copernicus Climate Data Store API access through GitHub Actions.
-        </p>
-
-      </div>
-
-      <div class="table-wrap">
-        <table id="products-table"></table>
-      </div>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- GEOMAR BRANDING -->
-    <!-- ===================================================== -->
-
-    <section class="brand-section" aria-label="GEOMAR branding">
-
-      <img
-        src="assets/images/geomar-brand.jpg"
-        alt="GEOMAR ocean background"
-      />
-
-      <div class="brand-credit">
-
-        <a
-          href="https://www.geomar.de"
-          aria-label="GEOMAR website"
-        >
-          <img
-            src="assets/images/geomar-logo-eng-neg.png"
-            alt="GEOMAR Helmholtz Centre for Ocean Research Kiel"
-          />
-        </a>
-
-        <p>
-          Dashboard for the
-          <a href="https://www.geomar.de/en/fb1/physical-oceanography">
-            GEOMAR M219 Cruise
-          </a>
-        </p>
-
-      </div>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- CRUISE INFO -->
-    <!-- ===================================================== -->
-
-    <section class="info-section">
-
-      <div class="info-card">
-
-        <h2>
-          M219 WAVES Cruise Information
-        </h2>
-
-        <p>
-          <strong>
-            Principal Investigator & Chief Scientist:
-          </strong>
-          <br>
-          Prof. Peter Brandt
-        </p>
-
-        <p>
-          <strong>
-            Institution:
-          </strong>
-          <br>
-          GEOMAR Helmholtz Centre for Ocean Research Kiel
-        </p>
-
-        <p>
-          <strong>
-            Email:
-          </strong>
-          <br>
-          <a href="mailto:pbrandt@geomar.de">
-            pbrandt@geomar.de
-          </a>
-        </p>
-
-        <p>
-          This dashboard provides near-real-time environmental conditions,
-          forecasts, satellite products, and operational oceanography
-          information during the M219 WAVES expedition across the
-          tropical Atlantic.
-        </p>
-
-      </div>
-
-    </section>
-
   </main>
 
   <!-- ===================================================== -->
@@ -589,13 +484,13 @@
       &middot;
 
       <a href="https://data.marine.copernicus.eu/products">
-        Copernicus Marine Data Store
+        Copernicus Marine
       </a>
 
       &middot;
 
       <a href="https://cds.climate.copernicus.eu/">
-        Copernicus Climate Data Store
+        Copernicus Climate
       </a>
 
     </span>
