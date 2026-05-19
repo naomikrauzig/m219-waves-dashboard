@@ -91,7 +91,7 @@ main {
 ========================================================= */
 
 .site-header {
-  padding: 1.7rem;
+  padding: 1.1rem 1.3rem;
 
   background:
     radial-gradient(
@@ -115,10 +115,10 @@ main {
 .hero-header {
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.95fr 1.05fr;
   grid-template-areas: "text image";
 
-  gap: 2rem;
+  gap: 1.2rem;
 
   align-items: stretch;
 
@@ -147,12 +147,12 @@ main {
 ========================================================= */
 
 .eyebrow {
-  margin: 0 0 0.7rem;
+  margin: 0 0 0.55rem;
 
   text-transform: uppercase;
   letter-spacing: 0.08em;
 
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 700;
 
   opacity: 0.78;
@@ -161,28 +161,28 @@ main {
 .hero-text h1 {
   margin: 0;
 
-  font-size: clamp(2.5rem, 3.8vw, 4.4rem);
+  font-size: clamp(2rem, 3vw, 3.3rem);
 
-  line-height: 1.02;
-  letter-spacing: -0.045em;
+  line-height: 1.03;
+  letter-spacing: -0.04em;
 }
 
 .lede {
-  margin: 1.3rem 0 0;
+  margin: 1rem 0 0;
 
-  max-width: 760px;
+  max-width: 720px;
 
-  font-size: 1.12rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.6;
 
   opacity: 0.92;
 }
 
 .hero-update {
-  margin: 1.3rem 0 0;
+  margin: 1rem 0 0;
 
-  font-size: 0.98rem;
-  line-height: 1.5;
+  font-size: 0.92rem;
+  line-height: 1.45;
 
   color: rgba(255,255,255,0.74);
 }
@@ -196,9 +196,9 @@ main {
 
   grid-template-columns: repeat(3, minmax(0, 1fr));
 
-  gap: 0.9rem;
+  gap: 0.7rem;
 
-  margin-top: 1.7rem;
+  margin-top: 1.3rem;
 }
 
 .hero-info-card {
@@ -206,9 +206,9 @@ main {
 
   border: 1px solid rgba(255,255,255,0.12);
 
-  border-radius: 18px;
+  border-radius: 16px;
 
-  padding: 1rem;
+  padding: 0.7rem 0.8rem;
 
   backdrop-filter: blur(6px);
 }
@@ -216,7 +216,7 @@ main {
 .hero-label {
   display: block;
 
-  font-size: 0.7rem;
+  font-size: 0.64rem;
   font-weight: 700;
 
   letter-spacing: 0.04em;
@@ -224,7 +224,7 @@ main {
 
   opacity: 0.72;
 
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.35rem;
 }
 
 .hero-info-card strong,
@@ -233,8 +233,8 @@ main {
 
   text-decoration: none;
 
-  font-size: 0.98rem;
-  line-height: 1.45;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
 /* =========================================================
@@ -242,10 +242,10 @@ main {
 ========================================================= */
 
 .hero-logo {
-  width: 185px;
+  width: 145px;
   max-width: 100%;
 
-  margin-top: 4rem;
+  margin-top: 1.6rem;
 
   display: block;
 
@@ -265,13 +265,14 @@ main {
 
   overflow: hidden;
 
-  border-radius: 26px;
+  border-radius: 22px;
 
-  min-height: 720px;
+  min-height: 420px;
+  max-height: 420px;
 
   height: 100%;
 
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.05);
 
   box-shadow:
     0 12px 32px rgba(0,0,0,0.18);
@@ -281,10 +282,32 @@ main {
   width: 100%;
   height: 100%;
 
-  object-fit: cover;
+  object-fit: contain;
   object-position: center center;
 
+  background: rgba(255,255,255,0.03);
+
   display: block;
+}
+
+/* =========================================================
+   IMAGE OVERLAY
+========================================================= */
+
+.hero-image-panel::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,0.10),
+      rgba(0,0,0,0.02)
+    );
+
+  pointer-events: none;
 }
 
 /* =========================================================
@@ -294,14 +317,14 @@ main {
 .photo-credit-overlay {
   position: absolute;
 
-  right: 1rem;
-  bottom: 1rem;
+  right: 0.8rem;
+  bottom: 0.8rem;
 
   margin: 0;
 
-  padding: 0.4rem 0.7rem;
+  padding: 0.32rem 0.55rem;
 
-  border-radius: 10px;
+  border-radius: 8px;
 
   background: rgba(0,0,0,0.45);
 
@@ -309,7 +332,7 @@ main {
 
   color: rgba(255,255,255,0.92);
 
-  font-size: 0.72rem;
+  font-size: 0.66rem;
   line-height: 1.2;
 
   z-index: 10;
@@ -326,7 +349,8 @@ main {
   }
 
   .hero-image-panel {
-    min-height: 580px;
+    min-height: 360px;
+    max-height: 360px;
   }
 }
 
@@ -341,55 +365,59 @@ main {
   }
 
   .hero-image-panel {
-    min-height: 420px;
+    min-height: 340px;
+    max-height: 340px;
   }
 
   .hero-logo {
-    margin-top: 2.5rem;
+    margin-top: 1.4rem;
   }
 }
 
 @media (max-width: 700px) {
 
   .site-header {
-    padding: 1rem;
+    padding: 0.9rem;
   }
 
   .hero-header {
-    gap: 1.2rem;
+    gap: 1rem;
   }
 
   .hero-text h1 {
-    font-size: 2.1rem;
+    font-size: 2rem;
   }
 
   .lede {
-    font-size: 0.96rem;
+    font-size: 0.92rem;
   }
 
   .hero-update {
-    font-size: 0.9rem;
+    font-size: 0.84rem;
   }
 
   .hero-logo {
-    width: 135px;
-    margin-top: 2rem;
+    width: 120px;
+    margin-top: 1.2rem;
   }
 
   .hero-image-panel {
-    min-height: 260px;
+    min-height: 240px;
+    max-height: 240px;
+
     border-radius: 18px;
   }
 
   .hero-info-card {
-    padding: 0.85rem;
+    padding: 0.7rem;
   }
 
   .hero-info-card strong,
   .hero-info-card a {
-    font-size: 0.9rem;
+    font-size: 0.84rem;
   }
 }
+
 /* =========================================================
    IMAGE CREDIT OVERLAY
 ========================================================= */
