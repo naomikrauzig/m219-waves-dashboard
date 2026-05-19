@@ -13,14 +13,14 @@ name: Update Copernicus snapshots
         default: "5"
         type: string
   schedule:
-    - cron: "20 5 * * *"
+    - cron: "0 5,17 * * *"
 
 permissions:
   contents: write
 
 concurrency:
   group: update-copernicus-snapshots
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
