@@ -686,4 +686,195 @@ footer {
   footer {
     flex-direction: column;
   }
+
+   /* =========================================================
+   PHONE OPTIMISATION
+========================================================= */
+
+@media (max-width: 600px) {
+
+  body {
+    line-height: 1.45;
+  }
+
+  .site-header {
+    padding: 0.9rem;
+  }
+
+  .hero-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "text"
+      "image"
+      "status";
+    gap: 0.9rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.85rem;
+    line-height: 1.08;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .lede {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-top: 0.8rem;
+  }
+
+  .hero-info-grid {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+    margin-top: 0.9rem;
+  }
+
+  .hero-info-card {
+    padding: 0.7rem 0.8rem;
+    border-radius: 13px;
+  }
+
+  .hero-label {
+    font-size: 0.64rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-info-card strong,
+  .hero-info-card a {
+    font-size: 0.84rem;
+  }
+
+  .photo-credit {
+    font-size: 0.72rem;
+    margin-top: 0.7rem;
+  }
+
+  .hero-image-panel {
+    min-height: 210px;
+    max-height: 260px;
+    border-radius: 16px;
+  }
+
+  .status-panel {
+    width: 100%;
+    min-width: 0;
+    padding: 0.85rem 0.95rem;
+    border-radius: 15px;
+  }
+
+  .status-panel strong {
+    font-size: 1rem;
+  }
+
+  .status-panel small {
+    font-size: 0.78rem;
+  }
+
+  main {
+    padding: 0.75rem;
+  }
+
+  .section-heading h2 {
+    font-size: 1.25rem;
+  }
+
+  .section-heading p {
+    font-size: 0.9rem;
+  }
+
+  .multi-panel-grid,
+  .regional-panel-grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .map-panel {
+    border-radius: 15px;
+  }
+
+  .panel-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+    padding: 0.6rem;
+  }
+
+  .panel-toolbar label {
+    font-size: 0.74rem;
+  }
+
+  .panel-toolbar select {
+    width: 100%;
+    font-size: 0.82rem;
+    padding: 0.42rem 0.55rem;
+  }
+
+  .map-controls {
+    justify-content: center;
+    padding: 0.35rem;
+  }
+
+  .map-controls button {
+    font-size: 0.72rem;
+    padding: 0.28rem 0.5rem;
+  }
+
+  .zoom-stage {
+    aspect-ratio: 1 / 1;
+  }
+
+  .panel-caption {
+    font-size: 0.78rem;
+    padding: 0.5rem 0.65rem;
+  }
+
+  .bottom-observation-panel {
+    padding: 1rem;
+    border-radius: 15px;
+  }
+
+  #insitu-map {
+    padding: 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  .table-wrap {
+    border-radius: 15px;
+  }
+
+  th,
+  td {
+    padding: 0.55rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .brand-section {
+    border-radius: 15px;
+  }
+
+  .brand-section > img {
+    height: 180px;
+  }
+
+  .brand-credit {
+    padding: 1rem;
+  }
+
+  .brand-credit img {
+    width: 155px;
+  }
+
+  .info-card {
+    padding: 1rem;
+    border-radius: 15px;
+  }
+
+  footer {
+    padding: 0.9rem;
+    font-size: 0.82rem;
+  }
 }
