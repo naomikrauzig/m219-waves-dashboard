@@ -98,23 +98,32 @@ main {
   color: white;
 }
 
+/* MAIN HERO GRID */
+
 .hero-header {
   display: grid;
-  grid-template-columns: minmax(420px, 0.95fr) minmax(600px, 1.25fr);
-  grid-template-areas:
-    "text image";
-  gap: 1.4rem 1.8rem;
+  grid-template-columns: minmax(420px, 0.95fr) minmax(650px, 1.25fr);
+  grid-template-areas: "text image";
+  gap: 1.8rem;
   align-items: stretch;
+
+  max-width: 1800px;
+  margin: 0 auto;
 }
+
+/* LEFT COLUMN */
 
 .hero-text {
   grid-area: text;
-  min-width: 0;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+
+  min-width: 0;
 }
+
+/* TEXT */
 
 .eyebrow {
   margin: 0 0 0.7rem;
@@ -147,7 +156,7 @@ main {
   color: rgba(255,255,255,0.72);
 }
 
-/* HERO INFORMATION GRID */
+/* HERO INFO GRID */
 
 .hero-info-grid {
   display: grid;
@@ -176,54 +185,112 @@ main {
 
 .hero-info-card strong,
 .hero-info-card a {
-  display: block;
-  font-size: 0.92rem;
-  line-height: 1.4;
-  font-weight: 400;
   color: white;
   text-decoration: none;
 }
 
-.hero-info-card strong a {
-  color: white;
-  font-weight: 400;
-  text-decoration: none;
-}
-
-.hero-info-card strong a:hover {
-  text-decoration: underline;
-}
-
-/* M219 LOGO */
+/* LOGO */
 
 .hero-logo {
-  width: 340px;
-  max-width: 72%;
-  margin-top: 2.2rem;
+  width: 170px;
+  max-width: 100%;
+
+  margin-top: 1.8rem;
+
   display: block;
+
   filter: drop-shadow(0 10px 24px rgba(0,0,0,0.34));
 }
 
-/* HERO IMAGE */
+/* RIGHT COLUMN IMAGE */
 
 .hero-image-panel {
-  position: relative;
   grid-area: image;
-  margin: 0;
-  border-radius: var(--radius-large);
+
+  position: relative;
   overflow: hidden;
-  min-height: 390px;
+
+  border-radius: 22px;
+
+  min-height: 520px;
   height: 100%;
+
   background: rgba(255,255,255,0.08);
-  box-shadow: var(--shadow-strong);
+
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
 }
 
 .hero-image-panel img {
   width: 100%;
   height: 100%;
+
   object-fit: cover;
   object-position: center;
+
   display: block;
+}
+
+/* PHOTO CREDIT */
+
+.photo-credit-overlay {
+  position: absolute;
+
+  right: 1rem;
+  bottom: 1rem;
+
+  margin: 0;
+  padding: 0.38rem 0.65rem;
+
+  border-radius: 10px;
+
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+
+  color: rgba(255,255,255,0.92);
+
+  font-size: 0.72rem;
+  line-height: 1.2;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .hero-header {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "text"
+      "image";
+  }
+
+  .hero-image-panel {
+    min-height: 320px;
+  }
+
+  .hero-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .site-header {
+    padding: 1rem;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-logo {
+    width: 130px;
+  }
+
+  .hero-image-panel {
+    min-height: 240px;
+  }
 }
 
 /* =========================================================
