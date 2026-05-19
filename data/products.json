@@ -34,7 +34,7 @@
   },
   {
     "key": "MODEL_SAL",
-    "label": "Model salinity",
+    "label": "Surface salinity",
     "category": "Modeled forecast",
     "status": "automated",
     "workflow_enabled": true,
