@@ -32,19 +32,9 @@ html {
 
 body {
   margin: 0;
-
-  font-family:
-    Inter,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: var(--bg);
-
   color: var(--text);
-
   line-height: 1.5;
 }
 
@@ -102,42 +92,25 @@ main {
 
 .site-header {
   padding: 1.7rem;
-
   background:
-    radial-gradient(
-      circle at 75% 15%,
-      rgba(91, 154, 201, 0.28),
-      transparent 32%
-    ),
-    linear-gradient(
-      135deg,
-      #08243d 0%,
-      #0d3456 100%
-    );
-
+    radial-gradient(circle at 75% 15%, rgba(91, 154, 201, 0.28), transparent 32%),
+    linear-gradient(135deg, #08243d 0%, #0d3456 100%);
   color: white;
 }
 
 .hero-header {
   display: grid;
-
-  grid-template-columns:
-    minmax(420px, 0.95fr)
-    minmax(600px, 1.25fr);
-
+  grid-template-columns: minmax(420px, 0.95fr) minmax(600px, 1.25fr);
   grid-template-areas:
     "text image"
     "status image";
-
   gap: 1.4rem 1.8rem;
-
   align-items: stretch;
 }
 
 .hero-text {
   grid-area: text;
   min-width: 0;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -146,34 +119,25 @@ main {
 
 .eyebrow {
   margin: 0 0 0.7rem;
-
   text-transform: uppercase;
   letter-spacing: 0.08em;
-
   font-size: 0.78rem;
   font-weight: 700;
-
   opacity: 0.78;
 }
 
 .hero-text h1 {
   margin: 0;
-
   font-size: clamp(2rem, 3vw, 3.1rem);
-
   line-height: 1.05;
-
   letter-spacing: -0.03em;
 }
 
 .lede {
   margin: 1.1rem 0 0;
-
   max-width: 760px;
-
   font-size: 1.05rem;
   line-height: 1.6;
-
   opacity: 0.92;
 }
 
@@ -181,53 +145,36 @@ main {
 
 .hero-info-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
-
   margin-top: 1.25rem;
 }
 
 .hero-info-card {
   background: rgba(255,255,255,0.11);
-
   border: 1px solid rgba(255,255,255,0.12);
-
   border-radius: 16px;
-
   padding: 0.85rem 0.95rem;
-
   backdrop-filter: blur(6px);
 }
 
 .hero-label {
   display: block;
-
   font-size: 0.7rem;
   font-weight: 700;
-
   letter-spacing: 0.04em;
-
   text-transform: uppercase;
-
   opacity: 0.72;
-
   margin-bottom: 0.45rem;
 }
 
 .hero-info-card strong,
 .hero-info-card a {
   display: block;
-
   font-size: 0.92rem;
   line-height: 1.4;
-
   font-weight: 400;
-
   color: white;
-
   text-decoration: none;
 }
 
@@ -241,43 +188,36 @@ main {
   text-decoration: underline;
 }
 
+/* M219 LOGO */
+
 .hero-logo {
-  width: 170px;
-  max-width: 34%;
-  margin-top: 1.6rem;
-  margin-bottom: 1.8rem;
+  width: 240px;
+  max-width: 52%;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   display: block;
-  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.28));
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.32));
 }
 
 /* HERO IMAGE */
 
 .hero-image-panel {
   position: relative;
-
   grid-area: image;
-
   margin: 0;
-
   border-radius: var(--radius-large);
-
   overflow: hidden;
-
   min-height: 390px;
   height: 100%;
-
   background: rgba(255,255,255,0.08);
-
   box-shadow: var(--shadow-strong);
 }
 
 .hero-image-panel img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
   object-position: center;
-
   display: block;
 }
 
@@ -287,25 +227,16 @@ main {
 
 .photo-credit-overlay {
   position: absolute;
-
   right: 1rem;
   bottom: 1rem;
-
   margin: 0;
-
   padding: 0.38rem 0.65rem;
-
   border-radius: 10px;
-
   background: rgba(0,0,0,0.45);
-
   backdrop-filter: blur(6px);
-
   color: rgba(255,255,255,0.92);
-
   font-size: 0.72rem;
   line-height: 1.2;
-
   z-index: 10;
 }
 
@@ -313,57 +244,39 @@ main {
 
 .status-panel {
   grid-area: status;
-
   align-self: flex-start;
-
   width: min(100%, 420px);
-
+  margin-top: 0.2rem;
   background: rgba(255,255,255,0.16);
-
   border: 1px solid rgba(255,255,255,0.18);
-
   border-radius: 20px;
-
   padding: 1.35rem 1.55rem;
-
   backdrop-filter: blur(10px);
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.16);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.16);
 }
 
 .status-panel span {
   display: block;
-
   font-size: 0.95rem;
   font-weight: 700;
-
   letter-spacing: 0.04em;
-
   text-transform: uppercase;
-
   opacity: 0.82;
 }
 
 .status-panel strong {
   display: block;
-
   margin-top: 0.45rem;
-
   font-size: 1.7rem;
   line-height: 1.1;
-
   letter-spacing: -0.02em;
 }
 
 .status-panel small {
   display: block;
-
   margin-top: 0.8rem;
-
   font-size: 0.9rem;
   line-height: 1.4;
-
   opacity: 0.9;
 }
 
@@ -377,21 +290,14 @@ main {
 
 .multi-panel-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(360px, 1fr));
-
+  grid-template-columns: repeat(3, minmax(360px, 1fr));
   gap: 1.1rem;
 }
 
 .regional-panel-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(360px, 1fr));
-
+  grid-template-columns: repeat(2, minmax(360px, 1fr));
   gap: 1.1rem;
-
   margin-top: 0.75rem;
 }
 
@@ -405,52 +311,35 @@ main {
 
 .map-panel {
   background: var(--panel);
-
   border: 1px solid var(--border);
-
   border-radius: var(--radius);
-
   box-shadow: var(--shadow);
-
   overflow: hidden;
 }
 
 .panel-toolbar {
   display: flex;
-
   align-items: center;
-
   gap: 0.55rem;
-
   flex-wrap: wrap;
-
   min-height: var(--toolbar-height);
-
   padding: 0.62rem 0.8rem;
-
   border-bottom: 1px solid var(--border);
-
   background: #f6f9fc;
 }
 
 .panel-toolbar label {
   font-size: 0.8rem;
   font-weight: 700;
-
   color: var(--muted);
 }
 
 .panel-toolbar select {
   border: 1px solid var(--border);
-
   border-radius: 10px;
-
   padding: 0.34rem 0.52rem;
-
   background: white;
-
   font-size: 0.84rem;
-
   min-width: 110px;
   max-width: 100%;
 }
@@ -474,39 +363,25 @@ main {
 
 .map-controls {
   display: flex;
-
   justify-content: flex-end;
   align-items: center;
-
   gap: 0.4rem;
-
   padding: 0.34rem 0.6rem;
-
   background: #f7fafc;
-
   border-bottom: 1px solid var(--border);
 }
 
 .map-controls button {
   border: 1px solid #c9d5e2;
-
   background: white;
-
   color: var(--text);
-
   border-radius: 9px;
-
   cursor: pointer;
-
   font-size: 0.74rem;
   font-weight: 700;
-
   line-height: 1;
-
   padding: 0.24rem 0.5rem;
-
   min-width: 30px;
-
   transition:
     background 0.15s ease,
     border-color 0.15s ease;
@@ -523,30 +398,20 @@ main {
 
 .zoom-stage {
   position: relative;
-
   width: 100%;
-
   aspect-ratio: 1 / 1.22;
-
   overflow: hidden;
-
   background: #dbe6ef;
-
   cursor: default;
-
   touch-action: none;
 }
 
 .panel-image {
   width: 100%;
   height: 100%;
-
   object-fit: contain;
-
   object-position: center;
-
   transform-origin: center center;
-
   display: block;
 }
 
@@ -556,13 +421,9 @@ main {
 
 .panel-caption {
   padding: 0.58rem 0.85rem;
-
   font-size: 0.84rem;
-
   color: var(--muted);
-
   border-top: 1px solid var(--border);
-
   background: #fafcff;
 }
 
@@ -572,30 +433,17 @@ main {
 
 .bottom-observation-panel {
   margin-bottom: 2rem;
-
   background: var(--panel);
-
   border: 1px solid var(--border);
-
   border-radius: var(--radius);
-
   box-shadow: var(--shadow);
-
   padding: 1.3rem;
 }
 
 #insitu-map {
   min-height: 180px;
-
   border-radius: 14px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #dfeaf4,
-      #eef5fa
-    );
-
+  background: linear-gradient(135deg, #dfeaf4, #eef5fa);
   padding: 1.2rem;
 }
 
@@ -605,13 +453,9 @@ main {
 
 .table-wrap {
   overflow-x: auto;
-
   background: var(--panel);
-
   border: 1px solid var(--border);
-
   border-radius: var(--radius);
-
   box-shadow: var(--shadow);
 }
 
@@ -627,12 +471,9 @@ thead {
 th,
 td {
   padding: 0.7rem 0.8rem;
-
   border-bottom: 1px solid #e5edf5;
-
   text-align: left;
   vertical-align: top;
-
   font-size: 0.92rem;
 }
 
@@ -643,11 +484,8 @@ tbody tr:hover {
 th small,
 td small {
   display: block;
-
   margin-top: 0.18rem;
-
   color: var(--muted);
-
   font-weight: 500;
 }
 
@@ -657,17 +495,12 @@ td small {
 
 .status {
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
-
   border-radius: 999px;
-
   min-width: 28px;
   height: 28px;
-
   border: none;
-
   font-weight: 700;
 }
 
@@ -702,13 +535,9 @@ td small {
 
 .brand-section {
   position: relative;
-
   overflow: hidden;
-
   border-radius: var(--radius);
-
   box-shadow: var(--shadow);
-
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
@@ -716,37 +545,25 @@ td small {
 .brand-section > img {
   width: 100%;
   height: 260px;
-
   object-fit: cover;
-
   display: block;
 }
 
 .brand-credit {
   position: absolute;
-
   inset: 0;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
   padding: 1.5rem;
-
   background:
-    linear-gradient(
-      to top,
-      rgba(0,0,0,0.72),
-      rgba(0,0,0,0.10)
-    );
-
+    linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.10));
   color: white;
 }
 
 .brand-credit img {
   width: 210px;
   max-width: 100%;
-
   margin-bottom: 0.9rem;
 }
 
@@ -770,20 +587,15 @@ td small {
 
 .info-card {
   background: white;
-
   border-radius: var(--radius);
-
   padding: 1.5rem 1.8rem;
-
   box-shadow: var(--shadow);
-
   border: 1px solid var(--border);
 }
 
 .info-card h2 {
   margin-top: 0;
   margin-bottom: 1rem;
-
   color: var(--text);
 }
 
@@ -807,21 +619,13 @@ td small {
 
 footer {
   display: flex;
-
   justify-content: space-between;
-
   gap: 1rem;
-
   flex-wrap: wrap;
-
   padding: 1rem 1.4rem;
-
   font-size: 0.9rem;
-
   color: var(--muted);
-
   border-top: 1px solid #d6e2ee;
-
   background: white;
 }
 
@@ -832,13 +636,11 @@ footer {
 @media (max-width: 1250px) {
 
   .multi-panel-grid {
-    grid-template-columns:
-      repeat(2, minmax(360px, 1fr));
+    grid-template-columns: repeat(2, minmax(360px, 1fr));
   }
 
   .regional-panel-grid {
-    grid-template-columns:
-      repeat(2, minmax(360px, 1fr));
+    grid-template-columns: repeat(2, minmax(360px, 1fr));
   }
 
   .hero-info-grid {
@@ -850,7 +652,6 @@ footer {
 
   .hero-header {
     grid-template-columns: 1fr;
-
     grid-template-areas:
       "text"
       "image"
@@ -922,14 +723,11 @@ footer {
 
   .hero-header {
     display: grid;
-
     grid-template-columns: 1fr;
-
     grid-template-areas:
       "text"
       "image"
       "status";
-
     gap: 0.9rem;
   }
 
@@ -951,9 +749,7 @@ footer {
 
   .hero-info-grid {
     grid-template-columns: 1fr;
-
     gap: 0.55rem;
-
     margin-top: 0.9rem;
   }
 
@@ -972,28 +768,30 @@ footer {
     font-size: 0.84rem;
   }
 
+  .hero-logo {
+    width: 180px;
+    max-width: 65%;
+    margin-top: 1.2rem;
+    margin-bottom: 0.9rem;
+  }
+
   .hero-image-panel {
     min-height: 210px;
     max-height: 260px;
-
     border-radius: 16px;
   }
 
   .photo-credit-overlay {
     right: 0.7rem;
     bottom: 0.7rem;
-
     font-size: 0.64rem;
-
     padding: 0.28rem 0.5rem;
   }
 
   .status-panel {
     width: 100%;
     min-width: 0;
-
     padding: 0.85rem 0.95rem;
-
     border-radius: 15px;
   }
 
@@ -1020,7 +818,6 @@ footer {
   .multi-panel-grid,
   .regional-panel-grid {
     grid-template-columns: 1fr;
-
     gap: 0.9rem;
   }
 
@@ -1031,9 +828,7 @@ footer {
   .panel-toolbar {
     flex-direction: column;
     align-items: stretch;
-
     gap: 0.35rem;
-
     padding: 0.6rem;
   }
 
@@ -1043,21 +838,17 @@ footer {
 
   .panel-toolbar select {
     width: 100%;
-
     font-size: 0.82rem;
-
     padding: 0.42rem 0.55rem;
   }
 
   .map-controls {
     justify-content: center;
-
     padding: 0.35rem;
   }
 
   .map-controls button {
     font-size: 0.72rem;
-
     padding: 0.28rem 0.5rem;
   }
 
@@ -1067,19 +858,16 @@ footer {
 
   .panel-caption {
     font-size: 0.78rem;
-
     padding: 0.5rem 0.65rem;
   }
 
   .bottom-observation-panel {
     padding: 1rem;
-
     border-radius: 15px;
   }
 
   #insitu-map {
     padding: 0.85rem;
-
     font-size: 0.9rem;
   }
 
@@ -1090,7 +878,6 @@ footer {
   th,
   td {
     padding: 0.55rem 0.6rem;
-
     font-size: 0.8rem;
   }
 
@@ -1112,13 +899,11 @@ footer {
 
   .info-card {
     padding: 1rem;
-
     border-radius: 15px;
   }
 
   footer {
     padding: 0.9rem;
-
     font-size: 0.82rem;
   }
 }
