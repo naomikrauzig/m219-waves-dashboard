@@ -112,9 +112,6 @@ main {
   color: white;
 }
 
-/* Current HTML:
-   header contains .hero-text, .hero-image-panel, .status-panel
-*/
 .hero-header {
   display: grid;
   grid-template-columns: minmax(420px, 0.95fr) minmax(600px, 1.25fr);
@@ -155,6 +152,46 @@ main {
   font-size: 1.05rem;
   line-height: 1.6;
   opacity: 0.92;
+}
+
+/* HERO INFORMATION GRID */
+
+.hero-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 1.25rem;
+}
+
+.hero-info-card {
+  background: rgba(255,255,255,0.11);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 0.85rem 0.95rem;
+  backdrop-filter: blur(6px);
+}
+
+.hero-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.72;
+  margin-bottom: 0.45rem;
+}
+
+.hero-info-card strong,
+.hero-info-card a {
+  display: block;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: white;
+  text-decoration: none;
+}
+
+.hero-info-card a:hover {
+  text-decoration: underline;
 }
 
 .photo-credit {
@@ -227,14 +264,12 @@ main {
   margin-bottom: 2rem;
 }
 
-/* Atlantic overview: 3 panels per row, 2 rows */
 .multi-panel-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(360px, 1fr));
   gap: 1.1rem;
 }
 
-/* Regional zoom: 2 panels in one row */
 .regional-panel-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(360px, 1fr));
@@ -263,10 +298,8 @@ main {
   align-items: center;
   gap: 0.55rem;
   flex-wrap: wrap;
-
   min-height: var(--toolbar-height);
   padding: 0.62rem 0.8rem;
-
   border-bottom: 1px solid var(--border);
   background: #f6f9fc;
 }
@@ -309,9 +342,7 @@ main {
   justify-content: flex-end;
   align-items: center;
   gap: 0.4rem;
-
   padding: 0.34rem 0.6rem;
-
   background: #f7fafc;
   border-bottom: 1px solid var(--border);
 }
@@ -322,14 +353,11 @@ main {
   color: var(--text);
   border-radius: 9px;
   cursor: pointer;
-
   font-size: 0.74rem;
   font-weight: 700;
   line-height: 1;
-
   padding: 0.24rem 0.5rem;
   min-width: 30px;
-
   transition:
     background 0.15s ease,
     border-color 0.15s ease;
@@ -450,11 +478,9 @@ td small {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 999px;
   min-width: 28px;
   height: 28px;
-
   border: none;
   font-weight: 700;
 }
@@ -507,20 +533,16 @@ td small {
 .brand-credit {
   position: absolute;
   inset: 0;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
   padding: 1.5rem;
-
   background:
     linear-gradient(
       to top,
       rgba(0,0,0,0.72),
       rgba(0,0,0,0.10)
     );
-
   color: white;
 }
 
@@ -585,12 +607,9 @@ footer {
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-
   padding: 1rem 1.4rem;
-
   font-size: 0.9rem;
   color: var(--muted);
-
   border-top: 1px solid #d6e2ee;
   background: white;
 }
@@ -606,6 +625,10 @@ footer {
 
   .regional-panel-grid {
     grid-template-columns: repeat(2, minmax(360px, 1fr));
+  }
+
+  .hero-info-grid {
+    grid-template-columns: 1fr;
   }
 }
 
