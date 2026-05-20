@@ -1,99 +1,311 @@
 /* =========================================================
-   GLOBAL
+   HEADER / HERO
 ========================================================= */
 
-:root {
-  --bg: #eef3f8;
-  --panel: #ffffff;
-  --border: #d9e3ee;
-
-  --text: #17212b;
-  --muted: #586574;
-
-  --accent: #005b96;
-  --accent-light: #0d7bc2;
-
-  --shadow: 0 2px 10px rgba(0,0,0,0.06);
-  --shadow-strong: 0 12px 32px rgba(0,0,0,0.18);
-
-  --radius: 18px;
-  --radius-large: 22px;
-
-  --toolbar-height: 52px;
+.site-header {
+  padding: 1.15rem 1.2rem 1.2rem;
+  background:
+    radial-gradient(circle at 78% 14%, rgba(91,154,201,0.26), transparent 34%),
+    linear-gradient(135deg, #08243d 0%, #0d3456 100%);
+  color: white;
 }
 
-* {
-  box-sizing: border-box;
+/* =========================================================
+   HERO GRID
+========================================================= */
+
+.hero-header {
+  display: grid;
+
+  grid-template-columns:
+    minmax(360px, 1.05fr)
+    minmax(180px, 0.42fr)
+    minmax(420px, 1.12fr);
+
+  grid-template-areas:
+    "text logo image";
+
+  gap: 1.2rem;
+
+  align-items: stretch;
+
+  width: 100%;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+.hero-text {
+  grid-area: text;
 
-body {
-  margin: 0;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.5;
+  min-width: 0;
+  max-width: 760px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* =========================================================
    TYPOGRAPHY
 ========================================================= */
 
-h1,
-h2,
-h3 {
-  margin-top: 0;
-  line-height: 1.2;
+.eyebrow {
+  margin: 0 0 0.7rem;
+
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+
+  font-size: 0.74rem;
+  font-weight: 700;
+
+  opacity: 0.78;
 }
 
-a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-code {
-  background: #e7eef5;
-  padding: 0.15rem 0.35rem;
-  border-radius: 6px;
-  font-size: 0.92em;
-}
-
-/* =========================================================
-   PAGE LAYOUT
-========================================================= */
-
-main {
-  padding: 1.2rem;
-}
-
-.section-heading {
-  margin-bottom: 1rem;
-}
-
-.section-heading h2 {
-  margin-bottom: 0.3rem;
-}
-
-.section-heading p {
+.hero-text h1 {
   margin: 0;
-  color: var(--muted);
+
+  font-size: clamp(2.1rem, 3vw, 3.55rem);
+
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+}
+
+.lede {
+  margin: 0.9rem 0 0;
+
+  max-width: 690px;
+
+  font-size: 1rem;
+  line-height: 1.58;
+
+  opacity: 0.92;
+}
+
+.hero-update {
+  margin: 0.95rem 0 0;
+
+  font-size: 0.88rem;
+  line-height: 1.4;
+
+  color: rgba(255,255,255,0.76);
 }
 
 /* =========================================================
-   HEADER / HERO
+   HERO INFO GRID
 ========================================================= */
 
-.site-header {
-  padding: 1.05rem 1.2rem 1.2rem;
-  background:
-    radial-gradient(circle at 76% 14%, rgba(91, 154, 201, 0.24), transparent 34%),
-    linear-gradient(135deg, #08243d 0%, #0d3456 100%);
+.hero-info-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 0.7rem;
+
+  margin-top: 1.2rem;
+}
+
+.hero-info-card {
+  background: rgba(255,255,255,0.10);
+
+  border: 1px solid rgba(255,255,255,0.14);
+
+  border-radius: 15px;
+
+  padding: 0.72rem 0.8rem;
+
+  backdrop-filter: blur(6px);
+}
+
+.hero-label {
+  display: block;
+
+  margin-bottom: 0.32rem;
+
+  font-size: 0.62rem;
+  font-weight: 700;
+
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  opacity: 0.74;
+}
+
+.hero-link,
+.hero-info-card strong {
   color: white;
+
+  text-decoration: none;
+
+  font-size: 0.84rem;
+  line-height: 1.38;
+}
+
+/* =========================================================
+   LOGO PANEL
+========================================================= */
+
+.hero-logo-panel {
+  grid-area: logo;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem;
+
+  border-radius: 22px;
+
+  background: rgba(255,255,255,0.07);
+
+  border: 1px solid rgba(255,255,255,0.13);
+
+  min-height: 100%;
+}
+
+.hero-logo {
+  width: min(100%, 200px);
+
+  height: auto;
+
+  display: block;
+
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.28));
+}
+
+/* =========================================================
+   HERO IMAGE
+========================================================= */
+
+.hero-image-panel {
+  grid-area: image;
+
+  position: relative;
+
+  overflow: hidden;
+
+  margin: 0;
+
+  border-radius: 22px;
+
+  min-height: 355px;
+
+  background: rgba(255,255,255,0.05);
+
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+}
+
+.hero-image-panel img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  object-position: center center;
+}
+
+.photo-credit-overlay {
+  position: absolute;
+
+  right: 0.75rem;
+  bottom: 0.75rem;
+
+  margin: 0;
+
+  padding: 0.3rem 0.55rem;
+
+  border-radius: 8px;
+
+  background: rgba(0,0,0,0.48);
+
+  backdrop-filter: blur(6px);
+
+  color: rgba(255,255,255,0.94);
+
+  font-size: 0.62rem;
+
+  z-index: 10;
+}
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1180px) {
+
+  .hero-header {
+
+    grid-template-columns:
+      1fr
+      260px;
+
+    grid-template-areas:
+      "text logo"
+      "image image";
+  }
+
+  .hero-image-panel {
+    min-height: 320px;
+  }
+
+  .hero-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 760px) {
+
+  .site-header {
+    padding: 0.95rem;
+  }
+
+  .hero-header {
+
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      "logo"
+      "text"
+      "image";
+
+    gap: 1rem;
+  }
+
+  .hero-logo-panel {
+    padding: 0.9rem;
+  }
+
+  .hero-logo {
+    width: min(70%, 180px);
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .lede {
+    font-size: 0.93rem;
+  }
+
+  .hero-update {
+    font-size: 0.84rem;
+  }
+
+  .hero-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-image-panel {
+    min-height: 230px;
+
+    border-radius: 16px;
+  }
+
+  .photo-credit-overlay {
+    font-size: 0.6rem;
+  }
 }
