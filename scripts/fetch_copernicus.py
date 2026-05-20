@@ -1143,15 +1143,69 @@ def plot_snapshot(
 
         plt.close(fig)
 
+def scan_existing_snapshots(products: list[dict]) -> tuple[list[str], dict[str, dict[str, dict]]]:
+    product_keys = {product["key"] for product in products}
+    dates: set[str] = set()
+    status: dict[str, dict[str, dict]] = {}
 
-def write_manifest(days: list[date], products: list[dict], status: dict[str, dict[str, dict]]) -> None:
-    new_dates = [day.isoformat() for day in days]
+    if not SNAPSHOT_DIR.exists():
+        return [], {}
+
+    for png in sorted(SNAPSHOT_DIR.glob("*.png")):
+        stem = png.stem
+
+        for product_key in product_keys:
+            full_suffix = f"_{product_key}"
+            regional_suffix = f"_{product_key}_REGIONAL"
+
+            if stem.endswith(regional_suffix):
+                day_key = stem[: -len(regional_suffix)]
+                dates.add(day_key)
+                status.setdefault(day_key, {}).setdefault(product_key, {})[
+                    "regional_path"
+                ] = f"assets/snapshots/{png.name}"
+                break
+
+            if stem.endswith(full_suffix):
+                day_key = stem[: -len(full_suffix)]
+                dates.add(day_key)
+                status.setdefault(day_key, {})[product_key] = {
+                    "available": True,
+                    "path": f"assets/snapshots/{png.name}",
+                    "source_date": day_key,
+                }
+                break
+
+    return sorted(dates), status
+
+
+def write_manifest(
+    days: list[date],
+    products: list[dict],
+    status: dict[str, dict[str, dict]],
+) -> None:
+    requested_dates = [day.isoformat() for day in days]
+
+    existing_dates, existing_status = scan_existing_snapshots(products)
+
+    merged_status = existing_status
+
+    for day_key, products_status in status.items():
+        merged_status.setdefault(day_key, {})
+
+        for product_key, product_status in products_status.items():
+            if product_status.get("available"):
+                merged_status[day_key][product_key] = product_status
+            elif product_key not in merged_status[day_key]:
+                merged_status[day_key][product_key] = product_status
+
+    all_dates = sorted(set(existing_dates) | set(requested_dates))
 
     manifest = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "forecast_start": new_dates[0] if new_dates else None,
-        "forecast_end": new_dates[-1] if new_dates else None,
-        "dates": new_dates,
+        "forecast_start": requested_dates[0] if requested_dates else None,
+        "forecast_end": requested_dates[-1] if requested_dates else None,
+        "dates": all_dates,
         "products": [
             {
                 "key": product["key"],
@@ -1163,7 +1217,7 @@ def write_manifest(days: list[date], products: list[dict], status: dict[str, dic
             }
             for product in products
         ],
-        "status": status,
+        "status": merged_status,
     }
 
     MANIFEST_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -1174,9 +1228,12 @@ def write_manifest(days: list[date], products: list[dict], status: dict[str, dic
     )
 
     print(f"Wrote manifest: {MANIFEST_FILE}", flush=True)
-    print(f"Manifest forecast window: {manifest['forecast_start']} to {manifest['forecast_end']}", flush=True)
+    print(
+        f"Manifest forecast window: {manifest['forecast_start']} to {manifest['forecast_end']}",
+        flush=True,
+    )
     print(f"Manifest generated_at: {manifest['generated_at']}", flush=True)
-
+    
 def process_product(
     product: dict,
     products: list[dict],
