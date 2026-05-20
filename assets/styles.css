@@ -441,6 +441,11 @@ main {
   box-shadow: var(--shadow);
 }
 
+/* Extra space below Product Availability table */
+.availability-section .table-wrap {
+  margin-bottom: 3rem;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
