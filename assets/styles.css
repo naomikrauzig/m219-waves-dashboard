@@ -441,9 +441,9 @@ main {
   box-shadow: var(--shadow);
 }
 
-/* Extra space below Product Availability table */
-.availability-section .table-wrap {
-  margin-bottom: 3rem;
+/* Extra space below Product Availability section */
+.availability-section {
+  padding-bottom: 3rem;
 }
 
 table {
