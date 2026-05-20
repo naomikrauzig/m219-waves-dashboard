@@ -64,7 +64,23 @@ jobs:
             DAYS_AHEAD="5"
           fi
 
+          echo "DATE_ARG=$DATE_ARG"
+          echo "DAYS_AHEAD=$DAYS_AHEAD"
+
           python scripts/fetch_copernicus.py $DATE_ARG --days-ahead "$DAYS_AHEAD" --allow-partial --force-plots
+
+      - name: Inspect generated manifest
+        run: |
+          echo "===== GENERATED MANIFEST ====="
+          cat data/manifest.json
+
+          echo ""
+          echo "===== GIT STATUS ====="
+          git status --short
+
+          echo ""
+          echo "===== GIT DIFF FOR MANIFEST ====="
+          git diff -- data/manifest.json
 
       - name: Commit generated data and snapshots
         uses: stefanzweifel/git-auto-commit-action@v5
