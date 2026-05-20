@@ -1438,17 +1438,25 @@ def process_product(
 def main() -> None:
     args = parse_args()
 
-    days = target_days(args.date, args.days_ahead)
+    days = target_days(
+        args.date,
+        args.days_back,
+        args.days_ahead,
+    )
 
     print(f"Workflow input date: {args.date}", flush=True)
+    print(f"days_back: {args.days_back}", flush=True)
     print(f"days_ahead: {args.days_ahead}", flush=True)
     print(f"Target days: {[d.isoformat() for d in days]}", flush=True)
 
     products = load_products()
-    
+
     made_snapshots = 0
     failures: list[str] = []
-    status: dict[str, dict[str, dict]] = {day.isoformat(): {} for day in days}
+    status: dict[str, dict[str, dict]] = {
+        day.isoformat(): {} for day in days
+    }
+
     raw_cache: dict[tuple[str, str], Path] = {}
 
     for day in days:
@@ -1460,6 +1468,7 @@ def main() -> None:
 
             try:
                 for source_day in candidate_days(product, day):
+
                     try:
                         nc_path = process_product(
                             product,
@@ -1473,19 +1482,31 @@ def main() -> None:
 
                         if nc_path is not None:
                             made_snapshots += 1
+
                             status[day_key][product_key] = {
                                 "available": True,
-                                "path": f"assets/snapshots/{day_key}_{product_key}.png",
+                                "path": (
+                                    f"assets/snapshots/"
+                                    f"{day_key}_{product_key}.png"
+                                ),
                                 "source_date": source_day.isoformat(),
                             }
+
                             break
 
-                        status[day_key][product_key] = {"available": False, "dry_run": True}
+                        status[day_key][product_key] = {
+                            "available": False,
+                            "dry_run": True,
+                        }
+
                         break
 
                     except Exception as exc:
                         error_text = str(exc)
-                        product_errors.append(f"{source_day.isoformat()}: {error_text}")
+
+                        product_errors.append(
+                            f"{source_day.isoformat()}: {error_text}"
+                        )
 
                         if "Please check that the dataset exists" in error_text:
                             raise RuntimeError("; ".join(product_errors))
@@ -1495,10 +1516,19 @@ def main() -> None:
 
             except Exception as exc:
                 message = f"{day_key} {product_key}: {exc}"
-                status[day_key][product_key] = {"available": False, "error": str(exc)}
+
+                status[day_key][product_key] = {
+                    "available": False,
+                    "error": str(exc),
+                }
+
                 failures.append(message)
 
-                print(f"ERROR {message}", file=sys.stderr, flush=True)
+                print(
+                    f"ERROR {message}",
+                    file=sys.stderr,
+                    flush=True,
+                )
 
                 if not args.allow_partial:
                     raise
@@ -1507,17 +1537,25 @@ def main() -> None:
         write_manifest(days, products, status)
 
     if failures:
-        print("Completed with product failures:", file=sys.stderr, flush=True)
-
-        for failure in failures:
-            print(f"- {failure}", file=sys.stderr, flush=True)
-
-    if not args.dry_run and made_snapshots == 0:
         print(
-            "No new snapshots were generated, but manifest.json was refreshed.",
+            "Completed with product failures:",
+            file=sys.stderr,
             flush=True,
         )
 
+        for failure in failures:
+            print(
+                f"- {failure}",
+                file=sys.stderr,
+                flush=True,
+            )
+
+    if not args.dry_run and made_snapshots == 0:
+        print(
+            "No new snapshots were generated, "
+            "but manifest.json was refreshed.",
+            flush=True,
+        )
 
 
 if __name__ == "__main__":
