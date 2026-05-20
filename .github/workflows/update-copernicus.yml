@@ -27,8 +27,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: update-copernicus-snapshots
-  cancel-in-progress: false
+  group: update-copernicus-snapshots-main
+  cancel-in-progress: true
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
@@ -112,4 +112,5 @@ jobs:
           fi
 
           git commit -m "Update Copernicus M219 snapshots"
+          git pull --rebase origin main
           git push origin HEAD:main
