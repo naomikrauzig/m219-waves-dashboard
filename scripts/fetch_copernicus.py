@@ -1295,8 +1295,13 @@ def main() -> None:
     args = parse_args()
 
     days = target_days(args.date, args.days_ahead)
-    products = load_products()
 
+    print(f"Workflow input date: {args.date}", flush=True)
+    print(f"days_ahead: {args.days_ahead}", flush=True)
+    print(f"Target days: {[d.isoformat() for d in days]}", flush=True)
+
+    products = load_products()
+    
     made_snapshots = 0
     failures: list[str] = []
     status: dict[str, dict[str, dict]] = {day.isoformat(): {} for day in days}
