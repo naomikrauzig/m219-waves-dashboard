@@ -1194,8 +1194,13 @@ def write_manifest(
         merged_status.setdefault(day_key, {})
 
         for product_key, product_status in products_status.items():
+            existing_product_status = merged_status[day_key].get(product_key, {})
+
             if product_status.get("available"):
-                merged_status[day_key][product_key] = product_status
+                merged_status[day_key][product_key] = {
+                    **existing_product_status,
+                    **product_status,
+                }
             elif product_key not in merged_status[day_key]:
                 merged_status[day_key][product_key] = product_status
 
