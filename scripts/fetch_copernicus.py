@@ -92,26 +92,46 @@ FIXED_COLOR_LIMITS = {
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
+
     parser.add_argument("--date", default=None)
-    parser.add_argument("--days-ahead", type=int, default=5)
+
+    parser.add_argument(
+        "--days-back",
+        type=int,
+        default=1,
+    )
+
+    parser.add_argument(
+        "--days-ahead",
+        type=int,
+        default=5,
+    )
+
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--allow-partial", action="store_true")
     parser.add_argument("--force-plots", action="store_true")
+
     return parser.parse_args()
 
 
 def target_start_day(value: str | None) -> date:
     if value:
         return datetime.strptime(value, "%Y-%m-%d").date()
+
     return datetime.now(timezone.utc).date()
 
 
-def target_days(value: str | None, days_ahead: int) -> list[date]:
+def target_days(
+    value: str | None,
+    days_back: int,
+    days_ahead: int,
+) -> list[date]:
+
     center_day = target_start_day(value)
 
     return [
         center_day + timedelta(days=offset)
-        for offset in range(-5, days_ahead + 1)
+        for offset in range(-days_back, days_ahead + 1)
     ]
 
 
@@ -125,9 +145,11 @@ def candidate_days(product: dict, target_day: date) -> list[date]:
     default_backfill = 3 if product.get("key") == "SAT_SLA" else 5
     max_backfill_days = int(product.get("max_backfill_days", default_backfill))
 
-    return [start - timedelta(days=offset) for offset in range(max_backfill_days + 1)]
-
-
+    return [
+        start - timedelta(days=offset)
+        for offset in range(max_backfill_days + 1)
+    ]
+    
 def load_products() -> list[dict]:
     products = json.loads(PRODUCTS_FILE.read_text(encoding="utf-8"))
     return [product for product in products if product.get("workflow_enabled", True)]
