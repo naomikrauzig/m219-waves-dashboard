@@ -1145,33 +1145,13 @@ def plot_snapshot(
 
 
 def write_manifest(days: list[date], products: list[dict], status: dict[str, dict[str, dict]]) -> None:
-    existing_manifest = {}
-
-    if MANIFEST_FILE.exists():
-        try:
-            existing_manifest = json.loads(MANIFEST_FILE.read_text(encoding="utf-8"))
-        except Exception:
-            existing_manifest = {}
-
-    old_dates = existing_manifest.get("dates", [])
-    old_status = existing_manifest.get("status", {})
-
     new_dates = [day.isoformat() for day in days]
-
-    merged_dates = sorted(set(old_dates + new_dates))
-
-    merged_status = dict(old_status)
-    for day_key, product_status in status.items():
-        if day_key not in merged_status:
-            merged_status[day_key] = {}
-
-        merged_status[day_key].update(product_status)
 
     manifest = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "forecast_start": merged_dates[0] if merged_dates else None,
-        "forecast_end": merged_dates[-1] if merged_dates else None,
-        "dates": merged_dates,
+        "forecast_start": new_dates[0] if new_dates else None,
+        "forecast_end": new_dates[-1] if new_dates else None,
+        "dates": new_dates,
         "products": [
             {
                 "key": product["key"],
@@ -1183,10 +1163,19 @@ def write_manifest(days: list[date], products: list[dict], status: dict[str, dic
             }
             for product in products
         ],
-        "status": merged_status,
+        "status": status,
     }
 
-    MANIFEST_FILE.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    MANIFEST_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+    MANIFEST_FILE.write_text(
+        json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+    print(f"Wrote manifest: {MANIFEST_FILE}", flush=True)
+    print(f"Manifest forecast window: {manifest['forecast_start']} to {manifest['forecast_end']}", flush=True)
+    print(f"Manifest generated_at: {manifest['generated_at']}", flush=True)
 
 def process_product(
     product: dict,
