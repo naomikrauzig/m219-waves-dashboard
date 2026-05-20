@@ -44,6 +44,51 @@ REGIONAL_EXTENT = {
     "ylim": (-25, 25),
 }
 
+FIXED_COLOR_LIMITS = {
+    "WAVES": {
+        "vmin": 0.5,
+        "vmax": 4.0,
+    },
+    "MODEL_CURRENT": {
+        "vmin": 0.05,
+        "vmax": 0.8,
+    },
+    "MODEL_TEMP": {
+        "vmin": 9.0,
+        "vmax": 29.0,
+    },
+    "MODEL_SAL": {
+        "vmin": 34.2,
+        "vmax": 37.6,
+    },
+    "SAT_SLA": {
+        "vmin": -0.18,
+        "vmax": 0.18,
+        "signed": True,
+    },
+    "SAT_SSS": {
+        "vmin": 34.2,
+        "vmax": 37.6,
+    },
+    "SAT_CHL": {
+        "vmin": 0.03,
+        "vmax": 2.0,
+        "log_norm": True,
+    },
+    "ERA5_WIND": {
+        "vmin": 1.5,
+        "vmax": 13.0,
+    },
+    "WIND_STRESS": {
+        "vmin": 0.02,
+        "vmax": 0.32,
+    },
+    "EKMAN_PUMPING": {
+        "vmin": -220.0,
+        "vmax": 220.0,
+        "signed": True,
+    },
+}
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
@@ -630,17 +675,26 @@ def plot_scalar_map(
     contours: bool = True,
     log_norm: bool = False,
     physical_levels: list[float] | None = None,
+    fixed_limits: dict | None = None,
 ) -> None:
     import numpy as np
     from matplotlib.colors import LogNorm, TwoSlopeNorm
+
+    if fixed_limits is not None:
+        vmin = fixed_limits["vmin"]
+        vmax = fixed_limits["vmax"]
+    else:
+        vmin = None
+        vmax = None
 
     if log_norm:
         arr = np.asarray(values, dtype=float)
         arr = arr[np.isfinite(arr) & (arr > 0)]
 
-        vmin = max(float(np.nanpercentile(arr, 2)), 0.01) if arr.size else 0.01
-        vmax = float(np.nanpercentile(arr, 98)) if arr.size else 5.0
-        vmax = max(vmax, vmin * 1.5)
+        if fixed_limits is None:
+            vmin = max(float(np.nanpercentile(arr, 2)), 0.01) if arr.size else 0.01
+            vmax = float(np.nanpercentile(arr, 98)) if arr.size else 5.0
+            vmax = max(vmax, vmin * 1.5)
 
         mesh = ax.pcolormesh(
             lon,
@@ -655,7 +709,9 @@ def plot_scalar_map(
         levels = np.geomspace(vmin, vmax, 7)
 
     elif signed:
-        vmin, vmax = symmetric_limits(values, 98)
+        if fixed_limits is None:
+            vmin, vmax = symmetric_limits(values, 98)
+
         norm = TwoSlopeNorm(vmin=vmin, vcenter=0.0, vmax=vmax)
 
         mesh = ax.pcolormesh(
@@ -668,14 +724,11 @@ def plot_scalar_map(
             transform=ccrs.PlateCarree(),
         )
 
-        levels = physical_levels if physical_levels is not None else contour_levels(
-            values,
-            n=9,
-            symmetric=True,
-        )
+        levels = physical_levels if physical_levels is not None else np.linspace(vmin, vmax, 9)
 
     else:
-        vmin, vmax = robust_limits(values, 2, 98)
+        if fixed_limits is None:
+            vmin, vmax = robust_limits(values, 2, 98)
 
         mesh = ax.pcolormesh(
             lon,
@@ -688,11 +741,7 @@ def plot_scalar_map(
             transform=ccrs.PlateCarree(),
         )
 
-        levels = physical_levels if physical_levels is not None else contour_levels(
-            values,
-            n=8,
-            symmetric=False,
-        )
+        levels = physical_levels if physical_levels is not None else np.linspace(vmin, vmax, 8)
 
     fig.colorbar(mesh, ax=ax, pad=0.012, shrink=0.86, label=label)
 
@@ -710,7 +759,7 @@ def plot_scalar_map(
             )
         except Exception:
             pass
-
+            
 
 def format_axes(
     ax: Any,
@@ -799,6 +848,7 @@ def plot_wind_snapshot(
         get_cmocean_cmap("speed"),
         "10 m wind speed (m s$^{-1}$)",
         contours=True,
+        fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
     )
 
     ax.quiver(
@@ -872,6 +922,7 @@ def plot_derived_snapshot(
                 get_cmocean_cmap("speed"),
                 "Wind stress magnitude (N m$^{-2}$)",
                 contours=True,
+                fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
             )
 
             step_y = max(1, tau.shape[0] // 30)
@@ -900,6 +951,7 @@ def plot_derived_snapshot(
                 "Ekman pumping velocity, 3×3 spatial rolling mean from ERA5 past data only (10$^{-7}$ m s$^{-1}$)",
                 signed=True,
                 contours=True,
+                fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
             )
 
             ax.contour(
@@ -908,8 +960,8 @@ def plot_derived_snapshot(
                 plot_values,
                 levels=[0],
                 colors="black",
-                linewidths=0.9,
-                alpha=0.75,
+                linewidths=1,
+                alpha=0.85,
                 transform=ccrs.PlateCarree(),
             )
 
@@ -988,6 +1040,7 @@ def plot_snapshot(
                 get_cmocean_cmap("speed"),
                 "Surface current speed (m s$^{-1}$)",
                 contours=True,
+                fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
             )
 
             step_y = max(1, speed.shape[0] // 30)
@@ -1020,6 +1073,7 @@ def plot_snapshot(
                 get_cmocean_cmap("haline"),
                 "Absolute Salinity, SA (g kg$^{-1}$)",
                 contours=True,
+                fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
             )
 
         elif product["key"] == "MODEL_TEMP":
@@ -1047,6 +1101,7 @@ def plot_snapshot(
                 get_cmocean_cmap("thermal"),
                 "Conservative Temperature, CT ($^\\circ$C)",
                 contours=True,
+                fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
             )
 
         elif product["key"] == "SAT_SLA":
@@ -1066,6 +1121,7 @@ def plot_snapshot(
                 signed=True,
                 contours=True,
                 physical_levels=[x / 100 for x in range(-100, 105, 10)],
+                fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
             )
 
         elif product["key"] == "SAT_CHL":
@@ -1084,6 +1140,7 @@ def plot_snapshot(
                 "Chlorophyll-a (mg m$^{-3}$, log scale)",
                 contours=False,
                 log_norm=True,
+                fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
             )
 
         elif product["key"] == "SAT_SSS":
@@ -1102,6 +1159,7 @@ def plot_snapshot(
                 get_cmocean_cmap("haline"),
                 "Absolute Salinity, SA (g kg$^{-1}$)",
                 contours=True,
+                fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
             )
 
         elif product["key"] == "WAVES":
@@ -1119,6 +1177,7 @@ def plot_snapshot(
                 get_cmocean_cmap("ice"),
                 "Significant wave height, Hs (m)",
                 contours=True,
+                fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
             )
 
         else:
@@ -1136,6 +1195,7 @@ def plot_snapshot(
                 get_cmocean_cmap("tempo"),
                 f"{var_name}",
                 contours=True,
+                fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
             )
 
         format_axes(ax, product, target_day, source_day, extent=extent)
@@ -1431,10 +1491,11 @@ def main() -> None:
             print(f"- {failure}", file=sys.stderr, flush=True)
 
     if not args.dry_run and made_snapshots == 0:
-    print(
-        "No new snapshots were generated, but manifest.json was refreshed.",
-        flush=True,
-    )
+        print(
+            "No new snapshots were generated, but manifest.json was refreshed.",
+            flush=True,
+        )
+
 
 
 if __name__ == "__main__":
