@@ -8,6 +8,12 @@ name: Update Copernicus snapshots
         required: false
         type: string
 
+      days_back:
+        description: "Number of past days to fetch before the central date"
+        required: false
+        default: "1"
+        type: string
+
       days_ahead:
         description: "Number of future forecast days to fetch after the central date"
         required: false
