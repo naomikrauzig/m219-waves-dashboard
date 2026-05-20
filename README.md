@@ -1,6 +1,8 @@
 # Meteor M219 WAVES Near-Real-Time Marine Dashboard
 
-This repository contains a near-real-time marine dashboard for the planned R/V Meteor M219 WAVES GEOMAR cruise.
+This repository contains a near-real-time marine dashboard for the planned R/V Meteor M219 WAVES cruise led by GEOMAR.
+
+https://naomikrauzig.github.io/m219-waves-dashboard/ 
 
 The dashboard combines Copernicus Marine, Copernicus Climate (ERA5), satellite-derived products, and derived diagnostics to provide environmental context along the planned cruise route between Recife (Brazil) and Emden (Germany).
 
