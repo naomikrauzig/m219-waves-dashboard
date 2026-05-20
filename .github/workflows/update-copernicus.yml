@@ -39,6 +39,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Sync with latest main
+        run: |
+          git pull --rebase origin main
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -74,8 +78,7 @@ jobs:
           python scripts/fetch_copernicus.py \
             $DATE_ARG \
             --days-ahead "$DAYS_AHEAD" \
-            --allow-partial \
-            --force-plots
+            --allow-partial
 
       - name: Inspect generated manifest
         run: |
@@ -95,12 +98,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git pull --rebase origin main
-
-          git add \
-            assets/snapshots/*.png \
-            data/raw/*.nc \
-            data/manifest.json
+          git add assets/snapshots data/manifest.json
 
           if git diff --cached --quiet; then
             echo "No generated changes to commit."
@@ -108,5 +106,4 @@ jobs:
           fi
 
           git commit -m "Update Copernicus M219 snapshots"
-
           git push origin HEAD:main
