@@ -7,11 +7,13 @@ name: Update Copernicus snapshots
         description: "Central date as YYYY-MM-DD; leave empty for today UTC"
         required: false
         type: string
+
       days_ahead:
         description: "Number of future forecast days to fetch after the central date"
         required: false
         default: "5"
         type: string
+
   schedule:
     - cron: "0 5,17 * * *"
 
@@ -34,6 +36,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -67,7 +71,11 @@ jobs:
           echo "DATE_ARG=$DATE_ARG"
           echo "DAYS_AHEAD=$DAYS_AHEAD"
 
-          python scripts/fetch_copernicus.py $DATE_ARG --days-ahead "$DAYS_AHEAD" --allow-partial --force-plots
+          python scripts/fetch_copernicus.py \
+            $DATE_ARG \
+            --days-ahead "$DAYS_AHEAD" \
+            --allow-partial \
+            --force-plots
 
       - name: Inspect generated manifest
         run: |
@@ -83,10 +91,22 @@ jobs:
           git diff -- data/manifest.json
 
       - name: Commit generated data and snapshots
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Update Copernicus M219 snapshots"
-          file_pattern: |
-            assets/snapshots/*.png
-            data/raw/*.nc
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git pull --rebase origin main
+
+          git add \
+            assets/snapshots/*.png \
+            data/raw/*.nc \
             data/manifest.json
+
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update Copernicus M219 snapshots"
+
+          git push origin HEAD:main
