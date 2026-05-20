@@ -654,26 +654,6 @@ def snapshot_title(product: dict, target_day: date, source_day: date) -> str:
 
     return title
 
-    if product["key"] == "EKMAN_PUMPING":
-        title = (
-            f"M219 WAVES | Ekman pumping from ERA5 winds "
-            f"(3×3 spatial rolling mean; past data only) | "
-            f"shown for {target_day.isoformat()}"
-        )
-
-        if source_day != target_day:
-            title = f"{title} using {source_day.isoformat()} data"
-
-        return title
-
-    title = f"M219 WAVES | {product['label']} | shown for {target_day.isoformat()}"
-
-    if source_day != target_day:
-        title = f"{title} using {source_day.isoformat()} data"
-
-    return title
-
-
 def save_figure(fig: Any, target_day: date, product: dict, suffix: str = "") -> None:
     SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
 
