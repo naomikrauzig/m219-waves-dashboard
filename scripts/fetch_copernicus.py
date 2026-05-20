@@ -677,7 +677,7 @@ def save_figure(fig: Any, target_day: date, product: dict, suffix: str = "") -> 
     output = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}{suffix}.png"
 
     fig.tight_layout()
-    fig.savefig(output, bbox_inches="tight", dpi=120)
+    fig.savefig(output, bbox_inches="tight", dpi=600)
 
     print(f"Saved snapshot: {output}", flush=True)
 
@@ -839,7 +839,7 @@ def plot_wind_snapshot(
     step_y = max(1, speed.shape[0] // 30)
     step_x = max(1, speed.shape[1] // 40)
 
-    fig = plt.figure(figsize=(14, 9), dpi=120)
+    fig = plt.figure(figsize=(14, 9), dpi=600)
 
     ax = plt.axes(projection=ccrs.PlateCarree())
 
@@ -911,7 +911,7 @@ def plot_derived_snapshot(
 
         _ue, _ve, w_e, taux, tauy = ekman_fields(lon, lat, u10.values, v10.values)
 
-        fig = plt.figure(figsize=(14, 9), dpi=120)
+        fig = plt.figure(figsize=(14, 9), dpi=600)
         ax = plt.axes(projection=ccrs.PlateCarree())
 
         ax.add_feature(
@@ -979,8 +979,8 @@ def plot_derived_snapshot(
                 plot_values,
                 levels=[0],
                 colors="black",
-                linewidths=1,
-                alpha=0.85,
+                linewidths=0.9,
+                alpha=0.65,
                 transform=ccrs.PlateCarree(),
             )
 
@@ -1018,7 +1018,7 @@ def plot_snapshot(
             )
             return
 
-        fig = plt.figure(figsize=(14, 9), dpi=120)
+        fig = plt.figure(figsize=(14, 9), dpi=600)
 
         ax = plt.axes(projection=ccrs.PlateCarree())
 
