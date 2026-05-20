@@ -46,6 +46,57 @@ Additional zoomed panels are generated for:
 - 0N mooring
 - CVOO mooring
 
+## Scientific and Processing Notes
+
+### TEOS-10 Variables
+
+The dashboard computes:
+- Absolute Salinity (SA)
+- Conservative Temperature (CT)
+
+using the TEOS-10 Gibbs Seawater toolbox.
+
+---
+
+### Wind Stress
+
+ERA5 winds are used to derive:
+- 10 m wind speed maps,
+- wind stress fields,
+- and Ekman pumping diagnostics.
+
+Wind stress is computed using a bulk aerodynamic formulation:
+
+τ = ρ_air · Cd · |U|²
+
+with:
+- ρ_air = 1.225 kg m⁻³
+
+and a wind-speed-dependent drag coefficient:
+
+Cd = (0.75 + 0.067 · |U|) × 10⁻³
+
+constrained to:
+
+0.8 × 10⁻³ ≤ Cd ≤ 2.5 × 10⁻³
+
+---
+
+### Ekman Diagnostics
+
+Ekman transport and Ekman pumping are derived using:
+
+- ρ_water = 1025 kg m⁻³
+- Coriolis parameter:
+
+f = 2Ω sin(latitude)
+
+The near-equatorial band is masked where the Coriolis parameter approaches zero.
+
+Ekman pumping maps additionally apply:
+- a 3×3 spatial rolling mean,
+- and only use past ERA5 data.
+
 ---
 
 ## Local Preview
