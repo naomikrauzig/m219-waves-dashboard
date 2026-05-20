@@ -563,15 +563,18 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             transform=ccrs.PlateCarree(),
         )
 
+        # City labels: above-left, grey text
         ax.text(
-            lon + 0.35,
-            lat + 0.35,
+            lon - 0.45,
+            lat + 0.60,
             label,
             fontsize=10,
             fontweight="bold",
-            color="#17212b",
+            color="#6b7280",
             zorder=9,
             transform=ccrs.PlateCarree(),
+            ha="right",
+            va="bottom",
             bbox=dict(
                 facecolor="white",
                 edgecolor="none",
@@ -589,6 +592,16 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
         (-24.3309166667, 17.5412833333, "CVOO"),
     ]
 
+    # Individual label offsets so K1-K4 do not overlap.
+    mooring_label_offsets = {
+        "K1": (1.25, -0.45),
+        "K2": (1.55, -0.80),
+        "K3": (1.85, -1.15),
+        "K4": (2.15, -1.50),
+        "0N": (0.70, -0.55),
+        "CVOO": (0.70, -0.55),
+    }
+
     for lon, lat, label in planned_points:
         if not inside(lon, lat):
             continue
@@ -605,23 +618,27 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             transform=ccrs.PlateCarree(),
         )
 
+        dx, dy = mooring_label_offsets.get(label, (0.70, -0.55))
+
+        # Mooring labels: right-below, slightly larger
         ax.text(
-            lon + 0.35,
-            lat + 0.35,
+            lon + dx,
+            lat + dy,
             label,
-            fontsize=11,
+            fontsize=12,
             fontweight="bold",
             color="#111827",
             zorder=11,
             transform=ccrs.PlateCarree(),
+            ha="left",
+            va="top",
             bbox=dict(
                 facecolor="white",
                 edgecolor="none",
                 alpha=0.88,
-                boxstyle="round,pad=0.24",
+                boxstyle="round,pad=0.28",
             ),
         )
-
 
 def add_metadata(ax: Any, product: dict, source_day: date) -> None:
     generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
