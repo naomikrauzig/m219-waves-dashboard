@@ -13,7 +13,7 @@ The page works immediately with bundled sample maps. Once Copernicus Marine and 
 - Campaign: `M219 (WAVES)`
 - Platform: R/V Meteor
 - Planned dates: `2026-05-30` Recife, Brazil → `2026-06-28` Emden, Germany
-- Chief scientist: Peter Brandt
+- Principal Investigator and Chief scientist: Peter Brandt
 - Current route file: `data/route.geojson`
 - Mooring markers: `data/moorings.geojson`
 
@@ -26,8 +26,8 @@ The dashboard currently includes:
 ### Modeled Forecast Products
 - Significant wave height
 - Surface currents
-- Surface Conservative Temperature (TEOS-10)
-- Surface Absolute Salinity (TEOS-10)
+- Surface Conservative Temperature
+- Surface Absolute Salinity
 
 ### Satellite-Derived Products
 - Sea level anomaly
