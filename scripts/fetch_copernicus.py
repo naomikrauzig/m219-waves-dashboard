@@ -1431,7 +1431,10 @@ def main() -> None:
             print(f"- {failure}", file=sys.stderr, flush=True)
 
     if not args.dry_run and made_snapshots == 0:
-        raise SystemExit("No snapshots were generated. Check credentials, dataset IDs, and requested date.")
+    print(
+        "No new snapshots were generated, but manifest.json was refreshed.",
+        flush=True,
+    )
 
 
 if __name__ == "__main__":
