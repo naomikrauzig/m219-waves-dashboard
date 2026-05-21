@@ -21,7 +21,7 @@ name: Update Copernicus snapshots
         type: string
 
   schedule:
-    - cron: "0 5,17 * * *"
+    - cron: "43 5,17 * * *"
 
 permissions:
   contents: write
