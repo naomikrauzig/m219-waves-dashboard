@@ -563,18 +563,34 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             transform=ccrs.PlateCarree(),
         )
 
-        # City labels: above-left, grey text, no background box
+       # Individual city label placement
+        if label == "Emden":
+            tx, ty = 0.0, -0.55
+            ha, va = "center", "top"
+
+        elif label == "Mindelo":
+            tx, ty = 0.0, 0.55
+            ha, va = "center", "bottom"
+
+        elif label == "Recife":
+            tx, ty = -0.55, 0.0
+            ha, va = "right", "center"
+
+        else:
+            tx, ty = -0.45, 0.60
+            ha, va = "right", "bottom"
+
         ax.text(
-            lon - 0.45,
-            lat + 0.60,
+            lon + tx,
+            lat + ty,
             label,
             fontsize=10,
             fontweight="bold",
             color="#6b7280",
             zorder=9,
             transform=ccrs.PlateCarree(),
-            ha="right",
-            va="bottom",
+            ha=ha,
+            va=va,
         )
 
     planned_points = [
@@ -603,11 +619,11 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
         ax.scatter(
             lon,
             lat,
-            marker="p",
-            s=220,
+            marker="*",
+            s=120,
             color="#b30000",
             edgecolor="white",
-            linewidth=2.0,
+            linewidth=1.4,
             zorder=10,
             transform=ccrs.PlateCarree(),
         )
