@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-21T14:21:36+00:00",
+  "generated_at": "2026-05-21T15:02:28+00:00",
   "forecast_start": "2026-05-11",
   "forecast_end": "2026-05-13",
   "dates": [
@@ -123,129 +123,189 @@
   ],
   "status": {
     "2026-05-11": {
-      "WAVES": {
-        "available": false,
-        "error": "2026-05-11: name 'add_metadata' is not defined"
-      },
-      "MODEL_CURRENT": {
-        "available": false,
-        "error": "2026-05-11: name 'add_metadata' is not defined"
-      },
-      "MODEL_TEMP": {
-        "available": false,
-        "error": "2026-05-11: name 'add_metadata' is not defined"
-      },
-      "MODEL_SAL": {
-        "available": false,
-        "error": "2026-05-11: name 'add_metadata' is not defined"
-      },
-      "SAT_SLA": {
-        "available": false,
-        "error": "2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined"
-      },
-      "SAT_SSS": {
-        "available": false,
-        "error": "2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined; 2026-05-02: name 'add_metadata' is not defined; 2026-05-01: name 'add_metadata' is not defined; 2026-04-30: name 'add_metadata' is not defined; 2026-04-29: name 'add_metadata' is not defined; 2026-04-28: name 'add_metadata' is not defined; 2026-04-27: name 'add_metadata' is not defined; 2026-04-26: name 'add_metadata' is not defined; 2026-04-25: name 'add_metadata' is not defined; 2026-04-24: name 'add_metadata' is not defined; 2026-04-23: name 'add_metadata' is not defined; 2026-04-22: name 'add_metadata' is not defined; 2026-04-21: name 'add_metadata' is not defined; 2026-04-20: name 'add_metadata' is not defined"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined; 2026-05-02: Some of your subset selection [2026-05-02 00:00:00+00:00, 2026-05-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-05-01: Some of your subset selection [2026-05-01 00:00:00+00:00, 2026-05-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-30: Some of your subset selection [2026-04-30 00:00:00+00:00, 2026-04-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-29: Some of your subset selection [2026-04-29 00:00:00+00:00, 2026-04-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-28: Some of your subset selection [2026-04-28 00:00:00+00:00, 2026-04-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-27: Some of your subset selection [2026-04-27 00:00:00+00:00, 2026-04-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-26: Some of your subset selection [2026-04-26 00:00:00+00:00, 2026-04-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-25: Some of your subset selection [2026-04-25 00:00:00+00:00, 2026-04-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-24: Some of your subset selection [2026-04-24 00:00:00+00:00, 2026-04-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-23: Some of your subset selection [2026-04-23 00:00:00+00:00, 2026-04-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-22: Some of your subset selection [2026-04-22 00:00:00+00:00, 2026-04-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-21: Some of your subset selection [2026-04-21 00:00:00+00:00, 2026-04-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-20: Some of your subset selection [2026-04-20 00:00:00+00:00, 2026-04-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-19: Some of your subset selection [2026-04-19 00:00:00+00:00, 2026-04-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-18: Some of your subset selection [2026-04-18 00:00:00+00:00, 2026-04-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-17: Some of your subset selection [2026-04-17 00:00:00+00:00, 2026-04-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-16: Some of your subset selection [2026-04-16 00:00:00+00:00, 2026-04-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-15: Some of your subset selection [2026-04-15 00:00:00+00:00, 2026-04-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-14: Some of your subset selection [2026-04-14 00:00:00+00:00, 2026-04-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-13: Some of your subset selection [2026-04-13 00:00:00+00:00, 2026-04-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-12: Some of your subset selection [2026-04-12 00:00:00+00:00, 2026-04-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-11: Some of your subset selection [2026-04-11 00:00:00+00:00, 2026-04-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]"
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_EKMAN_PUMPING.png",
+        "source_date": "2026-05-11",
+        "regional_path": "assets/snapshots/2026-05-11_EKMAN_PUMPING_REGIONAL.png"
       },
       "ERA5_WIND": {
-        "available": false,
-        "error": "2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined; 2026-05-02: name 'add_metadata' is not defined; 2026-05-01: name 'add_metadata' is not defined"
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_ERA5_WIND.png",
+        "source_date": "2026-05-11",
+        "regional_path": "assets/snapshots/2026-05-11_ERA5_WIND_REGIONAL.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_MODEL_CURRENT.png",
+        "source_date": "2026-05-11",
+        "regional_path": "assets/snapshots/2026-05-11_MODEL_CURRENT_REGIONAL.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_MODEL_SAL.png",
+        "source_date": "2026-05-11",
+        "regional_path": "assets/snapshots/2026-05-11_MODEL_SAL_REGIONAL.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_MODEL_TEMP.png",
+        "source_date": "2026-05-11",
+        "regional_path": "assets/snapshots/2026-05-11_MODEL_TEMP_REGIONAL.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_SAT_CHL.png",
+        "source_date": "2026-05-11",
+        "regional_path": "assets/snapshots/2026-05-11_SAT_CHL_REGIONAL.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_SAT_SLA.png",
+        "source_date": "2026-05-11",
+        "regional_path": "assets/snapshots/2026-05-11_SAT_SLA_REGIONAL.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_SAT_SSS.png",
+        "source_date": "2026-05-11",
+        "regional_path": "assets/snapshots/2026-05-11_SAT_SSS_REGIONAL.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_WAVES.png",
+        "source_date": "2026-05-11",
+        "regional_path": "assets/snapshots/2026-05-11_WAVES_REGIONAL.png"
       },
       "WIND_STRESS": {
-        "available": false,
-        "error": "2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined; 2026-05-02: name 'add_metadata' is not defined; 2026-05-01: name 'add_metadata' is not defined"
-      },
-      "EKMAN_PUMPING": {
-        "available": false,
-        "error": "2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined; 2026-05-02: name 'add_metadata' is not defined; 2026-05-01: name 'add_metadata' is not defined"
+        "available": true,
+        "path": "assets/snapshots/2026-05-11_WIND_STRESS.png",
+        "source_date": "2026-05-11",
+        "regional_path": "assets/snapshots/2026-05-11_WIND_STRESS_REGIONAL.png"
       }
     },
     "2026-05-12": {
-      "WAVES": {
-        "available": false,
-        "error": "2026-05-12: name 'add_metadata' is not defined"
-      },
-      "MODEL_CURRENT": {
-        "available": false,
-        "error": "2026-05-12: name 'add_metadata' is not defined"
-      },
-      "MODEL_TEMP": {
-        "available": false,
-        "error": "2026-05-12: name 'add_metadata' is not defined"
-      },
-      "MODEL_SAL": {
-        "available": false,
-        "error": "2026-05-12: name 'add_metadata' is not defined"
-      },
-      "SAT_SLA": {
-        "available": false,
-        "error": "2026-05-12: name 'add_metadata' is not defined; 2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined"
-      },
-      "SAT_SSS": {
-        "available": false,
-        "error": "2026-05-12: name 'add_metadata' is not defined; 2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined; 2026-05-02: name 'add_metadata' is not defined; 2026-05-01: name 'add_metadata' is not defined; 2026-04-30: name 'add_metadata' is not defined; 2026-04-29: name 'add_metadata' is not defined; 2026-04-28: name 'add_metadata' is not defined; 2026-04-27: name 'add_metadata' is not defined; 2026-04-26: name 'add_metadata' is not defined; 2026-04-25: name 'add_metadata' is not defined; 2026-04-24: name 'add_metadata' is not defined; 2026-04-23: name 'add_metadata' is not defined; 2026-04-22: name 'add_metadata' is not defined; 2026-04-21: name 'add_metadata' is not defined"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-05-12: name 'add_metadata' is not defined; 2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined; 2026-05-02: Some of your subset selection [2026-05-02 00:00:00+00:00, 2026-05-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-05-01: Some of your subset selection [2026-05-01 00:00:00+00:00, 2026-05-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-30: Some of your subset selection [2026-04-30 00:00:00+00:00, 2026-04-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-29: Some of your subset selection [2026-04-29 00:00:00+00:00, 2026-04-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-28: Some of your subset selection [2026-04-28 00:00:00+00:00, 2026-04-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-27: Some of your subset selection [2026-04-27 00:00:00+00:00, 2026-04-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-26: Some of your subset selection [2026-04-26 00:00:00+00:00, 2026-04-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-25: Some of your subset selection [2026-04-25 00:00:00+00:00, 2026-04-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-24: Some of your subset selection [2026-04-24 00:00:00+00:00, 2026-04-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-23: Some of your subset selection [2026-04-23 00:00:00+00:00, 2026-04-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-22: Some of your subset selection [2026-04-22 00:00:00+00:00, 2026-04-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-21: Some of your subset selection [2026-04-21 00:00:00+00:00, 2026-04-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-20: Some of your subset selection [2026-04-20 00:00:00+00:00, 2026-04-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-19: Some of your subset selection [2026-04-19 00:00:00+00:00, 2026-04-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-18: Some of your subset selection [2026-04-18 00:00:00+00:00, 2026-04-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-17: Some of your subset selection [2026-04-17 00:00:00+00:00, 2026-04-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-16: Some of your subset selection [2026-04-16 00:00:00+00:00, 2026-04-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-15: Some of your subset selection [2026-04-15 00:00:00+00:00, 2026-04-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-14: Some of your subset selection [2026-04-14 00:00:00+00:00, 2026-04-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-13: Some of your subset selection [2026-04-13 00:00:00+00:00, 2026-04-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]; 2026-04-12: Some of your subset selection [2026-04-12 00:00:00+00:00, 2026-04-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-19 00:00:00+00:00]"
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_EKMAN_PUMPING.png",
+        "source_date": "2026-05-12",
+        "regional_path": "assets/snapshots/2026-05-12_EKMAN_PUMPING_REGIONAL.png"
       },
       "ERA5_WIND": {
-        "available": false,
-        "error": "2026-05-12: name 'add_metadata' is not defined; 2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined; 2026-05-02: name 'add_metadata' is not defined"
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_ERA5_WIND.png",
+        "source_date": "2026-05-12",
+        "regional_path": "assets/snapshots/2026-05-12_ERA5_WIND_REGIONAL.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_MODEL_CURRENT.png",
+        "source_date": "2026-05-12",
+        "regional_path": "assets/snapshots/2026-05-12_MODEL_CURRENT_REGIONAL.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_MODEL_SAL.png",
+        "source_date": "2026-05-12",
+        "regional_path": "assets/snapshots/2026-05-12_MODEL_SAL_REGIONAL.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_MODEL_TEMP.png",
+        "source_date": "2026-05-12",
+        "regional_path": "assets/snapshots/2026-05-12_MODEL_TEMP_REGIONAL.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_SAT_CHL.png",
+        "source_date": "2026-05-12",
+        "regional_path": "assets/snapshots/2026-05-12_SAT_CHL_REGIONAL.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_SAT_SLA.png",
+        "source_date": "2026-05-12",
+        "regional_path": "assets/snapshots/2026-05-12_SAT_SLA_REGIONAL.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_SAT_SSS.png",
+        "source_date": "2026-05-12",
+        "regional_path": "assets/snapshots/2026-05-12_SAT_SSS_REGIONAL.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_WAVES.png",
+        "source_date": "2026-05-12",
+        "regional_path": "assets/snapshots/2026-05-12_WAVES_REGIONAL.png"
       },
       "WIND_STRESS": {
-        "available": false,
-        "error": "2026-05-12: name 'add_metadata' is not defined; 2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined; 2026-05-02: name 'add_metadata' is not defined"
-      },
-      "EKMAN_PUMPING": {
-        "available": false,
-        "error": "2026-05-12: name 'add_metadata' is not defined; 2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined; 2026-05-02: name 'add_metadata' is not defined"
+        "available": true,
+        "path": "assets/snapshots/2026-05-12_WIND_STRESS.png",
+        "source_date": "2026-05-12",
+        "regional_path": "assets/snapshots/2026-05-12_WIND_STRESS_REGIONAL.png"
       }
     },
     "2026-05-13": {
-      "WAVES": {
-        "available": false,
-        "error": "2026-05-13: name 'add_metadata' is not defined"
-      },
-      "MODEL_CURRENT": {
-        "available": false,
-        "error": "2026-05-13: name 'add_metadata' is not defined"
-      },
-      "MODEL_TEMP": {
-        "available": false,
-        "error": "2026-05-13: name 'add_metadata' is not defined"
-      },
-      "MODEL_SAL": {
-        "available": false,
-        "error": "2026-05-13: name 'add_metadata' is not defined"
-      },
-      "SAT_SLA": {
-        "available": false,
-        "error": "2026-05-13: name 'add_metadata' is not defined; 2026-05-12: name 'add_metadata' is not defined; 2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined"
-      },
-      "SAT_SSS": {
-        "available": false,
-        "error": "2026-05-13: name 'add_metadata' is not defined; 2026-05-12: name 'add_metadata' is not defined; 2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined; 2026-05-02: name 'add_metadata' is not defined; 2026-05-01: name 'add_metadata' is not defined; 2026-04-30: name 'add_metadata' is not defined; 2026-04-29: name 'add_metadata' is not defined; 2026-04-28: name 'add_metadata' is not defined; 2026-04-27: name 'add_metadata' is not defined; 2026-04-26: name 'add_metadata' is not defined; 2026-04-25: name 'add_metadata' is not defined; 2026-04-24: name 'add_metadata' is not defined; 2026-04-23: name 'add_metadata' is not defined; 2026-04-22: name 'add_metadata' is not defined"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-05-13: name 'add_metadata' is not defined; 2026-05-12: name 'add_metadata' is not defined; 2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined; 2026-05-02: Some of your subset selection [2026-05-02 00:00:00+00:00, 2026-05-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-05-01: Some of your subset selection [2026-05-01 00:00:00+00:00, 2026-05-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-30: Some of your subset selection [2026-04-30 00:00:00+00:00, 2026-04-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-29: Some of your subset selection [2026-04-29 00:00:00+00:00, 2026-04-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-28: Some of your subset selection [2026-04-28 00:00:00+00:00, 2026-04-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-27: Some of your subset selection [2026-04-27 00:00:00+00:00, 2026-04-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-26: Some of your subset selection [2026-04-26 00:00:00+00:00, 2026-04-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-25: Some of your subset selection [2026-04-25 00:00:00+00:00, 2026-04-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-24: Some of your subset selection [2026-04-24 00:00:00+00:00, 2026-04-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-23: Some of your subset selection [2026-04-23 00:00:00+00:00, 2026-04-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-22: Some of your subset selection [2026-04-22 00:00:00+00:00, 2026-04-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-21: Some of your subset selection [2026-04-21 00:00:00+00:00, 2026-04-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-20: Some of your subset selection [2026-04-20 00:00:00+00:00, 2026-04-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-19: Some of your subset selection [2026-04-19 00:00:00+00:00, 2026-04-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-18: Some of your subset selection [2026-04-18 00:00:00+00:00, 2026-04-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-17: Some of your subset selection [2026-04-17 00:00:00+00:00, 2026-04-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-16: Some of your subset selection [2026-04-16 00:00:00+00:00, 2026-04-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-15: Some of your subset selection [2026-04-15 00:00:00+00:00, 2026-04-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-14: Some of your subset selection [2026-04-14 00:00:00+00:00, 2026-04-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]; 2026-04-13: Some of your subset selection [2026-04-13 00:00:00+00:00, 2026-04-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-03 00:00:00+00:00, 2026-05-20 00:00:00+00:00]"
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-13_EKMAN_PUMPING.png",
+        "source_date": "2026-05-13",
+        "regional_path": "assets/snapshots/2026-05-13_EKMAN_PUMPING_REGIONAL.png"
       },
       "ERA5_WIND": {
-        "available": false,
-        "error": "2026-05-13: name 'add_metadata' is not defined; 2026-05-12: name 'add_metadata' is not defined; 2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined"
+        "available": true,
+        "path": "assets/snapshots/2026-05-13_ERA5_WIND.png",
+        "source_date": "2026-05-13",
+        "regional_path": "assets/snapshots/2026-05-13_ERA5_WIND_REGIONAL.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-13_MODEL_CURRENT.png",
+        "source_date": "2026-05-13",
+        "regional_path": "assets/snapshots/2026-05-13_MODEL_CURRENT_REGIONAL.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-13_MODEL_SAL.png",
+        "source_date": "2026-05-13",
+        "regional_path": "assets/snapshots/2026-05-13_MODEL_SAL_REGIONAL.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-13_MODEL_TEMP.png",
+        "source_date": "2026-05-13",
+        "regional_path": "assets/snapshots/2026-05-13_MODEL_TEMP_REGIONAL.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-13_SAT_CHL.png",
+        "source_date": "2026-05-13",
+        "regional_path": "assets/snapshots/2026-05-13_SAT_CHL_REGIONAL.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-13_SAT_SLA.png",
+        "source_date": "2026-05-13",
+        "regional_path": "assets/snapshots/2026-05-13_SAT_SLA_REGIONAL.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-13_SAT_SSS.png",
+        "source_date": "2026-05-13",
+        "regional_path": "assets/snapshots/2026-05-13_SAT_SSS_REGIONAL.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-13_WAVES.png",
+        "source_date": "2026-05-13",
+        "regional_path": "assets/snapshots/2026-05-13_WAVES_REGIONAL.png"
       },
       "WIND_STRESS": {
-        "available": false,
-        "error": "2026-05-13: name 'add_metadata' is not defined; 2026-05-12: name 'add_metadata' is not defined; 2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined"
-      },
-      "EKMAN_PUMPING": {
-        "available": false,
-        "error": "2026-05-13: name 'add_metadata' is not defined; 2026-05-12: name 'add_metadata' is not defined; 2026-05-11: name 'add_metadata' is not defined; 2026-05-10: name 'add_metadata' is not defined; 2026-05-09: name 'add_metadata' is not defined; 2026-05-08: name 'add_metadata' is not defined; 2026-05-07: name 'add_metadata' is not defined; 2026-05-06: name 'add_metadata' is not defined; 2026-05-05: name 'add_metadata' is not defined; 2026-05-04: name 'add_metadata' is not defined; 2026-05-03: name 'add_metadata' is not defined"
+        "available": true,
+        "path": "assets/snapshots/2026-05-13_WIND_STRESS.png",
+        "source_date": "2026-05-13",
+        "regional_path": "assets/snapshots/2026-05-13_WIND_STRESS_REGIONAL.png"
       }
     }
   }
