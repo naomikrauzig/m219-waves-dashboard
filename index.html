@@ -258,15 +258,244 @@
 
         </section>
 
+        <!-- PANEL 4 -->
+        <section class="map-panel" data-panel="3">
+
+          <div class="panel-toolbar">
+
+            <label>Dataset</label>
+            <select class="panel-dataset-select"></select>
+
+            <label>Date</label>
+            <select class="panel-date-select"></select>
+
+          </div>
+
+          <figure class="snapshot panel-snapshot">
+
+            <div class="map-controls">
+
+              <button type="button" data-panel-zoom="out">−</button>
+              <button type="button" data-panel-zoom="in">+</button>
+              <button type="button" data-panel-zoom="reset">Reset</button>
+
+            </div>
+
+            <div class="zoom-stage">
+              <img class="panel-image" alt="Panel 4" />
+            </div>
+
+            <figcaption class="panel-caption"></figcaption>
+
+          </figure>
+
+        </section>
+
+        <!-- PANEL 5 -->
+        <section class="map-panel" data-panel="4">
+
+          <div class="panel-toolbar">
+
+            <label>Dataset</label>
+            <select class="panel-dataset-select"></select>
+
+            <label>Date</label>
+            <select class="panel-date-select"></select>
+
+          </div>
+
+          <figure class="snapshot panel-snapshot">
+
+            <div class="map-controls">
+
+              <button type="button" data-panel-zoom="out">−</button>
+              <button type="button" data-panel-zoom="in">+</button>
+              <button type="button" data-panel-zoom="reset">Reset</button>
+
+            </div>
+
+            <div class="zoom-stage">
+              <img class="panel-image" alt="Panel 5" />
+            </div>
+
+            <figcaption class="panel-caption"></figcaption>
+
+          </figure>
+
+        </section>
+
+        <!-- PANEL 6 -->
+        <section class="map-panel" data-panel="5">
+
+          <div class="panel-toolbar">
+
+            <label>Dataset</label>
+            <select class="panel-dataset-select"></select>
+
+            <label>Date</label>
+            <select class="panel-date-select"></select>
+
+          </div>
+
+          <figure class="snapshot panel-snapshot">
+
+            <div class="map-controls">
+
+              <button type="button" data-panel-zoom="out">−</button>
+              <button type="button" data-panel-zoom="in">+</button>
+              <button type="button" data-panel-zoom="reset">Reset</button>
+
+            </div>
+
+            <div class="zoom-stage">
+              <img class="panel-image" alt="Panel 6" />
+            </div>
+
+            <figcaption class="panel-caption"></figcaption>
+
+          </figure>
+
+        </section>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- REGIONAL ZOOM -->
+    <!-- ===================================================== -->
+
+    <section class="dashboard regional-dashboard">
+
+      <div class="section-heading regional-heading">
+
+        <h2>
+          Regional Overview
+        </h2>
+
+        <p>
+          Focused panels zoomed in on the planned transects and the K1–K4, 0N, and CVOO moorings.
+        </p>
+
+      </div>
+
+      <div class="multi-panel-grid regional-panel-grid">
+
+        <!-- REGIONAL PANEL 1 -->
+        <section class="map-panel" data-panel="6">
+          ...
+        </section>
+
+        <!-- REGIONAL PANEL 2 -->
+        <section class="map-panel" data-panel="7">
+          ...
+        </section>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- INSITU -->
+    <!-- ===================================================== -->
+
+    <section class="bottom-observation-panel">
+
+      <div class="section-heading">
+
+        <h2>
+          Complementary NRT In-situ Observations
+        </h2>
+
+        <p>
+          Planned integration of live ship position as well as data from Argo floats, NOAA GDP drifters and underway observations.
+        </p>
+
+      </div>
+
+      <div id="insitu-map">
+
+        <p>
+          Planned route:
+          Recife → K1-K4 → CVOO → Emden.
+        </p>
+
+        <p>
+          Overlays pending implementation.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- PRODUCT AVAILABILITY -->
+    <!-- ===================================================== -->
+
+    <section class="availability-section">
+
+      <div class="section-heading">
+
+        <h2>
+          Product Availability
+        </h2>
+
+      </div>
+
+      <div class="table-wrap">
+        <table id="availability-table"></table>
+      </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- DATASETS -->
+    <!-- ===================================================== -->
+
+    <section class="products-section">
+
+      <div class="section-heading">
+
+        <h2>
+          Datasets Used
+        </h2>
+
+      </div>
+
+      <div class="table-wrap">
+        <table id="products-table"></table>
+      </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- GEOMAR BRANDING -->
+    <!-- ===================================================== -->
+
+    <section class="brand-section" aria-label="GEOMAR branding">
+
+      <img
+        src="assets/images/geomar-brand.jpg"
+        alt="GEOMAR ocean background"
+      />
+
+      <div class="brand-credit">
+
+        <a
+          href="https://www.geomar.de"
+          aria-label="GEOMAR website"
+        >
+          <img
+            src="assets/images/geomar-logo-eng-neg.png"
+            alt="GEOMAR Helmholtz Centre for Ocean Research Kiel"
+          />
+        </a>
+
       </div>
 
     </section>
 
   </main>
-
-  <!-- ===================================================== -->
-  <!-- FOOTER -->
-  <!-- ===================================================== -->
 
   <footer>
 
@@ -275,32 +504,6 @@
       <a href="mailto:nkrauzig@geomar.de">
         nkrauzig@geomar.de
       </a>
-    </span>
-
-    <span>
-
-      <a href="https://www.geomar.de">
-        GEOMAR
-      </a>
-
-      &middot;
-
-      <a href="https://www.geomar.de/en/fb1/physical-oceanography">
-        Physical Oceanography
-      </a>
-
-      &middot;
-
-      <a href="https://data.marine.copernicus.eu/products">
-        Copernicus Marine
-      </a>
-
-      &middot;
-
-      <a href="https://cds.climate.copernicus.eu/">
-        Copernicus Climate
-      </a>
-
     </span>
 
   </footer>
