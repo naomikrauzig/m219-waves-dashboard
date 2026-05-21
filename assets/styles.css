@@ -238,7 +238,7 @@ main {
 
 .hero-image-wrap {
   position: relative;
-  width: 88%;
+  width: 81%;
   max-width: 760px;
   border-radius: var(--radius-large);
   overflow: hidden;
