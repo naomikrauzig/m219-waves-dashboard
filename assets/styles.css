@@ -91,7 +91,7 @@ main {
 ========================================================= */
 
 .site-header {
-  padding: 2.2rem 2.4rem;
+  padding: 3rem 2.6rem;
   background:
     radial-gradient(circle at 78% 14%, rgba(91,154,201,0.26), transparent 34%),
     linear-gradient(135deg, #08243d 0%, #0d3456 100%);
@@ -103,9 +103,9 @@ main {
   grid-template-columns:
     minmax(360px, 1fr)
     minmax(120px, 0.22fr)
-    minmax(340px, 0.92fr);
+    minmax(420px, 1fr);
   grid-template-areas: "text logo image";
-  gap: 1.8rem 3.2rem;
+  gap: 2rem 3.5rem;
   align-items: center;
   width: 100%;
   margin: 0;
@@ -207,14 +207,14 @@ main {
   align-items: center;
   justify-content: center;
   min-width: 0;
-  padding: 1rem 0;
+  padding: 2rem 0;
   background: transparent;
   border: none;
   box-shadow: none;
 }
 
 .hero-logo {
-  width: min(100%, 175px);
+  width: min(100%, 165px);
   height: auto;
   display: block;
   object-fit: contain;
@@ -226,11 +226,12 @@ main {
 .hero-image-panel {
   grid-area: image;
   position: relative;
-  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: 0;
-  min-height: 220px;
-  max-height: 260px;
-  padding: 0.8rem;
+  min-height: 360px;
+  padding: 1.8rem;
   margin: 0;
   border-radius: var(--radius-large);
   background: transparent;
@@ -239,7 +240,8 @@ main {
 
 .hero-image-panel img {
   width: 100%;
-  height: 100%;
+  max-height: 290px;
+  height: auto;
   object-fit: contain;
   object-position: center center;
   display: block;
@@ -249,8 +251,8 @@ main {
 
 .photo-credit-overlay {
   position: absolute;
-  right: 1.35rem;
-  bottom: 1.35rem;
+  right: 2rem;
+  bottom: 2rem;
   margin: 0;
   padding: 0.26rem 0.48rem;
   border-radius: 8px;
