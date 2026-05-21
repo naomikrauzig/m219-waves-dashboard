@@ -582,29 +582,36 @@ td small {
 
 .brand-credit {
   position: absolute;
-  inset: 0;
+  right: 2rem;
+  bottom: 1.8rem;
+
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 1.5rem;
-  background:
-    linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.10));
+  align-items: flex-end;
+
+  text-align: right;
   color: white;
 }
 
 .brand-credit img {
   width: 210px;
   max-width: 100%;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.7rem;
 }
 
-.brand-credit p {
+.brand-footer-text {
   margin: 0;
-  max-width: 620px;
+  font-size: 0.92rem;
+  font-weight: 500;
 }
 
-.brand-credit a {
+.brand-footer-text a {
   color: #cfe8ff;
+  text-decoration: none;
+}
+
+.brand-footer-text a:hover {
+  text-decoration: underline;
 }
 
 /* =========================================================
