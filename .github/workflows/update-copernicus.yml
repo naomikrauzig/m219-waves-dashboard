@@ -21,7 +21,7 @@ name: Update Copernicus snapshots
         type: string
 
   schedule:
-    - cron: "43 5,17 * * *"
+    - cron: "17 5,17 * * *"
 
 permissions:
   contents: write
@@ -49,6 +49,10 @@ jobs:
         run: |
           git pull --rebase origin main
 
+      - name: Create snapshot directory
+        run: |
+          mkdir -p assets/snapshots
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -73,33 +77,40 @@ jobs:
             DATE_ARG="--date ${{ inputs.date }}"
           fi
 
+          DAYS_BACK="${{ inputs.days_back }}"
+          if [ -z "$DAYS_BACK" ]; then
+            DAYS_BACK="1"
+          fi
+
           DAYS_AHEAD="${{ inputs.days_ahead }}"
           if [ -z "$DAYS_AHEAD" ]; then
             DAYS_AHEAD="5"
           fi
 
           echo "DATE_ARG=$DATE_ARG"
+          echo "DAYS_BACK=$DAYS_BACK"
           echo "DAYS_AHEAD=$DAYS_AHEAD"
 
           python scripts/fetch_copernicus.py \
             $DATE_ARG \
+            --days-back "$DAYS_BACK" \
             --days-ahead "$DAYS_AHEAD" \
             --allow-partial
 
-      - name: Inspect generated manifest
+      - name: Inspect generated files
         run: |
           echo "===== GENERATED MANIFEST ====="
           cat data/manifest.json
 
           echo ""
+          echo "===== SNAPSHOT FILES ====="
+          find assets/snapshots -type f | sort || true
+
+          echo ""
           echo "===== GIT STATUS ====="
           git status --short
 
-          echo ""
-          echo "===== GIT DIFF FOR MANIFEST ====="
-          git diff -- data/manifest.json
-
-      - name: Commit generated data and snapshots
+      - name: Commit generated snapshots and manifest
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
