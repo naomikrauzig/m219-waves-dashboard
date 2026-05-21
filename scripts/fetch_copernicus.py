@@ -563,7 +563,7 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             transform=ccrs.PlateCarree(),
         )
 
-       # Individual city label placement
+        # Individual city label placement
         if label == "Emden":
             tx, ty = 0.0, -0.55
             ha, va = "center", "top"
@@ -630,7 +630,7 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
 
         dx, dy = mooring_label_offsets.get(label, (0.70, -0.55))
 
-                # Mooring labels: centered below the point, no background box
+        # Mooring labels: centered below the point, no background box
         ax.text(
             lon + dx,
             lat + dy,
