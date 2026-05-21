@@ -563,7 +563,7 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             transform=ccrs.PlateCarree(),
         )
 
-        # City labels: above-left, grey text
+        # City labels: above-left, grey text, no background box
         ax.text(
             lon - 0.45,
             lat + 0.60,
@@ -575,12 +575,6 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             transform=ccrs.PlateCarree(),
             ha="right",
             va="bottom",
-            bbox=dict(
-                facecolor="white",
-                edgecolor="none",
-                alpha=0.82,
-                boxstyle="round,pad=0.22",
-            ),
         )
 
     planned_points = [
@@ -592,14 +586,14 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
         (-24.3309166667, 17.5412833333, "CVOO"),
     ]
 
-    # Individual label offsets so K1-K4 do not overlap.
+    # Labels directly below points, with only tiny x-offsets for K1-K4.
     mooring_label_offsets = {
-        "K1": (1.25, -0.45),
-        "K2": (1.55, -0.80),
-        "K3": (1.85, -1.15),
-        "K4": (2.15, -1.50),
-        "0N": (0.70, -0.55),
-        "CVOO": (0.70, -0.55),
+        "K1": (-0.18, -0.45),
+        "K2": (-0.06, -0.45),
+        "K3": (0.06, -0.45),
+        "K4": (0.18, -0.45),
+        "0N": (0.00, -0.55),
+        "CVOO": (0.00, -0.55),
     }
 
     for lon, lat, label in planned_points:
@@ -620,24 +614,18 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
 
         dx, dy = mooring_label_offsets.get(label, (0.70, -0.55))
 
-        # Mooring labels: right-below, slightly larger
+                # Mooring labels: centered below the point, no background box
         ax.text(
             lon + dx,
             lat + dy,
             label,
-            fontsize=12,
+            fontsize=11,
             fontweight="bold",
             color="#111827",
             zorder=11,
             transform=ccrs.PlateCarree(),
-            ha="left",
+            ha="center",
             va="top",
-            bbox=dict(
-                facecolor="white",
-                edgecolor="none",
-                alpha=0.88,
-                boxstyle="round,pad=0.28",
-            ),
         )
 
 def add_metadata(ax: Any, product: dict, source_day: date) -> None:
