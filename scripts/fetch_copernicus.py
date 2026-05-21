@@ -809,10 +809,11 @@ def format_axes(
     gridlines.ylabel_style = {"size": 8, "color": "#17212b"}
 
     add_route_and_moorings(
-    ax,
-    extent=extent,
-    regional=(extent == REGIONAL_EXTENT),
+        ax,
+        extent=extent,
+        regional=(extent == REGIONAL_EXTENT),
     )
+    
     add_metadata(ax, product, source_day)
 
 
