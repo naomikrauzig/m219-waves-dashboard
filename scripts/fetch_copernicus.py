@@ -667,6 +667,7 @@ def snapshot_title(product: dict, target_day: date, source_day: date) -> str:
 
     return title
 
+
 def save_figure(fig: Any, target_day: date, product: dict, suffix: str = "") -> None:
     SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -676,6 +677,26 @@ def save_figure(fig: Any, target_day: date, product: dict, suffix: str = "") -> 
     fig.savefig(output, bbox_inches="tight", dpi=600)
 
     print(f"Saved snapshot: {output}", flush=True)
+
+
+def add_metadata(ax: Any, product: dict, source_day: date) -> None:
+    ax.text(
+        0.995,
+        0.01,
+        f"Source date: {source_day.isoformat()}",
+        transform=ax.transAxes,
+        ha="right",
+        va="bottom",
+        fontsize=7,
+        color="#374151",
+        bbox=dict(
+            facecolor="white",
+            alpha=0.65,
+            edgecolor="none",
+            pad=2,
+        ),
+        zorder=20,
+    )
 
 
 def plot_scalar_map(
@@ -774,7 +795,7 @@ def plot_scalar_map(
             )
         except Exception:
             pass
-            
+
 
 def format_axes(
     ax: Any,
@@ -803,6 +824,7 @@ def format_axes(
         alpha=0.55,
         linestyle="-",
     )
+
     gridlines.top_labels = False
     gridlines.right_labels = False
     gridlines.xlabel_style = {"size": 8, "color": "#17212b"}
@@ -813,7 +835,7 @@ def format_axes(
         extent=extent,
         regional=(extent == REGIONAL_EXTENT),
     )
-    
+
     add_metadata(ax, product, source_day)
 
 
