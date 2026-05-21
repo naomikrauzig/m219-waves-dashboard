@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-05-21T16:30:15+00:00",
-  "forecast_start": "2026-05-13",
-  "forecast_end": "2026-05-13",
+  "generated_at": "2026-05-21T17:13:06+00:00",
+  "forecast_start": "2026-05-15",
+  "forecast_end": "2026-05-21",
   "dates": [
-    "2026-05-09",
-    "2026-05-10",
-    "2026-05-11",
-    "2026-05-12",
-    "2026-05-13",
-    "2026-05-14",
-    "2026-05-15"
+    "2026-05-15",
+    "2026-05-16",
+    "2026-05-17",
+    "2026-05-18",
+    "2026-05-19",
+    "2026-05-20",
+    "2026-05-21"
   ],
   "products": [
     {
@@ -126,378 +126,6 @@
     }
   ],
   "status": {
-    "2026-05-09": {
-      "EKMAN_PUMPING": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-09_EKMAN_PUMPING.png",
-        "source_date": "2026-05-09",
-        "regional_path": "assets/snapshots/2026-05-09_EKMAN_PUMPING_REGIONAL.png"
-      },
-      "ERA5_WIND": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-09_ERA5_WIND.png",
-        "source_date": "2026-05-09",
-        "regional_path": "assets/snapshots/2026-05-09_ERA5_WIND_REGIONAL.png"
-      },
-      "MODEL_CURRENT": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-09_MODEL_CURRENT.png",
-        "source_date": "2026-05-09",
-        "regional_path": "assets/snapshots/2026-05-09_MODEL_CURRENT_REGIONAL.png"
-      },
-      "MODEL_SAL": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-09_MODEL_SAL.png",
-        "source_date": "2026-05-09",
-        "regional_path": "assets/snapshots/2026-05-09_MODEL_SAL_REGIONAL.png"
-      },
-      "MODEL_TEMP": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-09_MODEL_TEMP.png",
-        "source_date": "2026-05-09",
-        "regional_path": "assets/snapshots/2026-05-09_MODEL_TEMP_REGIONAL.png"
-      },
-      "SAT_CHL": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-09_SAT_CHL.png",
-        "source_date": "2026-05-09",
-        "regional_path": "assets/snapshots/2026-05-09_SAT_CHL_REGIONAL.png"
-      },
-      "SAT_SLA": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-09_SAT_SLA.png",
-        "source_date": "2026-05-09",
-        "regional_path": "assets/snapshots/2026-05-09_SAT_SLA_REGIONAL.png"
-      },
-      "SAT_SSS": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-09_SAT_SSS.png",
-        "source_date": "2026-05-09",
-        "regional_path": "assets/snapshots/2026-05-09_SAT_SSS_REGIONAL.png"
-      },
-      "WAVES": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-09_WAVES.png",
-        "source_date": "2026-05-09",
-        "regional_path": "assets/snapshots/2026-05-09_WAVES_REGIONAL.png"
-      },
-      "WIND_STRESS": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-09_WIND_STRESS.png",
-        "source_date": "2026-05-09",
-        "regional_path": "assets/snapshots/2026-05-09_WIND_STRESS_REGIONAL.png"
-      }
-    },
-    "2026-05-10": {
-      "EKMAN_PUMPING": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-10_EKMAN_PUMPING.png",
-        "source_date": "2026-05-10",
-        "regional_path": "assets/snapshots/2026-05-10_EKMAN_PUMPING_REGIONAL.png"
-      },
-      "ERA5_WIND": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-10_ERA5_WIND.png",
-        "source_date": "2026-05-10",
-        "regional_path": "assets/snapshots/2026-05-10_ERA5_WIND_REGIONAL.png"
-      },
-      "MODEL_CURRENT": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-10_MODEL_CURRENT.png",
-        "source_date": "2026-05-10",
-        "regional_path": "assets/snapshots/2026-05-10_MODEL_CURRENT_REGIONAL.png"
-      },
-      "MODEL_SAL": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-10_MODEL_SAL.png",
-        "source_date": "2026-05-10",
-        "regional_path": "assets/snapshots/2026-05-10_MODEL_SAL_REGIONAL.png"
-      },
-      "MODEL_TEMP": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-10_MODEL_TEMP.png",
-        "source_date": "2026-05-10",
-        "regional_path": "assets/snapshots/2026-05-10_MODEL_TEMP_REGIONAL.png"
-      },
-      "SAT_CHL": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-10_SAT_CHL.png",
-        "source_date": "2026-05-10",
-        "regional_path": "assets/snapshots/2026-05-10_SAT_CHL_REGIONAL.png"
-      },
-      "SAT_SLA": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-10_SAT_SLA.png",
-        "source_date": "2026-05-10",
-        "regional_path": "assets/snapshots/2026-05-10_SAT_SLA_REGIONAL.png"
-      },
-      "SAT_SSS": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-10_SAT_SSS.png",
-        "source_date": "2026-05-10",
-        "regional_path": "assets/snapshots/2026-05-10_SAT_SSS_REGIONAL.png"
-      },
-      "WAVES": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-10_WAVES.png",
-        "source_date": "2026-05-10",
-        "regional_path": "assets/snapshots/2026-05-10_WAVES_REGIONAL.png"
-      },
-      "WIND_STRESS": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-10_WIND_STRESS.png",
-        "source_date": "2026-05-10",
-        "regional_path": "assets/snapshots/2026-05-10_WIND_STRESS_REGIONAL.png"
-      }
-    },
-    "2026-05-11": {
-      "EKMAN_PUMPING": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-11_EKMAN_PUMPING.png",
-        "source_date": "2026-05-11",
-        "regional_path": "assets/snapshots/2026-05-11_EKMAN_PUMPING_REGIONAL.png"
-      },
-      "ERA5_WIND": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-11_ERA5_WIND.png",
-        "source_date": "2026-05-11",
-        "regional_path": "assets/snapshots/2026-05-11_ERA5_WIND_REGIONAL.png"
-      },
-      "MODEL_CURRENT": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-11_MODEL_CURRENT.png",
-        "source_date": "2026-05-11",
-        "regional_path": "assets/snapshots/2026-05-11_MODEL_CURRENT_REGIONAL.png"
-      },
-      "MODEL_SAL": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-11_MODEL_SAL.png",
-        "source_date": "2026-05-11",
-        "regional_path": "assets/snapshots/2026-05-11_MODEL_SAL_REGIONAL.png"
-      },
-      "MODEL_TEMP": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-11_MODEL_TEMP.png",
-        "source_date": "2026-05-11",
-        "regional_path": "assets/snapshots/2026-05-11_MODEL_TEMP_REGIONAL.png"
-      },
-      "SAT_CHL": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-11_SAT_CHL.png",
-        "source_date": "2026-05-11",
-        "regional_path": "assets/snapshots/2026-05-11_SAT_CHL_REGIONAL.png"
-      },
-      "SAT_SLA": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-11_SAT_SLA.png",
-        "source_date": "2026-05-11",
-        "regional_path": "assets/snapshots/2026-05-11_SAT_SLA_REGIONAL.png"
-      },
-      "SAT_SSS": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-11_SAT_SSS.png",
-        "source_date": "2026-05-11",
-        "regional_path": "assets/snapshots/2026-05-11_SAT_SSS_REGIONAL.png"
-      },
-      "WAVES": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-11_WAVES.png",
-        "source_date": "2026-05-11",
-        "regional_path": "assets/snapshots/2026-05-11_WAVES_REGIONAL.png"
-      },
-      "WIND_STRESS": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-11_WIND_STRESS.png",
-        "source_date": "2026-05-11",
-        "regional_path": "assets/snapshots/2026-05-11_WIND_STRESS_REGIONAL.png"
-      }
-    },
-    "2026-05-12": {
-      "EKMAN_PUMPING": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-12_EKMAN_PUMPING.png",
-        "source_date": "2026-05-12",
-        "regional_path": "assets/snapshots/2026-05-12_EKMAN_PUMPING_REGIONAL.png"
-      },
-      "ERA5_WIND": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-12_ERA5_WIND.png",
-        "source_date": "2026-05-12",
-        "regional_path": "assets/snapshots/2026-05-12_ERA5_WIND_REGIONAL.png"
-      },
-      "MODEL_CURRENT": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-12_MODEL_CURRENT.png",
-        "source_date": "2026-05-12",
-        "regional_path": "assets/snapshots/2026-05-12_MODEL_CURRENT_REGIONAL.png"
-      },
-      "MODEL_SAL": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-12_MODEL_SAL.png",
-        "source_date": "2026-05-12",
-        "regional_path": "assets/snapshots/2026-05-12_MODEL_SAL_REGIONAL.png"
-      },
-      "MODEL_TEMP": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-12_MODEL_TEMP.png",
-        "source_date": "2026-05-12",
-        "regional_path": "assets/snapshots/2026-05-12_MODEL_TEMP_REGIONAL.png"
-      },
-      "SAT_CHL": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-12_SAT_CHL.png",
-        "source_date": "2026-05-12",
-        "regional_path": "assets/snapshots/2026-05-12_SAT_CHL_REGIONAL.png"
-      },
-      "SAT_SLA": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-12_SAT_SLA.png",
-        "source_date": "2026-05-12",
-        "regional_path": "assets/snapshots/2026-05-12_SAT_SLA_REGIONAL.png"
-      },
-      "SAT_SSS": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-12_SAT_SSS.png",
-        "source_date": "2026-05-12",
-        "regional_path": "assets/snapshots/2026-05-12_SAT_SSS_REGIONAL.png"
-      },
-      "WAVES": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-12_WAVES.png",
-        "source_date": "2026-05-12",
-        "regional_path": "assets/snapshots/2026-05-12_WAVES_REGIONAL.png"
-      },
-      "WIND_STRESS": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-12_WIND_STRESS.png",
-        "source_date": "2026-05-12",
-        "regional_path": "assets/snapshots/2026-05-12_WIND_STRESS_REGIONAL.png"
-      }
-    },
-    "2026-05-13": {
-      "EKMAN_PUMPING": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-13_EKMAN_PUMPING.png",
-        "source_date": "2026-05-13",
-        "regional_path": "assets/snapshots/2026-05-13_EKMAN_PUMPING_REGIONAL.png"
-      },
-      "ERA5_WIND": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-13_ERA5_WIND.png",
-        "source_date": "2026-05-13",
-        "regional_path": "assets/snapshots/2026-05-13_ERA5_WIND_REGIONAL.png"
-      },
-      "MODEL_CURRENT": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-13_MODEL_CURRENT.png",
-        "source_date": "2026-05-13",
-        "regional_path": "assets/snapshots/2026-05-13_MODEL_CURRENT_REGIONAL.png"
-      },
-      "MODEL_SAL": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-13_MODEL_SAL.png",
-        "source_date": "2026-05-13",
-        "regional_path": "assets/snapshots/2026-05-13_MODEL_SAL_REGIONAL.png"
-      },
-      "MODEL_TEMP": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-13_MODEL_TEMP.png",
-        "source_date": "2026-05-13",
-        "regional_path": "assets/snapshots/2026-05-13_MODEL_TEMP_REGIONAL.png"
-      },
-      "SAT_CHL": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-13_SAT_CHL.png",
-        "source_date": "2026-05-13",
-        "regional_path": "assets/snapshots/2026-05-13_SAT_CHL_REGIONAL.png"
-      },
-      "SAT_SLA": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-13_SAT_SLA.png",
-        "source_date": "2026-05-13",
-        "regional_path": "assets/snapshots/2026-05-13_SAT_SLA_REGIONAL.png"
-      },
-      "SAT_SSS": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-13_SAT_SSS.png",
-        "source_date": "2026-05-13",
-        "regional_path": "assets/snapshots/2026-05-13_SAT_SSS_REGIONAL.png"
-      },
-      "WAVES": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-13_WAVES.png",
-        "source_date": "2026-05-13",
-        "regional_path": "assets/snapshots/2026-05-13_WAVES_REGIONAL.png"
-      },
-      "WIND_STRESS": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-13_WIND_STRESS.png",
-        "source_date": "2026-05-13",
-        "regional_path": "assets/snapshots/2026-05-13_WIND_STRESS_REGIONAL.png"
-      }
-    },
-    "2026-05-14": {
-      "EKMAN_PUMPING": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-14_EKMAN_PUMPING.png",
-        "source_date": "2026-05-14",
-        "regional_path": "assets/snapshots/2026-05-14_EKMAN_PUMPING_REGIONAL.png"
-      },
-      "ERA5_WIND": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-14_ERA5_WIND.png",
-        "source_date": "2026-05-14",
-        "regional_path": "assets/snapshots/2026-05-14_ERA5_WIND_REGIONAL.png"
-      },
-      "MODEL_CURRENT": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-14_MODEL_CURRENT.png",
-        "source_date": "2026-05-14",
-        "regional_path": "assets/snapshots/2026-05-14_MODEL_CURRENT_REGIONAL.png"
-      },
-      "MODEL_SAL": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-14_MODEL_SAL.png",
-        "source_date": "2026-05-14",
-        "regional_path": "assets/snapshots/2026-05-14_MODEL_SAL_REGIONAL.png"
-      },
-      "MODEL_TEMP": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-14_MODEL_TEMP.png",
-        "source_date": "2026-05-14",
-        "regional_path": "assets/snapshots/2026-05-14_MODEL_TEMP_REGIONAL.png"
-      },
-      "SAT_CHL": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-14_SAT_CHL.png",
-        "source_date": "2026-05-14",
-        "regional_path": "assets/snapshots/2026-05-14_SAT_CHL_REGIONAL.png"
-      },
-      "SAT_SLA": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-14_SAT_SLA.png",
-        "source_date": "2026-05-14",
-        "regional_path": "assets/snapshots/2026-05-14_SAT_SLA_REGIONAL.png"
-      },
-      "SAT_SSS": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-14_SAT_SSS.png",
-        "source_date": "2026-05-14",
-        "regional_path": "assets/snapshots/2026-05-14_SAT_SSS_REGIONAL.png"
-      },
-      "WAVES": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-14_WAVES.png",
-        "source_date": "2026-05-14",
-        "regional_path": "assets/snapshots/2026-05-14_WAVES_REGIONAL.png"
-      },
-      "WIND_STRESS": {
-        "available": true,
-        "path": "assets/snapshots/2026-05-14_WIND_STRESS.png",
-        "source_date": "2026-05-14",
-        "regional_path": "assets/snapshots/2026-05-14_WIND_STRESS_REGIONAL.png"
-      }
-    },
     "2026-05-15": {
       "EKMAN_PUMPING": {
         "available": true,
@@ -558,6 +186,378 @@
         "path": "assets/snapshots/2026-05-15_WIND_STRESS.png",
         "source_date": "2026-05-15",
         "regional_path": "assets/snapshots/2026-05-15_WIND_STRESS_REGIONAL.png"
+      }
+    },
+    "2026-05-16": {
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-16_EKMAN_PUMPING.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-16_EKMAN_PUMPING_REGIONAL.png"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-16_ERA5_WIND.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-16_ERA5_WIND_REGIONAL.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-16_MODEL_CURRENT.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-16_MODEL_CURRENT_REGIONAL.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-16_MODEL_SAL.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-16_MODEL_SAL_REGIONAL.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-16_MODEL_TEMP.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-16_MODEL_TEMP_REGIONAL.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-16_SAT_CHL.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-16_SAT_CHL_REGIONAL.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-16_SAT_SLA.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-16_SAT_SLA_REGIONAL.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-16_SAT_SSS.png",
+        "source_date": "2026-05-15",
+        "regional_path": "assets/snapshots/2026-05-16_SAT_SSS_REGIONAL.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-16_WAVES.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-16_WAVES_REGIONAL.png"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-16_WIND_STRESS.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-16_WIND_STRESS_REGIONAL.png"
+      }
+    },
+    "2026-05-17": {
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-17_EKMAN_PUMPING.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-17_EKMAN_PUMPING_REGIONAL.png"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-17_ERA5_WIND.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-17_ERA5_WIND_REGIONAL.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-17_MODEL_CURRENT.png",
+        "source_date": "2026-05-17",
+        "regional_path": "assets/snapshots/2026-05-17_MODEL_CURRENT_REGIONAL.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-17_MODEL_SAL.png",
+        "source_date": "2026-05-17",
+        "regional_path": "assets/snapshots/2026-05-17_MODEL_SAL_REGIONAL.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-17_MODEL_TEMP.png",
+        "source_date": "2026-05-17",
+        "regional_path": "assets/snapshots/2026-05-17_MODEL_TEMP_REGIONAL.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-17_SAT_CHL.png",
+        "source_date": "2026-05-17",
+        "regional_path": "assets/snapshots/2026-05-17_SAT_CHL_REGIONAL.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-17_SAT_SLA.png",
+        "source_date": "2026-05-17",
+        "regional_path": "assets/snapshots/2026-05-17_SAT_SLA_REGIONAL.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-17_SAT_SSS.png",
+        "source_date": "2026-05-15",
+        "regional_path": "assets/snapshots/2026-05-17_SAT_SSS_REGIONAL.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-17_WAVES.png",
+        "source_date": "2026-05-17",
+        "regional_path": "assets/snapshots/2026-05-17_WAVES_REGIONAL.png"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-17_WIND_STRESS.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-17_WIND_STRESS_REGIONAL.png"
+      }
+    },
+    "2026-05-18": {
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-18_EKMAN_PUMPING.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-18_EKMAN_PUMPING_REGIONAL.png"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-18_ERA5_WIND.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-18_ERA5_WIND_REGIONAL.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-18_MODEL_CURRENT.png",
+        "source_date": "2026-05-18",
+        "regional_path": "assets/snapshots/2026-05-18_MODEL_CURRENT_REGIONAL.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-18_MODEL_SAL.png",
+        "source_date": "2026-05-18",
+        "regional_path": "assets/snapshots/2026-05-18_MODEL_SAL_REGIONAL.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-18_MODEL_TEMP.png",
+        "source_date": "2026-05-18",
+        "regional_path": "assets/snapshots/2026-05-18_MODEL_TEMP_REGIONAL.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-18_SAT_CHL.png",
+        "source_date": "2026-05-18",
+        "regional_path": "assets/snapshots/2026-05-18_SAT_CHL_REGIONAL.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-18_SAT_SLA.png",
+        "source_date": "2026-05-18",
+        "regional_path": "assets/snapshots/2026-05-18_SAT_SLA_REGIONAL.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-18_SAT_SSS.png",
+        "source_date": "2026-05-15",
+        "regional_path": "assets/snapshots/2026-05-18_SAT_SSS_REGIONAL.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-18_WAVES.png",
+        "source_date": "2026-05-18",
+        "regional_path": "assets/snapshots/2026-05-18_WAVES_REGIONAL.png"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-18_WIND_STRESS.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-18_WIND_STRESS_REGIONAL.png"
+      }
+    },
+    "2026-05-19": {
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-19_EKMAN_PUMPING.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-19_EKMAN_PUMPING_REGIONAL.png"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-19_ERA5_WIND.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-19_ERA5_WIND_REGIONAL.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-19_MODEL_CURRENT.png",
+        "source_date": "2026-05-19",
+        "regional_path": "assets/snapshots/2026-05-19_MODEL_CURRENT_REGIONAL.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-19_MODEL_SAL.png",
+        "source_date": "2026-05-19",
+        "regional_path": "assets/snapshots/2026-05-19_MODEL_SAL_REGIONAL.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-19_MODEL_TEMP.png",
+        "source_date": "2026-05-19",
+        "regional_path": "assets/snapshots/2026-05-19_MODEL_TEMP_REGIONAL.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-19_SAT_CHL.png",
+        "source_date": "2026-05-19",
+        "regional_path": "assets/snapshots/2026-05-19_SAT_CHL_REGIONAL.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-19_SAT_SLA.png",
+        "source_date": "2026-05-19",
+        "regional_path": "assets/snapshots/2026-05-19_SAT_SLA_REGIONAL.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-19_SAT_SSS.png",
+        "source_date": "2026-05-15",
+        "regional_path": "assets/snapshots/2026-05-19_SAT_SSS_REGIONAL.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-19_WAVES.png",
+        "source_date": "2026-05-19",
+        "regional_path": "assets/snapshots/2026-05-19_WAVES_REGIONAL.png"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-19_WIND_STRESS.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-19_WIND_STRESS_REGIONAL.png"
+      }
+    },
+    "2026-05-20": {
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-20_EKMAN_PUMPING.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-20_EKMAN_PUMPING_REGIONAL.png"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-20_ERA5_WIND.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-20_ERA5_WIND_REGIONAL.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-20_MODEL_CURRENT.png",
+        "source_date": "2026-05-20",
+        "regional_path": "assets/snapshots/2026-05-20_MODEL_CURRENT_REGIONAL.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-20_MODEL_SAL.png",
+        "source_date": "2026-05-20",
+        "regional_path": "assets/snapshots/2026-05-20_MODEL_SAL_REGIONAL.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-20_MODEL_TEMP.png",
+        "source_date": "2026-05-20",
+        "regional_path": "assets/snapshots/2026-05-20_MODEL_TEMP_REGIONAL.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-20_SAT_CHL.png",
+        "source_date": "2026-05-20",
+        "regional_path": "assets/snapshots/2026-05-20_SAT_CHL_REGIONAL.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-20_SAT_SLA.png",
+        "source_date": "2026-05-20",
+        "regional_path": "assets/snapshots/2026-05-20_SAT_SLA_REGIONAL.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-20_SAT_SSS.png",
+        "source_date": "2026-05-15",
+        "regional_path": "assets/snapshots/2026-05-20_SAT_SSS_REGIONAL.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-20_WAVES.png",
+        "source_date": "2026-05-20",
+        "regional_path": "assets/snapshots/2026-05-20_WAVES_REGIONAL.png"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-20_WIND_STRESS.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-20_WIND_STRESS_REGIONAL.png"
+      }
+    },
+    "2026-05-21": {
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-21_EKMAN_PUMPING.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-21_EKMAN_PUMPING_REGIONAL.png"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-21_ERA5_WIND.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-21_ERA5_WIND_REGIONAL.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-21_MODEL_CURRENT.png",
+        "source_date": "2026-05-21",
+        "regional_path": "assets/snapshots/2026-05-21_MODEL_CURRENT_REGIONAL.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-21_MODEL_SAL.png",
+        "source_date": "2026-05-21",
+        "regional_path": "assets/snapshots/2026-05-21_MODEL_SAL_REGIONAL.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-21_MODEL_TEMP.png",
+        "source_date": "2026-05-21",
+        "regional_path": "assets/snapshots/2026-05-21_MODEL_TEMP_REGIONAL.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-21_SAT_CHL.png",
+        "source_date": "2026-05-20",
+        "regional_path": "assets/snapshots/2026-05-21_SAT_CHL_REGIONAL.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-21_SAT_SLA.png",
+        "source_date": "2026-05-21",
+        "regional_path": "assets/snapshots/2026-05-21_SAT_SLA_REGIONAL.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-21_SAT_SSS.png",
+        "source_date": "2026-05-15",
+        "regional_path": "assets/snapshots/2026-05-21_SAT_SSS_REGIONAL.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-21_WAVES.png",
+        "source_date": "2026-05-21",
+        "regional_path": "assets/snapshots/2026-05-21_WAVES_REGIONAL.png"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-05-21_WIND_STRESS.png",
+        "source_date": "2026-05-16",
+        "regional_path": "assets/snapshots/2026-05-21_WIND_STRESS_REGIONAL.png"
       }
     }
   }
