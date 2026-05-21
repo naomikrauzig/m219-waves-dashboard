@@ -91,7 +91,7 @@ main {
 ========================================================= */
 
 .site-header {
-  padding: 3.2rem 2.8rem;
+  padding: 2.4rem 2.4rem;
   background:
     radial-gradient(circle at 78% 14%, rgba(91,154,201,0.26), transparent 34%),
     linear-gradient(135deg, #08243d 0%, #0d3456 100%);
@@ -104,9 +104,13 @@ main {
     minmax(360px, 1fr)
     minmax(120px, 0.22fr)
     minmax(420px, 1fr);
+
   grid-template-areas: "text logo image";
-  gap: 2.2rem 3.6rem;
+
+  gap: 1.6rem 2.6rem;
+
   align-items: center;
+
   width: 100%;
   margin: 0;
 }
