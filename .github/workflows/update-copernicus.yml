@@ -104,11 +104,18 @@ jobs:
 
           echo ""
           echo "===== SNAPSHOT FILES ====="
-          find assets/snapshots -type f | sort || true
+          find assets/snapshots -type f -name "*.png" | sort || true
 
           echo ""
           echo "===== GIT STATUS ====="
           git status --short
+
+      - name: Check PNG snapshots exist
+        run: |
+          if ! find assets/snapshots -type f -name "*.png" | grep -q .; then
+            echo "ERROR: No PNG snapshots were generated in assets/snapshots."
+            exit 1
+          fi
 
       - name: Commit generated snapshots and manifest
         run: |
