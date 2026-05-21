@@ -183,31 +183,58 @@ main {
 .hero-info-card strong,
 .hero-info-card a {
   color: white;
+
   text-decoration: none;
+
   font-size: 0.84rem;
+  font-weight: 600;
   line-height: 1.38;
+
+  border-bottom: 1px solid rgba(255,255,255,0.32);
+
+  transition:
+    border-color 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.hero-link:hover,
+.hero-info-card a:hover {
+  border-bottom-color: rgba(255,255,255,0.95);
+
+  opacity: 0.95;
+
+  text-decoration: none;
 }
 
 /* HERO LOGO */
 
 .hero-logo-panel {
   grid-area: logo;
+
   display: flex;
+
   align-items: center;
   justify-content: center;
+
   min-width: 0;
-  min-height: 100%;
-  padding: 1rem;
-  border-radius: var(--radius-large);
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.13);
+
+  padding: 0;
+
+  background: transparent;
+
+  border: none;
+
+  box-shadow: none;
 }
 
 .hero-logo {
-  width: min(100%, 200px);
+  width: min(100%, 300px);
+
   height: auto;
+
   display: block;
-  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.28));
+
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,0.32));
 }
 
 /* HERO IMAGE */
@@ -636,7 +663,7 @@ footer {
 }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE — MOBILE
 ========================================================= */
 
 @media (max-width: 1250px) {
@@ -682,7 +709,7 @@ footer {
   }
 
   .hero-logo {
-    width: min(70%, 185px);
+     width: min(82%, 240px);
   }
 
   .hero-image-panel {
