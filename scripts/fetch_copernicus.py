@@ -609,56 +609,56 @@ def add_route_and_moorings(
         (-24.3309166667, 17.5412833333, "CVOO"),
     ]
 
-    if regional:
-        mooring_label_offsets = {
-            "K1": (-0.42, -0.72),
-            "K2": (-0.14, -0.92),
-            "K3": (0.14, -0.72),
-            "K4": (0.42, -0.92),
-            "0N": (0.00, -0.72),
-            "CVOO": (0.00, -0.72),
-        }
-    else:
-        mooring_label_offsets = {
-            "K1": (-0.22, -0.60),
-            "K2": (-0.07, -0.60),
-            "K3": (0.07, -0.60),
-            "K4": (0.22, -0.60),
-            "0N": (0.00, -0.72),
-            "CVOO": (0.00, -0.72),
-        }
+   if regional:
+    mooring_label_offsets = {
+        "K1": (0.00, -0.78),
+        "K2": (0.00, 0.78),
+        "K3": (0.00, -0.78),
+        "K4": (0.00, 0.78),
+        "0N": (0.00, -0.78),
+        "CVOO": (0.00, 0.78),
+    }
+else:
+    mooring_label_offsets = {
+        "K1": (0.00, -0.60),
+        "K2": (0.00, 0.60),
+        "K3": (0.00, -0.60),
+        "K4": (0.00, 0.60),
+        "0N": (0.00, -0.72),
+        "CVOO": (0.00, 0.72),
+    }
 
-    for lon, lat, label in planned_points:
-        if not inside(lon, lat):
-            continue
+for lon, lat, label in planned_points:
+    if not inside(lon, lat):
+        continue
 
-        ax.scatter(
-            lon,
-            lat,
-            marker="*",
-            s=105,
-            color="#b30000",
-            edgecolor="#111827",
-            linewidth=0.45,
-            zorder=10,
-            transform=ccrs.PlateCarree(),
-        )
+    ax.scatter(
+        lon,
+        lat,
+        marker="*",
+        s=105,
+        color="#b30000",
+        edgecolor="#111827",
+        linewidth=0.45,
+        zorder=10,
+        transform=ccrs.PlateCarree(),
+    )
 
-        dx, dy = mooring_label_offsets.get(label, (0.70, -0.65))
+    dx, dy = mooring_label_offsets.get(label, (0.70, -0.65))
 
-        ax.text(
-            lon + dx,
-            lat + dy,
-            label,
-            fontsize=10,
-            fontweight="bold",
-            color="#111827",
-            zorder=11,
-            transform=ccrs.PlateCarree(),
-            ha="center",
-            va="top",
-        )
-        
+    ax.text(
+        lon + dx,
+        lat + dy,
+        label,
+        fontsize=10,
+        fontweight="bold",
+        color="#111827",
+        zorder=11,
+        transform=ccrs.PlateCarree(),
+        ha="center",
+        va="bottom" if dy > 0 else "top",
+    )
+    
 def snapshot_title(product: dict, target_day: date, source_day: date) -> str:
     title = f"{product['label']} | {target_day.isoformat()}"
 
