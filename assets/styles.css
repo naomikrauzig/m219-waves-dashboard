@@ -432,7 +432,7 @@ main {
   width: 100%;
   aspect-ratio: 1 / 1.22;
   overflow: hidden;
-  background: #dbe6ef;
+  background: white;
   cursor: default;
   touch-action: none;
 }
