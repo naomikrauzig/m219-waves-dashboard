@@ -532,7 +532,11 @@ def rolling_mean_2d(values: Any, size: int = 3) -> Any:
     return result
 
 
-def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
+def add_route_and_moorings(
+    ax: Any,
+    extent: dict | None = None,
+    regional: bool = False,
+) -> None:
     xlim = extent["xlim"] if extent else None
     ylim = extent["ylim"] if extent else None
 
@@ -554,23 +558,26 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
         ax.scatter(
             lon,
             lat,
-            s=80,
+            s=42,
             marker="o",
             color="white",
             edgecolor="#17212b",
-            linewidth=1.4,
+            linewidth=1.0,
             zorder=8,
             transform=ccrs.PlateCarree(),
         )
 
-        # Individual city label placement
+        # Hide Mindelo label in large-scale panels only
+        if label == "Mindelo" and not regional:
+            continue
+
         if label == "Emden":
             tx, ty = 0.0, -0.55
             ha, va = "center", "top"
 
         elif label == "Mindelo":
-            tx, ty = 0.0, 0.55
-            ha, va = "center", "bottom"
+            tx, ty = -0.55, 0.0
+            ha, va = "right", "center"
 
         elif label == "Recife":
             tx, ty = -0.55, 0.0
@@ -584,7 +591,7 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             lon + tx,
             lat + ty,
             label,
-            fontsize=10,
+            fontsize=9,
             fontweight="bold",
             color="#6b7280",
             zorder=9,
@@ -602,15 +609,24 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
         (-24.3309166667, 17.5412833333, "CVOO"),
     ]
 
-    # Labels directly below points, with only tiny x-offsets for K1-K4.
-    mooring_label_offsets = {
-        "K1": (-0.18, -0.45),
-        "K2": (-0.06, -0.45),
-        "K3": (0.06, -0.45),
-        "K4": (0.18, -0.45),
-        "0N": (0.00, -0.55),
-        "CVOO": (0.00, -0.55),
-    }
+    if regional:
+        mooring_label_offsets = {
+            "K1": (-0.42, -0.72),
+            "K2": (-0.14, -0.92),
+            "K3": (0.14, -0.72),
+            "K4": (0.42, -0.92),
+            "0N": (0.00, -0.72),
+            "CVOO": (0.00, -0.72),
+        }
+    else:
+        mooring_label_offsets = {
+            "K1": (-0.22, -0.60),
+            "K2": (-0.07, -0.60),
+            "K3": (0.07, -0.60),
+            "K4": (0.22, -0.60),
+            "0N": (0.00, -0.72),
+            "CVOO": (0.00, -0.72),
+        }
 
     for lon, lat, label in planned_points:
         if not inside(lon, lat):
@@ -620,22 +636,21 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             lon,
             lat,
             marker="*",
-            s=120,
+            s=105,
             color="#b30000",
-            edgecolor="white",
-            linewidth=1.4,
+            edgecolor="#111827",
+            linewidth=0.45,
             zorder=10,
             transform=ccrs.PlateCarree(),
         )
 
-        dx, dy = mooring_label_offsets.get(label, (0.70, -0.55))
+        dx, dy = mooring_label_offsets.get(label, (0.70, -0.65))
 
-        # Mooring labels: centered below the point, no background box
         ax.text(
             lon + dx,
             lat + dy,
             label,
-            fontsize=11,
+            fontsize=10,
             fontweight="bold",
             color="#111827",
             zorder=11,
@@ -643,30 +658,7 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None) -> None:
             ha="center",
             va="top",
         )
-
-def add_metadata(ax: Any, product: dict, source_day: date) -> None:
-    generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    dataset_id = product.get("dataset_id", "derived")
-
-    ax.text(
-        0.995,
-        0.01,
-        f"{dataset_id}\nSource: {source_day.isoformat()} | Generated: {generated}",
-        transform=ax.transAxes,
-        ha="right",
-        va="bottom",
-        fontsize=7,
-        color="#17212b",
-        bbox=dict(
-            facecolor="white",
-            alpha=0.65,
-            edgecolor="none",
-            boxstyle="round,pad=0.25",
-        ),
-        zorder=20,
-    )
-
-
+        
 def snapshot_title(product: dict, target_day: date, source_day: date) -> str:
     title = f"{product['label']} | {target_day.isoformat()}"
 
@@ -816,7 +808,11 @@ def format_axes(
     gridlines.xlabel_style = {"size": 8, "color": "#17212b"}
     gridlines.ylabel_style = {"size": 8, "color": "#17212b"}
 
-    add_route_and_moorings(ax, extent=extent)
+    add_route_and_moorings(
+    ax,
+    extent=extent,
+    regional=(extent == REGIONAL_EXTENT),
+    )
     add_metadata(ax, product, source_day)
 
 
