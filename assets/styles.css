@@ -858,7 +858,8 @@ footer {
   }
 
   .zoom-stage {
-    aspect-ratio: 1 / 1;
+  aspect-ratio: 1 / 1;
+  background: white;
   }
 
   .panel-caption {
