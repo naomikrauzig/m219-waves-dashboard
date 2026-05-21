@@ -381,6 +381,11 @@ main {
 .panel-snapshot {
   display: flex;
   flex-direction: column;
+  background: white;
+}
+
+.zoom-stage {
+  background: white;
 }
 
 /* =========================================================
