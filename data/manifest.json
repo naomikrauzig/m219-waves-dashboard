@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-22T08:37:29+00:00",
+  "generated_at": "2026-05-22T10:36:29+00:00",
   "forecast_start": "2026-05-21",
   "forecast_end": "2026-05-27",
   "dates": [
@@ -880,13 +880,13 @@
       "EKMAN_PUMPING": {
         "available": true,
         "path": "assets/snapshots/2026-05-27_EKMAN_PUMPING.png",
-        "source_date": "2026-05-17",
+        "source_date": "2026-05-22",
         "regional_path": "assets/snapshots/2026-05-27_EKMAN_PUMPING_REGIONAL.png"
       },
       "ERA5_WIND": {
         "available": true,
         "path": "assets/snapshots/2026-05-27_ERA5_WIND.png",
-        "source_date": "2026-05-17",
+        "source_date": "2026-05-22",
         "regional_path": "assets/snapshots/2026-05-27_ERA5_WIND_REGIONAL.png"
       },
       "MODEL_CURRENT": {
@@ -910,7 +910,7 @@
       "SAT_CHL": {
         "available": true,
         "path": "assets/snapshots/2026-05-27_SAT_CHL.png",
-        "source_date": "2026-05-20",
+        "source_date": "2026-05-22",
         "regional_path": "assets/snapshots/2026-05-27_SAT_CHL_REGIONAL.png"
       },
       "SAT_SLA": {
@@ -922,7 +922,7 @@
       "SAT_SSS": {
         "available": true,
         "path": "assets/snapshots/2026-05-27_SAT_SSS.png",
-        "source_date": "2026-05-16",
+        "source_date": "2026-05-22",
         "regional_path": "assets/snapshots/2026-05-27_SAT_SSS_REGIONAL.png"
       },
       "WAVES": {
@@ -934,7 +934,7 @@
       "WIND_STRESS": {
         "available": true,
         "path": "assets/snapshots/2026-05-27_WIND_STRESS.png",
-        "source_date": "2026-05-17",
+        "source_date": "2026-05-22",
         "regional_path": "assets/snapshots/2026-05-27_WIND_STRESS_REGIONAL.png"
       }
     }
