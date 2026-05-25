@@ -8,6 +8,12 @@ on:
 
   workflow_dispatch:
 
+  workflow_run:
+    workflows:
+      - "Update Copernicus snapshots"
+    types:
+      - completed
+
 permissions:
   contents: read
   pages: write
@@ -22,6 +28,10 @@ env:
 
 jobs:
   deploy:
+    if: >
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
