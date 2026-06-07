@@ -9,8 +9,11 @@ const PANEL_DEFAULTS = [
   "EKMAN_PUMPING",
   "SAT_CHL",
   "MODEL_SAL",
-  "MODEL_TEMP"
+  "MODEL_TEMP",
+  "MODEL_CURRENT",
+  "SAT_SLA"
 ];
+
 let manifest = null;
 let products = [];
 let panelStates = [];
@@ -160,6 +163,33 @@ function populatePanelSelectors() {
   });
 }
 
+function panelSnapshotPath(state, status) {
+  const panelIndex = Number(state.panel.dataset.panel);
+
+  const normalPath = status.path;
+  const regionalPath = `assets/snapshots/${state.date}_${state.productKey}_REGIONAL.png`;
+  const equatorialPath = `assets/snapshots/${state.date}_${state.productKey}_EQUATORIAL.png`;
+
+  if (panelIndex >= 8) {
+    return {
+      primary: equatorialPath,
+      fallback: normalPath
+    };
+  }
+
+  if (panelIndex >= 6) {
+    return {
+      primary: regionalPath,
+      fallback: normalPath
+    };
+  }
+
+  return {
+    primary: normalPath,
+    fallback: null
+  };
+}
+
 function updatePanel(state) {
   const image = state.panel.querySelector(".panel-image");
   const caption = state.panel.querySelector(".panel-caption");
@@ -172,24 +202,17 @@ function updatePanel(state) {
   resetPanelZoom(state);
 
   if (status?.available && status.path) {
-    const panelIndex = Number(state.panel.dataset.panel);
-    const isRegionalPanel = panelIndex >= 6;
-
-    const normalPath = status.path;
-    const regionalPath = `assets/snapshots/${state.date}_${state.productKey}_REGIONAL.png`;
     const version = manifest.generated_at || Date.now();
+    const paths = panelSnapshotPath(state, status);
 
     image.onerror = null;
+    image.src = `${paths.primary}?v=${version}`;
 
-    if (isRegionalPanel) {
-      image.src = `${regionalPath}?v=${version}`;
-
+    if (paths.fallback) {
       image.onerror = () => {
         image.onerror = null;
-        image.src = `${normalPath}?v=${version}`;
+        image.src = `${paths.fallback}?v=${version}`;
       };
-    } else {
-      image.src = `${normalPath}?v=${version}`;
     }
 
     image.alt = `${label} for ${state.date}`;
