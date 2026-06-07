@@ -44,6 +44,16 @@ REGIONAL_EXTENT = {
     "ylim": (-25, 25),
 }
 
+ZOOM_EXTENT = {
+    "xlim": (-35, -15),
+    "ylim": (-12, 12),
+}
+
+EQUATORIAL_EXTENT = {
+    "xlim": (-28, -18),
+    "ylim": (-4, 4),
+}
+
 FIXED_COLOR_LIMITS = {
     "WAVES": {
         "vmin": 0.5,
@@ -1348,13 +1358,29 @@ def process_product(
 ) -> Path | None:
 
     full_snapshot = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}.png"
-    regional_snapshot = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}_REGIONAL.png"
+
+    regional_snapshot = SNAPSHOT_DIR / (
+        f"{target_day.isoformat()}_{product['key']}_REGIONAL.png"
+    )
+
+    zoom_snapshot = SNAPSHOT_DIR / (
+        f"{target_day.isoformat()}_{product['key']}_ZOOM.png"
+    )
+
+    equatorial_snapshot = SNAPSHOT_DIR / (
+        f"{target_day.isoformat()}_{product['key']}_EQUATORIAL.png"
+    )
 
     needs_regional = product["key"] in REGIONAL_PRODUCTS
 
     if not force_plots and full_snapshot.exists() and full_snapshot.stat().st_size > 0:
         if not needs_regional or (
-            regional_snapshot.exists() and regional_snapshot.stat().st_size > 0
+            regional_snapshot.exists()
+            and regional_snapshot.stat().st_size > 0
+            and zoom_snapshot.exists()
+            and zoom_snapshot.stat().st_size > 0
+            and equatorial_snapshot.exists()
+            and equatorial_snapshot.stat().st_size > 0
         ):
             print(f"Using cached snapshot: {full_snapshot}", flush=True)
             return full_snapshot
@@ -1397,8 +1423,9 @@ def process_product(
             )
 
         if needs_regional and (
-            force_plots or
-            not regional_snapshot.exists() or regional_snapshot.stat().st_size == 0
+            force_plots
+            or not regional_snapshot.exists()
+            or regional_snapshot.stat().st_size == 0
         ):
             plot_derived_snapshot(
                 product,
@@ -1407,6 +1434,34 @@ def process_product(
                 source_day,
                 suffix="_REGIONAL",
                 extent=REGIONAL_EXTENT,
+            )
+
+        if needs_regional and (
+            force_plots
+            or not zoom_snapshot.exists()
+            or zoom_snapshot.stat().st_size == 0
+        ):
+            plot_derived_snapshot(
+                product,
+                source_path,
+                target_day,
+                source_day,
+                suffix="_ZOOM",
+                extent=ZOOM_EXTENT,
+            )
+
+        if needs_regional and (
+            force_plots
+            or not equatorial_snapshot.exists()
+            or equatorial_snapshot.stat().st_size == 0
+        ):
+            plot_derived_snapshot(
+                product,
+                source_path,
+                target_day,
+                source_day,
+                suffix="_EQUATORIAL",
+                extent=EQUATORIAL_EXTENT,
             )
 
         return source_path
@@ -1435,8 +1490,9 @@ def process_product(
             )
 
         if needs_regional and (
-            force_plots or
-            not regional_snapshot.exists() or regional_snapshot.stat().st_size == 0
+            force_plots
+            or not regional_snapshot.exists()
+            or regional_snapshot.stat().st_size == 0
         ):
             plot_snapshot(
                 product,
@@ -1446,6 +1502,36 @@ def process_product(
                 salinity_path=salinity_path,
                 suffix="_REGIONAL",
                 extent=REGIONAL_EXTENT,
+            )
+
+        if needs_regional and (
+            force_plots
+            or not zoom_snapshot.exists()
+            or zoom_snapshot.stat().st_size == 0
+        ):
+            plot_snapshot(
+                product,
+                nc_path,
+                target_day,
+                source_day,
+                salinity_path=salinity_path,
+                suffix="_ZOOM",
+                extent=ZOOM_EXTENT,
+            )
+
+        if needs_regional and (
+            force_plots
+            or not equatorial_snapshot.exists()
+            or equatorial_snapshot.stat().st_size == 0
+        ):
+            plot_snapshot(
+                product,
+                nc_path,
+                target_day,
+                source_day,
+                salinity_path=salinity_path,
+                suffix="_EQUATORIAL",
+                extent=EQUATORIAL_EXTENT,
             )
 
     return nc_path
