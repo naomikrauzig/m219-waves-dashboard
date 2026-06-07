@@ -168,14 +168,25 @@ function panelSnapshotPath(state, status) {
 
   const normalPath = status.path;
   const regionalPath = `assets/snapshots/${state.date}_${state.productKey}_REGIONAL.png`;
-  const equatorialPath = `assets/snapshots/${state.date}_${state.productKey}_EQUATORIAL.png`;
+  const zoomPath =
+  `assets/snapshots/${state.date}_${state.productKey}_ZOOM.png`;
 
-  if (panelIndex >= 8) {
-    return {
-      primary: equatorialPath,
-      fallback: normalPath
-    };
-  }
+const equatorialPath =
+  `assets/snapshots/${state.date}_${state.productKey}_EQUATORIAL.png`;
+
+if (panelIndex === 8) {
+  return {
+    primary: zoomPath,
+    fallback: normalPath
+  };
+}
+
+if (panelIndex === 9) {
+  return {
+    primary: equatorialPath,
+    fallback: zoomPath
+  };
+}
 
   if (panelIndex >= 6) {
     return {
