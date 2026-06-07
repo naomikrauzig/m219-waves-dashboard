@@ -1,7 +1,7 @@
 {
   "type": "FeatureCollection",
   "name": "GEOMAR M219 related moorings",
-  "source": "RV METEOR M207 short cruise report station list",
+  "source": "M219 mooring plan",
   "features": [
     {
       "type": "Feature",
@@ -10,11 +10,11 @@
         "name": "K1",
         "label": "K1 (KPO1286)",
         "region": "Brazil 11S array",
-        "water_depth_m": 838
+        "water_depth_m": 900
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-35.8814, -10.2885666667]
+        "coordinates": [-35.861667, -10.266667]
       }
     },
     {
@@ -24,11 +24,11 @@
         "name": "K2",
         "label": "K2 (KPO1287)",
         "region": "Brazil 11S array",
-        "water_depth_m": 2254
+        "water_depth_m": 2320
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-35.7242666667, -10.41575]
+        "coordinates": [-35.680000, -10.380000]
       }
     },
     {
@@ -38,11 +38,11 @@
         "name": "K3",
         "label": "K3 (KPO1288)",
         "region": "Brazil 11S array",
-        "water_depth_m": 3475
+        "water_depth_m": 3520
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-35.4361666667, -10.6666166667]
+        "coordinates": [-35.393333, -10.608333]
       }
     },
     {
@@ -52,11 +52,11 @@
         "name": "K4",
         "label": "K4 (KPO1289)",
         "region": "Brazil 11S array",
-        "water_depth_m": 4002
+        "water_depth_m": 4110
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-35.03735, -10.9976333333]
+        "coordinates": [-34.993333, -10.940000]
       }
     },
     {
