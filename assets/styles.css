@@ -328,13 +328,13 @@ main {
 }
 
 /* =========================================================
-   EQUATORIAL SINGLE DETAIL PANEL
+   EQUATORIAL DETAIL PANELS
 ========================================================= */
 
 .single-panel-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.2rem;
+  gap: 1.4rem;
   margin-top: 0.75rem;
 }
 
@@ -343,13 +343,21 @@ main {
 }
 
 .equatorial-single-panel .zoom-stage {
-  aspect-ratio: 16 / 9;
-  min-height: 72vh;
+  aspect-ratio: 16 / 5;
+  min-height: 0;
+  height: auto;
+  max-height: 560px;
+}
+
+.equatorial-single-panel .panel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .equatorial-single-panel .panel-caption {
-  font-size: 1.05rem;
-  line-height: 1.45;
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
 .equatorial-single-panel .panel-toolbar label {
@@ -772,10 +780,11 @@ footer {
     width: 100%;
   }
 
-  .equatorial-single-panel .zoom-stage {
-    aspect-ratio: 1 / 1;
-    min-height: 58vh;
-  }
+ .equatorial-single-panel .zoom-stage {
+  aspect-ratio: 16 / 6;
+  min-height: 0;
+  max-height: 460px;
+ }
 }
 
 /* =========================================================
@@ -910,8 +919,9 @@ footer {
   }
 
   .equatorial-single-panel .zoom-stage {
-    aspect-ratio: 1 / 1;
-    min-height: 52vh;
+  aspect-ratio: 16 / 6;
+  min-height: 0;
+  max-height: 460px;
   }
 
   .equatorial-single-panel .panel-caption {
