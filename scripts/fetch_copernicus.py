@@ -51,8 +51,8 @@ ZOOM_EXTENT = {
 }
 
 EQUATORIAL_EXTENT = {
-    "xlim": (-45, -10),
-    "ylim": (-4.5, 4.5),
+    "xlim": (-45, 0),
+    "ylim": (-4.9, 4.9),
 }
 
 FIXED_COLOR_LIMITS = {
@@ -543,33 +543,10 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None, regional: bool =
         (-24.3309166667, 17.5412833333, "CVOO"),
     ]
 
-    if is_equatorial:
-        mooring_label_offsets = {
-            "0N": (0.00, -0.18),
-        }
-    elif is_zoom:
-        mooring_label_offsets = {
-            "K1": (-0.28, 0.34),
-            "K2": (0.34, 0.28),
-            "K3": (-0.36, -0.26),
-            "K4": (0.32, -0.34),
-            "0N": (0.00, -0.22),
-            "CVOO": (0.00, 0.60),
-        }
-    elif is_regional:
-        mooring_label_offsets = {
-            "0N": (0.00, -0.22),
-            "CVOO": (0.00, 0.60),
-        }
-    else:
-        mooring_label_offsets = {
-            "K1": (0.00, -0.48),
-            "K2": (0.00, 0.48),
-            "K3": (0.00, -0.48),
-            "K4": (0.00, 0.48),
-            "0N": (0.00, -0.18),
-            "CVOO": (0.00, 0.55),
-        }
+    mooring_label_offsets = {
+        "0N": (0.00, -0.18 if is_equatorial else -0.22),
+        "CVOO": (0.00, 0.60),
+    }
 
     k_points_visible = []
 
@@ -591,9 +568,7 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None, regional: bool =
 
         if label in {"K1", "K2", "K3", "K4"}:
             k_points_visible.append((lon, lat, label))
-
-            if is_regional:
-                continue
+            continue
 
         dx, dy = mooring_label_offsets.get(label, (0.70, -0.65))
 
@@ -610,15 +585,17 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None, regional: bool =
             va="bottom" if dy > 0 else "top",
         )
 
-    if is_regional and k_points_visible:
+    if k_points_visible:
         k_lon = sum(point[0] for point in k_points_visible) / len(k_points_visible)
         k_lat = min(point[1] for point in k_points_visible)
 
+        label_offset = -0.90 if is_regional else -0.65
+
         ax.text(
             k_lon,
-            k_lat - 0.90,
+            k_lat + label_offset,
             "K1–K4",
-            fontsize=11,
+            fontsize=12 if is_zoom else 11,
             fontweight="bold",
             color="#111827",
             zorder=11,
@@ -626,7 +603,6 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None, regional: bool =
             ha="center",
             va="top",
         )
-
 
 def snapshot_title(product: dict, target_day: date, source_day: date) -> str:
     title = f"{product['label']} | {target_day.isoformat()}"
@@ -656,11 +632,10 @@ def add_metadata(ax: Any, product: dict, source_day: date, detail: bool = False)
         source_text = f"{dataset_id}:{variable_label}"
     else:
         source_text = dataset_id
-
     ax.text(
         0.995,
         0.01,
-        f"Source date: {source_day.isoformat()}\n{source_text}",
+        source_text,
         transform=ax.transAxes,
         ha="right",
         va="bottom",
@@ -675,6 +650,7 @@ def add_metadata(ax: Any, product: dict, source_day: date, detail: bool = False)
         ),
         zorder=20,
     )
+   
 
 
 def plot_scalar_map(
@@ -880,7 +856,7 @@ def plot_wind_snapshot(
     step_y = max(1, speed.shape[0] // (22 if detail else 30))
     step_x = max(1, speed.shape[1] // (30 if detail else 40))
 
-    fig = plt.figure(figsize=(16, 9) if detail else (14, 9), dpi=600)
+    fig = plt.figure(figsize=(16, 4.8) if detail else (14, 9), dpi=600)
     ax = plt.axes(projection=ccrs.PlateCarree())
 
     ax.add_feature(cfeature.LAND, facecolor="#f4efe6", edgecolor="0.35", linewidth=0.4, zorder=3)
@@ -940,7 +916,7 @@ def plot_derived_snapshot(
 
         _ue, _ve, w_e, taux, tauy = ekman_fields(lon, lat, u10.values, v10.values)
 
-        fig = plt.figure(figsize=(16, 9) if detail else (14, 9), dpi=600)
+        fig = plt.figure(figsize=(16, 4.8) if detail else (14, 9), dpi=600)
         ax = plt.axes(projection=ccrs.PlateCarree())
 
         ax.add_feature(cfeature.LAND, facecolor="#f4efe6", edgecolor="0.35", linewidth=0.4, zorder=3)
@@ -1032,7 +1008,7 @@ def plot_snapshot(
             plot_wind_snapshot(product, ds, target_day, source_day, suffix=suffix, extent=extent)
             return
 
-        fig = plt.figure(figsize=(16, 9) if detail else (14, 9), dpi=600)
+        fig = plt.figure(figsize=(16, 4.8) if detail else (14, 9), dpi=600)
         ax = plt.axes(projection=ccrs.PlateCarree())
 
         ax.add_feature(cfeature.LAND, facecolor="#f4efe6", edgecolor="0.35", linewidth=0.4, zorder=3)
