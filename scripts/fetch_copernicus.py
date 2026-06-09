@@ -46,12 +46,12 @@ REGIONAL_EXTENT = {
 }
 
 ZOOM_EXTENT = {
-    "xlim": (-35, -15),
+    "xlim": (-45, -15),
     "ylim": (-12, 12),
 }
 
 EQUATORIAL_EXTENT = {
-    "xlim": (-28, -18),
+    "xlim": (-45, -15),
     "ylim": (-4, 4),
 }
 
@@ -475,6 +475,8 @@ def rolling_mean_2d(values: Any, size: int = 3) -> Any:
 
 def add_route_and_moorings(ax: Any, extent: dict | None = None, regional: bool = False) -> None:
     is_equatorial = extent == EQUATORIAL_EXTENT
+    is_zoom = extent == ZOOM_EXTENT
+    is_regional = extent == REGIONAL_EXTENT
 
     xlim = extent["xlim"] if extent else None
     ylim = extent["ylim"] if extent else None
@@ -545,12 +547,17 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None, regional: bool =
         mooring_label_offsets = {
             "0N": (0.00, -0.18),
         }
-    elif regional:
+    elif is_zoom:
         mooring_label_offsets = {
-            "K1": (0.00, -0.58),
-            "K2": (0.00, 0.58),
-            "K3": (0.00, -0.58),
-            "K4": (0.00, 0.58),
+            "K1": (-0.28, 0.34),
+            "K2": (0.34, 0.28),
+            "K3": (-0.36, -0.26),
+            "K4": (0.32, -0.34),
+            "0N": (0.00, -0.22),
+            "CVOO": (0.00, 0.60),
+        }
+    elif is_regional:
+        mooring_label_offsets = {
             "0N": (0.00, -0.22),
             "CVOO": (0.00, 0.60),
         }
@@ -563,6 +570,8 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None, regional: bool =
             "0N": (0.00, -0.18),
             "CVOO": (0.00, 0.55),
         }
+
+    k_points_visible = []
 
     for lon, lat, label in planned_points:
         if not inside(lon, lat):
@@ -580,6 +589,12 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None, regional: bool =
             transform=ccrs.PlateCarree(),
         )
 
+        if label in {"K1", "K2", "K3", "K4"}:
+            k_points_visible.append((lon, lat, label))
+
+            if is_regional:
+                continue
+
         dx, dy = mooring_label_offsets.get(label, (0.70, -0.65))
 
         ax.text(
@@ -593,6 +608,23 @@ def add_route_and_moorings(ax: Any, extent: dict | None = None, regional: bool =
             transform=ccrs.PlateCarree(),
             ha="center",
             va="bottom" if dy > 0 else "top",
+        )
+
+    if is_regional and k_points_visible:
+        k_lon = sum(point[0] for point in k_points_visible) / len(k_points_visible)
+        k_lat = min(point[1] for point in k_points_visible)
+
+        ax.text(
+            k_lon,
+            k_lat - 0.90,
+            "K1–K4",
+            fontsize=11,
+            fontweight="bold",
+            color="#111827",
+            zorder=11,
+            transform=ccrs.PlateCarree(),
+            ha="center",
+            va="top",
         )
 
 
