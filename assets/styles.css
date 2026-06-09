@@ -104,13 +104,9 @@ main {
     minmax(360px, 1fr)
     minmax(120px, 0.22fr)
     minmax(420px, 1fr);
-
   grid-template-areas: "text logo image";
-
   gap: 1.6rem 2.6rem;
-
   align-items: center;
-
   width: 100%;
   margin: 0;
 }
@@ -332,6 +328,39 @@ main {
 }
 
 /* =========================================================
+   EQUATORIAL SINGLE DETAIL PANEL
+========================================================= */
+
+.single-panel-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  margin-top: 0.75rem;
+}
+
+.equatorial-single-panel {
+  width: 100%;
+}
+
+.equatorial-single-panel .zoom-stage {
+  aspect-ratio: 16 / 9;
+  min-height: 72vh;
+}
+
+.equatorial-single-panel .panel-caption {
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+.equatorial-single-panel .panel-toolbar label {
+  font-size: 0.95rem;
+}
+
+.equatorial-single-panel .panel-toolbar select {
+  font-size: 0.95rem;
+}
+
+/* =========================================================
    MAP PANELS
 ========================================================= */
 
@@ -491,6 +520,7 @@ main {
 }
 
 /* Extra space below Product Availability section */
+
 .availability-section {
   padding-bottom: 3rem;
 }
@@ -589,11 +619,9 @@ td small {
   position: absolute;
   right: 2rem;
   bottom: 1.8rem;
-
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-
   text-align: right;
   color: white;
 }
@@ -673,7 +701,7 @@ footer {
 }
 
 /* =========================================================
-   RESPONSIVE — MOBILE
+   RESPONSIVE — TABLET
 ========================================================= */
 
 @media (max-width: 1250px) {
@@ -700,7 +728,15 @@ footer {
   .regional-panel-grid {
     grid-template-columns: repeat(2, minmax(360px, 1fr));
   }
+
+  .single-panel-grid {
+    grid-template-columns: 1fr;
+  }
 }
+
+/* =========================================================
+   RESPONSIVE — SMALL TABLET
+========================================================= */
 
 @media (max-width: 900px) {
 
@@ -719,7 +755,7 @@ footer {
   }
 
   .hero-logo {
-     width: min(82%, 240px);
+    width: min(82%, 240px);
   }
 
   .hero-image-panel {
@@ -727,14 +763,24 @@ footer {
   }
 
   .multi-panel-grid,
-  .regional-panel-grid {
+  .regional-panel-grid,
+  .single-panel-grid {
     grid-template-columns: 1fr;
   }
 
   .status-panel {
     width: 100%;
   }
+
+  .equatorial-single-panel .zoom-stage {
+    aspect-ratio: 1 / 1;
+    min-height: 58vh;
+  }
 }
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
 
 @media (max-width: 700px) {
 
@@ -821,7 +867,8 @@ footer {
   }
 
   .multi-panel-grid,
-  .regional-panel-grid {
+  .regional-panel-grid,
+  .single-panel-grid {
     grid-template-columns: 1fr;
     gap: 0.9rem;
   }
@@ -858,8 +905,17 @@ footer {
   }
 
   .zoom-stage {
-  aspect-ratio: 1 / 1;
-  background: white;
+    aspect-ratio: 1 / 1;
+    background: white;
+  }
+
+  .equatorial-single-panel .zoom-stage {
+    aspect-ratio: 1 / 1;
+    min-height: 52vh;
+  }
+
+  .equatorial-single-panel .panel-caption {
+    font-size: 0.9rem;
   }
 
   .panel-caption {
