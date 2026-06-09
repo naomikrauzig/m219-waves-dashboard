@@ -10,8 +10,7 @@ const PANEL_DEFAULTS = [
   "SAT_CHL",
   "MODEL_SAL",
   "MODEL_TEMP",
-  "MODEL_CURRENT",
-  "SAT_SLA"
+  "MODEL_TEMP"
 ];
 
 let manifest = null;
@@ -168,25 +167,15 @@ function panelSnapshotPath(state, status) {
 
   const normalPath = status.path;
   const regionalPath = `assets/snapshots/${state.date}_${state.productKey}_REGIONAL.png`;
-  const zoomPath =
-  `assets/snapshots/${state.date}_${state.productKey}_ZOOM.png`;
+  const zoomPath = `assets/snapshots/${state.date}_${state.productKey}_ZOOM.png`;
+  const equatorialPath = `assets/snapshots/${state.date}_${state.productKey}_EQUATORIAL.png`;
 
-const equatorialPath =
-  `assets/snapshots/${state.date}_${state.productKey}_EQUATORIAL.png`;
-
-if (panelIndex === 8) {
-  return {
-    primary: zoomPath,
-    fallback: normalPath
-  };
-}
-
-if (panelIndex === 9) {
-  return {
-    primary: equatorialPath,
-    fallback: zoomPath
-  };
-}
+  if (panelIndex === 8) {
+    return {
+      primary: equatorialPath,
+      fallback: zoomPath
+    };
+  }
 
   if (panelIndex >= 6) {
     return {
