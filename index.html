@@ -456,96 +456,58 @@
   </section>
 
   <!-- ===================================================== -->
-  <!-- EQUATORIAL DETAIL ZOOM -->
-  <!-- ===================================================== -->
+<!-- EQUATORIAL DETAIL ZOOM -->
+<!-- ===================================================== -->
 
-  <section class="dashboard equatorial-dashboard">
+<section class="dashboard equatorial-dashboard">
 
-    <div class="section-heading regional-heading">
+  <div class="section-heading regional-heading">
 
-      <h2>
-        Equatorial Detail Panels
-      </h2>
+    <h2>Equatorial Panel</h2>
 
-      <p>
-        High-resolution views between 4°S and 4°N to highlight near-equatorial
-        structure with lighter contour overlays.
-      </p>
+    <p>High-resolution view between 4°S and 4°N</p>
 
-    </div>
+  </div>
 
-    <div class="multi-panel-grid regional-panel-grid">
+  <div class="single-panel-grid regional-panel-grid">
 
-      <!-- EQUATORIAL PANEL 1 -->
-      <section class="map-panel" data-panel="8">
+    <!-- EQUATORIAL PANEL -->
+    <section class="map-panel equatorial-single-panel" data-panel="8">
 
-        <div class="panel-toolbar">
+      <div class="panel-toolbar">
 
-          <label>Dataset</label>
-          <select class="panel-dataset-select"></select>
+        <label>Dataset</label>
+        <select class="panel-dataset-select"></select>
 
-          <label>Date</label>
-          <select class="panel-date-select"></select>
+        <label>Date</label>
+        <select class="panel-date-select"></select>
 
-        </div>
+      </div>
 
-        <figure class="snapshot panel-snapshot">
+      <figure class="snapshot panel-snapshot">
 
-          <div class="map-controls">
+        <div class="map-controls">
 
-            <button type="button" data-panel-zoom="out">−</button>
-            <button type="button" data-panel-zoom="in">+</button>
-            <button type="button" data-panel-zoom="reset">Reset</button>
-
-          </div>
-
-          <div class="zoom-stage">
-            <img class="panel-image" alt="Equatorial detail panel 1" />
-          </div>
-
-          <figcaption class="panel-caption"></figcaption>
-
-        </figure>
-
-      </section>
-
-      <!-- EQUATORIAL PANEL 2 -->
-      <section class="map-panel" data-panel="9">
-
-        <div class="panel-toolbar">
-
-          <label>Dataset</label>
-          <select class="panel-dataset-select"></select>
-
-          <label>Date</label>
-          <select class="panel-date-select"></select>
+          <button type="button" data-panel-zoom="out">−</button>
+          <button type="button" data-panel-zoom="in">+</button>
+          <button type="button" data-panel-zoom="reset">Reset</button>
 
         </div>
 
-        <figure class="snapshot panel-snapshot">
+        <div class="zoom-stage">
+          <img class="panel-image" alt="Equatorial detail panel" />
+        </div>
 
-          <div class="map-controls">
+        <figcaption class="panel-caption"></figcaption>
 
-            <button type="button" data-panel-zoom="out">−</button>
-            <button type="button" data-panel-zoom="in">+</button>
-            <button type="button" data-panel-zoom="reset">Reset</button>
+      </figure>
 
-          </div>
+    </section>
 
-          <div class="zoom-stage">
-            <img class="panel-image" alt="Equatorial detail panel 2" />
-          </div>
+  </div>
 
-          <figcaption class="panel-caption"></figcaption>
-
-        </figure>
-
-      </section>
-
-    </div>
-
-  </section>
-
+</section>
+  
   <!-- ===================================================== -->
   <!-- INSITU -->
   <!-- ===================================================== -->
@@ -559,7 +521,7 @@
       </h2>
 
       <p>
-        Planned integration of Argo floats, NOAA GDP drifters,
+        Planned integration of Argo floats, surface drifters,
         ship position, moorings, and underway observations.
       </p>
 
@@ -569,7 +531,7 @@
 
       <p>
         Planned route:
-        Recife → K1-K4 → CVOO → Emden.
+        Recife → K1-K4 → 0N → CVOO → Emden.
       </p>
 
       <p>
