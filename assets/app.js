@@ -10,7 +10,8 @@ const PANEL_DEFAULTS = [
   "SAT_CHL",
   "MODEL_SAL",
   "MODEL_TEMP",
-  "MODEL_TEMP"
+  "MODEL_TEMP",
+  "SAT_CHL"
 ];
 
 let manifest = null;
@@ -170,7 +171,7 @@ function panelSnapshotPath(state, status) {
   const zoomPath = `assets/snapshots/${state.date}_${state.productKey}_ZOOM.png`;
   const equatorialPath = `assets/snapshots/${state.date}_${state.productKey}_EQUATORIAL.png`;
 
-  if (panelIndex === 8) {
+  if (panelIndex === 8 || panelIndex === 9) {
     return {
       primary: equatorialPath,
       fallback: zoomPath
