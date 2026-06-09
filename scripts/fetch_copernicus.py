@@ -51,20 +51,20 @@ ZOOM_EXTENT = {
 }
 
 EQUATORIAL_EXTENT = {
-    "xlim": (-45, -15),
-    "ylim": (-4, 4),
+    "xlim": (-45, -10),
+    "ylim": (-4.5, 4.5),
 }
 
 FIXED_COLOR_LIMITS = {
-    "WAVES": {"vmin": 0.5, "vmax": 4.0},
-    "MODEL_CURRENT": {"vmin": 0.05, "vmax": 0.8},
-    "MODEL_TEMP": {"vmin": 9.0, "vmax": 29.0},
-    "MODEL_SAL": {"vmin": 34.2, "vmax": 37.6},
+    "WAVES": {"vmin": 0.5, "vmax": 3},
+    "MODEL_CURRENT": {"vmin": 0.1, "vmax": 1},
+    "MODEL_TEMP": {"vmin": 12, "vmax": 30},
+    "MODEL_SAL": {"vmin": 34.5, "vmax": 37.5},
     "SAT_SLA": {"vmin": -0.18, "vmax": 0.18, "signed": True},
-    "SAT_SSS": {"vmin": 34.2, "vmax": 37.6},
-    "SAT_CHL": {"vmin": 0.03, "vmax": 2.0, "log_norm": True},
+    "SAT_SSS": {"vmin": 34.5, "vmax": 37.5},
+    "SAT_CHL": {"vmin": 0.05, "vmax": 2.0, "log_norm": True},
     "ERA5_WIND": {"vmin": 1.5, "vmax": 13.0},
-    "WIND_STRESS": {"vmin": 0.02, "vmax": 0.32},
+    "WIND_STRESS": {"vmin": 0.01, "vmax": 0.3},
     "EKMAN_PUMPING": {"vmin": -220.0, "vmax": 220.0, "signed": True},
 }
 
@@ -724,7 +724,7 @@ def plot_scalar_map(
             transform=ccrs.PlateCarree(),
         )
 
-        levels = np.geomspace(vmin, vmax, 7)
+        levels = np.geomspace(vmin, vmax, 5 if detail else 7)
 
     elif signed:
         if vmin is None or vmax is None:
@@ -742,11 +742,19 @@ def plot_scalar_map(
             transform=ccrs.PlateCarree(),
         )
 
-        levels = physical_levels if physical_levels is not None and not detail else np.linspace(vmin, vmax, 9)
+        levels = (
+            physical_levels
+            if physical_levels is not None and not detail
+            else np.linspace(vmin, vmax, 5 if detail else 9)
+        )
 
     else:
         if vmin is None or vmax is None:
-            vmin, vmax = robust_limits(limit_values, 5 if detail else 2, 95 if detail else 98)
+            vmin, vmax = robust_limits(
+                limit_values,
+                5 if detail else 2,
+                95 if detail else 98,
+            )
 
         mesh = ax.pcolormesh(
             lon,
@@ -759,7 +767,11 @@ def plot_scalar_map(
             transform=ccrs.PlateCarree(),
         )
 
-        levels = physical_levels if physical_levels is not None and not detail else np.linspace(vmin, vmax, 8)
+        levels = (
+            physical_levels
+            if physical_levels is not None and not detail
+            else np.linspace(vmin, vmax, 5 if detail else 8)
+        )
 
     cbar = fig.colorbar(
         mesh,
@@ -783,8 +795,8 @@ def plot_scalar_map(
                 values,
                 levels=levels,
                 colors="#17212b",
-                linewidths=0.85 if detail else 0.45,
-                alpha=0.60 if detail else 0.45,
+                linewidths=0.35 if detail else 0.45,
+                alpha=0.35 if detail else 0.45,
                 transform=ccrs.PlateCarree(),
             )
         except Exception:
