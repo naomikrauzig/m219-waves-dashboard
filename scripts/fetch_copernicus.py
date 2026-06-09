@@ -6,11 +6,12 @@ import argparse
 import json
 import os
 import sys
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
 
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCTS_FILE = ROOT / "data" / "products.json"
@@ -55,90 +56,38 @@ EQUATORIAL_EXTENT = {
 }
 
 FIXED_COLOR_LIMITS = {
-    "WAVES": {
-        "vmin": 0.5,
-        "vmax": 4.0,
-    },
-    "MODEL_CURRENT": {
-        "vmin": 0.05,
-        "vmax": 0.8,
-    },
-    "MODEL_TEMP": {
-        "vmin": 9.0,
-        "vmax": 29.0,
-    },
-    "MODEL_SAL": {
-        "vmin": 34.2,
-        "vmax": 37.6,
-    },
-    "SAT_SLA": {
-        "vmin": -0.18,
-        "vmax": 0.18,
-        "signed": True,
-    },
-    "SAT_SSS": {
-        "vmin": 34.2,
-        "vmax": 37.6,
-    },
-    "SAT_CHL": {
-        "vmin": 0.03,
-        "vmax": 2.0,
-        "log_norm": True,
-    },
-    "ERA5_WIND": {
-        "vmin": 1.5,
-        "vmax": 13.0,
-    },
-    "WIND_STRESS": {
-        "vmin": 0.02,
-        "vmax": 0.32,
-    },
-    "EKMAN_PUMPING": {
-        "vmin": -220.0,
-        "vmax": 220.0,
-        "signed": True,
-    },
+    "WAVES": {"vmin": 0.5, "vmax": 4.0},
+    "MODEL_CURRENT": {"vmin": 0.05, "vmax": 0.8},
+    "MODEL_TEMP": {"vmin": 9.0, "vmax": 29.0},
+    "MODEL_SAL": {"vmin": 34.2, "vmax": 37.6},
+    "SAT_SLA": {"vmin": -0.18, "vmax": 0.18, "signed": True},
+    "SAT_SSS": {"vmin": 34.2, "vmax": 37.6},
+    "SAT_CHL": {"vmin": 0.03, "vmax": 2.0, "log_norm": True},
+    "ERA5_WIND": {"vmin": 1.5, "vmax": 13.0},
+    "WIND_STRESS": {"vmin": 0.02, "vmax": 0.32},
+    "EKMAN_PUMPING": {"vmin": -220.0, "vmax": 220.0, "signed": True},
 }
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-
     parser.add_argument("--date", default=None)
-
-    parser.add_argument(
-        "--days-back",
-        type=int,
-        default=1,
-    )
-
-    parser.add_argument(
-        "--days-ahead",
-        type=int,
-        default=5,
-    )
-
+    parser.add_argument("--days-back", type=int, default=1)
+    parser.add_argument("--days-ahead", type=int, default=5)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--allow-partial", action="store_true")
     parser.add_argument("--force-plots", action="store_true")
-
     return parser.parse_args()
 
 
 def target_start_day(value: str | None) -> date:
     if value:
         return datetime.strptime(value, "%Y-%m-%d").date()
-
     return datetime.now(timezone.utc).date()
 
 
-def target_days(
-    value: str | None,
-    days_back: int,
-    days_ahead: int,
-) -> list[date]:
-
+def target_days(value: str | None, days_back: int, days_ahead: int) -> list[date]:
     center_day = target_start_day(value)
-
     return [
         center_day + timedelta(days=offset)
         for offset in range(-days_back, days_ahead + 1)
@@ -155,11 +104,9 @@ def candidate_days(product: dict, target_day: date) -> list[date]:
     default_backfill = 3 if product.get("key") == "SAT_SLA" else 5
     max_backfill_days = int(product.get("max_backfill_days", default_backfill))
 
-    return [
-        start - timedelta(days=offset)
-        for offset in range(max_backfill_days + 1)
-    ]
-    
+    return [start - timedelta(days=offset) for offset in range(max_backfill_days + 1)]
+
+
 def load_products() -> list[dict]:
     products = json.loads(PRODUCTS_FILE.read_text(encoding="utf-8"))
     return [product for product in products if product.get("workflow_enabled", True)]
@@ -170,14 +117,6 @@ def product_by_key(products: list[dict], key: str) -> dict:
         if product["key"] == key:
             return product
     raise KeyError(f"Product {key!r} is not configured.")
-
-
-def load_moorings() -> list[dict]:
-    if not MOORINGS_FILE.exists():
-        return []
-
-    geojson = json.loads(MOORINGS_FILE.read_text(encoding="utf-8"))
-    return geojson.get("features", [])
 
 
 def download_era5_subset(product: dict, source_day: date, dry_run: bool) -> Path | None:
@@ -199,17 +138,7 @@ def download_era5_subset(product: dict, source_day: date, dry_run: bool) -> Path
         "area": [max_lat, min_lon, min_lat, max_lon],
     }
 
-    print(
-        json.dumps(
-            {
-                "product": product["key"],
-                "source": "cds",
-                "request": request,
-            },
-            indent=2,
-        ),
-        flush=True,
-    )
+    print(json.dumps({"product": product["key"], "source": "cds", "request": request}, indent=2), flush=True)
 
     if dry_run:
         return None
@@ -253,16 +182,7 @@ def download_copernicus_subset(product: dict, source_day: date, dry_run: bool) -
         request["minimum_depth"] = 0
         request["maximum_depth"] = 2
 
-    print(
-        json.dumps(
-            {
-                "product": product["key"],
-                "request": request,
-            },
-            indent=2,
-        ),
-        flush=True,
-    )
+    print(json.dumps({"product": product["key"], "request": request}, indent=2), flush=True)
 
     if dry_run:
         return None
@@ -375,18 +295,6 @@ def symmetric_limits(values: Any, percentile: float = 98) -> tuple[float, float]
     return -float(limit), float(limit)
 
 
-def contour_levels(values: Any, n: int = 8, symmetric: bool = False) -> list[float]:
-    import numpy as np
-
-    if symmetric:
-        vmin, vmax = symmetric_limits(values, 98)
-    else:
-        vmin, vmax = robust_limits(values, 5, 95)
-
-    levels = np.linspace(vmin, vmax, n)
-    return [float(v) for v in levels if np.isfinite(v)]
-
-
 def get_cmocean_cmap(name: str):
     import cmocean
 
@@ -396,7 +304,6 @@ def get_cmocean_cmap(name: str):
 def lon_lat_from_da(da: Any) -> tuple[Any, Any, str, str]:
     lon_name = coordinate_name(da, ("longitude", "lon"))
     lat_name = coordinate_name(da, ("latitude", "lat"))
-
     return da[lon_name], da[lat_name], lon_name, lat_name
 
 
@@ -412,6 +319,32 @@ def lat_lon_grids(lon: Any, lat: Any) -> tuple[Any, Any]:
     return lon_values, lat_values
 
 
+def values_for_extent(lon: Any, lat: Any, values: Any, extent: dict | None) -> Any:
+    import numpy as np
+
+    arr = np.asarray(values, dtype=float)
+
+    if extent is None:
+        return arr
+
+    lon2d, lat2d = lat_lon_grids(lon, lat)
+
+    mask = (
+        (lon2d >= extent["xlim"][0])
+        & (lon2d <= extent["xlim"][1])
+        & (lat2d >= extent["ylim"][0])
+        & (lat2d <= extent["ylim"][1])
+        & np.isfinite(arr)
+    )
+
+    cropped = arr[mask]
+
+    if cropped.size < 20:
+        return arr
+
+    return cropped
+
+
 def teos10_absolute_salinity(sp_da: Any) -> Any:
     import gsw
     import xarray as xr
@@ -419,8 +352,7 @@ def teos10_absolute_salinity(sp_da: Any) -> Any:
     lon, lat, _, _ = lon_lat_from_da(sp_da)
     lon2d, lat2d = lat_lon_grids(lon, lat)
 
-    p = 0.0
-    sa = gsw.SA_from_SP(sp_da.values, p, lon2d, lat2d)
+    sa = gsw.SA_from_SP(sp_da.values, 0.0, lon2d, lat2d)
 
     return xr.DataArray(
         sa,
@@ -441,8 +373,7 @@ def teos10_conservative_temperature(thetao_da: Any, sp_da: Any) -> Any:
     lon, lat, _, _ = lon_lat_from_da(thetao_da)
     lon2d, lat2d = lat_lon_grids(lon, lat)
 
-    p = 0.0
-    sa = gsw.SA_from_SP(sp_da.values, p, lon2d, lat2d)
+    sa = gsw.SA_from_SP(sp_da.values, 0.0, lon2d, lat2d)
 
     standard_name = str(thetao_da.attrs.get("standard_name", "")).lower()
     long_name = str(thetao_da.attrs.get("long_name", "")).lower()
@@ -541,11 +472,10 @@ def rolling_mean_2d(values: Any, size: int = 3) -> Any:
 
     return result
 
-def add_route_and_moorings(
-    ax: Any,
-    extent: dict | None = None,
-    regional: bool = False,
-) -> None:
+
+def add_route_and_moorings(ax: Any, extent: dict | None = None, regional: bool = False) -> None:
+    is_equatorial = extent == EQUATORIAL_EXTENT
+
     xlim = extent["xlim"] if extent else None
     ylim = extent["ylim"] if extent else None
 
@@ -567,11 +497,11 @@ def add_route_and_moorings(
         ax.scatter(
             lon,
             lat,
-            s=42,
+            s=70 if is_equatorial else 42,
             marker="o",
             color="white",
             edgecolor="#17212b",
-            linewidth=1.0,
+            linewidth=1.2,
             zorder=8,
             transform=ccrs.PlateCarree(),
         )
@@ -582,10 +512,7 @@ def add_route_and_moorings(
         if label == "Emden":
             tx, ty = 0.0, -0.55
             ha, va = "center", "top"
-        elif label == "Mindelo":
-            tx, ty = -0.55, 0.0
-            ha, va = "right", "center"
-        elif label == "Recife":
+        elif label in {"Mindelo", "Recife"}:
             tx, ty = -0.55, 0.0
             ha, va = "right", "center"
         else:
@@ -596,7 +523,7 @@ def add_route_and_moorings(
             lon + tx,
             lat + ty,
             label,
-            fontsize=9,
+            fontsize=13 if is_equatorial else 9,
             fontweight="bold",
             color="#6b7280",
             zorder=9,
@@ -606,21 +533,25 @@ def add_route_and_moorings(
         )
 
     planned_points = [
-        (-33.8, -9.8, "K1"),
-        (-33.2, -9.6, "K2"),
-        (-32.6, -9.4, "K3"),
-        (-32.0, -9.2, "K4"),
-        (-23.1650166667, -0.05705, "0N"),
+        (-35.861667, -10.266667, "K1"),
+        (-35.680000, -10.380000, "K2"),
+        (-35.393333, -10.608333, "K3"),
+        (-34.993333, -10.940000, "K4"),
+        (-23.113333, 0.000000, "0N"),
         (-24.3309166667, 17.5412833333, "CVOO"),
     ]
 
-    if regional:
+    if is_equatorial:
+        mooring_label_offsets = {
+            "0N": (0.00, -0.18),
+        }
+    elif regional:
         mooring_label_offsets = {
             "K1": (0.00, -0.58),
             "K2": (0.00, 0.58),
             "K3": (0.00, -0.58),
             "K4": (0.00, 0.58),
-            "0N": (0.00, -0.60),
+            "0N": (0.00, -0.22),
             "CVOO": (0.00, 0.60),
         }
     else:
@@ -629,10 +560,10 @@ def add_route_and_moorings(
             "K2": (0.00, 0.48),
             "K3": (0.00, -0.48),
             "K4": (0.00, 0.48),
-            "0N": (0.00, -0.55),
+            "0N": (0.00, -0.18),
             "CVOO": (0.00, 0.55),
         }
-            
+
     for lon, lat, label in planned_points:
         if not inside(lon, lat):
             continue
@@ -641,10 +572,10 @@ def add_route_and_moorings(
             lon,
             lat,
             marker="*",
-            s=105,
+            s=210 if is_equatorial else 105,
             color="#b30000",
             edgecolor="#111827",
-            linewidth=0.45,
+            linewidth=0.7 if is_equatorial else 0.45,
             zorder=10,
             transform=ccrs.PlateCarree(),
         )
@@ -655,7 +586,7 @@ def add_route_and_moorings(
             lon + dx,
             lat + dy,
             label,
-            fontsize=10,
+            fontsize=17 if is_equatorial else 10,
             fontweight="bold",
             color="#111827",
             zorder=11,
@@ -676,7 +607,6 @@ def snapshot_title(product: dict, target_day: date, source_day: date) -> str:
 
 def save_figure(fig: Any, target_day: date, product: dict, suffix: str = "") -> None:
     SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
-
     output = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}{suffix}.png"
 
     fig.tight_layout()
@@ -685,21 +615,31 @@ def save_figure(fig: Any, target_day: date, product: dict, suffix: str = "") -> 
     print(f"Saved snapshot: {output}", flush=True)
 
 
-def add_metadata(ax: Any, product: dict, source_day: date) -> None:
+def add_metadata(ax: Any, product: dict, source_day: date, detail: bool = False) -> None:
+    dataset_id = product.get("dataset_id", "unknown dataset")
+    variables = product.get("variables", [])
+
+    if variables:
+        variable_label = ",".join(variables)
+        source_text = f"{dataset_id}:{variable_label}"
+    else:
+        source_text = dataset_id
+
     ax.text(
         0.995,
         0.01,
-        f"Source date: {source_day.isoformat()}",
+        f"Source date: {source_day.isoformat()}\n{source_text}",
         transform=ax.transAxes,
         ha="right",
         va="bottom",
-        fontsize=7,
+        fontsize=10 if detail else 7,
         color="#374151",
+        linespacing=1.25,
         bbox=dict(
             facecolor="white",
-            alpha=0.65,
+            alpha=0.78,
             edgecolor="none",
-            pad=2,
+            pad=3,
         ),
         zorder=20,
     )
@@ -718,11 +658,15 @@ def plot_scalar_map(
     log_norm: bool = False,
     physical_levels: list[float] | None = None,
     fixed_limits: dict | None = None,
+    extent: dict | None = None,
+    detail: bool = False,
 ) -> None:
     import numpy as np
     from matplotlib.colors import LogNorm, TwoSlopeNorm
 
-    if fixed_limits is not None:
+    limit_values = values_for_extent(lon, lat, values, extent) if detail else values
+
+    if fixed_limits is not None and not detail:
         vmin = fixed_limits["vmin"]
         vmax = fixed_limits["vmax"]
     else:
@@ -730,12 +674,12 @@ def plot_scalar_map(
         vmax = None
 
     if log_norm:
-        arr = np.asarray(values, dtype=float)
+        arr = np.asarray(limit_values, dtype=float)
         arr = arr[np.isfinite(arr) & (arr > 0)]
 
-        if fixed_limits is None:
-            vmin = max(float(np.nanpercentile(arr, 2)), 0.01) if arr.size else 0.01
-            vmax = float(np.nanpercentile(arr, 98)) if arr.size else 5.0
+        if vmin is None or vmax is None:
+            vmin = max(float(np.nanpercentile(arr, 5)), 0.01) if arr.size else 0.01
+            vmax = float(np.nanpercentile(arr, 95)) if arr.size else 5.0
             vmax = max(vmax, vmin * 1.5)
 
         mesh = ax.pcolormesh(
@@ -751,8 +695,8 @@ def plot_scalar_map(
         levels = np.geomspace(vmin, vmax, 7)
 
     elif signed:
-        if fixed_limits is None:
-            vmin, vmax = symmetric_limits(values, 98)
+        if vmin is None or vmax is None:
+            vmin, vmax = symmetric_limits(limit_values, 95 if detail else 98)
 
         norm = TwoSlopeNorm(vmin=vmin, vcenter=0.0, vmax=vmax)
 
@@ -766,11 +710,11 @@ def plot_scalar_map(
             transform=ccrs.PlateCarree(),
         )
 
-        levels = physical_levels if physical_levels is not None else np.linspace(vmin, vmax, 9)
+        levels = physical_levels if physical_levels is not None and not detail else np.linspace(vmin, vmax, 9)
 
     else:
-        if fixed_limits is None:
-            vmin, vmax = robust_limits(values, 2, 98)
+        if vmin is None or vmax is None:
+            vmin, vmax = robust_limits(limit_values, 5 if detail else 2, 95 if detail else 98)
 
         mesh = ax.pcolormesh(
             lon,
@@ -783,9 +727,21 @@ def plot_scalar_map(
             transform=ccrs.PlateCarree(),
         )
 
-        levels = physical_levels if physical_levels is not None else np.linspace(vmin, vmax, 8)
+        levels = physical_levels if physical_levels is not None and not detail else np.linspace(vmin, vmax, 8)
 
-    fig.colorbar(mesh, ax=ax, pad=0.012, shrink=0.86, label=label)
+    cbar = fig.colorbar(
+        mesh,
+        ax=ax,
+        pad=0.012,
+        shrink=0.86,
+        label=label,
+    )
+
+    if detail:
+        cbar.ax.tick_params(labelsize=13)
+        cbar.set_label(label, fontsize=14, fontweight="bold")
+    else:
+        cbar.ax.tick_params(labelsize=8)
 
     if contours and len(levels) >= 3:
         try:
@@ -795,8 +751,8 @@ def plot_scalar_map(
                 values,
                 levels=levels,
                 colors="#17212b",
-                linewidths=0.45,
-                alpha=0.45,
+                linewidths=0.85 if detail else 0.45,
+                alpha=0.60 if detail else 0.45,
                 transform=ccrs.PlateCarree(),
             )
         except Exception:
@@ -810,6 +766,8 @@ def format_axes(
     source_day: date,
     extent: dict | None = None,
 ) -> None:
+    is_equatorial = extent == EQUATORIAL_EXTENT
+
     if extent is not None:
         ax.set_xlim(*extent["xlim"])
         ax.set_ylim(*extent["ylim"])
@@ -818,23 +776,33 @@ def format_axes(
         snapshot_title(product, target_day, source_day),
         loc="left",
         weight="bold",
-        fontsize=12,
-        pad=6,
+        fontsize=17 if is_equatorial else 12,
+        pad=8 if is_equatorial else 6,
     )
 
     gridlines = ax.gridlines(
         crs=ccrs.PlateCarree(),
         draw_labels=True,
-        linewidth=0.55,
+        linewidth=0.75 if is_equatorial else 0.55,
         color="white",
-        alpha=0.55,
+        alpha=0.70 if is_equatorial else 0.55,
         linestyle="-",
     )
 
     gridlines.top_labels = False
     gridlines.right_labels = False
-    gridlines.xlabel_style = {"size": 8, "color": "#17212b"}
-    gridlines.ylabel_style = {"size": 8, "color": "#17212b"}
+
+    gridlines.xlabel_style = {
+        "size": 13 if is_equatorial else 8,
+        "color": "#17212b",
+        "weight": "bold" if is_equatorial else "normal",
+    }
+
+    gridlines.ylabel_style = {
+        "size": 13 if is_equatorial else 8,
+        "color": "#17212b",
+        "weight": "bold" if is_equatorial else "normal",
+    }
 
     add_route_and_moorings(
         ax,
@@ -842,7 +810,7 @@ def format_axes(
         regional=(extent == REGIONAL_EXTENT),
     )
 
-    add_metadata(ax, product, source_day)
+    add_metadata(ax, product, source_day, detail=is_equatorial)
 
 
 def plot_wind_snapshot(
@@ -855,8 +823,8 @@ def plot_wind_snapshot(
 ) -> None:
     import matplotlib.pyplot as plt
     import numpy as np
-    import cartopy.crs as ccrs
-    import cartopy.feature as cfeature
+
+    detail = suffix == "_EQUATORIAL"
 
     u10, v10, lon_name, lat_name = wind_components(dataset)
     speed = np.hypot(u10, v10)
@@ -865,27 +833,14 @@ def plot_wind_snapshot(
     lat = u10[lat_name]
     lon2d, lat2d = lat_lon_grids(lon, lat)
 
-    step_y = max(1, speed.shape[0] // 30)
-    step_x = max(1, speed.shape[1] // 40)
+    step_y = max(1, speed.shape[0] // (22 if detail else 30))
+    step_x = max(1, speed.shape[1] // (30 if detail else 40))
 
-    fig = plt.figure(figsize=(14, 9), dpi=600)
-
+    fig = plt.figure(figsize=(16, 9) if detail else (14, 9), dpi=600)
     ax = plt.axes(projection=ccrs.PlateCarree())
 
-    ax.add_feature(
-        cfeature.LAND,
-        facecolor="#f4efe6",
-        edgecolor="0.35",
-        linewidth=0.4,
-        zorder=3,
-    )
-
-    ax.add_feature(
-        cfeature.COASTLINE,
-        linewidth=0.5,
-        edgecolor="0.25",
-        zorder=4,
-    )
+    ax.add_feature(cfeature.LAND, facecolor="#f4efe6", edgecolor="0.35", linewidth=0.4, zorder=3)
+    ax.add_feature(cfeature.COASTLINE, linewidth=0.6 if detail else 0.5, edgecolor="0.25", zorder=4)
 
     plot_scalar_map(
         ax,
@@ -897,6 +852,8 @@ def plot_wind_snapshot(
         "10 m wind speed (m s$^{-1}$)",
         contours=True,
         fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
+        extent=extent,
+        detail=detail,
     )
 
     ax.quiver(
@@ -905,15 +862,14 @@ def plot_wind_snapshot(
         u10.values[::step_y, ::step_x],
         v10.values[::step_y, ::step_x],
         color="#17212b",
-        alpha=0.72,
-        scale=450,
+        alpha=0.78,
+        scale=360 if detail else 450,
+        width=0.0032 if detail else 0.002,
         transform=ccrs.PlateCarree(),
     )
 
     format_axes(ax, product, target_day, source_day, extent=extent)
-
     save_figure(fig, target_day, product, suffix=suffix)
-
     plt.close(fig)
 
 
@@ -928,8 +884,8 @@ def plot_derived_snapshot(
     import matplotlib.pyplot as plt
     import numpy as np
     import xarray as xr
-    import cartopy.crs as ccrs
-    import cartopy.feature as cfeature
+
+    detail = suffix == "_EQUATORIAL"
 
     with xr.open_dataset(nc_path) as ds:
         u10, v10, lon_name, lat_name = wind_components(ds)
@@ -940,23 +896,11 @@ def plot_derived_snapshot(
 
         _ue, _ve, w_e, taux, tauy = ekman_fields(lon, lat, u10.values, v10.values)
 
-        fig = plt.figure(figsize=(14, 9), dpi=600)
+        fig = plt.figure(figsize=(16, 9) if detail else (14, 9), dpi=600)
         ax = plt.axes(projection=ccrs.PlateCarree())
 
-        ax.add_feature(
-            cfeature.LAND,
-            facecolor="#f4efe6",
-            edgecolor="0.35",
-            linewidth=0.4,
-            zorder=3,
-        )
-
-        ax.add_feature(
-            cfeature.COASTLINE,
-            linewidth=0.5,
-            edgecolor="0.25",
-            zorder=4,
-        )
+        ax.add_feature(cfeature.LAND, facecolor="#f4efe6", edgecolor="0.35", linewidth=0.4, zorder=3)
+        ax.add_feature(cfeature.COASTLINE, linewidth=0.6 if detail else 0.5, edgecolor="0.25", zorder=4)
 
         if product["key"] == "WIND_STRESS":
             tau = np.hypot(taux, tauy)
@@ -971,18 +915,22 @@ def plot_derived_snapshot(
                 "Wind stress magnitude (N m$^{-2}$)",
                 contours=True,
                 fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
+                extent=extent,
+                detail=detail,
             )
 
-            step_y = max(1, tau.shape[0] // 30)
-            step_x = max(1, tau.shape[1] // 40)
+            step_y = max(1, tau.shape[0] // (22 if detail else 30))
+            step_x = max(1, tau.shape[1] // (30 if detail else 40))
+
             ax.quiver(
                 lon2d[::step_y, ::step_x],
                 lat2d[::step_y, ::step_x],
                 taux[::step_y, ::step_x],
                 tauy[::step_y, ::step_x],
                 color="#17212b",
-                alpha=0.75,
-                scale=8,
+                alpha=0.78,
+                scale=6 if detail else 8,
+                width=0.0032 if detail else 0.002,
                 transform=ccrs.PlateCarree(),
             )
 
@@ -1000,6 +948,8 @@ def plot_derived_snapshot(
                 signed=True,
                 contours=True,
                 fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
+                extent=extent,
+                detail=detail,
             )
 
             ax.contour(
@@ -1008,14 +958,13 @@ def plot_derived_snapshot(
                 plot_values,
                 levels=[0],
                 colors="black",
-                linewidths=0.9,
-                alpha=0.65,
+                linewidths=1.25 if detail else 0.9,
+                alpha=0.70,
                 transform=ccrs.PlateCarree(),
             )
 
         format_axes(ax, product, target_day, source_day, extent=extent)
         save_figure(fig, target_day, product, suffix=suffix)
-
         plt.close(fig)
 
 
@@ -1031,49 +980,26 @@ def plot_snapshot(
     import matplotlib.pyplot as plt
     import numpy as np
     import xarray as xr
-    import cartopy.crs as ccrs
-    import cartopy.feature as cfeature
+
+    detail = suffix == "_EQUATORIAL"
 
     with xr.open_dataset(nc_path) as ds:
-
         if product.get("source") == "cds_era5":
-            plot_wind_snapshot(
-                product,
-                ds,
-                target_day,
-                source_day,
-                suffix=suffix,
-                extent=extent,
-            )
+            plot_wind_snapshot(product, ds, target_day, source_day, suffix=suffix, extent=extent)
             return
 
-        fig = plt.figure(figsize=(14, 9), dpi=600)
-
+        fig = plt.figure(figsize=(16, 9) if detail else (14, 9), dpi=600)
         ax = plt.axes(projection=ccrs.PlateCarree())
 
-        ax.add_feature(
-            cfeature.LAND,
-            facecolor="#f4efe6",
-            edgecolor="0.35",
-            linewidth=0.4,
-            zorder=3,
-        )
-
-        ax.add_feature(
-            cfeature.COASTLINE,
-            linewidth=0.5,
-            edgecolor="0.25",
-            zorder=4,
-        )
+        ax.add_feature(cfeature.LAND, facecolor="#f4efe6", edgecolor="0.35", linewidth=0.4, zorder=3)
+        ax.add_feature(cfeature.COASTLINE, linewidth=0.6 if detail else 0.5, edgecolor="0.25", zorder=4)
 
         if product["key"] == "MODEL_CURRENT":
-
             u_name = choose_variable(ds, ["uo"])
             v_name = choose_variable(ds, ["vo"])
 
             u = as_2d(ds, u_name)
             v = as_2d(ds, v_name)
-
             speed = np.hypot(u, v)
 
             lon, lat, _, _ = lon_lat_from_da(u)
@@ -1089,10 +1015,12 @@ def plot_snapshot(
                 "Surface current speed (m s$^{-1}$)",
                 contours=True,
                 fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
+                extent=extent,
+                detail=detail,
             )
 
-            step_y = max(1, speed.shape[0] // 30)
-            step_x = max(1, speed.shape[1] // 40)
+            step_y = max(1, speed.shape[0] // (22 if detail else 30))
+            step_x = max(1, speed.shape[1] // (30 if detail else 40))
 
             ax.quiver(
                 lon2d[::step_y, ::step_x],
@@ -1100,11 +1028,12 @@ def plot_snapshot(
                 u.values[::step_y, ::step_x],
                 v.values[::step_y, ::step_x],
                 color="#17212b",
-                alpha=0.7,
-                scale=12,
+                alpha=0.72,
+                scale=9 if detail else 12,
+                width=0.0032 if detail else 0.002,
                 transform=ccrs.PlateCarree(),
             )
-            
+
         elif product["key"] == "MODEL_SAL":
             sp_name = choose_variable(ds, ["so"])
             sp = as_2d(ds, sp_name)
@@ -1122,6 +1051,8 @@ def plot_snapshot(
                 "Absolute Salinity, SA (g kg$^{-1}$)",
                 contours=True,
                 fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
+                extent=extent,
+                detail=detail,
             )
 
         elif product["key"] == "MODEL_TEMP":
@@ -1129,9 +1060,7 @@ def plot_snapshot(
             thetao = as_2d(ds, theta_name)
 
             if salinity_path is None:
-                raise RuntimeError(
-                    "MODEL_TEMP requires MODEL_SAL file for TEOS-10 Conservative Temperature."
-                )
+                raise RuntimeError("MODEL_TEMP requires MODEL_SAL file for TEOS-10 Conservative Temperature.")
 
             with xr.open_dataset(salinity_path) as sal_ds:
                 sp_name = choose_variable(sal_ds, ["so"])
@@ -1150,6 +1079,8 @@ def plot_snapshot(
                 "Conservative Temperature, CT ($^\\circ$C)",
                 contours=True,
                 fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
+                extent=extent,
+                detail=detail,
             )
 
         elif product["key"] == "SAT_SLA":
@@ -1170,6 +1101,8 @@ def plot_snapshot(
                 contours=True,
                 physical_levels=[x / 100 for x in range(-100, 105, 10)],
                 fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
+                extent=extent,
+                detail=detail,
             )
 
         elif product["key"] == "SAT_CHL":
@@ -1189,6 +1122,8 @@ def plot_snapshot(
                 contours=False,
                 log_norm=True,
                 fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
+                extent=extent,
+                detail=detail,
             )
 
         elif product["key"] == "SAT_SSS":
@@ -1208,6 +1143,8 @@ def plot_snapshot(
                 "Absolute Salinity, SA (g kg$^{-1}$)",
                 contours=True,
                 fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
+                extent=extent,
+                detail=detail,
             )
 
         elif product["key"] == "WAVES":
@@ -1226,6 +1163,8 @@ def plot_snapshot(
                 "Significant wave height, Hs (m)",
                 contours=True,
                 fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
+                extent=extent,
+                detail=detail,
             )
 
         else:
@@ -1244,12 +1183,14 @@ def plot_snapshot(
                 f"{var_name}",
                 contours=True,
                 fixed_limits=FIXED_COLOR_LIMITS.get(product["key"]),
+                extent=extent,
+                detail=detail,
             )
 
         format_axes(ax, product, target_day, source_day, extent=extent)
         save_figure(fig, target_day, product, suffix=suffix)
-
         plt.close(fig)
+
 
 def scan_existing_snapshots(products: list[dict]) -> tuple[list[str], dict[str, dict[str, dict]]]:
     product_keys = {product["key"] for product in products}
@@ -1265,6 +1206,24 @@ def scan_existing_snapshots(products: list[dict]) -> tuple[list[str], dict[str, 
         for product_key in product_keys:
             full_suffix = f"_{product_key}"
             regional_suffix = f"_{product_key}_REGIONAL"
+            zoom_suffix = f"_{product_key}_ZOOM"
+            equatorial_suffix = f"_{product_key}_EQUATORIAL"
+
+            if stem.endswith(equatorial_suffix):
+                day_key = stem[: -len(equatorial_suffix)]
+                dates.add(day_key)
+                status.setdefault(day_key, {}).setdefault(product_key, {})[
+                    "equatorial_path"
+                ] = f"assets/snapshots/{png.name}"
+                break
+
+            if stem.endswith(zoom_suffix):
+                day_key = stem[: -len(zoom_suffix)]
+                dates.add(day_key)
+                status.setdefault(day_key, {}).setdefault(product_key, {})[
+                    "zoom_path"
+                ] = f"assets/snapshots/{png.name}"
+                break
 
             if stem.endswith(regional_suffix):
                 day_key = stem[: -len(regional_suffix)]
@@ -1287,13 +1246,8 @@ def scan_existing_snapshots(products: list[dict]) -> tuple[list[str], dict[str, 
     return sorted(dates), status
 
 
-def write_manifest(
-    days: list[date],
-    products: list[dict],
-    status: dict[str, dict[str, dict]],
-) -> None:
+def write_manifest(days: list[date], products: list[dict], status: dict[str, dict[str, dict]]) -> None:
     requested_dates = [day.isoformat() for day in days]
-
     existing_dates, existing_status = scan_existing_snapshots(products)
 
     merged_status = existing_status
@@ -1334,19 +1288,13 @@ def write_manifest(
     }
 
     MANIFEST_FILE.parent.mkdir(parents=True, exist_ok=True)
-
-    MANIFEST_FILE.write_text(
-        json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8",
-    )
+    MANIFEST_FILE.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     print(f"Wrote manifest: {MANIFEST_FILE}", flush=True)
-    print(
-        f"Manifest forecast window: {manifest['forecast_start']} to {manifest['forecast_end']}",
-        flush=True,
-    )
+    print(f"Manifest forecast window: {manifest['forecast_start']} to {manifest['forecast_end']}", flush=True)
     print(f"Manifest generated_at: {manifest['generated_at']}", flush=True)
-    
+
+
 def process_product(
     product: dict,
     products: list[dict],
@@ -1358,18 +1306,9 @@ def process_product(
 ) -> Path | None:
 
     full_snapshot = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}.png"
-
-    regional_snapshot = SNAPSHOT_DIR / (
-        f"{target_day.isoformat()}_{product['key']}_REGIONAL.png"
-    )
-
-    zoom_snapshot = SNAPSHOT_DIR / (
-        f"{target_day.isoformat()}_{product['key']}_ZOOM.png"
-    )
-
-    equatorial_snapshot = SNAPSHOT_DIR / (
-        f"{target_day.isoformat()}_{product['key']}_EQUATORIAL.png"
-    )
+    regional_snapshot = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}_REGIONAL.png"
+    zoom_snapshot = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}_ZOOM.png"
+    equatorial_snapshot = SNAPSHOT_DIR / f"{target_day.isoformat()}_{product['key']}_EQUATORIAL.png"
 
     needs_regional = product["key"] in REGIONAL_PRODUCTS
 
@@ -1386,7 +1325,6 @@ def process_product(
             return full_snapshot
 
     if product.get("source") == "derived":
-
         if dry_run:
             return None
 
@@ -1397,12 +1335,7 @@ def process_product(
 
         if source_path is None:
             expected_path = DOWNLOAD_DIR / f"{source_day.isoformat()}_{source_key}.nc"
-
-            source_path = (
-                expected_path
-                if expected_path.exists() and expected_path.stat().st_size > 0
-                else None
-            )
+            source_path = expected_path if expected_path.exists() and expected_path.stat().st_size > 0 else None
 
         if source_path is None:
             source_product = product_by_key(products, source_key)
@@ -1414,55 +1347,19 @@ def process_product(
         if source_path is None:
             return None
 
-        if force_plots or not full_snapshot.exists() or full_snapshot.stat().st_size == 0:
-            plot_derived_snapshot(
-                product,
-                source_path,
-                target_day,
-                source_day,
-            )
+        plot_jobs = [
+            ("", None, full_snapshot),
+            ("_REGIONAL", REGIONAL_EXTENT, regional_snapshot),
+            ("_ZOOM", ZOOM_EXTENT, zoom_snapshot),
+            ("_EQUATORIAL", EQUATORIAL_EXTENT, equatorial_snapshot),
+        ]
 
-        if needs_regional and (
-            force_plots
-            or not regional_snapshot.exists()
-            or regional_snapshot.stat().st_size == 0
-        ):
-            plot_derived_snapshot(
-                product,
-                source_path,
-                target_day,
-                source_day,
-                suffix="_REGIONAL",
-                extent=REGIONAL_EXTENT,
-            )
+        for suffix, extent, snapshot in plot_jobs:
+            if suffix and not needs_regional:
+                continue
 
-        if needs_regional and (
-            force_plots
-            or not zoom_snapshot.exists()
-            or zoom_snapshot.stat().st_size == 0
-        ):
-            plot_derived_snapshot(
-                product,
-                source_path,
-                target_day,
-                source_day,
-                suffix="_ZOOM",
-                extent=ZOOM_EXTENT,
-            )
-
-        if needs_regional and (
-            force_plots
-            or not equatorial_snapshot.exists()
-            or equatorial_snapshot.stat().st_size == 0
-        ):
-            plot_derived_snapshot(
-                product,
-                source_path,
-                target_day,
-                source_day,
-                suffix="_EQUATORIAL",
-                extent=EQUATORIAL_EXTENT,
-            )
+            if force_plots or not snapshot.exists() or snapshot.stat().st_size == 0:
+                plot_derived_snapshot(product, source_path, target_day, source_day, suffix=suffix, extent=extent)
 
         return source_path
 
@@ -1480,59 +1377,27 @@ def process_product(
             if salinity_path is not None:
                 raw_cache[(source_day.isoformat(), "MODEL_SAL")] = salinity_path
 
-        if force_plots or not full_snapshot.exists() or full_snapshot.stat().st_size == 0:
-            plot_snapshot(
-                product,
-                nc_path,
-                target_day,
-                source_day,
-                salinity_path=salinity_path,
-            )
+        plot_jobs = [
+            ("", None, full_snapshot),
+            ("_REGIONAL", REGIONAL_EXTENT, regional_snapshot),
+            ("_ZOOM", ZOOM_EXTENT, zoom_snapshot),
+            ("_EQUATORIAL", EQUATORIAL_EXTENT, equatorial_snapshot),
+        ]
 
-        if needs_regional and (
-            force_plots
-            or not regional_snapshot.exists()
-            or regional_snapshot.stat().st_size == 0
-        ):
-            plot_snapshot(
-                product,
-                nc_path,
-                target_day,
-                source_day,
-                salinity_path=salinity_path,
-                suffix="_REGIONAL",
-                extent=REGIONAL_EXTENT,
-            )
+        for suffix, extent, snapshot in plot_jobs:
+            if suffix and not needs_regional:
+                continue
 
-        if needs_regional and (
-            force_plots
-            or not zoom_snapshot.exists()
-            or zoom_snapshot.stat().st_size == 0
-        ):
-            plot_snapshot(
-                product,
-                nc_path,
-                target_day,
-                source_day,
-                salinity_path=salinity_path,
-                suffix="_ZOOM",
-                extent=ZOOM_EXTENT,
-            )
-
-        if needs_regional and (
-            force_plots
-            or not equatorial_snapshot.exists()
-            or equatorial_snapshot.stat().st_size == 0
-        ):
-            plot_snapshot(
-                product,
-                nc_path,
-                target_day,
-                source_day,
-                salinity_path=salinity_path,
-                suffix="_EQUATORIAL",
-                extent=EQUATORIAL_EXTENT,
-            )
+            if force_plots or not snapshot.exists() or snapshot.stat().st_size == 0:
+                plot_snapshot(
+                    product,
+                    nc_path,
+                    target_day,
+                    source_day,
+                    salinity_path=salinity_path,
+                    suffix=suffix,
+                    extent=extent,
+                )
 
     return nc_path
 
@@ -1540,11 +1405,7 @@ def process_product(
 def main() -> None:
     args = parse_args()
 
-    days = target_days(
-        args.date,
-        args.days_back,
-        args.days_ahead,
-    )
+    days = target_days(args.date, args.days_back, args.days_ahead)
 
     print(f"Workflow input date: {args.date}", flush=True)
     print(f"days_back: {args.days_back}", flush=True)
@@ -1555,10 +1416,7 @@ def main() -> None:
 
     made_snapshots = 0
     failures: list[str] = []
-    status: dict[str, dict[str, dict]] = {
-        day.isoformat(): {} for day in days
-    }
-
+    status: dict[str, dict[str, dict]] = {day.isoformat(): {} for day in days}
     raw_cache: dict[tuple[str, str], Path] = {}
 
     for day in days:
@@ -1570,7 +1428,6 @@ def main() -> None:
 
             try:
                 for source_day in candidate_days(product, day):
-
                     try:
                         nc_path = process_product(
                             product,
@@ -1587,10 +1444,7 @@ def main() -> None:
 
                             status[day_key][product_key] = {
                                 "available": True,
-                                "path": (
-                                    f"assets/snapshots/"
-                                    f"{day_key}_{product_key}.png"
-                                ),
+                                "path": f"assets/snapshots/{day_key}_{product_key}.png",
                                 "source_date": source_day.isoformat(),
                             }
 
@@ -1606,9 +1460,7 @@ def main() -> None:
                     except Exception as exc:
                         error_text = str(exc)
 
-                        product_errors.append(
-                            f"{source_day.isoformat()}: {error_text}"
-                        )
+                        product_errors.append(f"{source_day.isoformat()}: {error_text}")
 
                         if "Please check that the dataset exists" in error_text:
                             raise RuntimeError("; ".join(product_errors))
@@ -1626,11 +1478,7 @@ def main() -> None:
 
                 failures.append(message)
 
-                print(
-                    f"ERROR {message}",
-                    file=sys.stderr,
-                    flush=True,
-                )
+                print(f"ERROR {message}", file=sys.stderr, flush=True)
 
                 if not args.allow_partial:
                     raise
@@ -1639,25 +1487,13 @@ def main() -> None:
         write_manifest(days, products, status)
 
     if failures:
-        print(
-            "Completed with product failures:",
-            file=sys.stderr,
-            flush=True,
-        )
+        print("Completed with product failures:", file=sys.stderr, flush=True)
 
         for failure in failures:
-            print(
-                f"- {failure}",
-                file=sys.stderr,
-                flush=True,
-            )
+            print(f"- {failure}", file=sys.stderr, flush=True)
 
     if not args.dry_run and made_snapshots == 0:
-        print(
-            "No new snapshots were generated, "
-            "but manifest.json was refreshed.",
-            flush=True,
-        )
+        print("No new snapshots were generated, but manifest.json was refreshed.", flush=True)
 
 
 if __name__ == "__main__":
