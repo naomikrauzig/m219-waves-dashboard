@@ -65,12 +65,12 @@
         "id": "KPO1293",
         "name": "0N",
         "label": "0N (KPO1293)",
-        "region": "Equator at 23W",
+        "region": "Equator at 23°06.8′W",
         "water_depth_m": 3798
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-23.1650166667, -0.05705]
+        "coordinates": [-23.113333, 0.000000]
       }
     },
     {
