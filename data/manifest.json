@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-10T15:39:02+00:00",
-  "forecast_start": "2026-05-15",
-  "forecast_end": "2026-06-01",
+  "generated_at": "2026-06-10T19:46:51+00:00",
+  "forecast_start": "2026-06-09",
+  "forecast_end": "2026-06-15",
   "dates": [
     "2026-05-15",
     "2026-05-16",
@@ -220,10 +220,6 @@
         "equatorial_path": "assets/snapshots/2026-05-15_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-05-15_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-05-15_WIND_STRESS_ZOOM.png"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-05-15: Some of your subset selection [2026-05-15 00:00:00+00:00, 2026-05-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-14: Some of your subset selection [2026-05-14 00:00:00+00:00, 2026-05-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-13: Some of your subset selection [2026-05-13 00:00:00+00:00, 2026-05-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-12: Some of your subset selection [2026-05-12 00:00:00+00:00, 2026-05-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-11: Some of your subset selection [2026-05-11 00:00:00+00:00, 2026-05-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-10: Some of your subset selection [2026-05-10 00:00:00+00:00, 2026-05-10 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-09: Some of your subset selection [2026-05-09 00:00:00+00:00, 2026-05-09 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-08: Some of your subset selection [2026-05-08 00:00:00+00:00, 2026-05-08 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-07: Some of your subset selection [2026-05-07 00:00:00+00:00, 2026-05-07 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-06: Some of your subset selection [2026-05-06 00:00:00+00:00, 2026-05-06 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-05: Some of your subset selection [2026-05-05 00:00:00+00:00, 2026-05-05 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-04: Some of your subset selection [2026-05-04 00:00:00+00:00, 2026-05-04 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-03: Some of your subset selection [2026-05-03 00:00:00+00:00, 2026-05-03 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-02: Some of your subset selection [2026-05-02 00:00:00+00:00, 2026-05-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-01: Some of your subset selection [2026-05-01 00:00:00+00:00, 2026-05-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-30: Some of your subset selection [2026-04-30 00:00:00+00:00, 2026-04-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-29: Some of your subset selection [2026-04-29 00:00:00+00:00, 2026-04-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-28: Some of your subset selection [2026-04-28 00:00:00+00:00, 2026-04-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-27: Some of your subset selection [2026-04-27 00:00:00+00:00, 2026-04-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-26: Some of your subset selection [2026-04-26 00:00:00+00:00, 2026-04-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-25: Some of your subset selection [2026-04-25 00:00:00+00:00, 2026-04-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-24: Some of your subset selection [2026-04-24 00:00:00+00:00, 2026-04-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-23: Some of your subset selection [2026-04-23 00:00:00+00:00, 2026-04-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-22: Some of your subset selection [2026-04-22 00:00:00+00:00, 2026-04-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-21: Some of your subset selection [2026-04-21 00:00:00+00:00, 2026-04-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-20: Some of your subset selection [2026-04-20 00:00:00+00:00, 2026-04-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-19: Some of your subset selection [2026-04-19 00:00:00+00:00, 2026-04-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-18: Some of your subset selection [2026-04-18 00:00:00+00:00, 2026-04-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-17: Some of your subset selection [2026-04-17 00:00:00+00:00, 2026-04-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-16: Some of your subset selection [2026-04-16 00:00:00+00:00, 2026-04-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-15: Some of your subset selection [2026-04-15 00:00:00+00:00, 2026-04-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]"
       }
     },
     "2026-05-16": {
@@ -298,10 +294,6 @@
         "equatorial_path": "assets/snapshots/2026-05-16_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-05-16_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-05-16_WIND_STRESS_ZOOM.png"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-05-16: Some of your subset selection [2026-05-16 00:00:00+00:00, 2026-05-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-15: Some of your subset selection [2026-05-15 00:00:00+00:00, 2026-05-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-14: Some of your subset selection [2026-05-14 00:00:00+00:00, 2026-05-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-13: Some of your subset selection [2026-05-13 00:00:00+00:00, 2026-05-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-12: Some of your subset selection [2026-05-12 00:00:00+00:00, 2026-05-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-11: Some of your subset selection [2026-05-11 00:00:00+00:00, 2026-05-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-10: Some of your subset selection [2026-05-10 00:00:00+00:00, 2026-05-10 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-09: Some of your subset selection [2026-05-09 00:00:00+00:00, 2026-05-09 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-08: Some of your subset selection [2026-05-08 00:00:00+00:00, 2026-05-08 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-07: Some of your subset selection [2026-05-07 00:00:00+00:00, 2026-05-07 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-06: Some of your subset selection [2026-05-06 00:00:00+00:00, 2026-05-06 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-05: Some of your subset selection [2026-05-05 00:00:00+00:00, 2026-05-05 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-04: Some of your subset selection [2026-05-04 00:00:00+00:00, 2026-05-04 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-03: Some of your subset selection [2026-05-03 00:00:00+00:00, 2026-05-03 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-02: Some of your subset selection [2026-05-02 00:00:00+00:00, 2026-05-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-01: Some of your subset selection [2026-05-01 00:00:00+00:00, 2026-05-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-30: Some of your subset selection [2026-04-30 00:00:00+00:00, 2026-04-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-29: Some of your subset selection [2026-04-29 00:00:00+00:00, 2026-04-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-28: Some of your subset selection [2026-04-28 00:00:00+00:00, 2026-04-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-27: Some of your subset selection [2026-04-27 00:00:00+00:00, 2026-04-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-26: Some of your subset selection [2026-04-26 00:00:00+00:00, 2026-04-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-25: Some of your subset selection [2026-04-25 00:00:00+00:00, 2026-04-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-24: Some of your subset selection [2026-04-24 00:00:00+00:00, 2026-04-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-23: Some of your subset selection [2026-04-23 00:00:00+00:00, 2026-04-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-22: Some of your subset selection [2026-04-22 00:00:00+00:00, 2026-04-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-21: Some of your subset selection [2026-04-21 00:00:00+00:00, 2026-04-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-20: Some of your subset selection [2026-04-20 00:00:00+00:00, 2026-04-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-19: Some of your subset selection [2026-04-19 00:00:00+00:00, 2026-04-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-18: Some of your subset selection [2026-04-18 00:00:00+00:00, 2026-04-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-17: Some of your subset selection [2026-04-17 00:00:00+00:00, 2026-04-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-16: Some of your subset selection [2026-04-16 00:00:00+00:00, 2026-04-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]"
       }
     },
     "2026-05-17": {
@@ -376,10 +368,6 @@
         "equatorial_path": "assets/snapshots/2026-05-17_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-05-17_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-05-17_WIND_STRESS_ZOOM.png"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-05-17: Some of your subset selection [2026-05-17 00:00:00+00:00, 2026-05-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-16: Some of your subset selection [2026-05-16 00:00:00+00:00, 2026-05-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-15: Some of your subset selection [2026-05-15 00:00:00+00:00, 2026-05-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-14: Some of your subset selection [2026-05-14 00:00:00+00:00, 2026-05-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-13: Some of your subset selection [2026-05-13 00:00:00+00:00, 2026-05-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-12: Some of your subset selection [2026-05-12 00:00:00+00:00, 2026-05-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-11: Some of your subset selection [2026-05-11 00:00:00+00:00, 2026-05-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-10: Some of your subset selection [2026-05-10 00:00:00+00:00, 2026-05-10 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-09: Some of your subset selection [2026-05-09 00:00:00+00:00, 2026-05-09 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-08: Some of your subset selection [2026-05-08 00:00:00+00:00, 2026-05-08 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-07: Some of your subset selection [2026-05-07 00:00:00+00:00, 2026-05-07 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-06: Some of your subset selection [2026-05-06 00:00:00+00:00, 2026-05-06 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-05: Some of your subset selection [2026-05-05 00:00:00+00:00, 2026-05-05 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-04: Some of your subset selection [2026-05-04 00:00:00+00:00, 2026-05-04 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-03: Some of your subset selection [2026-05-03 00:00:00+00:00, 2026-05-03 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-02: Some of your subset selection [2026-05-02 00:00:00+00:00, 2026-05-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-01: Some of your subset selection [2026-05-01 00:00:00+00:00, 2026-05-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-30: Some of your subset selection [2026-04-30 00:00:00+00:00, 2026-04-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-29: Some of your subset selection [2026-04-29 00:00:00+00:00, 2026-04-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-28: Some of your subset selection [2026-04-28 00:00:00+00:00, 2026-04-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-27: Some of your subset selection [2026-04-27 00:00:00+00:00, 2026-04-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-26: Some of your subset selection [2026-04-26 00:00:00+00:00, 2026-04-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-25: Some of your subset selection [2026-04-25 00:00:00+00:00, 2026-04-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-24: Some of your subset selection [2026-04-24 00:00:00+00:00, 2026-04-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-23: Some of your subset selection [2026-04-23 00:00:00+00:00, 2026-04-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-22: Some of your subset selection [2026-04-22 00:00:00+00:00, 2026-04-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-21: Some of your subset selection [2026-04-21 00:00:00+00:00, 2026-04-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-20: Some of your subset selection [2026-04-20 00:00:00+00:00, 2026-04-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-19: Some of your subset selection [2026-04-19 00:00:00+00:00, 2026-04-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-18: Some of your subset selection [2026-04-18 00:00:00+00:00, 2026-04-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-17: Some of your subset selection [2026-04-17 00:00:00+00:00, 2026-04-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]"
       }
     },
     "2026-05-18": {
@@ -454,10 +442,6 @@
         "equatorial_path": "assets/snapshots/2026-05-18_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-05-18_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-05-18_WIND_STRESS_ZOOM.png"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-05-18: Some of your subset selection [2026-05-18 00:00:00+00:00, 2026-05-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-17: Some of your subset selection [2026-05-17 00:00:00+00:00, 2026-05-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-16: Some of your subset selection [2026-05-16 00:00:00+00:00, 2026-05-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-15: Some of your subset selection [2026-05-15 00:00:00+00:00, 2026-05-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-14: Some of your subset selection [2026-05-14 00:00:00+00:00, 2026-05-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-13: Some of your subset selection [2026-05-13 00:00:00+00:00, 2026-05-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-12: Some of your subset selection [2026-05-12 00:00:00+00:00, 2026-05-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-11: Some of your subset selection [2026-05-11 00:00:00+00:00, 2026-05-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-10: Some of your subset selection [2026-05-10 00:00:00+00:00, 2026-05-10 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-09: Some of your subset selection [2026-05-09 00:00:00+00:00, 2026-05-09 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-08: Some of your subset selection [2026-05-08 00:00:00+00:00, 2026-05-08 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-07: Some of your subset selection [2026-05-07 00:00:00+00:00, 2026-05-07 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-06: Some of your subset selection [2026-05-06 00:00:00+00:00, 2026-05-06 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-05: Some of your subset selection [2026-05-05 00:00:00+00:00, 2026-05-05 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-04: Some of your subset selection [2026-05-04 00:00:00+00:00, 2026-05-04 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-03: Some of your subset selection [2026-05-03 00:00:00+00:00, 2026-05-03 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-02: Some of your subset selection [2026-05-02 00:00:00+00:00, 2026-05-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-01: Some of your subset selection [2026-05-01 00:00:00+00:00, 2026-05-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-30: Some of your subset selection [2026-04-30 00:00:00+00:00, 2026-04-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-29: Some of your subset selection [2026-04-29 00:00:00+00:00, 2026-04-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-28: Some of your subset selection [2026-04-28 00:00:00+00:00, 2026-04-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-27: Some of your subset selection [2026-04-27 00:00:00+00:00, 2026-04-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-26: Some of your subset selection [2026-04-26 00:00:00+00:00, 2026-04-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-25: Some of your subset selection [2026-04-25 00:00:00+00:00, 2026-04-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-24: Some of your subset selection [2026-04-24 00:00:00+00:00, 2026-04-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-23: Some of your subset selection [2026-04-23 00:00:00+00:00, 2026-04-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-22: Some of your subset selection [2026-04-22 00:00:00+00:00, 2026-04-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-21: Some of your subset selection [2026-04-21 00:00:00+00:00, 2026-04-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-20: Some of your subset selection [2026-04-20 00:00:00+00:00, 2026-04-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-19: Some of your subset selection [2026-04-19 00:00:00+00:00, 2026-04-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-18: Some of your subset selection [2026-04-18 00:00:00+00:00, 2026-04-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]"
       }
     },
     "2026-05-19": {
@@ -532,10 +516,6 @@
         "equatorial_path": "assets/snapshots/2026-05-19_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-05-19_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-05-19_WIND_STRESS_ZOOM.png"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-05-19: Some of your subset selection [2026-05-19 00:00:00+00:00, 2026-05-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-18: Some of your subset selection [2026-05-18 00:00:00+00:00, 2026-05-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-17: Some of your subset selection [2026-05-17 00:00:00+00:00, 2026-05-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-16: Some of your subset selection [2026-05-16 00:00:00+00:00, 2026-05-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-15: Some of your subset selection [2026-05-15 00:00:00+00:00, 2026-05-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-14: Some of your subset selection [2026-05-14 00:00:00+00:00, 2026-05-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-13: Some of your subset selection [2026-05-13 00:00:00+00:00, 2026-05-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-12: Some of your subset selection [2026-05-12 00:00:00+00:00, 2026-05-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-11: Some of your subset selection [2026-05-11 00:00:00+00:00, 2026-05-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-10: Some of your subset selection [2026-05-10 00:00:00+00:00, 2026-05-10 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-09: Some of your subset selection [2026-05-09 00:00:00+00:00, 2026-05-09 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-08: Some of your subset selection [2026-05-08 00:00:00+00:00, 2026-05-08 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-07: Some of your subset selection [2026-05-07 00:00:00+00:00, 2026-05-07 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-06: Some of your subset selection [2026-05-06 00:00:00+00:00, 2026-05-06 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-05: Some of your subset selection [2026-05-05 00:00:00+00:00, 2026-05-05 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-04: Some of your subset selection [2026-05-04 00:00:00+00:00, 2026-05-04 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-03: Some of your subset selection [2026-05-03 00:00:00+00:00, 2026-05-03 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-02: Some of your subset selection [2026-05-02 00:00:00+00:00, 2026-05-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-01: Some of your subset selection [2026-05-01 00:00:00+00:00, 2026-05-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-30: Some of your subset selection [2026-04-30 00:00:00+00:00, 2026-04-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-29: Some of your subset selection [2026-04-29 00:00:00+00:00, 2026-04-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-28: Some of your subset selection [2026-04-28 00:00:00+00:00, 2026-04-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-27: Some of your subset selection [2026-04-27 00:00:00+00:00, 2026-04-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-26: Some of your subset selection [2026-04-26 00:00:00+00:00, 2026-04-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-25: Some of your subset selection [2026-04-25 00:00:00+00:00, 2026-04-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-24: Some of your subset selection [2026-04-24 00:00:00+00:00, 2026-04-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-23: Some of your subset selection [2026-04-23 00:00:00+00:00, 2026-04-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-22: Some of your subset selection [2026-04-22 00:00:00+00:00, 2026-04-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-21: Some of your subset selection [2026-04-21 00:00:00+00:00, 2026-04-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-20: Some of your subset selection [2026-04-20 00:00:00+00:00, 2026-04-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-19: Some of your subset selection [2026-04-19 00:00:00+00:00, 2026-04-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]"
       }
     },
     "2026-05-20": {
@@ -610,10 +590,6 @@
         "equatorial_path": "assets/snapshots/2026-05-20_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-05-20_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-05-20_WIND_STRESS_ZOOM.png"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-05-20: Some of your subset selection [2026-05-20 00:00:00+00:00, 2026-05-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-19: Some of your subset selection [2026-05-19 00:00:00+00:00, 2026-05-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-18: Some of your subset selection [2026-05-18 00:00:00+00:00, 2026-05-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-17: Some of your subset selection [2026-05-17 00:00:00+00:00, 2026-05-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-16: Some of your subset selection [2026-05-16 00:00:00+00:00, 2026-05-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-15: Some of your subset selection [2026-05-15 00:00:00+00:00, 2026-05-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-14: Some of your subset selection [2026-05-14 00:00:00+00:00, 2026-05-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-13: Some of your subset selection [2026-05-13 00:00:00+00:00, 2026-05-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-12: Some of your subset selection [2026-05-12 00:00:00+00:00, 2026-05-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-11: Some of your subset selection [2026-05-11 00:00:00+00:00, 2026-05-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-10: Some of your subset selection [2026-05-10 00:00:00+00:00, 2026-05-10 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-09: Some of your subset selection [2026-05-09 00:00:00+00:00, 2026-05-09 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-08: Some of your subset selection [2026-05-08 00:00:00+00:00, 2026-05-08 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-07: Some of your subset selection [2026-05-07 00:00:00+00:00, 2026-05-07 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-06: Some of your subset selection [2026-05-06 00:00:00+00:00, 2026-05-06 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-05: Some of your subset selection [2026-05-05 00:00:00+00:00, 2026-05-05 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-04: Some of your subset selection [2026-05-04 00:00:00+00:00, 2026-05-04 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-03: Some of your subset selection [2026-05-03 00:00:00+00:00, 2026-05-03 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-02: Some of your subset selection [2026-05-02 00:00:00+00:00, 2026-05-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-01: Some of your subset selection [2026-05-01 00:00:00+00:00, 2026-05-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-30: Some of your subset selection [2026-04-30 00:00:00+00:00, 2026-04-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-29: Some of your subset selection [2026-04-29 00:00:00+00:00, 2026-04-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-28: Some of your subset selection [2026-04-28 00:00:00+00:00, 2026-04-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-27: Some of your subset selection [2026-04-27 00:00:00+00:00, 2026-04-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-26: Some of your subset selection [2026-04-26 00:00:00+00:00, 2026-04-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-25: Some of your subset selection [2026-04-25 00:00:00+00:00, 2026-04-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-24: Some of your subset selection [2026-04-24 00:00:00+00:00, 2026-04-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-23: Some of your subset selection [2026-04-23 00:00:00+00:00, 2026-04-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-22: Some of your subset selection [2026-04-22 00:00:00+00:00, 2026-04-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-21: Some of your subset selection [2026-04-21 00:00:00+00:00, 2026-04-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-20: Some of your subset selection [2026-04-20 00:00:00+00:00, 2026-04-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]"
       }
     },
     "2026-05-21": {
@@ -688,10 +664,6 @@
         "equatorial_path": "assets/snapshots/2026-05-21_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-05-21_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-05-21_WIND_STRESS_ZOOM.png"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-05-21: Some of your subset selection [2026-05-21 00:00:00+00:00, 2026-05-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-20: Some of your subset selection [2026-05-20 00:00:00+00:00, 2026-05-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-19: Some of your subset selection [2026-05-19 00:00:00+00:00, 2026-05-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-18: Some of your subset selection [2026-05-18 00:00:00+00:00, 2026-05-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-17: Some of your subset selection [2026-05-17 00:00:00+00:00, 2026-05-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-16: Some of your subset selection [2026-05-16 00:00:00+00:00, 2026-05-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-15: Some of your subset selection [2026-05-15 00:00:00+00:00, 2026-05-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-14: Some of your subset selection [2026-05-14 00:00:00+00:00, 2026-05-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-13: Some of your subset selection [2026-05-13 00:00:00+00:00, 2026-05-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-12: Some of your subset selection [2026-05-12 00:00:00+00:00, 2026-05-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-11: Some of your subset selection [2026-05-11 00:00:00+00:00, 2026-05-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-10: Some of your subset selection [2026-05-10 00:00:00+00:00, 2026-05-10 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-09: Some of your subset selection [2026-05-09 00:00:00+00:00, 2026-05-09 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-08: Some of your subset selection [2026-05-08 00:00:00+00:00, 2026-05-08 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-07: Some of your subset selection [2026-05-07 00:00:00+00:00, 2026-05-07 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-06: Some of your subset selection [2026-05-06 00:00:00+00:00, 2026-05-06 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-05: Some of your subset selection [2026-05-05 00:00:00+00:00, 2026-05-05 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-04: Some of your subset selection [2026-05-04 00:00:00+00:00, 2026-05-04 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-03: Some of your subset selection [2026-05-03 00:00:00+00:00, 2026-05-03 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-02: Some of your subset selection [2026-05-02 00:00:00+00:00, 2026-05-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-01: Some of your subset selection [2026-05-01 00:00:00+00:00, 2026-05-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-30: Some of your subset selection [2026-04-30 00:00:00+00:00, 2026-04-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-29: Some of your subset selection [2026-04-29 00:00:00+00:00, 2026-04-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-28: Some of your subset selection [2026-04-28 00:00:00+00:00, 2026-04-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-27: Some of your subset selection [2026-04-27 00:00:00+00:00, 2026-04-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-26: Some of your subset selection [2026-04-26 00:00:00+00:00, 2026-04-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-25: Some of your subset selection [2026-04-25 00:00:00+00:00, 2026-04-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-24: Some of your subset selection [2026-04-24 00:00:00+00:00, 2026-04-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-23: Some of your subset selection [2026-04-23 00:00:00+00:00, 2026-04-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-22: Some of your subset selection [2026-04-22 00:00:00+00:00, 2026-04-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-21: Some of your subset selection [2026-04-21 00:00:00+00:00, 2026-04-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]"
       }
     },
     "2026-05-22": {
@@ -766,10 +738,6 @@
         "equatorial_path": "assets/snapshots/2026-05-22_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-05-22_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-05-22_WIND_STRESS_ZOOM.png"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-05-22: Some of your subset selection [2026-05-22 00:00:00+00:00, 2026-05-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-21: Some of your subset selection [2026-05-21 00:00:00+00:00, 2026-05-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-20: Some of your subset selection [2026-05-20 00:00:00+00:00, 2026-05-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-19: Some of your subset selection [2026-05-19 00:00:00+00:00, 2026-05-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-18: Some of your subset selection [2026-05-18 00:00:00+00:00, 2026-05-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-17: Some of your subset selection [2026-05-17 00:00:00+00:00, 2026-05-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-16: Some of your subset selection [2026-05-16 00:00:00+00:00, 2026-05-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-15: Some of your subset selection [2026-05-15 00:00:00+00:00, 2026-05-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-14: Some of your subset selection [2026-05-14 00:00:00+00:00, 2026-05-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-13: Some of your subset selection [2026-05-13 00:00:00+00:00, 2026-05-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-12: Some of your subset selection [2026-05-12 00:00:00+00:00, 2026-05-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-11: Some of your subset selection [2026-05-11 00:00:00+00:00, 2026-05-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-10: Some of your subset selection [2026-05-10 00:00:00+00:00, 2026-05-10 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-09: Some of your subset selection [2026-05-09 00:00:00+00:00, 2026-05-09 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-08: Some of your subset selection [2026-05-08 00:00:00+00:00, 2026-05-08 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-07: Some of your subset selection [2026-05-07 00:00:00+00:00, 2026-05-07 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-06: Some of your subset selection [2026-05-06 00:00:00+00:00, 2026-05-06 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-05: Some of your subset selection [2026-05-05 00:00:00+00:00, 2026-05-05 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-04: Some of your subset selection [2026-05-04 00:00:00+00:00, 2026-05-04 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-03: Some of your subset selection [2026-05-03 00:00:00+00:00, 2026-05-03 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-02: Some of your subset selection [2026-05-02 00:00:00+00:00, 2026-05-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-05-01: Some of your subset selection [2026-05-01 00:00:00+00:00, 2026-05-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-30: Some of your subset selection [2026-04-30 00:00:00+00:00, 2026-04-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-29: Some of your subset selection [2026-04-29 00:00:00+00:00, 2026-04-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-28: Some of your subset selection [2026-04-28 00:00:00+00:00, 2026-04-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-27: Some of your subset selection [2026-04-27 00:00:00+00:00, 2026-04-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-26: Some of your subset selection [2026-04-26 00:00:00+00:00, 2026-04-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-25: Some of your subset selection [2026-04-25 00:00:00+00:00, 2026-04-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-24: Some of your subset selection [2026-04-24 00:00:00+00:00, 2026-04-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-23: Some of your subset selection [2026-04-23 00:00:00+00:00, 2026-04-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]; 2026-04-22: Some of your subset selection [2026-04-22 00:00:00+00:00, 2026-04-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-09 00:00:00+00:00]"
       }
     },
     "2026-05-23": {
@@ -2048,7 +2016,7 @@
       "EKMAN_PUMPING": {
         "available": true,
         "path": "assets/snapshots/2026-06-11_EKMAN_PUMPING.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-11_EKMAN_PUMPING_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-11_EKMAN_PUMPING_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-11_EKMAN_PUMPING_ZOOM.png"
@@ -2056,7 +2024,7 @@
       "ERA5_WIND": {
         "available": true,
         "path": "assets/snapshots/2026-06-11_ERA5_WIND.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-11_ERA5_WIND_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-11_ERA5_WIND_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-11_ERA5_WIND_ZOOM.png"
@@ -2088,7 +2056,7 @@
       "SAT_CHL": {
         "available": true,
         "path": "assets/snapshots/2026-06-11_SAT_CHL.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-11_SAT_CHL_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-11_SAT_CHL_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-11_SAT_CHL_ZOOM.png"
@@ -2096,7 +2064,7 @@
       "SAT_SLA": {
         "available": true,
         "path": "assets/snapshots/2026-06-11_SAT_SLA.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-11_SAT_SLA_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-11_SAT_SLA_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-11_SAT_SLA_ZOOM.png"
@@ -2104,7 +2072,7 @@
       "SAT_SSS": {
         "available": true,
         "path": "assets/snapshots/2026-06-11_SAT_SSS.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-11_SAT_SSS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-11_SAT_SSS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-11_SAT_SSS_ZOOM.png"
@@ -2120,7 +2088,7 @@
       "WIND_STRESS": {
         "available": true,
         "path": "assets/snapshots/2026-06-11_WIND_STRESS.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-11_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-11_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-11_WIND_STRESS_ZOOM.png"
@@ -2130,7 +2098,7 @@
       "EKMAN_PUMPING": {
         "available": true,
         "path": "assets/snapshots/2026-06-12_EKMAN_PUMPING.png",
-        "source_date": "2026-06-12",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-12_EKMAN_PUMPING_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-12_EKMAN_PUMPING_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-12_EKMAN_PUMPING_ZOOM.png"
@@ -2138,7 +2106,7 @@
       "ERA5_WIND": {
         "available": true,
         "path": "assets/snapshots/2026-06-12_ERA5_WIND.png",
-        "source_date": "2026-06-12",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-12_ERA5_WIND_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-12_ERA5_WIND_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-12_ERA5_WIND_ZOOM.png"
@@ -2170,7 +2138,7 @@
       "SAT_CHL": {
         "available": true,
         "path": "assets/snapshots/2026-06-12_SAT_CHL.png",
-        "source_date": "2026-06-12",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-12_SAT_CHL_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-12_SAT_CHL_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-12_SAT_CHL_ZOOM.png"
@@ -2178,7 +2146,7 @@
       "SAT_SLA": {
         "available": true,
         "path": "assets/snapshots/2026-06-12_SAT_SLA.png",
-        "source_date": "2026-06-12",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-12_SAT_SLA_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-12_SAT_SLA_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-12_SAT_SLA_ZOOM.png"
@@ -2186,7 +2154,7 @@
       "SAT_SSS": {
         "available": true,
         "path": "assets/snapshots/2026-06-12_SAT_SSS.png",
-        "source_date": "2026-06-12",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-12_SAT_SSS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-12_SAT_SSS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-12_SAT_SSS_ZOOM.png"
@@ -2202,7 +2170,7 @@
       "WIND_STRESS": {
         "available": true,
         "path": "assets/snapshots/2026-06-12_WIND_STRESS.png",
-        "source_date": "2026-06-12",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-12_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-12_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-12_WIND_STRESS_ZOOM.png"
@@ -2212,7 +2180,7 @@
       "EKMAN_PUMPING": {
         "available": true,
         "path": "assets/snapshots/2026-06-13_EKMAN_PUMPING.png",
-        "source_date": "2026-06-13",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-13_EKMAN_PUMPING_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-13_EKMAN_PUMPING_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-13_EKMAN_PUMPING_ZOOM.png"
@@ -2220,7 +2188,7 @@
       "ERA5_WIND": {
         "available": true,
         "path": "assets/snapshots/2026-06-13_ERA5_WIND.png",
-        "source_date": "2026-06-13",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-13_ERA5_WIND_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-13_ERA5_WIND_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-13_ERA5_WIND_ZOOM.png"
@@ -2252,7 +2220,7 @@
       "SAT_CHL": {
         "available": true,
         "path": "assets/snapshots/2026-06-13_SAT_CHL.png",
-        "source_date": "2026-06-13",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-13_SAT_CHL_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-13_SAT_CHL_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-13_SAT_CHL_ZOOM.png"
@@ -2260,7 +2228,7 @@
       "SAT_SLA": {
         "available": true,
         "path": "assets/snapshots/2026-06-13_SAT_SLA.png",
-        "source_date": "2026-06-13",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-13_SAT_SLA_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-13_SAT_SLA_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-13_SAT_SLA_ZOOM.png"
@@ -2268,7 +2236,7 @@
       "SAT_SSS": {
         "available": true,
         "path": "assets/snapshots/2026-06-13_SAT_SSS.png",
-        "source_date": "2026-06-13",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-13_SAT_SSS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-13_SAT_SSS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-13_SAT_SSS_ZOOM.png"
@@ -2284,7 +2252,7 @@
       "WIND_STRESS": {
         "available": true,
         "path": "assets/snapshots/2026-06-13_WIND_STRESS.png",
-        "source_date": "2026-06-13",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-13_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-13_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-13_WIND_STRESS_ZOOM.png"
@@ -2294,7 +2262,7 @@
       "EKMAN_PUMPING": {
         "available": true,
         "path": "assets/snapshots/2026-06-14_EKMAN_PUMPING.png",
-        "source_date": "2026-06-14",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-14_EKMAN_PUMPING_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-14_EKMAN_PUMPING_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-14_EKMAN_PUMPING_ZOOM.png"
@@ -2302,7 +2270,7 @@
       "ERA5_WIND": {
         "available": true,
         "path": "assets/snapshots/2026-06-14_ERA5_WIND.png",
-        "source_date": "2026-06-14",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-14_ERA5_WIND_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-14_ERA5_WIND_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-14_ERA5_WIND_ZOOM.png"
@@ -2334,7 +2302,7 @@
       "SAT_CHL": {
         "available": true,
         "path": "assets/snapshots/2026-06-14_SAT_CHL.png",
-        "source_date": "2026-06-14",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-14_SAT_CHL_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-14_SAT_CHL_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-14_SAT_CHL_ZOOM.png"
@@ -2342,7 +2310,7 @@
       "SAT_SLA": {
         "available": true,
         "path": "assets/snapshots/2026-06-14_SAT_SLA.png",
-        "source_date": "2026-06-14",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-14_SAT_SLA_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-14_SAT_SLA_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-14_SAT_SLA_ZOOM.png"
@@ -2350,7 +2318,7 @@
       "SAT_SSS": {
         "available": true,
         "path": "assets/snapshots/2026-06-14_SAT_SSS.png",
-        "source_date": "2026-06-14",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-14_SAT_SSS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-14_SAT_SSS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-14_SAT_SSS_ZOOM.png"
@@ -2366,7 +2334,7 @@
       "WIND_STRESS": {
         "available": true,
         "path": "assets/snapshots/2026-06-14_WIND_STRESS.png",
-        "source_date": "2026-06-14",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-14_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-14_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-14_WIND_STRESS_ZOOM.png"
@@ -2376,7 +2344,7 @@
       "EKMAN_PUMPING": {
         "available": true,
         "path": "assets/snapshots/2026-06-15_EKMAN_PUMPING.png",
-        "source_date": "2026-06-15",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-15_EKMAN_PUMPING_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-15_EKMAN_PUMPING_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-15_EKMAN_PUMPING_ZOOM.png"
@@ -2384,7 +2352,7 @@
       "ERA5_WIND": {
         "available": true,
         "path": "assets/snapshots/2026-06-15_ERA5_WIND.png",
-        "source_date": "2026-06-15",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-15_ERA5_WIND_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-15_ERA5_WIND_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-15_ERA5_WIND_ZOOM.png"
@@ -2416,7 +2384,7 @@
       "SAT_CHL": {
         "available": true,
         "path": "assets/snapshots/2026-06-15_SAT_CHL.png",
-        "source_date": "2026-06-15",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-15_SAT_CHL_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-15_SAT_CHL_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-15_SAT_CHL_ZOOM.png"
@@ -2424,7 +2392,7 @@
       "SAT_SLA": {
         "available": true,
         "path": "assets/snapshots/2026-06-15_SAT_SLA.png",
-        "source_date": "2026-06-15",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-15_SAT_SLA_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-15_SAT_SLA_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-15_SAT_SLA_ZOOM.png"
@@ -2432,7 +2400,7 @@
       "SAT_SSS": {
         "available": true,
         "path": "assets/snapshots/2026-06-15_SAT_SSS.png",
-        "source_date": "2026-06-15",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-15_SAT_SSS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-15_SAT_SSS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-15_SAT_SSS_ZOOM.png"
@@ -2448,7 +2416,7 @@
       "WIND_STRESS": {
         "available": true,
         "path": "assets/snapshots/2026-06-15_WIND_STRESS.png",
-        "source_date": "2026-06-15",
+        "source_date": "2026-06-10",
         "equatorial_path": "assets/snapshots/2026-06-15_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-15_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-15_WIND_STRESS_ZOOM.png"
