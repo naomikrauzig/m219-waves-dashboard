@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-11T19:47:02+00:00",
-  "forecast_start": "2026-06-10",
-  "forecast_end": "2026-06-16",
+  "generated_at": "2026-06-12T09:21:11+00:00",
+  "forecast_start": "2026-06-11",
+  "forecast_end": "2026-06-17",
   "dates": [
     "2026-05-30",
     "2026-05-31",
@@ -17,7 +17,8 @@
     "2026-06-13",
     "2026-06-14",
     "2026-06-15",
-    "2026-06-16"
+    "2026-06-16",
+    "2026-06-17"
   ],
   "products": [
     {
@@ -918,7 +919,7 @@
       "EKMAN_PUMPING": {
         "available": true,
         "path": "assets/snapshots/2026-06-12_EKMAN_PUMPING.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-12_EKMAN_PUMPING_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-12_EKMAN_PUMPING_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-12_EKMAN_PUMPING_ZOOM.png"
@@ -926,7 +927,7 @@
       "ERA5_WIND": {
         "available": true,
         "path": "assets/snapshots/2026-06-12_ERA5_WIND.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-12_ERA5_WIND_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-12_ERA5_WIND_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-12_ERA5_WIND_ZOOM.png"
@@ -958,7 +959,7 @@
       "SAT_CHL": {
         "available": true,
         "path": "assets/snapshots/2026-06-12_SAT_CHL.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-12_SAT_CHL_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-12_SAT_CHL_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-12_SAT_CHL_ZOOM.png"
@@ -966,7 +967,7 @@
       "SAT_SLA": {
         "available": true,
         "path": "assets/snapshots/2026-06-12_SAT_SLA.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-12_SAT_SLA_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-12_SAT_SLA_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-12_SAT_SLA_ZOOM.png"
@@ -974,7 +975,7 @@
       "SAT_SSS": {
         "available": true,
         "path": "assets/snapshots/2026-06-12_SAT_SSS.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-12_SAT_SSS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-12_SAT_SSS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-12_SAT_SSS_ZOOM.png"
@@ -990,7 +991,7 @@
       "WIND_STRESS": {
         "available": true,
         "path": "assets/snapshots/2026-06-12_WIND_STRESS.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-12_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-12_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-12_WIND_STRESS_ZOOM.png"
@@ -1000,7 +1001,7 @@
       "EKMAN_PUMPING": {
         "available": true,
         "path": "assets/snapshots/2026-06-13_EKMAN_PUMPING.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-13_EKMAN_PUMPING_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-13_EKMAN_PUMPING_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-13_EKMAN_PUMPING_ZOOM.png"
@@ -1008,7 +1009,7 @@
       "ERA5_WIND": {
         "available": true,
         "path": "assets/snapshots/2026-06-13_ERA5_WIND.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-13_ERA5_WIND_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-13_ERA5_WIND_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-13_ERA5_WIND_ZOOM.png"
@@ -1040,7 +1041,7 @@
       "SAT_CHL": {
         "available": true,
         "path": "assets/snapshots/2026-06-13_SAT_CHL.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-13_SAT_CHL_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-13_SAT_CHL_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-13_SAT_CHL_ZOOM.png"
@@ -1048,7 +1049,7 @@
       "SAT_SLA": {
         "available": true,
         "path": "assets/snapshots/2026-06-13_SAT_SLA.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-13_SAT_SLA_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-13_SAT_SLA_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-13_SAT_SLA_ZOOM.png"
@@ -1056,7 +1057,7 @@
       "SAT_SSS": {
         "available": true,
         "path": "assets/snapshots/2026-06-13_SAT_SSS.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-13_SAT_SSS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-13_SAT_SSS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-13_SAT_SSS_ZOOM.png"
@@ -1072,7 +1073,7 @@
       "WIND_STRESS": {
         "available": true,
         "path": "assets/snapshots/2026-06-13_WIND_STRESS.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-13_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-13_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-13_WIND_STRESS_ZOOM.png"
@@ -1082,7 +1083,7 @@
       "EKMAN_PUMPING": {
         "available": true,
         "path": "assets/snapshots/2026-06-14_EKMAN_PUMPING.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-14_EKMAN_PUMPING_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-14_EKMAN_PUMPING_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-14_EKMAN_PUMPING_ZOOM.png"
@@ -1090,7 +1091,7 @@
       "ERA5_WIND": {
         "available": true,
         "path": "assets/snapshots/2026-06-14_ERA5_WIND.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-14_ERA5_WIND_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-14_ERA5_WIND_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-14_ERA5_WIND_ZOOM.png"
@@ -1122,7 +1123,7 @@
       "SAT_CHL": {
         "available": true,
         "path": "assets/snapshots/2026-06-14_SAT_CHL.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-14_SAT_CHL_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-14_SAT_CHL_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-14_SAT_CHL_ZOOM.png"
@@ -1130,7 +1131,7 @@
       "SAT_SLA": {
         "available": true,
         "path": "assets/snapshots/2026-06-14_SAT_SLA.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-14_SAT_SLA_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-14_SAT_SLA_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-14_SAT_SLA_ZOOM.png"
@@ -1138,7 +1139,7 @@
       "SAT_SSS": {
         "available": true,
         "path": "assets/snapshots/2026-06-14_SAT_SSS.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-14_SAT_SSS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-14_SAT_SSS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-14_SAT_SSS_ZOOM.png"
@@ -1154,7 +1155,7 @@
       "WIND_STRESS": {
         "available": true,
         "path": "assets/snapshots/2026-06-14_WIND_STRESS.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-14_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-14_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-14_WIND_STRESS_ZOOM.png"
@@ -1164,7 +1165,7 @@
       "EKMAN_PUMPING": {
         "available": true,
         "path": "assets/snapshots/2026-06-15_EKMAN_PUMPING.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-15_EKMAN_PUMPING_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-15_EKMAN_PUMPING_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-15_EKMAN_PUMPING_ZOOM.png"
@@ -1172,7 +1173,7 @@
       "ERA5_WIND": {
         "available": true,
         "path": "assets/snapshots/2026-06-15_ERA5_WIND.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-15_ERA5_WIND_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-15_ERA5_WIND_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-15_ERA5_WIND_ZOOM.png"
@@ -1204,7 +1205,7 @@
       "SAT_CHL": {
         "available": true,
         "path": "assets/snapshots/2026-06-15_SAT_CHL.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-15_SAT_CHL_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-15_SAT_CHL_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-15_SAT_CHL_ZOOM.png"
@@ -1212,7 +1213,7 @@
       "SAT_SLA": {
         "available": true,
         "path": "assets/snapshots/2026-06-15_SAT_SLA.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-15_SAT_SLA_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-15_SAT_SLA_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-15_SAT_SLA_ZOOM.png"
@@ -1220,7 +1221,7 @@
       "SAT_SSS": {
         "available": true,
         "path": "assets/snapshots/2026-06-15_SAT_SSS.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-15_SAT_SSS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-15_SAT_SSS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-15_SAT_SSS_ZOOM.png"
@@ -1236,7 +1237,7 @@
       "WIND_STRESS": {
         "available": true,
         "path": "assets/snapshots/2026-06-15_WIND_STRESS.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-15_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-15_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-15_WIND_STRESS_ZOOM.png"
@@ -1246,7 +1247,7 @@
       "EKMAN_PUMPING": {
         "available": true,
         "path": "assets/snapshots/2026-06-16_EKMAN_PUMPING.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-16_EKMAN_PUMPING_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-16_EKMAN_PUMPING_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-16_EKMAN_PUMPING_ZOOM.png"
@@ -1254,7 +1255,7 @@
       "ERA5_WIND": {
         "available": true,
         "path": "assets/snapshots/2026-06-16_ERA5_WIND.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-16_ERA5_WIND_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-16_ERA5_WIND_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-16_ERA5_WIND_ZOOM.png"
@@ -1286,7 +1287,7 @@
       "SAT_CHL": {
         "available": true,
         "path": "assets/snapshots/2026-06-16_SAT_CHL.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-16_SAT_CHL_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-16_SAT_CHL_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-16_SAT_CHL_ZOOM.png"
@@ -1294,7 +1295,7 @@
       "SAT_SLA": {
         "available": true,
         "path": "assets/snapshots/2026-06-16_SAT_SLA.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-16_SAT_SLA_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-16_SAT_SLA_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-16_SAT_SLA_ZOOM.png"
@@ -1302,7 +1303,7 @@
       "SAT_SSS": {
         "available": true,
         "path": "assets/snapshots/2026-06-16_SAT_SSS.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-16_SAT_SSS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-16_SAT_SSS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-16_SAT_SSS_ZOOM.png"
@@ -1318,10 +1319,52 @@
       "WIND_STRESS": {
         "available": true,
         "path": "assets/snapshots/2026-06-16_WIND_STRESS.png",
-        "source_date": "2026-06-11",
+        "source_date": "2026-06-12",
         "equatorial_path": "assets/snapshots/2026-06-16_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-16_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-16_WIND_STRESS_ZOOM.png"
+      }
+    },
+    "2026-06-17": {
+      "WAVES": {
+        "available": false,
+        "error": "2026-06-17: IllegalArgumentException: Points of LinearRing do not form a closed linestring"
+      },
+      "MODEL_CURRENT": {
+        "available": false,
+        "error": "2026-06-17: IllegalArgumentException: Points of LinearRing do not form a closed linestring"
+      },
+      "MODEL_TEMP": {
+        "available": false,
+        "error": "2026-06-17: IllegalArgumentException: Points of LinearRing do not form a closed linestring"
+      },
+      "MODEL_SAL": {
+        "available": false,
+        "error": "2026-06-17: IllegalArgumentException: Points of LinearRing do not form a closed linestring"
+      },
+      "SAT_SLA": {
+        "available": false,
+        "error": "2026-06-12: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-11: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-10: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-09: IllegalArgumentException: Points of LinearRing do not form a closed linestring"
+      },
+      "SAT_SSS": {
+        "available": false,
+        "error": "2026-06-12: Some of your subset selection [2026-06-12 00:00:00+00:00, 2026-06-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2021-01-01 00:00:00+00:00, 2026-06-06 00:00:00+00:00]; 2026-06-11: Some of your subset selection [2026-06-11 00:00:00+00:00, 2026-06-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2021-01-01 00:00:00+00:00, 2026-06-06 00:00:00+00:00]; 2026-06-10: Some of your subset selection [2026-06-10 00:00:00+00:00, 2026-06-10 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2021-01-01 00:00:00+00:00, 2026-06-06 00:00:00+00:00]; 2026-06-09: Some of your subset selection [2026-06-09 00:00:00+00:00, 2026-06-09 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2021-01-01 00:00:00+00:00, 2026-06-06 00:00:00+00:00]; 2026-06-08: Some of your subset selection [2026-06-08 00:00:00+00:00, 2026-06-08 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2021-01-01 00:00:00+00:00, 2026-06-06 00:00:00+00:00]; 2026-06-07: Some of your subset selection [2026-06-07 00:00:00+00:00, 2026-06-07 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2021-01-01 00:00:00+00:00, 2026-06-06 00:00:00+00:00]; 2026-06-06: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-05: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-04: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-03: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-02: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-01: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-31: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-30: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-29: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-28: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-27: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-26: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-25: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-24: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-23: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-22: IllegalArgumentException: Points of LinearRing do not form a closed linestring"
+      },
+      "SAT_CHL": {
+        "available": false,
+        "error": "2026-06-12: Some of your subset selection [2026-06-12 00:00:00+00:00, 2026-06-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-10 00:00:00+00:00]; 2026-06-11: Some of your subset selection [2026-06-11 00:00:00+00:00, 2026-06-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-10 00:00:00+00:00]; 2026-06-10: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-09: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-08: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-07: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-06: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-05: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-04: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-03: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-02: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-01: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-31: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-30: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-29: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-28: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-27: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-26: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-25: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-24: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-23: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-05-22: Some of your subset selection [2026-05-22 00:00:00+00:00, 2026-05-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-10 00:00:00+00:00]; 2026-05-21: Some of your subset selection [2026-05-21 00:00:00+00:00, 2026-05-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-10 00:00:00+00:00]; 2026-05-20: Some of your subset selection [2026-05-20 00:00:00+00:00, 2026-05-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-10 00:00:00+00:00]; 2026-05-19: Some of your subset selection [2026-05-19 00:00:00+00:00, 2026-05-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-10 00:00:00+00:00]; 2026-05-18: Some of your subset selection [2026-05-18 00:00:00+00:00, 2026-05-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-10 00:00:00+00:00]; 2026-05-17: Some of your subset selection [2026-05-17 00:00:00+00:00, 2026-05-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-10 00:00:00+00:00]; 2026-05-16: Some of your subset selection [2026-05-16 00:00:00+00:00, 2026-05-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-10 00:00:00+00:00]; 2026-05-15: Some of your subset selection [2026-05-15 00:00:00+00:00, 2026-05-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-10 00:00:00+00:00]; 2026-05-14: Some of your subset selection [2026-05-14 00:00:00+00:00, 2026-05-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-10 00:00:00+00:00]; 2026-05-13: Some of your subset selection [2026-05-13 00:00:00+00:00, 2026-05-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-05-23 00:00:00+00:00, 2026-06-10 00:00:00+00:00]"
+      },
+      "ERA5_WIND": {
+        "available": false,
+        "error": "2026-06-12: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-11: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-10: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-09: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-08: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-07: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-06: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-05: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-04: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-03: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-02: IllegalArgumentException: Points of LinearRing do not form a closed linestring"
+      },
+      "WIND_STRESS": {
+        "available": false,
+        "error": "2026-06-12: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-11: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-10: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-09: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-08: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-07: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-06: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-05: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-04: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-03: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-02: IllegalArgumentException: Points of LinearRing do not form a closed linestring"
+      },
+      "EKMAN_PUMPING": {
+        "available": false,
+        "error": "2026-06-12: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-11: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-10: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-09: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-08: 400 Client Error: Bad Request for url: https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels/execution\ninvalid request\nNone of the data you have requested is available yet, please revise the period requested. The latest date available for this dataset is: 2026-06-07 09:00; 2026-06-07: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-06: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-05: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-04: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-03: IllegalArgumentException: Points of LinearRing do not form a closed linestring; 2026-06-02: IllegalArgumentException: Points of LinearRing do not form a closed linestring"
       }
     }
   }
