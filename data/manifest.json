@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-01T16:09:21+00:00",
-  "forecast_start": "2026-06-02",
-  "forecast_end": "2026-06-06",
+  "generated_at": "2026-07-01T19:27:54+00:00",
+  "forecast_start": "2026-07-01",
+  "forecast_end": "2026-07-06",
   "dates": [
     "2026-05-30",
     "2026-05-31",
@@ -26,7 +26,13 @@
     "2026-06-19",
     "2026-06-20",
     "2026-06-21",
-    "2026-06-22"
+    "2026-06-22",
+    "2026-07-01",
+    "2026-07-02",
+    "2026-07-03",
+    "2026-07-04",
+    "2026-07-05",
+    "2026-07-06"
   ],
   "products": [
     {
@@ -461,10 +467,6 @@
         "equatorial_path": "assets/snapshots/2026-06-02_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-02_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-02_WIND_STRESS_ZOOM.png"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-06-02: Some of your subset selection [2026-06-02 00:00:00+00:00, 2026-06-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-06-01: Some of your subset selection [2026-06-01 00:00:00+00:00, 2026-06-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-31: Some of your subset selection [2026-05-31 00:00:00+00:00, 2026-05-31 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-30: Some of your subset selection [2026-05-30 00:00:00+00:00, 2026-05-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-29: Some of your subset selection [2026-05-29 00:00:00+00:00, 2026-05-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-28: Some of your subset selection [2026-05-28 00:00:00+00:00, 2026-05-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-27: Some of your subset selection [2026-05-27 00:00:00+00:00, 2026-05-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-26: Some of your subset selection [2026-05-26 00:00:00+00:00, 2026-05-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-25: Some of your subset selection [2026-05-25 00:00:00+00:00, 2026-05-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-24: Some of your subset selection [2026-05-24 00:00:00+00:00, 2026-05-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-23: Some of your subset selection [2026-05-23 00:00:00+00:00, 2026-05-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-22: Some of your subset selection [2026-05-22 00:00:00+00:00, 2026-05-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-21: Some of your subset selection [2026-05-21 00:00:00+00:00, 2026-05-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-20: Some of your subset selection [2026-05-20 00:00:00+00:00, 2026-05-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-19: Some of your subset selection [2026-05-19 00:00:00+00:00, 2026-05-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-18: Some of your subset selection [2026-05-18 00:00:00+00:00, 2026-05-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-17: Some of your subset selection [2026-05-17 00:00:00+00:00, 2026-05-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-16: Some of your subset selection [2026-05-16 00:00:00+00:00, 2026-05-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-15: Some of your subset selection [2026-05-15 00:00:00+00:00, 2026-05-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-14: Some of your subset selection [2026-05-14 00:00:00+00:00, 2026-05-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-13: Some of your subset selection [2026-05-13 00:00:00+00:00, 2026-05-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-12: Some of your subset selection [2026-05-12 00:00:00+00:00, 2026-05-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-11: Some of your subset selection [2026-05-11 00:00:00+00:00, 2026-05-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-10: Some of your subset selection [2026-05-10 00:00:00+00:00, 2026-05-10 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-09: Some of your subset selection [2026-05-09 00:00:00+00:00, 2026-05-09 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-08: Some of your subset selection [2026-05-08 00:00:00+00:00, 2026-05-08 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-07: Some of your subset selection [2026-05-07 00:00:00+00:00, 2026-05-07 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-06: Some of your subset selection [2026-05-06 00:00:00+00:00, 2026-05-06 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-05: Some of your subset selection [2026-05-05 00:00:00+00:00, 2026-05-05 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-04: Some of your subset selection [2026-05-04 00:00:00+00:00, 2026-05-04 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-03: Some of your subset selection [2026-05-03 00:00:00+00:00, 2026-05-03 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]"
       }
     },
     "2026-06-03": {
@@ -539,10 +541,6 @@
         "equatorial_path": "assets/snapshots/2026-06-03_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-03_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-03_WIND_STRESS_ZOOM.png"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-06-03: Some of your subset selection [2026-06-03 00:00:00+00:00, 2026-06-03 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-06-02: Some of your subset selection [2026-06-02 00:00:00+00:00, 2026-06-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-06-01: Some of your subset selection [2026-06-01 00:00:00+00:00, 2026-06-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-31: Some of your subset selection [2026-05-31 00:00:00+00:00, 2026-05-31 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-30: Some of your subset selection [2026-05-30 00:00:00+00:00, 2026-05-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-29: Some of your subset selection [2026-05-29 00:00:00+00:00, 2026-05-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-28: Some of your subset selection [2026-05-28 00:00:00+00:00, 2026-05-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-27: Some of your subset selection [2026-05-27 00:00:00+00:00, 2026-05-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-26: Some of your subset selection [2026-05-26 00:00:00+00:00, 2026-05-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-25: Some of your subset selection [2026-05-25 00:00:00+00:00, 2026-05-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-24: Some of your subset selection [2026-05-24 00:00:00+00:00, 2026-05-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-23: Some of your subset selection [2026-05-23 00:00:00+00:00, 2026-05-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-22: Some of your subset selection [2026-05-22 00:00:00+00:00, 2026-05-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-21: Some of your subset selection [2026-05-21 00:00:00+00:00, 2026-05-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-20: Some of your subset selection [2026-05-20 00:00:00+00:00, 2026-05-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-19: Some of your subset selection [2026-05-19 00:00:00+00:00, 2026-05-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-18: Some of your subset selection [2026-05-18 00:00:00+00:00, 2026-05-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-17: Some of your subset selection [2026-05-17 00:00:00+00:00, 2026-05-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-16: Some of your subset selection [2026-05-16 00:00:00+00:00, 2026-05-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-15: Some of your subset selection [2026-05-15 00:00:00+00:00, 2026-05-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-14: Some of your subset selection [2026-05-14 00:00:00+00:00, 2026-05-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-13: Some of your subset selection [2026-05-13 00:00:00+00:00, 2026-05-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-12: Some of your subset selection [2026-05-12 00:00:00+00:00, 2026-05-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-11: Some of your subset selection [2026-05-11 00:00:00+00:00, 2026-05-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-10: Some of your subset selection [2026-05-10 00:00:00+00:00, 2026-05-10 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-09: Some of your subset selection [2026-05-09 00:00:00+00:00, 2026-05-09 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-08: Some of your subset selection [2026-05-08 00:00:00+00:00, 2026-05-08 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-07: Some of your subset selection [2026-05-07 00:00:00+00:00, 2026-05-07 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-06: Some of your subset selection [2026-05-06 00:00:00+00:00, 2026-05-06 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-05: Some of your subset selection [2026-05-05 00:00:00+00:00, 2026-05-05 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-04: Some of your subset selection [2026-05-04 00:00:00+00:00, 2026-05-04 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]"
       }
     },
     "2026-06-04": {
@@ -617,10 +615,6 @@
         "equatorial_path": "assets/snapshots/2026-06-04_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-04_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-04_WIND_STRESS_ZOOM.png"
-      },
-      "SAT_CHL": {
-        "available": false,
-        "error": "2026-06-04: Some of your subset selection [2026-06-04 00:00:00+00:00, 2026-06-04 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-06-03: Some of your subset selection [2026-06-03 00:00:00+00:00, 2026-06-03 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-06-02: Some of your subset selection [2026-06-02 00:00:00+00:00, 2026-06-02 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-06-01: Some of your subset selection [2026-06-01 00:00:00+00:00, 2026-06-01 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-31: Some of your subset selection [2026-05-31 00:00:00+00:00, 2026-05-31 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-30: Some of your subset selection [2026-05-30 00:00:00+00:00, 2026-05-30 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-29: Some of your subset selection [2026-05-29 00:00:00+00:00, 2026-05-29 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-28: Some of your subset selection [2026-05-28 00:00:00+00:00, 2026-05-28 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-27: Some of your subset selection [2026-05-27 00:00:00+00:00, 2026-05-27 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-26: Some of your subset selection [2026-05-26 00:00:00+00:00, 2026-05-26 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-25: Some of your subset selection [2026-05-25 00:00:00+00:00, 2026-05-25 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-24: Some of your subset selection [2026-05-24 00:00:00+00:00, 2026-05-24 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-23: Some of your subset selection [2026-05-23 00:00:00+00:00, 2026-05-23 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-22: Some of your subset selection [2026-05-22 00:00:00+00:00, 2026-05-22 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-21: Some of your subset selection [2026-05-21 00:00:00+00:00, 2026-05-21 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-20: Some of your subset selection [2026-05-20 00:00:00+00:00, 2026-05-20 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-19: Some of your subset selection [2026-05-19 00:00:00+00:00, 2026-05-19 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-18: Some of your subset selection [2026-05-18 00:00:00+00:00, 2026-05-18 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-17: Some of your subset selection [2026-05-17 00:00:00+00:00, 2026-05-17 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-16: Some of your subset selection [2026-05-16 00:00:00+00:00, 2026-05-16 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-15: Some of your subset selection [2026-05-15 00:00:00+00:00, 2026-05-15 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-14: Some of your subset selection [2026-05-14 00:00:00+00:00, 2026-05-14 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-13: Some of your subset selection [2026-05-13 00:00:00+00:00, 2026-05-13 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-12: Some of your subset selection [2026-05-12 00:00:00+00:00, 2026-05-12 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-11: Some of your subset selection [2026-05-11 00:00:00+00:00, 2026-05-11 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-10: Some of your subset selection [2026-05-10 00:00:00+00:00, 2026-05-10 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-09: Some of your subset selection [2026-05-09 00:00:00+00:00, 2026-05-09 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-08: Some of your subset selection [2026-05-08 00:00:00+00:00, 2026-05-08 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-07: Some of your subset selection [2026-05-07 00:00:00+00:00, 2026-05-07 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-06: Some of your subset selection [2026-05-06 00:00:00+00:00, 2026-05-06 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]; 2026-05-05: Some of your subset selection [2026-05-05 00:00:00+00:00, 2026-05-05 23:59:59+00:00] for the time dimension exceed the dataset coordinates [2026-06-12 00:00:00+00:00, 2026-06-30 00:00:00+00:00]"
       }
     },
     "2026-06-05": {
@@ -2093,6 +2087,498 @@
         "equatorial_path": "assets/snapshots/2026-06-22_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-06-22_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-06-22_WIND_STRESS_ZOOM.png"
+      }
+    },
+    "2026-07-01": {
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-01_EKMAN_PUMPING.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-01_EKMAN_PUMPING_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-01_EKMAN_PUMPING_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-01_EKMAN_PUMPING_ZOOM.png"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-01_ERA5_WIND.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-01_ERA5_WIND_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-01_ERA5_WIND_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-01_ERA5_WIND_ZOOM.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-01_MODEL_CURRENT.png",
+        "source_date": "2026-07-01",
+        "equatorial_path": "assets/snapshots/2026-07-01_MODEL_CURRENT_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-01_MODEL_CURRENT_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-01_MODEL_CURRENT_ZOOM.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-01_MODEL_SAL.png",
+        "source_date": "2026-07-01",
+        "equatorial_path": "assets/snapshots/2026-07-01_MODEL_SAL_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-01_MODEL_SAL_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-01_MODEL_SAL_ZOOM.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-01_MODEL_TEMP.png",
+        "source_date": "2026-07-01",
+        "equatorial_path": "assets/snapshots/2026-07-01_MODEL_TEMP_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-01_MODEL_TEMP_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-01_MODEL_TEMP_ZOOM.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-01_SAT_CHL.png",
+        "source_date": "2026-06-30",
+        "equatorial_path": "assets/snapshots/2026-07-01_SAT_CHL_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-01_SAT_CHL_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-01_SAT_CHL_ZOOM.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-01_SAT_SLA.png",
+        "source_date": "2026-07-01",
+        "equatorial_path": "assets/snapshots/2026-07-01_SAT_SLA_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-01_SAT_SLA_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-01_SAT_SLA_ZOOM.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-01_SAT_SSS.png",
+        "source_date": "2026-06-25",
+        "equatorial_path": "assets/snapshots/2026-07-01_SAT_SSS_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-01_SAT_SSS_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-01_SAT_SSS_ZOOM.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-01_WAVES.png",
+        "source_date": "2026-07-01",
+        "equatorial_path": "assets/snapshots/2026-07-01_WAVES_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-01_WAVES_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-01_WAVES_ZOOM.png"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-01_WIND_STRESS.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-01_WIND_STRESS_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-01_WIND_STRESS_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-01_WIND_STRESS_ZOOM.png"
+      }
+    },
+    "2026-07-02": {
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-02_EKMAN_PUMPING.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-02_EKMAN_PUMPING_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-02_EKMAN_PUMPING_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-02_EKMAN_PUMPING_ZOOM.png"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-02_ERA5_WIND.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-02_ERA5_WIND_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-02_ERA5_WIND_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-02_ERA5_WIND_ZOOM.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-02_MODEL_CURRENT.png",
+        "source_date": "2026-07-02",
+        "equatorial_path": "assets/snapshots/2026-07-02_MODEL_CURRENT_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-02_MODEL_CURRENT_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-02_MODEL_CURRENT_ZOOM.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-02_MODEL_SAL.png",
+        "source_date": "2026-07-02",
+        "equatorial_path": "assets/snapshots/2026-07-02_MODEL_SAL_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-02_MODEL_SAL_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-02_MODEL_SAL_ZOOM.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-02_MODEL_TEMP.png",
+        "source_date": "2026-07-02",
+        "equatorial_path": "assets/snapshots/2026-07-02_MODEL_TEMP_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-02_MODEL_TEMP_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-02_MODEL_TEMP_ZOOM.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-02_SAT_CHL.png",
+        "source_date": "2026-06-30",
+        "equatorial_path": "assets/snapshots/2026-07-02_SAT_CHL_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-02_SAT_CHL_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-02_SAT_CHL_ZOOM.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-02_SAT_SLA.png",
+        "source_date": "2026-07-01",
+        "equatorial_path": "assets/snapshots/2026-07-02_SAT_SLA_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-02_SAT_SLA_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-02_SAT_SLA_ZOOM.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-02_SAT_SSS.png",
+        "source_date": "2026-06-25",
+        "equatorial_path": "assets/snapshots/2026-07-02_SAT_SSS_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-02_SAT_SSS_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-02_SAT_SSS_ZOOM.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-02_WAVES.png",
+        "source_date": "2026-07-02",
+        "equatorial_path": "assets/snapshots/2026-07-02_WAVES_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-02_WAVES_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-02_WAVES_ZOOM.png"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-02_WIND_STRESS.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-02_WIND_STRESS_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-02_WIND_STRESS_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-02_WIND_STRESS_ZOOM.png"
+      }
+    },
+    "2026-07-03": {
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-03_EKMAN_PUMPING.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-03_EKMAN_PUMPING_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-03_EKMAN_PUMPING_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-03_EKMAN_PUMPING_ZOOM.png"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-03_ERA5_WIND.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-03_ERA5_WIND_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-03_ERA5_WIND_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-03_ERA5_WIND_ZOOM.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-03_MODEL_CURRENT.png",
+        "source_date": "2026-07-03",
+        "equatorial_path": "assets/snapshots/2026-07-03_MODEL_CURRENT_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-03_MODEL_CURRENT_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-03_MODEL_CURRENT_ZOOM.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-03_MODEL_SAL.png",
+        "source_date": "2026-07-03",
+        "equatorial_path": "assets/snapshots/2026-07-03_MODEL_SAL_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-03_MODEL_SAL_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-03_MODEL_SAL_ZOOM.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-03_MODEL_TEMP.png",
+        "source_date": "2026-07-03",
+        "equatorial_path": "assets/snapshots/2026-07-03_MODEL_TEMP_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-03_MODEL_TEMP_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-03_MODEL_TEMP_ZOOM.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-03_SAT_CHL.png",
+        "source_date": "2026-06-30",
+        "equatorial_path": "assets/snapshots/2026-07-03_SAT_CHL_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-03_SAT_CHL_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-03_SAT_CHL_ZOOM.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-03_SAT_SLA.png",
+        "source_date": "2026-07-01",
+        "equatorial_path": "assets/snapshots/2026-07-03_SAT_SLA_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-03_SAT_SLA_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-03_SAT_SLA_ZOOM.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-03_SAT_SSS.png",
+        "source_date": "2026-06-25",
+        "equatorial_path": "assets/snapshots/2026-07-03_SAT_SSS_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-03_SAT_SSS_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-03_SAT_SSS_ZOOM.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-03_WAVES.png",
+        "source_date": "2026-07-03",
+        "equatorial_path": "assets/snapshots/2026-07-03_WAVES_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-03_WAVES_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-03_WAVES_ZOOM.png"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-03_WIND_STRESS.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-03_WIND_STRESS_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-03_WIND_STRESS_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-03_WIND_STRESS_ZOOM.png"
+      }
+    },
+    "2026-07-04": {
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-04_EKMAN_PUMPING.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-04_EKMAN_PUMPING_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-04_EKMAN_PUMPING_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-04_EKMAN_PUMPING_ZOOM.png"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-04_ERA5_WIND.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-04_ERA5_WIND_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-04_ERA5_WIND_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-04_ERA5_WIND_ZOOM.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-04_MODEL_CURRENT.png",
+        "source_date": "2026-07-04",
+        "equatorial_path": "assets/snapshots/2026-07-04_MODEL_CURRENT_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-04_MODEL_CURRENT_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-04_MODEL_CURRENT_ZOOM.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-04_MODEL_SAL.png",
+        "source_date": "2026-07-04",
+        "equatorial_path": "assets/snapshots/2026-07-04_MODEL_SAL_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-04_MODEL_SAL_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-04_MODEL_SAL_ZOOM.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-04_MODEL_TEMP.png",
+        "source_date": "2026-07-04",
+        "equatorial_path": "assets/snapshots/2026-07-04_MODEL_TEMP_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-04_MODEL_TEMP_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-04_MODEL_TEMP_ZOOM.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-04_SAT_CHL.png",
+        "source_date": "2026-06-30",
+        "equatorial_path": "assets/snapshots/2026-07-04_SAT_CHL_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-04_SAT_CHL_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-04_SAT_CHL_ZOOM.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-04_SAT_SLA.png",
+        "source_date": "2026-07-01",
+        "equatorial_path": "assets/snapshots/2026-07-04_SAT_SLA_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-04_SAT_SLA_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-04_SAT_SLA_ZOOM.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-04_SAT_SSS.png",
+        "source_date": "2026-06-25",
+        "equatorial_path": "assets/snapshots/2026-07-04_SAT_SSS_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-04_SAT_SSS_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-04_SAT_SSS_ZOOM.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-04_WAVES.png",
+        "source_date": "2026-07-04",
+        "equatorial_path": "assets/snapshots/2026-07-04_WAVES_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-04_WAVES_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-04_WAVES_ZOOM.png"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-04_WIND_STRESS.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-04_WIND_STRESS_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-04_WIND_STRESS_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-04_WIND_STRESS_ZOOM.png"
+      }
+    },
+    "2026-07-05": {
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-05_EKMAN_PUMPING.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-05_EKMAN_PUMPING_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-05_EKMAN_PUMPING_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-05_EKMAN_PUMPING_ZOOM.png"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-05_ERA5_WIND.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-05_ERA5_WIND_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-05_ERA5_WIND_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-05_ERA5_WIND_ZOOM.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-05_MODEL_CURRENT.png",
+        "source_date": "2026-07-05",
+        "equatorial_path": "assets/snapshots/2026-07-05_MODEL_CURRENT_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-05_MODEL_CURRENT_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-05_MODEL_CURRENT_ZOOM.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-05_MODEL_SAL.png",
+        "source_date": "2026-07-05",
+        "equatorial_path": "assets/snapshots/2026-07-05_MODEL_SAL_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-05_MODEL_SAL_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-05_MODEL_SAL_ZOOM.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-05_MODEL_TEMP.png",
+        "source_date": "2026-07-05",
+        "equatorial_path": "assets/snapshots/2026-07-05_MODEL_TEMP_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-05_MODEL_TEMP_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-05_MODEL_TEMP_ZOOM.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-05_SAT_CHL.png",
+        "source_date": "2026-06-30",
+        "equatorial_path": "assets/snapshots/2026-07-05_SAT_CHL_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-05_SAT_CHL_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-05_SAT_CHL_ZOOM.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-05_SAT_SLA.png",
+        "source_date": "2026-07-01",
+        "equatorial_path": "assets/snapshots/2026-07-05_SAT_SLA_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-05_SAT_SLA_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-05_SAT_SLA_ZOOM.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-05_SAT_SSS.png",
+        "source_date": "2026-06-25",
+        "equatorial_path": "assets/snapshots/2026-07-05_SAT_SSS_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-05_SAT_SSS_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-05_SAT_SSS_ZOOM.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-05_WAVES.png",
+        "source_date": "2026-07-05",
+        "equatorial_path": "assets/snapshots/2026-07-05_WAVES_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-05_WAVES_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-05_WAVES_ZOOM.png"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-05_WIND_STRESS.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-05_WIND_STRESS_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-05_WIND_STRESS_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-05_WIND_STRESS_ZOOM.png"
+      }
+    },
+    "2026-07-06": {
+      "EKMAN_PUMPING": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-06_EKMAN_PUMPING.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-06_EKMAN_PUMPING_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-06_EKMAN_PUMPING_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-06_EKMAN_PUMPING_ZOOM.png"
+      },
+      "ERA5_WIND": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-06_ERA5_WIND.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-06_ERA5_WIND_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-06_ERA5_WIND_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-06_ERA5_WIND_ZOOM.png"
+      },
+      "MODEL_CURRENT": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-06_MODEL_CURRENT.png",
+        "source_date": "2026-07-06",
+        "equatorial_path": "assets/snapshots/2026-07-06_MODEL_CURRENT_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-06_MODEL_CURRENT_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-06_MODEL_CURRENT_ZOOM.png"
+      },
+      "MODEL_SAL": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-06_MODEL_SAL.png",
+        "source_date": "2026-07-06",
+        "equatorial_path": "assets/snapshots/2026-07-06_MODEL_SAL_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-06_MODEL_SAL_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-06_MODEL_SAL_ZOOM.png"
+      },
+      "MODEL_TEMP": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-06_MODEL_TEMP.png",
+        "source_date": "2026-07-06",
+        "equatorial_path": "assets/snapshots/2026-07-06_MODEL_TEMP_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-06_MODEL_TEMP_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-06_MODEL_TEMP_ZOOM.png"
+      },
+      "SAT_CHL": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-06_SAT_CHL.png",
+        "source_date": "2026-06-30",
+        "equatorial_path": "assets/snapshots/2026-07-06_SAT_CHL_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-06_SAT_CHL_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-06_SAT_CHL_ZOOM.png"
+      },
+      "SAT_SLA": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-06_SAT_SLA.png",
+        "source_date": "2026-07-01",
+        "equatorial_path": "assets/snapshots/2026-07-06_SAT_SLA_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-06_SAT_SLA_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-06_SAT_SLA_ZOOM.png"
+      },
+      "SAT_SSS": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-06_SAT_SSS.png",
+        "source_date": "2026-06-25",
+        "equatorial_path": "assets/snapshots/2026-07-06_SAT_SSS_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-06_SAT_SSS_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-06_SAT_SSS_ZOOM.png"
+      },
+      "WAVES": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-06_WAVES.png",
+        "source_date": "2026-07-06",
+        "equatorial_path": "assets/snapshots/2026-07-06_WAVES_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-06_WAVES_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-06_WAVES_ZOOM.png"
+      },
+      "WIND_STRESS": {
+        "available": true,
+        "path": "assets/snapshots/2026-07-06_WIND_STRESS.png",
+        "source_date": "2026-06-26",
+        "equatorial_path": "assets/snapshots/2026-07-06_WIND_STRESS_EQUATORIAL.png",
+        "regional_path": "assets/snapshots/2026-07-06_WIND_STRESS_REGIONAL.png",
+        "zoom_path": "assets/snapshots/2026-07-06_WIND_STRESS_ZOOM.png"
       }
     }
   }
