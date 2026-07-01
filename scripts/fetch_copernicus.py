@@ -301,6 +301,13 @@ def get_cmocean_cmap(name: str):
     return getattr(cmocean.cm, name)
 
 
+def close_open_figures() -> None:
+    pyplot = sys.modules.get("matplotlib.pyplot")
+
+    if pyplot is not None:
+        pyplot.close("all")
+
+
 def lon_lat_from_da(da: Any) -> tuple[Any, Any, str, str]:
     lon_name = coordinate_name(da, ("longitude", "lon"))
     lat_name = coordinate_name(da, ("latitude", "lat"))
@@ -1478,6 +1485,8 @@ def main() -> None:
                         break
 
                     except Exception as exc:
+                        close_open_figures()
+
                         error_text = str(exc)
 
                         product_errors.append(f"{source_day.isoformat()}: {error_text}")
