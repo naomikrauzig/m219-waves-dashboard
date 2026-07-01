@@ -11,7 +11,7 @@ name: Update Copernicus snapshots
       days_back:
         description: "Number of past days to fetch before the central date"
         required: false
-        default: "1"
+        default: "0"
         type: string
 
       days_ahead:
@@ -79,7 +79,7 @@ jobs:
 
           DAYS_BACK="${{ inputs.days_back }}"
           if [ -z "$DAYS_BACK" ]; then
-            DAYS_BACK="1"
+            DAYS_BACK="0"
           fi
 
           DAYS_AHEAD="${{ inputs.days_ahead }}"
