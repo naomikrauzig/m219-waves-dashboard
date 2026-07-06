@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T09:16:39+00:00",
+  "generated_at": "2026-07-06T19:07:23+00:00",
   "forecast_start": "2026-07-06",
   "forecast_end": "2026-07-11",
   "dates": [
@@ -3582,7 +3582,7 @@
       "EKMAN_PUMPING": {
         "available": true,
         "path": "assets/snapshots/2026-07-11_EKMAN_PUMPING.png",
-        "source_date": "2026-07-01",
+        "source_date": "2026-07-06",
         "equatorial_path": "assets/snapshots/2026-07-11_EKMAN_PUMPING_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-07-11_EKMAN_PUMPING_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-07-11_EKMAN_PUMPING_ZOOM.png"
@@ -3590,7 +3590,7 @@
       "ERA5_WIND": {
         "available": true,
         "path": "assets/snapshots/2026-07-11_ERA5_WIND.png",
-        "source_date": "2026-07-01",
+        "source_date": "2026-07-06",
         "equatorial_path": "assets/snapshots/2026-07-11_ERA5_WIND_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-07-11_ERA5_WIND_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-07-11_ERA5_WIND_ZOOM.png"
@@ -3622,7 +3622,7 @@
       "SAT_CHL": {
         "available": true,
         "path": "assets/snapshots/2026-07-11_SAT_CHL.png",
-        "source_date": "2026-07-04",
+        "source_date": "2026-07-06",
         "equatorial_path": "assets/snapshots/2026-07-11_SAT_CHL_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-07-11_SAT_CHL_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-07-11_SAT_CHL_ZOOM.png"
@@ -3638,7 +3638,7 @@
       "SAT_SSS": {
         "available": true,
         "path": "assets/snapshots/2026-07-11_SAT_SSS.png",
-        "source_date": "2026-06-30",
+        "source_date": "2026-07-06",
         "equatorial_path": "assets/snapshots/2026-07-11_SAT_SSS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-07-11_SAT_SSS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-07-11_SAT_SSS_ZOOM.png"
@@ -3654,7 +3654,7 @@
       "WIND_STRESS": {
         "available": true,
         "path": "assets/snapshots/2026-07-11_WIND_STRESS.png",
-        "source_date": "2026-07-01",
+        "source_date": "2026-07-06",
         "equatorial_path": "assets/snapshots/2026-07-11_WIND_STRESS_EQUATORIAL.png",
         "regional_path": "assets/snapshots/2026-07-11_WIND_STRESS_REGIONAL.png",
         "zoom_path": "assets/snapshots/2026-07-11_WIND_STRESS_ZOOM.png"
